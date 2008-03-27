@@ -100,6 +100,8 @@ typedef uint32_t RKLRegexOptions;
 
 @interface NSString (RegexKitLiteAdditions)
 
++ (void)clearStringCache;
+
 + (NSInteger)captureCountForRegex:(NSString *)regexString;
 + (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError **)error;
 

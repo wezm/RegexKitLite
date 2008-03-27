@@ -203,6 +203,16 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
 
 @implementation NSString (RegexKitLiteAdditions)
 
++ (void)clearStringCache
+{
+  OSSpinLockLock(&cacheSpinLock);
+  fixedString   = RKLMakeString(NULL, 0, 0, fixedString.uniChar);
+  dynamicString = RKLMakeString(NULL, 0, 0, reallocf(dynamicString.uniChar, 0));
+  NSUInteger x = 0;
+  for(x = 0; x < RKL_CACHE_SIZE; x++) { RKLClearCacheSlotLastString((&RKLCache[x])); }
+  OSSpinLockUnlock(&cacheSpinLock);
+}
+
 + (NSInteger)captureCountForRegex:(NSString *)regexString
 {
   return([self captureCountForRegex:regexString options:RKLNoOptions error:NULL]);
@@ -304,7 +314,7 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
   RKLString *string     = (selfString.uniChar != NULL) ? &selfString : (stringLength < RKL_FIXED_LENGTH) ? &fixedString : &dynamicString;
   
   // Check if this regex is already set to this string.
-  if((cacheSlot->last.uniChar == string->uniChar) && (cacheSlot->last.string == string->string) && (cacheSlot->last.hash == string->hash) && (cacheSlot->last.length == string->length) && (cacheSlot->last.string != NULL)) { goto alreadySetText; }
+  if((cacheSlot->last.uniChar == string->uniChar) && (cacheSlot->last.string == selfString.string) && (cacheSlot->last.hash == selfString.hash) && (cacheSlot->last.length == selfString.length) && (cacheSlot->last.string != NULL)) { goto alreadySetText; }
   
   // If we didn't get direct UTF16 access, perform any required UTF16 conversions if the current buffer doesn't match this string.
   if((string != &selfString) && ((string->string != self) || (string->length != selfString.length) || (string->hash != selfString.hash))) {
