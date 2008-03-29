@@ -70,12 +70,10 @@
 #define CFAutorelease(obj) ({CFTypeRef _obj = (obj); (_obj == NULL) ? NULL : [(id)(_obj) autorelease]; })
 #endif
 
-#define RKL_STR(s) RKL_STR2(s)
-#define RKL_STR2(s) #s
 #define RKLMakeString(str, hash, len, uc) ((RKLString){(str), (hash), (len), (UniChar *)(uc)})
 #define RKLClearCacheSlotLastString(ce) ({ ce->last = RKLMakeString(NULL, 0, 0, NULL); ce->lastFindRange = NSNotFoundRange; ce->lastMatchRange = NSNotFoundRange; })
 #define RKLGetRangeForCapture(regex, status, capture, range) ({ range.location = (NSUInteger)uregex_start(regex, capture, &status); range.length = (NSUInteger)uregex_end(regex, capture, &status) - range.location; status; })
-#define RKLInternalException [NSException exceptionWithName:NSInternalInconsistencyException reason:@"An internal error occured in " __FILE__ ":" RKL_STR(__LINE__) userInfo:NULL]
+#define RKLInternalException [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"An internal error occured at %@:%d", [NSString stringWithUTF8String:__FILE__], __LINE__] userInfo:NULL]
 
 // Exported symbols.  Error domains, keys, etc.
 NSString * const RKLICURegexErrorDomain          = @"RKLICURegexErrorDomain";

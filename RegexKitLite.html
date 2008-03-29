@@ -3,13 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <style type="text/css">
-A:link          { text-decoration: none;      color: #0000FF; }
-A:link:hover    { text-decoration: underline; color: #FF6600; }
-A:active        { text-decoration: underline; color: #FF6600; }
-A[name]:active  { text-decoration: none;      color: #000000; }
-A:visited       { text-decoration: none;      color: #0000AA; }
-A:visited:hover	{ text-decoration: underline; color: #FF6600; }
-
 body { font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; color: #000000; background-color: #FFFFFF; }
 h1   { margin-top: 1.0em; margin-bottom: 0.8334em; font-size: 2.5000em; }
 h2   { margin-top: 2.5em; margin-bottom: 2.0000ex; font-size: 2.0000em; border-bottom: 1px solid black; clear: both; }
@@ -17,14 +10,180 @@ h3   { margin-top: 2.0em; margin-bottom: 0.5000em; font-size: 1.5834em; }
 h4   { margin-top: 2.0em; margin-bottom: 0.5000em; font-size: 1.2500em; }
 h5   { margin-top: 1.5em; margin-bottom: 0.5000em; font-size: 1.0834em; padding: 0px; }
 
-h1.additions { margin-top: 2.5em; }
-h3 .code { color: black; }
-h4 .code { color: black; }
+A:link          { text-decoration: none;      color: #0000FF; }
+A:link:hover    { text-decoration: underline; color: #FF6600; }
+A:active        { text-decoration: underline; color: #FF6600; }
+A[name]:active  { text-decoration: none;      color: #000000; }
+A:visited       { text-decoration: none;      color: #0000AA; }
+A:visited:hover	{ text-decoration: underline; color: #FF6600; }
 
+.spacer { height: 0px; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em; border-top: 1px solid #fafafa; border-bottom: 1px solid #fdfdfd; }
+.indent  { margin-left: 4ex; }
+.bar { height: 0px; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em; border-bottom: 1px solid #a1a5a9; }
+
+.hide { display: none; }
+
+.XXX { border: 2px solid red; padding: 2px; }
+.XXX { border-color: rgba(255,0,0,0.8); -webkit-border-radius: 6px; text-shadow: 2px 2px 2px #400; -moz-border-radius: 4px; -moz-border-bottom-colors: #FF0000 #D00000; -moz-border-top-colors: #FF0000 #D00000; -moz-border-right-colors: #FF0000 #D00000; -moz-border-left-colors: #FF0000 #D00000; }
+
+.nobr { white-space: nowrap; white-space: pre-wrap !important; }
+.hardNobr { white-space: nowrap; }
+
+.marginTopSpacer { margin-top: 1em !important; }
+.marginBottomSpacer { margin-bottom: 1em !important; }
+.marginLeftSpacer { margin-left: 1ex !important; }
+.marginRightSpacer { margin-right: 1ex !important; }
+.marginSpacer { margin: 1em 1ex !important; }
+
+.floatRight { float: right; }
+.floatLeft { float: left; }
+
+.clearLeft { clear: left; }
+.clearRight { clear: right; }
+.clearBoth { clear: both; }
+
+.table { display: table; }
+.table > .row { display: table-row; }
+.table > .row > .cell { display: table-cell; }
+
+.table > .row > .cell.metacharacters { width: 50%; }
+.table > .row > .cell.operators { width: 50%; }
+
+ul.highlights    { margin-left: 4.0ex; padding-left: 1ex; }
+ul.highlights li { margin-top: 0.5em; }
+
+ul.square  { list-style-type: square; }
+
+ul.overview    { margin-left: 9.5ex; list-style-type: none; }
+ul.overview li { margin-top: 0em; }
+
+ul.seealso { margin: 0px; padding: 0px; list-style-type: none; }
+ul.seealso > li { margin: 0px 0px 0px 6.25ex; }
+
+/* table styles */
+
+table + table { margin-top: 1em; }
+table + .box { margin-top: 1em; }
+
+/* The standard table style */
+table.standard                       { border-collapse: collapse; border-top: 1px solid #919699; border-left: 1px solid #919699; }
+table.standard caption               { margin-bottom: 0.5em; text-align: left; }
+table.standard caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
+table.standard th                    { padding: 0.3334em 1ex; text-align: left;  border-bottom: 1px solid #919699; border-right: 1px solid #919699; background: #E2E2E2; }
+table.standard td                    { vertical-align: top; padding: 1ex; border-bottom: 1px solid #919699; border-right: 1px solid #919699; }
+
+table.regexSyntax                       { border-collapse: collapse; border-top: 1px solid #919699; border-left: 1px solid #919699; margin-left: 1.5ex; margin-right: 1.5ex; }
+table.regexSyntax caption               { margin-bottom: 0.5em; text-align: left; }
+table.regexSyntax caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
+table.regexSyntax th                    { padding: 0.3334em 1ex; text-align: left;  border-bottom: 1px solid #919699; border-right: 1px solid #919699; background: #E2E2E2; }
+table.regexSyntax td                    {  padding-left: 0.75ex; padding-right: 0.75ex; padding-top: 0.1875em; padding-bottom: 0.1875em; border-bottom: 1px solid #919699; border-right: 1px solid #919699; }
+
+
+
+.box   { margin: 0.5em 3ex; padding: 0.5em 1.75ex; text-align: left; vertical-align: top; border: 1px solid #a1a5a9; background-color: #f7f7f7; }
+.box + .box { margin-top: 1em; }
+.box p { margin: 0px 0px; }
+.box p + p { margin-top: 1em; }
+
+.box.important       { border-color: #111111; background-color: #e8e8e8; }
+.box.warning         { border-color: #000;    background-color: #fff;    }
+.box.caution         { border-color: black;   background-color: #fcfcfc; border-width: 2px; }
+.box.tip, .box.small { border-color: #c3c3c3; background-color: #e9e9e9; padding: 0.25em 1.0ex; }
+
+.box.tip   { display: table; -webkit-border-radius: 1.0em; -moz-border-radius: 1.0em; }
+.box.small { float: left; clear: both; margin: 0.5ex; -webkit-border-radius: 0.85em; -moz-border-radius: 0.85em; }
+.box.note, .box.important, .box.warning, .box.caution { -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; }
+
+.box .label { font-weight: bold; padding-right: 1.5ex; vertical-align: middle; }
+.box.tip .label { padding-right: 1.0ex; }
+.box.small .label { padding-right: 0.5ex; }
+
+.box.sourcecode, .box.shell { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; }
+.box.sourcecode, .box.shell { white-space: pre; white-space: pre-wrap !important; font: 0.9167em monaco, courier, monospace; }
+.box.sourcecode { border: 1px solid #c7cfd5; background-color: #f1f5f9; }
+.box.shell      { border: 1px solid #bddbc5; background-color: #eafff5; }
+.box.shell .userInput         { font-weight: bold;   font-size: 0.9167em; }
+.box.shell .userInput .return { font-weight: normal; font-size: 1.1000em; margin-left: 0.5ex; }
+
+.box.hasRows                                 { display: table; padding: 0px; background-color: white; border-left: 1px solid #919699; border-top: 1px solid #919699; }
+.box.hasRows > .row                          { display: table-row;  }
+.box.hasRows > .row         > .cell          { display: table-cell; padding: 1ex; border-bottom: 1px solid #919699; border-right: 0.834em solid #919699; }
+.box.hasRows > .row         > .cell.lastCell { border-right: none;  }
+.box.hasRows > .row.lastRow > .cell          { border-bottom: none; }
+
+/* zebra rows are tagged even/odd.  Scripts/common.js:fixupBoxRows() will automatically populate and/or correct any even/odd tags */
+.box.hasRows.zebraRows > .row.odd             { background-color: #F0F5F9;                       }
+.box.hasRows           > .row.headerRow       { background-color: #E2E2E2;                       }
+.box.hasRows           > .row.headerRow .cell { padding-top: 0.3334em; padding-bottom: 0.3334em; }
+
+.box.frameworkSpecs .row.regexKitVersion .releaseNotes, .box.classSpecs .row.regexKitVersion .releaseNotes { margin-left: 2ex; }
 .box.classSpecs > .row > .cell.left { font-weight: bold; border-right: none; }
 .box.classSpecs > .row > ul.cell.right { list-style-type: none; }
 
-.spacer { height: 0px; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em; border-top: 1px solid #fafafa; border-bottom: 1px solid #fdfdfd; }
+
+.box .metainfo { display: table; font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; white-space: normal; padding: 0.125em 0.75ex; border: 1px solid; border-color: rgba(0,0,0,0.15); background-color: rgba(0,0,0,0.05); -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; float: right; }
+.box .metainfo .info { padding-left: 1.0ex; }
+.box .metainfo > .entry { display: table-row; }
+.box .metainfo > .entry > .item { display: table-cell; }
+.box .metainfo > .entry > .meta { font-style: italic; }
+
+.box .metainfo .filename > .info { font: 0.9167em monaco, courier, monospace; white-space: nowrap; }
+.box .metainfo .continues.above > .info { padding-left: 0px; font: italic 0.9167em monaco, courier, monospace; white-space: nowrap; }
+
+.figure .caption { margin-bottom: 0.5em; margin-top: 0.5em; }
+.figure .caption .number { font-weight: bold; margin-right: 1.25ex; white-space: nowrap; }
+
+.signature { margin-top: 1em; margin-bottom: 0.75em; font: 0.9166em monaco, courier, monospace; }
+.signature .code { font-size: 1em !important; }
+.signature .argument { font: italic 1.090em "lucida grande", geneva, helvetica, arial, sans-serif; }
+
+.block { margin: 2.5em 0px 0px 0px; padding: 2.5em 0px 0px 0px; }
+.block .header + p { margin-top: 0px; }
+
+.section { margin-top: 1em; margin-bottom: 1em; padding: 0px; }
+.section > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1667em; }
+.section p { margin-top: 0.5em; margin-bottom: 0.5em; }
+.section.discussion p { margin-top: 0.5em; margin-bottom: 0.5em !important; }
+
+.section.summary { margin-top: 0.75em; margin-bottom: 0.75em; }
+.section.name { font-size: 1.5833em; font-weight: bold; margin-top: 0px; margin-bottom: 0px; }
+.section.parameters { margin-top: 1.5em; }
+
+.section.seealso ul { list-style-type: none; margin: 0px; padding: 0px; }
+.section.seealso li { margin: 0px; }
+.section.seealso ul.offset > li, ul.seealso > li { margin: 0px 0px 0px 6.25ex; }
+
+.section.parameters   ul { list-style-type: none; margin: 0px 0px 0px 2ex; padding: 0px; } 
+.section.parameters   li { margin: 0px; }
+.section.parameters   li > .name { font-style: italic; }
+.section.parameters   li > .text { margin-top: 0.0834em; margin-left: 4ex; margin-bottom: 0.5em; }
+
+.block.typedef { margin-top: 5em; margin-bottom: 0px; padding-top: 0px; }
+.block.typedef > .section.name { margin-bottom: 0.5em; }
+.block.typedef > .section.summary { margin-top: 1em; }
+.block.typedef > .section.type { margin-bottom: 0.75em; font: 0.9166em monaco, courier, monospace; }
+
+.block.constants { margin-top: 1.5em; padding-top: 0px; }
+.block.constants > .section.summary { margin-top: 1em; margin-bottom: 1.25em; }
+.block.constants > .section.declaration .code { font-size: 1em; color: #000; }
+
+.block > .section.declaration { font: 0.9167em monaco, courier, monospace; color: #000; margin-top: 0px; margin-bottom: 0px; }
+.block > .section.declaration > .enum > .identifier { padding-left: 4ex; }
+.block > .section.declaration > .enum > .equals {  padding-left: 2ex; padding-right: 2ex; }
+
+.block > .section.constants { margin-top: 1.5em; }
+.block > .section.constants > .section.summary { margin-top: 1em; margin-bottom: 1.25em; }
+.block > .section.constants > .section.header { margin-bottom: 0.25em; }
+.block > .section.constants > .section.declaration .name.code { color: #000; }
+.block > .section.constants > .constant  { margin-top: 0.5em; margin-bottom: 0.5em; }
+.block > .section.constants > .constant > .identifier { font: 0.9167em monaco, courier, monospace; color: #666; }
+.block > .section.constants > .constant > .text { margin-left: 2ex; }
+.block > .section.constants > .constant > .text > p { margin-top: 0px; margin-bottom: 0px; }
+.block > .section.constants > .constant > .text > p + p { margin-top: 1em; }
+
+h1.reference { margin-top: 2.5em; }
+h3 .code { color: black; }
+h4 .code { color: black; }
 
 .overview { margin-bottom: 1em; }
 .overview .masthead { font-size: 2.0000em; font-weight: bold; margin-top: 2.5em; margin-bottom: 2.0000ex; border-bottom: 1px solid black; }
@@ -57,92 +216,27 @@ h4 .code { color: black; }
 .protocols > ul { margin: 0px; padding: 0px; list-style-type: none; }
 .protocols > ul > li { margin-left: 6.25ex; }
 
-.method, .function, .macro { margin: 2.5em 0px 0px 0px; padding: 2.5em 0px 0px 0px; }
-.method > .name, .function > .name, .macro > .name { font-size: 1.5833em; font-weight: bold; }
-.method > .summary, .function > .summary, .macro > .summary { margin: 0.75em 0px 0.75em 0px; }
-/*.method > .signature, .function > .signature, .macro > */
-.signature { margin: 1em 0px 0.75em 0px; font: 0.9166em monaco, courier, monospace; }
-/*.method > .signature > .argument, .function > .signature > .argument, .macro > */
-.signature  .argument { font: italic 1.090em "lucida grande", geneva, helvetica, arial, sans-serif; }
-
-.method > .signature .code, .function > .signature .code, .macro > .code { font-size: 1em; }
-.method .header + p, .function .header + p, .macro .header + p { margin-top: 0px; }
-
-.discussion { margin-top: 1em; margin-bottom: 1em; }
-.discussion > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1539em; }
-.discussion p { margin-top: 0.5em; margin-bottom: 0.5em; }
-
-.declared_in { margin-top: 1em; margin-bottom: 1em; }
-.declared_in > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1539em; }
-
-.parameters { margin: 1.5em 0ex 1em 0ex; padding: 0px; }
-.parameters > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1667em; }
-.parameters   ul { list-style-type: none; margin: 0px 0px 0px 2ex; padding: 0px; } 
-.parameters   li { margin: 0px; }
-.parameters   li > .name { font-style: italic; }
-.parameters   li > .text { margin-top: 0.0834em; margin-left: 4ex; margin-bottom: 0.5em; }
-
-.seealso { margin-top: 1em; margin-bottom: 1em; padding: 0px; }
-.seealso > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1667em; }
-.seealso ul { list-style-type: none; margin: 0px; padding: 0px; }
-.seealso li { margin: 0px; }
-
-.result { margin: 1em 0px; }
-.result > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1667em; }
-
-.figure .caption { margin-bottom: 0.5em; margin-top: 0.5em; }
-.figure .caption .number { font-weight: bold; margin-right: 1.25ex; white-space: nowrap; }
-
-
-.typedef { margin: 5em 0px 0px 0px; }
-.typedef > .name { font-size: 1.5833em; font-weight: bold; margin-bottom: 0.5em; }
-.typedef > .summary { margin: 1em 0px 0.75em 0px; }
-
-.typedef > .declaration { margin: 0px; padding: 0px; font: 0.9167em monaco, courier, monospace; color: #000; }
-.typedef > .declaration > .enum > .identifier { padding-left: 4ex;   }
-.typedef > .declaration > .enum > .equals {  padding-left: 2ex; padding-right: 2ex; }
-.typedef > .type { margin: 1em 0px 0.75em 0px; font: 0.9166em monaco, courier, monospace; }
-
-.constants { margin-top: 1.5em; }
-.constants > .summary { margin: 1em 0px 1.25em 0px; }
-.constants > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.25em; }
-.constants .declaration .name.code { color: #000; }
-.constants > .constant  { margin-top: 0.5em; margin-bottom: 0.5em; }
-.constants > .constant > .identifier { font: 0.9167em monaco, courier, monospace; color: #666; }
-.constants > .constant > .text { margin-left: 2ex; }
-.constants > .constant > .text > p { margin-top: 0px; margin-bottom: 0px; }
-.constants > .constant > .text > p + p { margin-top: 1em; }
-
 .chrono                                         { margin-left: 1.5ex; margin-bottom: 2em; padding-right: 4ex; }
-/*
-.chrono .header                                 { margin-left: -1.5ex; padding-left: 1.5ex; border-bottom: 1px solid black; margin-bottom: 1em;  }
-.chrono .title                                  { font-size: 1.5834em; margin-top: 2.0em; margin-bottom: 0.25em; }
-.chrono .title:first-child                      { margin-top: 0px; }
-*/
 .chrono ul                                      { margin-left: 4.0ex; padding-left: 1ex; list-style-type: square; }
 .chrono ul li                                   { margin-top: 0.5em; }
 
 .chrono > .entry                                { margin-left: 2ex; margin-bottom: 1.75em; padding-right: 2ex; }
 .chrono > .entry > .banner                      { margin-left: -1.25ex; font-size: 1.0834em; }
 .chrono > .entry > .banner > .bannerItemSpacer  { margin-right: 1.25ex; margin-left: 1.25ex; }
-/*.chrono > .entry > .bannerSpacer                { border-bottom: 1px solid #e8e8e8; height: 0px; width: 95%; margin-left: -1.5ex; margin-top: 0.25em; margin-bottom: 0.25em; }*/
-.chrono > .entry > .bannerSpacer                { margin-left: -2.0ex; /*padding-left: 1.5ex;*/ border-bottom: 1px solid #d8d8d8; margin-top: 0.25em; margin-bottom: 0.25em; width: 95% }
+.chrono > .entry > .bannerSpacer                { margin-left: -2.0ex; border-bottom: 1px solid #d8d8d8; margin-top: 0.25em; margin-bottom: 0.25em; width: 95% }
 .chrono > .entry > .content                     { margin-top: 0.5em; }
 .chrono > .entry > .content > p:first-child     { margin-top: 0px; margin-bottom: 0px; }
 
 .quotation { margin: 1em 6.25ex 1em 6.25ex; }
 .quotation .quote { font-style: italic; }
 .quotation .attribution:before { margin-left: 1.25ex; content:"-"; margin-right: 1.25ex; }
-.quotation .attribution {  }
 
 .sourceLicense { margin: 2em 4ex; max-width: 5.75in; }
-.sourceLicense ul { list-style-type: circle; }
+.sourceLicense ul { list-style-type: disk; }
 .sourceLicense li { margin-bottom: 0.75em; }
 .sourceLicense .disclaimer { font-family: courier, monospace; }
 
 .pop-up_menu-selection, .pop-up_menu-name, .menu-selection, .checkbox-name, .tab-name, .button-name, .icon-button-name { font: 0.9167em monaco, courier, monospace !important; white-space: nowrap !important; }
-
-.rkl { white-space: nowrap; }
 
 .quotedText        {        font:         0.9167em monaco, courier, monospace; }
 .code              {        font:         0.9167em monaco, courier, monospace; color: #666; }
@@ -170,126 +264,14 @@ h4 .code { color: black; }
 .exponent          {   font-size:         0.7500em; vertical-align: super; } 
 .unicodeCharName   {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; color: #666; }
 
-.hide { display: none; }
-
-.XXX { border: 2px solid red; padding: 2px; }
-.XXX { border-color: rgba(255,0,0,0.8); -webkit-border-radius: 6px; text-shadow: 2px 2px 2px #400; -moz-border-radius: 4px; -moz-border-bottom-colors: #FF0000 #D00000; -moz-border-top-colors: #FF0000 #D00000; -moz-border-right-colors: #FF0000 #D00000; -moz-border-left-colors: #FF0000 #D00000; }
-
-.nobr { white-space: nowrap; white-space: pre-wrap !important; }
-.hardNobr { white-space: nowrap; }
-
-.marginTopSpacer { margin-top: 1em !important; }
-.marginBottomSpacer { margin-bottom: 1em !important; }
-.marginLeftSpacer { margin-left: 1ex !important; }
-.marginRightSpacer { margin-right: 1ex !important; }
-.marginSpacer { margin: 1em 1ex !important; }
-
-.floatRight { float: right; }
-.floatLeft { float: left; }
-
-.clearLeft { clear: left; }
-.clearRight { clear: right; }
-.clearBoth { clear: both; }
-
-.bar { height: 0px; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em; border-bottom: 1px solid #a1a5a9; }
-
-
-.table { display: table; }
-.table > .row { display: table-row; }
-.table > .row > .cell { display: table-cell; }
-
-.table > .row > .cell.metacharacters { width: 50%; }
-.table > .row > .cell.operators { width: 50%; }
-
-ul.highlights    { margin-left: 4.0ex; padding-left: 1ex; }
-ul.highlights li { margin-top: 0.5em; }
-
-ul.square  { list-style-type: square; }
-
-.indent  { margin-left: 4ex; }
-
-ul.overview    { margin-left: 9.5ex; list-style-type: none; }
-ul.overview li { margin-top: 0em; }
-
-.box   { margin: 0.5em 3ex; padding: 0.5em 1.75ex; text-align: left; vertical-align: top; border: 1px solid #a1a5a9; background-color: #f7f7f7; }
-.box + .box { margin-top: 1em; }
-.box p { margin: 0px 0px; }
-.box p + p { margin-top: 1em; }
-
-.box.hasRows                                 { display: table; padding: 0px; background-color: white; }
-.box.hasRows                                 { border-left: 1px solid #919699; border-top: 1px solid #919699; }
-.box.hasRows > .row                          { display: table-row;  }
-.box.hasRows > .row         > .cell          { display: table-cell; padding: 1ex; border-bottom: 1px solid #919699; border-right: 0.834em solid #919699; }
-.box.hasRows > .row         > .cell.lastCell { border-right: none;  }
-.box.hasRows > .row.lastRow > .cell          { border-bottom: none; }
-
-/* zebra rows are tagged even/odd.  Scripts/common.js:fixupBoxRows() will automatically populate and/or correct any even/odd tags */
-.box.hasRows.zebraRows > .row.odd             { background-color: #F0F5F9;                       }
-.box.hasRows           > .row.headerRow       { background-color: #E2E2E2;                       }
-.box.hasRows           > .row.headerRow .cell { padding-top: 0.3334em; padding-bottom: 0.3334em; }
-
-.box.frameworkSpecs .row.regexKitVersion .releaseNotes, .box.classSpecs .row.regexKitVersion .releaseNotes { margin-left: 2ex; }
-
-.box.sourcecode { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; border: 1px solid #c7cfd5; background-color: #f1f5f9; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; position: relative; }
-.box.sourcecode { white-space: pre; white-space: pre-wrap !important; font: 0.9167em monaco, courier, monospace; }
-
-.box.shell { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; border: 1px solid #bddbc5; background-color: #eafff5; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; position: relative; }
-.box.shell { white-space: pre; white-space: pre-wrap !important; font: 0.9167em monaco, courier, monospace; }
-
-.shell .return { margin-left: 0.5ex; }
-.shell .userInput .return { font-weight: normal; font-size: 1.1em; }
-.shell .userInput { font-weight: bold; font-size: 0.9167em;  }
-
-.box.note, .box.important, .box.warning { -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; }
-.box .label { font-weight: bold; padding-right: 1.5ex; vertical-align: middle; }
-
-.box.important  { border-color: #111111; background-color: #e8e8e8; }
-.box.warning    { border-color: black;   background-color: white;   }
-.box.tip        { display: table; padding: 0.25em 1.0ex; border: 1px solid #c3c3c3; background-color: #e9e9e9; -webkit-border-radius: 1.0em; -moz-border-radius: 1.0em; }
-.box.tip .label { padding-right: 1.0ex; }
-
-.box.small { float: left; clear: both; margin: 0.5ex; padding: 0.25em 1.0ex; border: 1px solid #c3c3c3; background-color: #e9e9e9; -webkit-border-radius: 0.85em; -moz-border-radius: 0.85em; }
-.box.small .label { padding-right: 0.5ex; }
-
-.metainfo { display: table; }
-.metainfo > .entry { display: table-row; }
-.metainfo > .entry > .meta { font-style: italic; }
-.metainfo > .entry > .item { display: table-cell; }
-
-.metainfo { font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; white-space: normal; padding: 0.125em 0.75ex; border: 1px solid; border-color: rgba(0,0,0,0.15); background-color: rgba(0,0,0,0.05); -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; float: right; }
-.metainfo .info { padding-left: 1.0ex; }
-.metainfo .filename > .info { font: 0.9167em monaco, courier, monospace; white-space: nowrap; }
-.metainfo .continues.above > .info { padding-left: 0px; font: italic 0.9167em monaco, courier, monospace; white-space: nowrap; }
-
-/* table styles */
-
-table + table { margin-top: 1em; }
-table + .box { margin-top: 1em; }
-
-/* The standard table style */
-table.standard                       { border-collapse: collapse; border-top: 1px solid #919699; border-left: 1px solid #919699; }
-table.standard caption               { margin-bottom: 0.5em; text-align: left; }
-table.standard caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
-table.standard th                    { padding: 0.3334em 1ex; text-align: left;  border-bottom: 1px solid #919699; border-right: 1px solid #919699; background: #E2E2E2; }
-table.standard td                    { vertical-align: top; padding: 1ex; border-bottom: 1px solid #919699; border-right: 1px solid #919699; }
-
-table.regexSyntax                       { border-collapse: collapse; border-top: 1px solid #919699; border-left: 1px solid #919699; margin-left: 1.5ex; margin-right: 1.5ex; }
-table.regexSyntax caption               { margin-bottom: 0.5em; text-align: left; }
-table.regexSyntax caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
-table.regexSyntax th                    { padding: 0.3334em 1ex; text-align: left;  border-bottom: 1px solid #919699; border-right: 1px solid #919699; background: #E2E2E2; }
-table.regexSyntax td                    {  padding-left: 0.75ex; padding-right: 0.75ex; padding-top: 0.1875em; padding-bottom: 0.1875em; border-bottom: 1px solid #919699; border-right: 1px solid #919699; }
-
-
-ul.seealso { margin: 0px; padding: 0px; list-style-type: none; }
-ul.seealso > li { margin: 0px 0px 0px 6.25ex; }
-
-
+.rkl { white-space: nowrap; }
 
 @media screen {
 .syntax > .specification .optional { -webkit-box-shadow: 2px 3px 5px #888; }
 .XXX { -webkit-box-shadow: 8px 8px 10px #444; }
 .box { -webkit-box-shadow: 3px 3px 4px #999;  }
-.metainfo { -webkit-box-shadow: 2px 2px 3px #999; }
+.box.caution { -webkit-box-shadow: 0px 0px 5px #000;  }
+.box .metainfo { -webkit-box-shadow: 2px 2px 3px #999; }
 table.standard { -webkit-box-shadow: 3px 3px 4px #999; }
 table.standard caption { -webkit-box-shadow: 0px 0px 0px #000; }
 table.regexSyntax { -webkit-box-shadow: 3px 3px 4px #999; }
@@ -299,29 +281,54 @@ table.regexSyntex caption { -webkit-box-shadow: 0px 0px 0px #000; }
 
 @media print {
 
-body { font: 10pt palatino, "lucida grande", geneva, helvetica, arial, sans-serif; }
-h1 { padding-bottom: 0px; padding-top: 0.5em; margin-top: 2in; margin-bottom: 0.5em; border-top: 1px solid black; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
-h2 { page-break-after: avoid; padding-bottom: 2.5em; padding-left: 0.75in; padding-top: 2em; margin-bottom: 1.0em; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
-h3, .tasks .header, .guide .seealso > .header { border-bottom: 1px solid black; page-break-after: avoid; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
-h4 { border-bottom: 1px solid black; page-break-after: avoid; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
+body { font: 10pt palatino, "lucida grande", geneva, helvetica, arial, sans-serif; margin-left: 1.15in; /*margin-right: 0.55in;*/ }
+h1 { /*margin-right: -0.6in;*/ padding-bottom: 0px; padding-top: 0.5em; margin-top: 2in; margin-bottom: 0.5em; border-top: 1px solid black; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 26pt; }
+h2 { page-break-after: avoid; padding-bottom: 3.5em; padding-left: 0.6in; padding-top: 1em; margin-bottom: 2.5em; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 24pt; }
+h3, .tasks .header, .guide .seealso > .header { padding-bottom: 0.25em; border-bottom: 1px solid black; page-break-after: avoid; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 18pt; }
+h4 { padding-bottom: 0.25em; border-bottom: 1px solid black; page-break-after: avoid; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
 h5 { border-bottom: 1px solid black; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
 
-.print1in { padding-top: 1in; }
+.security { padding-left: 0.6in; }
+.security > .inner { margin-left: 0.5ex; }
+h1, h2, h3, .security { margin-left: -0.6in; }
+h1.reference { font-size: 24pt; margin-top: 2.5em; padding-bottom: 4em; padding-left: 0.6in; padding-top: 0px; margin-bottom: 0.5em; border-top: 0px; border-bottom: 1px solid black; }
+
+.reference h2 {
+page-break-before: avoid; page-break-after: avoid;
+border-bottom: 1px solid black; 
+margin-top: 2.0em; margin-bottom: 0.5000em;
+margin-right: 0px; margin-left: -0.6in;
+padding: 0px 0px 0.25em 0px;
+font-size: 18pt;
+font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
+
+A:link, A:link:hover, A:active, A:active:hover, A:visited, A:visited:hover{ text-decoration: none; color: #000000; }
+a.printURL:after { content: " (" attr(href) ")"; font-size: 90%; font-style: italic; }
+a.NBSP_printURL:after { content: " (" attr(href) ")"; font-size: 90%; font-style: italic; } 
+a.printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; font-style: italic; }
+a.NBSP_printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; font-style: italic; } 
+
 
 .overview > .masthead { page-break-after: avoid; padding-bottom: 2.5em; margin-top: 0px; margin-bottom: 1.0em; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
 
-.printPageBreak { page-break-before: always; }
+.printPageBreakBefore { page-break-before: always; }
 .printPageBreakAfter { page-break-after: always; }
 
-.frameworkabstract { margin-left: -0.5in; }
+.frameworkabstract { margin-left: -0.6in; font-size: 10pt; }
+
+table.standard { -webkit-box-shadow: 2px 2px 1px #777; }
+table.standard caption { -webkit-box-shadow: 0px 0px 0px #000; }
+table.regexSyntax { -webkit-box-shadow: 2px 2px 1px #777; }
+table.regexSyntex caption { -webkit-box-shadow: 0px 0px 0px #000; }
 
 .table.standard { background-color: white; }
-.metainfo { font: 6.5pt palatino, "lucida grande", geneva, helvetica, arial, sans-serif; border-color: #999; background-color: white;  }
-.metainfo.printShadow { -webkit-box-shadow: 1px 1px 2px #bbb; }
-.code, .regex, .regex-textual, .regex-def, .header_file, .file, .build-phase, .xcode-group, .xcode-target, .window-name, .box.sourcecode, .box.shell, .guide .sourceLicense pre, .signature, .constants > .constant > .identifier, .dialog-option, .context-menu, .typedef .code, .typedef .type, .quotedText, .unicodeCharName { font-size: 0.8334em; font-family: "Letter Gothic Std",   "Courier New", monaco, courier, monospace; }
+.box .metainfo { font: 6.5pt palatino, "lucida grande", geneva, helvetica, arial, sans-serif; border-color: #999; background-color: white; }
+.box .metainfo.printShadow { -webkit-box-shadow: 1px 1px 2px #bbb; }
 
-.metainfo.noPrintBorder { margin-right: 0px; padding: 0px; border: 0px none transparent; background-color: white; -webkit-border-radius: 0px; -moz-border-radius: 0px; }
-.metainfo > .continues.above > .info { font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif !important; }
+.code, .regex, .regex-textual, .regex-def, .header_file, .file, .build-phase, .xcode-group, .xcode-target, .window-name, .box.sourcecode, .box.shell, .guide .sourceLicense pre, .signature, .block > .section.constants > .constant > .identifier, .dialog-option, .context-menu, .block.typedef > .section.code, .block.typedef > .section.type, .quotedText, .unicodeCharName, .block > .section.declaration { font-size: 0.8334em; font-family: "Letter Gothic Std",   "Courier New", monaco, courier, monospace; }
+
+.box .metainfo.noPrintBorder { margin-right: 0px; padding: 0px; border: 0px none transparent; background-color: white; -webkit-border-radius: 0px; -moz-border-radius: 0px; }
+.box .metainfo > .continues.above > .info { font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif !important; }
 
 .regex b { font: bold 1.1000em "Letter Gothic Std", "Courier New", monaco, courier, monospace; }
 .syntax > .specification { font-family: "Letter Gothic Std", "Courier New", monaco, courier, monospace; }
@@ -343,26 +350,12 @@ div.table.regexSyntax > .row > .cell { width: 100%; }
 table, .box, .figure, .seealso, li, p, div.box.sourcecode { page-break-inside: avoid; }
 .regexSyntax .metacharacters table { page-break-before: avoid !important; page-break-inside: avoid !important; }
 
-body { margin-left: 1.15in; margin-right: 0.55in; }
-.security { padding-left: 0.75in; }
-.security > .inner { margin-left: 0.5ex; }
-h1, h2, h3, .security { margin-left: -0.6in; }
-h1.reference { padding-left: 0.6in; border-top: 0px; border-bottom: 1px solid black; padding-top: 0.8in; padding-bottom: 1.25in; }
-
-.reference h2 {
-page-break-before: avoid; page-break-after: avoid;
-border-bottom: 1px solid black; 
-margin-top: 2.0em; margin-bottom: 0.5000em;
-margin-right: 0px; margin-left: -0.6in;
-padding: 0px;
-font-size: 1.5834em;
-font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; }
-
 .tasks > .header { font-size: 1.2500em; }
 .method > .name, .function > .name, .macro > .name, .typedef > .name { font-size: 1.2em; font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: bold; }
-.method, .function, .macro, .typedef { margin: 1.5em 0px 0px 0px; padding: 1.5em 0px 0px 0px; }
+.method, .function, .macro, .block.typedef { margin: 1.5em 0px 0px 0px; padding: 1.5em 0px 0px 0px; }
 
-.box.classSpecs { margin-left: 0px; }
+
+.box.classSpecs { margin-left: 0px; font-size: 1.1em; }
 .box.hasRows                                 { border: 0px none transparent; }
 .box.hasRows > .row         > .cell          { display: table-cell; padding: 1ex; border: 0px none transparent; }
 .box.hasRows > .row.lastRow > .cell          { border: 0px none transparent !important; }
@@ -372,7 +365,8 @@ font-family: palatino, "lucida grande", geneva, helvetica, arial, sans-serif; fo
 .box.hasRows           > .row.headerRow .cell { padding-top: 0.3334em; padding-bottom: 0.3334em; }
 
 .syntax > .specification .optional { -webkit-box-shadow: 2px 3px 5px #888; }
-.box.important, .box.note, .box.warning, .box.tip, .box.small { -webkit-box-shadow: 3px 3px 4px #999;  }
+.box.important, .box.note, .box.warning, .box.tip, .box.small { -webkit-box-shadow: 2px 2px 1px #777;  }
+.box.caution { -webkit-box-shadow: 0px 0px 5px #000;  }
 
 
 ul.overview { margin-left: 4.0ex; }
@@ -383,25 +377,21 @@ ul.overview { margin-left: 4.0ex; }
 .printImg { width: 100%; }
 .guide .seealso > .header { margin-top: 2.0em; margin-bottom: 0.5000em; font-size: 1.5834em; }
 
-A:link, A:link:hover, A:active, A:active:hover, A:visited, A:visited:hover{ text-decoration: none; color: #000000; }
-a.printURL:after { content: " (" attr(href) ")"; font-size: 90%; font-style: italic; }
-a.NBSP_printURL:after { content: " (" attr(href) ")"; font-size: 90%; font-style: italic; } 
-a.printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; font-style: italic; }
-a.NBSP_printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; font-style: italic; } 
-
 }
-
 
 </style>
 <title>RegexKitLite</title>
 </head>
 
 <body>
+<div class="printPageBreakAfter">
 <h1><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
 <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
+</div>
 
-<h2 class="printPageBreak"><a name="Introduction">Introduction</a></h2>
+<div class="printPageBreakAfter">
+<h2><a name="Introduction"></a>Introduction to <span class="rkl">RegexKit<i>Lite</i></span></h2>
 
 <p>This document introduces <span class="rkl">RegexKit<i>Lite</i></span> for <span class="hardNobr">Mac OS X</span>. <span class="rkl">RegexKit<i>Lite</i></span> enables easy access to regular expressions by providing a number of additions to the standard <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html" class="section-link">Foundation</a> <span class="code">NSString</span> class. <span class="rkl">RegexKit<i>Lite</i></span> acts as a bridge between the <span class="code">NSString</span> class and the regular expression engine in the <a href="http://www.icu-project.org" class="section-link NBSP_printURL">International Components for Unicode</a>, or <span class="new-term">ICU</span>, dynamic shared library that is shipped with <span class="hardNobr">Mac OS X</span>.</p>
 
@@ -421,22 +411,26 @@ a.NBSP_printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; fon
 
 <h3><a name="Introduction_DocumentationOverview">Documentation Overview</a></h3>
 
-<ul class="overview printPageBreakAfter">
+<ul class="overview">
 <li><a href="#RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span> Guide</a></li>
 <li><a href="#ICURegularExpressionSyntax">ICU Regular Expression Syntax</a></li>
 <li><a href="#AddingRegexKitLitetoyourProject">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
 <li><a href="#NSStringRegexKitLiteAdditionsReference">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
+<li><a href="#ReleaseInformation">Release Information</a></li>
 <li><a href="#LicenseInformation">License Information</a></li>
 </ul>
 
+</div>
+
+<div class="printPageBreakAfter">
 <h2><a name="RegexKitLiteGuide"></a><span class="hardNobr">RegexKit<i class="rk">Lite</i> Guide</span></h2>
 
 <p>While <span class="rkl">RegexKit<i>Lite</i></span> is not a descendent of the <span class="file">RegexKit.framework</span> source code, it does provide a small subset of <a href="http://regexkit.sourceforge.net" class="section-link NBSP_printURL">RegexKits</a> <span class="code">NSString</span> methods for performing various regular expression tasks. These include determining the range that a regular expression matches within a string, and easily creating a new string from a match.</p>
 
 <p><span class="rkl">RegexKit<i>Lite</i></span> uses the regular expression provided by the ICU library that ships with <span class="hardNobr">Mac OS X</span>.  The two files, <span class="file">RegexKitLite.h</span> and <span class="file">RegexKitLite.m</span>, and linking against the <span class="file">/usr/lib/libicucore.dylib</span> ICU shared library is all that is required.  Adding <span class="rkl">RegexKit<i>Lite</i></span> to your project only adds a few kilobytes of overhead to your applications size and typically only requires a few kilobytes of memory at runtime.  Since a regular expression must first be compiled by the ICU library before it can be used, <span class="rkl">RegexKit<i>Lite</i></span> keeps a small <i>pseudo</i> Least Recently Used cache of the compiled regular expressions.</p>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="http://regexkit.sourceforge.net/" class="section-link printURL">RegexKit Framework</a></li>
     <li><a href="http://www.icu-project.org/" class="section-link printURL">International Components for Unicode</a></li>
     <li><a href="http://www.unicode.org/" class="section-link printURL">Unicode Home Page</a></li>
@@ -461,14 +455,17 @@ a.NBSP_printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; fon
 
 <h4>Searching Mutable Strings</h4>
 
-<p>Unfortunately, the ICU regular expression API requires that the compiled regular expression be <span class="hardNobr">"set"</span> to the string to be searched.  To search a different string, the compiled regular expression must be <span class="hardNobr">"set"</span> to the new string.  Therefore, <span class="rkl">RegexKit<i>Lite</i></span> tracks the last <span class="code">NSString</span> that each compiled regular expression was set to, recording the pointer to the <span class="code">NSString</span> object, its hash, and its length.  If any of these parameters are different from the last parameters used for a compiled regular expression, the compiled regular expression is <span class="hardNobr">"set"</span> to the new string.  Since mutating a string will change its <span class="code">hash</span> value, it's safe to search <span class="code">NSMutableString</span> objects, and any mutation will reset the compiled regular expression to the updated contents of the <span class="code">NSMutableString</span>.</p>
+<p>Unfortunately, the ICU regular expression API requires that the compiled regular expression be <span class="hardNobr">"set"</span> to the string to be searched.  To search a different string, the compiled regular expression must be <span class="hardNobr">"set"</span> to the new string.  Therefore, <span class="rkl">RegexKit<i>Lite</i></span> tracks the last <span class="code">NSString</span> that each compiled regular expression was set to, recording the pointer to the <span class="code">NSString</span> object, its hash, and its length.  If any of these parameters are different from the last parameters used for a compiled regular expression, the compiled regular expression is <span class="hardNobr">"set"</span> to the new string.  Since mutating a string will likely change its <span class="code">hash</span> value, it's generally safe to search <span class="code">NSMutableString</span> objects, and in most cases the mutation will reset the compiled regular expression to the updated contents of the <span class="code">NSMutableString</span>.</p>
+
+<div class="box caution"><div class="table"><div class="row"><div class="label cell">Caution:</div><div class="message cell"><p>Care must be taken when mutable strings are searched and there exists the possibility that the string has mutated between searches.  See <a href="#NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference - Cached Information and Mutable Strings</a> for more information.</p></div></div></div></div>
+
 
 <h4>Last Match Information</h4>
 
 <p>When performing a match, the arguments used to perform the match are kept.  If those same arguments are used again, the actual matching operation is skipped because the compiled regular expression already contains the results for the given arguments.  This is mostly useful when a regular expression contains multiple capture groups, and the results for different capture groups for the same match are needed.  This means that there is only a small penalty for iterating over all the capture groups in a regular expression for a match, and essentially becomes the direct ICU regular expression API equivalent of <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#5a2eccd52a16efe1ba99c53d56614a4f" class="code hardNobr">uregex_start()</a> and <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#3f5e9eba75d943ff1aba3d3dc779a67f" class="code hardNobr">uregex_end()</a>.</p>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html" class="section-link printURL">ICU4C C API - Regular Expressions</a></li>
     <li><a href="#ICURegularExpressionSyntax" class="section-link">ICU Regular Expression Syntax</a></li>
   </ul>
@@ -489,6 +486,8 @@ a.NBSP_printURL_small:after { content: " (" attr(href) ")"; font-size: 78%; fon
 <h4>Mutable Strings</h4>
 
 <p>When converted in to a <span class="code hardNobr">UTF-16</span> string, the <span class="code">hash</span> of the <span class="code">NSString</span> is recorded, along with the pointer to the <span class="code">NSString</span> object and the strings length.  In order for the <span class="rkl">RegexKit<i>Lite</i></span> to use the cached conversion, all of these parameters must be equal to their values of the <span class="code">NSString</span> to be searched.  If there is any difference, the cached conversion is discarded and the current <span class="code">NSString</span>, or <span class="code">NSMutableString</span> as the case may be, is reconverted in to a <span class="code hardNobr">UTF-16</span> string.</p>
+
+<div class="box caution"><div class="table"><div class="row"><div class="label cell">Caution:</div><div class="message cell"><p>Care must be taken when mutable strings are searched and there exists the possibility that the string has mutated between searches.  See <a href="#NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference - Cached Information and Mutable Strings</a> for more information.</p></div></div></div></div>
 
 <h3>Multithreading Safety</h3>
 
@@ -534,8 +533,8 @@ NSLog(@"matchedRange   : %@", NSStringFromRange(matchedRange));
 NSLog(@"matchedString: '%@'", matchedString);
 // 2008-03-18 03:51:16.532 test[51583:813] matchedString: 'is'</div>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="#RegexKitLiteNSErrorUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError User Info Dictionary Keys</a></li>
     <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
     <li><a href="#NSStringRegexKitLiteAdditionsReference" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
@@ -548,7 +547,7 @@ NSLog(@"matchedString: '%@'", matchedString);
 
 <p>The match enumerator is divided in to two parts.  The public part is defined in the header <span class="file">RKLMatchEnumerator.h</span>, below.  The second part is a private subclass of <span class="code">NSEnumerator</span> whose interface resides only in the file <span class="file">RKLMatchEnumerator.m</span>.  Match enumerators are instantiated by sending a <span class="code">NSString</span> class member the message <span class="code">matchEnumeratorWithRegex:</span>.  A <span class="code">NSString</span> with the regular expression is passed as the only argument, and a <span class="code">NSEnumerator</span> is returned.</p>
 
-<div class="box sourcecode"><div class="metainfo printShadow top right"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.h</span></span></div>#import &lt;Foundation/NSEnumerator.h&gt;
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.h</span></span></div>#import &lt;Foundation/NSEnumerator.h&gt;
 #import &lt;Foundation/NSString.h&gt;
 #import &lt;stddef.h&gt;
 
@@ -558,7 +557,7 @@ NSLog(@"matchedString: '%@'", matchedString);
 
 <p>Next, in <span class="file">RKLMatchEnumerator.m</span>, we define our private <span class="hardNobr">sub-class</span> of <span class="code">NSEnumerator</span>.  In it we declare three instance variables, <span class="code">string</span>, <span class="code">regex</span>, and <span class="code">location</span>.  The <span class="code">string</span> ivar holds the string to search, while <span class="code">regex</span> holds the regular expression string.  To guard against mutations to either, an immutable copy is made.  The <span class="code">location</span> ivar is used to keep track of the current location from which to begin matching.  Finally, we declare our designated initializer which initializes the instantiated <span class="code">RKLMatchEnumerator</span> object with the string to search and the regular expression to use.</p>
 
-<div class="box sourcecode"><div class="metainfo printShadow top right"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.m</span></span></div>#import &lt;Foundation/NSArray.h&gt;
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.m</span></span></div>#import &lt;Foundation/NSArray.h&gt;
 #import &lt;Foundation/NSRange.h&gt;
 #import "RegexKitLite.h"
 #import "RKLMatchEnumerator.h"
@@ -640,7 +639,7 @@ NSLog(@"matchedString: '%@'", matchedString);
 
 <p>The match enumerator is then instantiated and the results are enumerated with a standard <span class="code">while</span> loop, setting <span class="code">matchedString</span> to the object returned by <span class="code">nextObject</span>.  For each line that is returned, the current line number, length of the matched string, and the matched string are printed.</p>
 
-<div class="box sourcecode"><div class="metainfo printShadow top right"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">main.m</span></span></div>#import &lt;Foundation/NSAutoreleasePool.h&gt;
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">main.m</span></span></div>#import &lt;Foundation/NSAutoreleasePool.h&gt;
 #import "RegexKitLite.h"
 #import "RKLMatchEnumerator.h"
 
@@ -673,7 +672,7 @@ int main(int argc, char *argv[]) {
 <p>In the shell transcript below, the <span class="code hardNobr">NSLog()</span> line that prints <span class="code">searchString</span> has been annotated with the <span class="hardNobr">'&#9166;'</span> character to help visually identify the corresponding <span class="regex">\n</span> <span class="regex-def">new-line</span> characters in <span class="code">searchString</span>.</p>
 </div></div></div></div>
 
-<div class="box shell printPageBreakAfter"><span class="shellOutput">shell% </span><span class="userInput">cd examples<span class="return">&crarr;</span></span>
+<div class="box shell"><span class="shellOutput">shell% </span><span class="userInput">cd examples<span class="return">&crarr;</span></span>
 <span class="shellOutput">shell% </span><span class="userInput">gcc -I.. -g -o main main.m RKLMatchEnumerator.m <span class="hardNobr">../RegexKitLite.m</span> <span class="hardNobr">-framework Foundation</span> <span class="hardNobr">-licucore<span class="return">&crarr;</span></span></span>
 <span class="shellOutput">shell% </span><span class="userInput">./main<span class="return">&crarr;</span></span>
 <span class="shellOutput">2008-03-21 15:56:17.469 main[44050:807] searchString: 'one</span>&#9166;<span class="shellOutput">
@@ -686,7 +685,9 @@ four</span>&#9166;<span class="shellOutput">
 2008-03-21 15:56:17.584 main[44050:807] 3: 0 ''
 2008-03-21 15:56:17.590 main[44050:807] 4: 4 'four'
 shell% </span><span class="cursor">&#9612;</span></div>
+</div>
 
+<div class="printPageBreakAfter">
 <h2><a name="ICURegularExpressionSyntax"></a>ICU Regular Expression Syntax</h2>
 
 <p>For your convenience, the regular expression syntax from the ICU documentation is included below.  When in doubt, you should refer to the official <a href="http://www.icu-project.org/userguide/regexp.html" class="section-link NBSP_printURL">ICU User Guide - Regular Expressions</a> documentation page.</p>
@@ -771,13 +772,15 @@ shell% </span><span class="cursor">&#9612;</span></div>
 
 </div></div></div>
 
-<div class="seealso printPageBreakAfter"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="http://www.icu-project.org/userguide/regexp.html" class="section-link printURL">ICU User Guide - Regular Expressions</a></li>
     <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
   </ul>
 </div>
+</div>
 
+<div class="printPageBreakAfter">
 <h2><a name="AddingRegexKitLitetoyourProject"></a>Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</h2>
 
 <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
@@ -828,7 +831,7 @@ shell% </span><span class="cursor">&#9612;</span></div>
 
 <p>Using <span class="rkl">RegexKit<i>Lite</i></span> from the shell is also easy.  Again, you need to add the header <span class="code hardNobr">#import</span> to the appropriate source files.  Then, to link to the ICU library, you typically only need to add <span class="code hardNobr">-licucore</span>, just as you would any other library.  Consider the following example:</p>
 
-<div class="box sourcecode"><div class="metainfo printShadow top right"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">link_example.m</span></span></div>#import &lt;Foundation/NSObjCRuntime.h&gt;
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">link_example.m</span></span></div>#import &lt;Foundation/NSObjCRuntime.h&gt;
 #import &lt;Foundation/NSAutoreleasePool.h&gt;
 #import "RegexKitLite.h"
 
@@ -854,28 +857,27 @@ int main(int argc, char *argv[]) {
 
 <p>Compiled and run from the shell:</p>
 
-<div class="box shell printPageBreakAfter"><span class="shellOutput">shell% </span><span class="userInput">cd examples<span class="return">&crarr;</span></span>
+<div class="box shell"><span class="shellOutput">shell% </span><span class="userInput">cd examples<span class="return">&crarr;</span></span>
 <span class="shellOutput">shell% </span><span class="userInput">gcc -g -I.. -o link_example link_example.m <span class="hardNobr">../RegexKitLite.m</span> <span class="hardNobr">-framework Foundation</span> <span class="hardNobr">-licucore<span class="return">&crarr;</span></span></span>
 <span class="shellOutput">shell% </span><span class="userInput">./link_example<span class="return">&crarr;</span></span>
 <span class="shellOutput">2008-03-14 03:52:51.187 test[15283:807] subject: "Copyright &copy; &cong; 2008"
 2008-03-14 03:52:51.269 test[15283:807] matched: "&copy; &cong;"
 shell% </span><span class="cursor">&#9612;</span></div>
+</div>
 
 <div class="reference printPageBreakAfter">
-<div class="padding1in">
-<h1 class="reference"><a name="NSStringRegexKitLiteAdditionsReference"></a>NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</h1>
-
-<div class="box classSpecs hasRows zebraRows">
-<div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html" target="_top">NSString</a></span></div>
-<div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">1.0</span></span></div>
-<div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
-<div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
-<ul class="cell right lastCell">
-  <li><a href="http://www.icu-project.org/userguide/regexp.html" class="printURL">ICU User Guide - Regular Expressions</a></li>
-</ul></div>
-</div>
-
-</div>
+  <h1 class="reference"><a name="NSStringRegexKitLiteAdditionsReference"></a>NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</h1>
+  
+  <div class="box classSpecs hasRows zebraRows">
+    <div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html" target="_top">NSString</a></span></div>
+    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">1.1</span></span></div>
+    <div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
+    <div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
+      <ul class="cell right lastCell">
+	<li><a href="http://www.icu-project.org/userguide/regexp.html" class="printURL">ICU User Guide - Regular Expressions</a></li>
+    </ul></div>
+  </div>
+  
 
 <h3>Overview</h3>
 
@@ -891,8 +893,8 @@ shell% </span><span class="cursor">&#9612;</span></div>
 
 <p><span class="rkl">RegexKit<i>Lite</i></span> consists of only two files, the header file <span class="file">RegexKitLite.h</span> and <span class="file">RegexKitLite.m</span>.  The only other requirement is to link with the ICU library that comes with <span class="hardNobr">Mac OS X.</span>  No new classes are created, all functionality is provided as a category extension to the <span class="code">NSString</span> class.</p>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="#RegexKitLiteGuide" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> Guide</a></li>
     <li><a href="#ICURegularExpressionSyntax" class="section-link">ICU Regular Expression Syntax</a></li>
     <li><a href="#AddingRegexKitLitetoyourProject" class="section-link">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
@@ -902,6 +904,31 @@ shell% </span><span class="cursor">&#9612;</span></div>
     <li><a href="http://www.unicode.org/" class="section-link printURL">Unicode Home Page</a></li>
   </ul>
 </div>
+
+<h3><a name="NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings"></a>Cached Information and Mutable Strings</h3>
+
+<p>While <span class="rkl">RegexKit<i>Lite</i></span> takes steps to ensure that the information it has cached is valid for the strings it searches, there exists the possibility that out of date cached information may be used when searching mutable strings.  For each compiled regular expression, <span class="rkl">RegexKit<i>Lite</i></span> caches the following information about the last <span class="code">NSString</span> that was searched:</p>
+
+<ul class="square">
+<li>The strings <span class="code">length</span>, <span class="code">hash</span> value, and the pointer to the <span class="code">NSString</span> object.</li>
+<li>The pointer to the <span class="code hardNobr">UTF-16</span> buffer that contains the contents of the string, which may be an internal buffer if the string required conversion.</li>
+<li>The <span class="code">NSRange</span> used for the <span class="code">inRange:</span> parameter for the last search, and the <span class="code">NSRange</span> result for capture <span class="code">0</span> of that search.</li>
+</ul>
+
+<p>An ICU compiled regular expression must be <span class="hardNobr">"set"</span> to the text to be searched.  Before a compiled regular expression is used, the pointer to the string object to search, its <span class="code">hash</span>, <span class="code">length</span>, and the pointer to the <span class="code">UTF-16</span> buffer is compared with the values that the compiled regular expression was last <span class="hardNobr">"set"</span> to.  If any of these values are different, the compiled regular expression is reset and <span class="hardNobr">"set"</span> to the new string.</p>
+
+<p>If a <span class="code">NSMutableString</span> is mutated between two uses of the same compiled regular expression and its <span class="code">hash</span>, <span class="code">length</span>, or <span class="code hardNobr">UTF-16</span> buffer changes between uses, <span class="rkl">RegexKit<i>Lite</i></span> will automatically reset the compiled regular expression with the new values of the mutated string.  The results returned will correctly reflect the mutations that have taken place between searches.</p>
+
+<p>It is possible that the mutations to a string can go undetected, however.  If the mutation keeps the <span class="code">length</span> the same, then the only way a change can be detected is if the strings <span class="code">hash</span> value changes.  For most mutations the <span class="code">hash</span> value will change, but it is possible for two different strings to share the same <span class="code">hash</span>.  This is known as a <i>hash collision</i>.  Should this happen, the results returned by <span class="rkl">RegexKit<i>Lite</i></span> may not be correct.</p>
+
+<p>Therefore, if you are using <span class="rkl">RegexKit<i>Lite</i></span> to search <span class="code">NSMutableString</span> objects, and those strings may have mutated in such a way that <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that the string has changed, you must manually clear the internal cache to ensure that the results accurately reflect the mutations.  You can clear the cache by calling the following class method:</p>
+
+<div class="box sourcecode">[NSString clearStringCache];</div>
+
+<div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
+<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.</p>
+</div></div></div></div>
+
 
 <h4>Exceptions Raised</h4>
 
@@ -915,8 +942,8 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a> if <span class="argument">range</span> exceeds the bounds of the receiver.
 </div></div></div></div>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
     <li><a href="#RegexKitLiteNSErrorUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError User Info Dictionary Keys</a></li>
   </ul>
@@ -924,6 +951,12 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 
 <h2>Tasks</h2>
 
+<div class="tasks">
+  <div class="header">Clearing Cached Information</div>
+  <ul>
+    <li><a href="#NSString_RegexKitLiteAdditions__.clearStringCache" title="Clears the cached information about strings." class="code">+ clearStringCache</a></li>
+  </ul>
+</div>
 <div class="tasks">
   <div class="header">Determining the Number of Captures</div>
   <ul>
@@ -959,31 +992,43 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 
 <h2>Class Methods</h2>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__.captureCountForRegex:">captureCountForRegex:</a></div>
-  <div class="summary">Returns the number of captures that <span class="argument">regexString</span> contains.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__.clearStringCache">clearStringCache</a></div>
+  <div class="section summary">Clears the cached information about strings.</div>
+  <div class="signature"><span class="hardNobr">+ (void)<span class="selector">clearStringCache</span>;</span></div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>This method should be used when performing searches on <span class="code">NSMutableString</span> objects and there is the possibility that the string has mutated in between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
+<div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
+<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.</p>
+</div></div></div></div>
+  </div>
+</div>
+
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__.captureCountForRegex:">captureCountForRegex:</a></div>
+  <div class="section summary">Returns the number of captures that <span class="argument">regexString</span> contains.</div>
   <div class="signature"><span class="hardNobr">+ (NSInteger)<span class="selector">captureCountForRegex:</span>(NSString)<span class="argument">regexString</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regexString</span> is returned, or <span class="code">0</span> if <span class="argument">regexString</span> does not contain any captures.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__.captureCountForRegex:options:error:" class="code">+ captureCountForRegex:options:error:</a></li>
     </ul>
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__.captureCountForRegex:options:error:">captureCountForRegex:options:error:</a></div>
-  <div class="summary">Returns the number of captures that <span class="argument">regexString</span> contains.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__.captureCountForRegex:options:error:">captureCountForRegex:options:error:</a></div>
+  <div class="section summary">Returns the number of captures that <span class="argument">regexString</span> contains.</div>
   <div class="signature"><span class="hardNobr">+ (NSInteger)<span class="selector">captureCountForRegex:</span>(NSString)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">error:</span>(NSError **)<span class="argument">error</span>;</span></div>
-  <div class="discussion"><div class="header">Discussion</div>
+  <div class="section discussion"><div class="header">Discussion</div>
 The optional <span class="argument">error</span> parameter, if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.
   </div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regexString</span> is returned, or <span class="code">0</span> if <span class="argument">regexString</span> does not contain any captures.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__.captureCountForRegex:" class="code">+ captureCountForRegex:</a></li>
       <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
@@ -995,25 +1040,25 @@ Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the
 
 <h3>Instance Methods</h3>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-isMatchedByRegex:">isMatchedByRegex:</a></div>
-  <div class="summary">Returns a Boolean value that indicates whether the receiver is matched by <span class="argument">regexString</span>.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-isMatchedByRegex:">isMatchedByRegex:</a></div>
+  <div class="section summary">Returns a Boolean value that indicates whether the receiver is matched by <span class="argument">regexString</span>.</div>
   <div class="signature"><span class="hardNobr">- (BOOL)<span class="selector">isMatchedByRegex:</span>(NSString *)<span class="argument">regexString</span>;</span></div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-isMatchedByRegex:options:inRange:error:" class="code">- isMatchedByRegex:options:inRange:error:</a></li>
     </ul>
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-isMatchedByRegex:options:inRange:error:">isMatchedByRegex:options:inRange:error:</a></div>
-  <div class="summary">Returns a Boolean value that indicates whether the receiver is matched by <span class="argument">regexString</span> within <span class="argument">range</span>.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-isMatchedByRegex:options:inRange:error:">isMatchedByRegex:options:inRange:error:</a></div>
+  <div class="section summary">Returns a Boolean value that indicates whether the receiver is matched by <span class="argument">regexString</span> within <span class="argument">range</span>.</div>
   <div class="signature"><span class="hardNobr">- (BOOL)<span class="selector">isMatchedByRegex:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(NSRange)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(NSError **)<span class="argument">error</span>;</span></div>
-  <div class="discussion"><div class="header">Discussion</div>
+  <div class="section discussion"><div class="header">Discussion</div>
 The optional <span class="argument">error</span> parameter, if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-isMatchedByRegex:" class="code">- isMatchedByRegex:</a></li>
       <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
@@ -1023,14 +1068,14 @@ The optional <span class="argument">error</span> parameter, if set and an error 
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:">rangeOfRegex:</a></div>
-  <div class="summary">Returns the range for the first match of <span class="argument">regexString</span> in the receiver.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:">rangeOfRegex:</a></div>
+  <div class="section summary">Returns the range for the first match of <span class="argument">regexString</span> in the receiver.</div>
   <div class="signature"><span class="hardNobr">- (NSRange)<span class="selector">rangeOfRegex:</span>(NSString *)<span class="argument">regexString</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSRange</span> structure giving the location and length of the first match of <span class="argument">regexString</span> in the receiver. Returns <span class="hardNobr"><span class="code">{</span><span class="code">NSNotFound</span><span class="code">, 0}</span></span> if the receiver is not matched by <span class="argument">regexString</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:capture:" class="code">- rangeOfRegex:capture:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:inRange:" class="code">- rangeOfRegex:inRange:</a></li>
@@ -1039,14 +1084,14 @@ A <span class="code">NSRange</span> structure giving the location and length of 
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:capture:">rangeOfRegex:capture:</a></div>
-  <div class="summary">Returns the range of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> in the receiver.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:capture:">rangeOfRegex:capture:</a></div>
+  <div class="section summary">Returns the range of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> in the receiver.</div>
   <div class="signature"><span class="hardNobr">- (NSRange)<span class="selector">rangeOfRegex:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">capture:</span>(NSInteger)<span class="argument">capture</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSRange</span> structure giving the location and length of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> in the receiver. Returns <span class="hardNobr"><span class="code">{</span><span class="code">NSNotFound</span><span class="code">, 0}</span></span> if the receiver is not matched by <span class="argument">regexString</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:" class="code">- rangeOfRegex:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:inRange:" class="code">- rangeOfRegex:inRange:</a></li>
@@ -1055,14 +1100,14 @@ A <span class="code">NSRange</span> structure giving the location and length of 
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:inRange:">rangeOfRegex:inRange:</a></div>
-  <div class="summary">Returns the range for the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:inRange:">rangeOfRegex:inRange:</a></div>
+  <div class="section summary">Returns the range for the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
   <div class="signature"><span class="hardNobr">- (NSRange)<span class="selector">rangeOfRegex:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(NSRange)<span class="argument">range</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSRange</span> structure giving the location and length of the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver. Returns <span class="hardNobr"><span class="code">{</span><span class="code">NSNotFound</span><span class="code">, 0}</span></span> if the receiver is not matched by <span class="argument">regexString</span> within <span class="argument">range</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:" class="code">- rangeOfRegex:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:capture:" class="code">- rangeOfRegex:capture:</a></li>
@@ -1072,11 +1117,11 @@ A <span class="code">NSRange</span> structure giving the location and length of 
 </div>
 
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:options:inRange:capture:error:">rangeOfRegex:options:inRange:capture:error:</a></div>
-  <div class="summary">Returns the range of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-rangeOfRegex:options:inRange:capture:error:">rangeOfRegex:options:inRange:capture:error:</a></div>
+  <div class="section summary">Returns the range of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
   <div class="signature"><span class="hardNobr">- (NSRange)<span class="selector">rangeOfRegex:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(NSRange)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">capture:</span>(NSInteger)<span class="argument">capture</span></span> <span class="hardNobr"><span class="selector">error:</span>(NSError **)<span class="argument">error</span>;</span></div>
-  <div class="parameters"><div class="header">Parameters</div>
+  <div class="section parameters"><div class="header">Parameters</div>
     <ul>
       <li>
         <div class="name">regexString</div>
@@ -1100,10 +1145,10 @@ A <span class="code">NSRange</span> structure giving the location and length of 
       </li>
     </ul>
   </div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSRange</span> structure giving the location and length of capture number <span class="argument">capture</span> for the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver. Returns <span class="hardNobr"><span class="code">{</span><span class="code">NSNotFound</span><span class="code">, 0}</span></span> if the receiver is not matched by <span class="argument">regexString</span> within <span class="argument">range</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:" class="code">- rangeOfRegex:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:capture:" class="code">- rangeOfRegex:capture:</a></li>
@@ -1115,14 +1160,14 @@ A <span class="code">NSRange</span> structure giving the location and length of 
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:">stringByMatching:</a></div>
-<div class="summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span>.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:">stringByMatching:</a></div>
+<div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span>.</div>
   <div class="signature"><span class="hardNobr">- (NSString *)<span class="selector">stringByMatching:</span>(NSString *)<span class="argument">regexString</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSString</span> containing the substring of the receiver matched by <span class="argument">regexString</span>.  Returns <span class="code">NULL</span> if the receiver is not matched by <span class="argument">regexString</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:capture:" class="code">- stringByMatching:capture:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:inRange:" class="code">- stringByMatching:inRange:</a></li>
@@ -1131,14 +1176,14 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:capture:">stringByMatching:capture:</a></div>
-<div class="summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> for <span class="argument">capture</span>.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:capture:">stringByMatching:capture:</a></div>
+<div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> for <span class="argument">capture</span>.</div>
   <div class="signature"><span class="hardNobr">- (NSString *)<span class="selector">stringByMatching:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">capture:</span>(NSInteger)<span class="argument">capture</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSString</span> containing the substring of the receiver matched by capture number <span class="argument">capture</span> of <span class="argument">regexString</span>.  Returns <span class="code">NULL</span> if the receiver is not matched by <span class="argument">regexString</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:" class="code">- stringByMatching:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:inRange:" class="code">- stringByMatching:inRange:</a></li>
@@ -1147,14 +1192,14 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:inRange:">stringByMatching:inRange:</a></div>
-<div class="summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:inRange:">stringByMatching:inRange:</a></div>
+<div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.</div>
   <div class="signature"><span class="hardNobr">- (NSString *)<span class="selector">stringByMatching:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(NSRange)<span class="argument">range</span>;</span></div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSString</span> containing the substring of the receiver matched by <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.  Returns <span class="code">NULL</span> if the receiver is not matched by <span class="argument">regexString</span> within <span class="argument">range</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:" class="code">- stringByMatching:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:capture:" class="code">- stringByMatching:capture:</a></li>
@@ -1163,11 +1208,11 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
   </div>
 </div>
 
-<div class="method">
-  <div class="name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:options:inRange:capture:error:">stringByMatching:options:inRange:capture:error:</a></div>
-<div class="summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> using <span class="argument">options</span> within <span class="argument">range</span> of the receiver for <span class="argument">capture</span>.</div>
+<div class="block method">
+  <div class="section name"><a name="NSString_RegexKitLiteAdditions__-stringByMatching:options:inRange:capture:error:">stringByMatching:options:inRange:capture:error:</a></div>
+<div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regexString</span> using <span class="argument">options</span> within <span class="argument">range</span> of the receiver for <span class="argument">capture</span>.</div>
   <div class="signature"><span class="hardNobr">- (NSString *)<span class="selector">stringByMatching:</span>(NSString *)<span class="argument">regexString</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(NSRange)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">capture:</span>(NSInteger)<span class="argument">capture</span></span> <span class="hardNobr"><span class="selector">error:</span>(NSError **)<span class="argument">error</span>;</span></div>
-  <div class="parameters"><div class="header">Parameters</div>
+  <div class="section parameters"><div class="header">Parameters</div>
     <ul>
       <li>
         <div class="name">regexString</div>
@@ -1191,10 +1236,10 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
       </li>
     </ul>
   </div>
-  <div class="result"><div class="header">Return Value</div>
+  <div class="section result"><div class="header">Return Value</div>
 A <span class="code">NSString</span> containing the substring of the receiver matched by capture number <span class="argument">capture</span> of <span class="argument">regexString</span> within <span class="argument">range</span> of the receiver.  Returns <span class="code">NULL</span> if the receiver is not matched by <span class="argument">regexString</span> within <span class="argument">range</span> or an error occurs.
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:" class="code">- stringByMatching:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-stringByMatching:capture:" class="code">- stringByMatching:capture:</a></li>
@@ -1209,22 +1254,23 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
 
 <h3>Constants</h3>
 
-<div class="typedef">
-  <div class="name"><a name="RKLRegexOptions"></a>RKLRegexOptions</div>
-  <div class="summary">Type for regular expression options.</div>
-  <div class="type">typedef uint32_t RKLRegexOptions;</div>
-  <div class="discussion"><div class="header">Discussion</div>
+
+<div class="block typedef">
+  <div class="section name"><a name="RKLRegexOptions"></a>RKLRegexOptions</div>
+  <div class="section summary">Type for regular expression options.</div>
+  <div class="section type">typedef uint32_t RKLRegexOptions;</div>
+  <div class="section discussion"><div class="header">Discussion</div>
     <p>See <a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a> for possible values.</p>
   </div>
-  <div class="declared_in"><div class="header">Declared In</div>
+  <div class="section declared_in"><div class="header">Declared In</div>
     <div class="file">RegexKitLite.h</div>
   </div>
 </div>
 
-<div class="typedef">
-  <div class="name"><a name="RegularExpressionOptions">Regular Expression Options</a></div>
-  <div class="summary">The following flags control various aspects of regular expression matching. The flag values may be specified at the time that a regular expression is used, or they may be specified within the pattern itself using the <span class="regex">(?ismwx-ismwx)</span> pattern options.</div>
-  <div class="declaration code table">
+<div class="block typedef">
+  <div class="section name"><a name="RegularExpressionOptions">Regular Expression Options</a></div>
+  <div class="section summary">The following flags control various aspects of regular expression matching. The flag values may be specified at the time that a regular expression is used, or they may be specified within the pattern itself using the <span class="regex">(?ismwx-ismwx)</span> pattern options.</div>
+  <div class="section declaration code table">
     <div class="top row"><div class="cell">enum {</div></div>
     <div class="enum row">
       <div class="identifier cell"><a href="#RKLRegexOptions_RKLNoOptions">RKLNoOptions</a></div>
@@ -1258,7 +1304,7 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
     </div>
     <div class="bottom row"><div class="cell">};</div></div>
   </div>
-  <div class="constants"><div class="header">Constants</div>
+  <div class="section constants"><div class="header">Constants</div>
     <div class="constant">
       <div class="identifier"><a name="RKLRegexOptions_RKLNoOptions"></a>RKLNoOptions</div>
       <div class="text">No regular expression options specified.</div>
@@ -1284,7 +1330,7 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
       <div class="text">Controls the behavior of <span class="regex">\b</span> in a pattern. If set, word boundaries are found according to the definitions of word found in <a href="http://www.unicode.org/reports/tr29/" class="section-link NBSP_printURL">Unicode UAX 29 - Text Boundaries</a>. By default, word boundaries are identified by means of a simple classification of characters as either <span class="regex-def">word</span> or <span class="regex-def">non-word</span>, which approximates traditional regular expression behavior. The results obtained with the two options can be quite different in runs of <span class="regex-def">spaces</span> and other <span class="regex-def">non-word</span> characters.</div>
     </div>
   </div>
-  <div class="discussion"><div class="header">Discussion</div>
+  <div class="section discussion"><div class="header">Discussion</div>
     <p>Options for controlling the behavior of a regular expression pattern can be controlled in two ways.  When the method supports it, options may specified by combining <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags with the C bitwise OR operator. For example:</p>
 
     <div class="box sourcecode"><span class="hardNobr">matchedRange = [aString</span> <span class="hardNobr">rangeOfRegex:@"^(blue|red)$"</span> <span class="hardNobr">options:(RKLCaseless | RKLMultiline)</span> <span class="hardNobr">inRange:range</span> <span class="hardNobr">error:NULL];</span></div>
@@ -1308,45 +1354,47 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
       <tr><td><span class="regex">w</span></td><td><a href="#RKLRegexOptions_RKLUnicodeWordBoundaries" class="code">RKLUnicodeWordBoundaries</a></td></tr>
     </table>
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#ICURegularExpressionSyntax" class="section-link">ICU Regular Expression Syntax</a></li>
       <li><a href="http://www.icu-project.org/userguide/regexp.html" class="section-link printURL">ICU User Guide - Regular Expressions</a></li>
     </ul>
   </div>
-  <div class="declared_in"><div class="header">Declared In</div>
+  <div class="section declared_in"><div class="header">Declared In</div>
     <div class="file">RegexKitLite.h</div>
   </div>
 </div>
 
+
+
 <h3><a name="RegexKitLiteNSErrorErrorDomains"></a><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</h3>
 
-<div class="constants">
-  <div class="summary">The following <span class="code">NSError</span> error domains are defined.</div>
-  <div class="declaration table">
+<div class="block constants">
+  <div class="section summary">The following <span class="code">NSError</span> error domains are defined.</div>
+  <div class="section declaration table">
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexErrorDomain">RKLICURegexErrorDomain</a>;</div></div>
   </div>
-  <div class="constants"><div class="header">Constants</div>
-  <div class="constant">
+  <div class="section constants"><div class="header">Constants</div>
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexErrorDomain"></a>RKLICURegexErrorDomain</div>
     <div class="text">ICU Regular Expression Errors.</div>
   </div>
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html" class="section-link printURL">NSError Class Reference</a></li>
       <li><a href="#RegexKitLiteNSErrorUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError User Info Dictionary Keys</a></li>
     </ul>
   </div>
-  <div class="declared_in"><div class="header">Declared In</div>
+  <div class="section declared_in"><div class="header">Declared In</div>
     <div class="file">RegexKitLite.h</div>
   </div>
 </div>
 
 <h3><a name="RegexKitLiteNSErrorUserInfoDictionaryKeys"></a><span class="rkl">RegexKit<i>Lite</i></span> NSError User Info Dictionary Keys</h3>
 
-<div class="constants">
-  <div class="declaration table">
+<div class="block constants">
+  <div class="section declaration table">
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexErrorNameErrorKey">RKLICURegexErrorNameErrorKey</a>;</div></div>
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexLineErrorKey">RKLICURegexLineErrorKey</a>;</div></div>
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexOffsetErrorKey">RKLICURegexOffsetErrorKey</a>;</div></div>
@@ -1355,58 +1403,93 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexRegexErrorKey">RKLICURegexRegexErrorKey</a>;</div></div>
     <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexRegexOptionsErrorKey">RKLICURegexRegexOptionsErrorKey</a>;</div></div>
   </div>
-  <div class="constants"><div class="header">Constants</div>
-  <div class="constant">
+  <div class="section constants"><div class="header">Constants</div>
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexErrorNameErrorKey"></a>RKLICURegexErrorNameErrorKey</div>
     <div class="text">The string returned by invoking <a href="http://www.icu-project.org/apiref/icu4c/utypes_8h.html#89eb455526bb29bf5350ee861d81df92" class="code">u_errorName</a> with the error <span class="argument">code</span> returned when attempting to compile the regular expression.  Example: <span class="quotedText">U_REGEX_RULE_SYNTAX</span>.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexLineErrorKey"></a>RKLICURegexLineErrorKey</div>
     <div class="text">The line number where the error occurred in the regular expression.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexOffsetErrorKey"></a>RKLICURegexOffsetErrorKey</div>
     <div class="text">The offset from the beginning of the line where the error occurred in the regular expression.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexPreContextErrorKey"></a>RKLICURegexPreContextErrorKey</div>
     <div class="text">Up to <span class="code">16</span> characters leading up to the cause error in the regular expression.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexPostContextErrorKey"></a>RKLICURegexPostContextErrorKey</div>
     <div class="text">Up to <span class="code">16</span> characters after the cause error in the regular expression.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexRegexErrorKey"></a>RKLICURegexRegexErrorKey</div>
     <div class="text">The regular expression that caused the error.</div>
   </div>
-  <div class="constant">
+  <div class="section constant">
     <div class="identifier"><a name="RKLICURegexRegexOptionsErrorKey"></a>RKLICURegexRegexOptionsErrorKey</div>
     <div class="text">The <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> regular expression options specified.</div>
   </div>
   </div>
-  <div class="discussion"><div class="header">Discussion</div>
+  <div class="section discussion"><div class="header">Discussion</div>
     <p>The <a href="#RKLICURegexLineErrorKey" class="code">RKLICURegexLineErrorKey</a>, <a href="#RKLICURegexOffsetErrorKey" class="code">RKLICURegexOffsetErrorKey</a>, <a href="#RKLICURegexPreContextErrorKey" class="code">RKLICURegexPreContextErrorKey</a>, and <a href="#RKLICURegexPostContextErrorKey" class="code">RKLICURegexPostContextErrorKey</a> error keys may not be present for all errors.  For example, errors returned by passing invalid <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags will not have the listed keys set.</p>
   </div>
-  <div class="seealso"><div class="header">See Also</div>
+  <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html" class="section-link printURL">NSError Class Reference</a></li>
       <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
     </ul>
   </div>
-  <div class="declared_in"><div class="header">Declared In</div>
+  <div class="section declared_in"><div class="header">Declared In</div>
     <div class="file">RegexKitLite.h</div>
   </div>
 </div>
 
 </div>
 
+<div class="printPageBreakAfter">
+  <h2><a name="ReleaseInformation"></a>Release Information</h2>
+  
+  <div class="chrono">
+    
+    <div class="entry">
+      <div class="banner"><span class="date">2008/03/28</span><span class="bannerItemSpacer">-</span><span class="release">1.1</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	
+	<p>Changes:</p>
+	<ul class="square">
+          <li>Added the method <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" title="Clears the cached information about strings." class="code">clearStringCache</a>.</li>
+	  <li>Updated the documentation with information about searching <span class="code">NSMutableString</span> strings, and when to use <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" title="Clears the cached information about strings." class="code">clearStringCache</a>.</li>
+	</ul>
+	
+	<p>Bug fixes:</p>
+	<ul class="square">
+          <li>Fixed a bug that for strings that required <span class="code hardNobr">UTF-16</span> conversion, the conversion from the previous string that required conversion may have been re-used for the current string, even though the two strings are different and the new string requires conversion.</li>
+	  <li>Updated the internal inconsistency exception macro to correctly handle <span class="hardNobr">non-<span class="code">ASCII</span></span> file names.</li>
+	</ul>
+      </div>
+    </div>
+    
+    <div class="entry">
+      <div class="banner"><span class="date">2008/03/23</span><span class="bannerItemSpacer">-</span><span class="release">1.0</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	<p>Initial release.</p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
 <h2><a name="LicenseInformation">License Information</a></h2>
 
 <p><span class="rkl">RegexKit<i>Lite</i></span> is distributed under the terms of the <i class="hardNobr">BSD License</i>, as specified below.</p>
 
-<div class="seealso"><div class="header">See Also</div>
-  <ul class="seealso">
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
     <li><a href="http://en.wikipedia.org/wiki/BSD_license" class="section-link printURL">Wikipedia - BSD License</a></li>
     <li><a href="http://www.linfo.org/bsdlicense.html" class="section-link printURL">The Linux Information Project - BSD License Definition</a></li>
   </ul>
