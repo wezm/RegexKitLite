@@ -406,6 +406,7 @@ ul.overview { margin-left: 4.0ex; }
 <li>Uses <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> for greater speed.</li>
 <li>Very easy to use, all functionality is provided by a category extension to the <span class="code">NSString</span> class.</li>
 <li>Consists of two small files, a header and the <span class="hardNobr">Objective-C</span> source.</li>
+<li>Xcode 3 integrated <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation">documentation available</a>.</li>
 <li>Distributed under the terms of the <i class="hardNobr">BSD License</i>.</li>
 </ul>
 
@@ -797,15 +798,25 @@ shell% </span><span class="cursor">&#9612;</span></div>
 <li>Import the <span class="file">RegexKitLite.h</span> header.</li>
 </ul>
 
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
+    <li><a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide/Contents/Resources/en.lproj/05_08_bs_linking/chapter_36_section_1.html" class="section-link printURL_small">Xcode Users Guide - Linking</a></li>
+  </ul>
+</div>
+
 <h4><a name="AddingRegexKitLitetoyourProject_AddingRegexKitLiteusingXcode">Adding <span class="rkl">RegexKit<i>Lite</i></span> using Xcode</a></h4>
 
 <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">These instructions apply to <span class="hardNobr">Xcode versions 2.4.1 and 3.0.</span>  Other versions should be similar, but may vary for specific details.</div></div></div></div>
 
 <ol>
 
-<li><p>First, add the ICU dynamic shared library to your Xcode project.  Do so by control/right-clicking on the <span class="xcode-group">External Frameworks and Libraries</span> group.  Exactly which file to choose next depends on your project, but a fairly safe choice is to select <span class="file">/Developer/SDKs/MacOSX10.5.sdk/usr/lib/libicucore.dylib</span>. You may have installed your developer tools in a different location than the default <span class="file">/Developer</span> directory, and the <span class="hardNobr">Mac OS X</span> SDK version should be the one your project is targeting, typically the latest one available.</p></li>
+<li><p>First, add the ICU dynamic shared library to your Xcode project.  You may choose to add the library to any group in your project, and which groups are created by default is dependent on the template type you chose when you created your project.  For a typical Cocoa application project, a good choice is the <span class="xcode-group">Frameworks</span> group.  To add the ICU dynamic shared library, control/right-click on the <span class="xcode-group">Framework</span> group and choose <span class="context-menu">Add &gt; Existing Files&hellip;</span></p></li>
 
-<li><p>Then, in the dialog that follows, make sure that <span class="dialog-option">Copy items into&hellip;</span> is unselected.  Then, select the targets you will be using <span class="rkl">RegexKit<i>Lite</i></span> in so that those targets are linked to the ICU library.</p></li>
+<li><p>Next, you will need to choose the ICU dynamic shared library file to add.  Exactly which file to choose depends on your project, but a fairly safe choice is to select <span class="file">/Developer/SDKs/MacOSX10.5.sdk/usr/lib/libicucore.dylib</span>. You may have installed your developer tools in a different location than the default <span class="file">/Developer</span> directory, and the <span class="hardNobr">Mac OS X</span> SDK version should be the one your project is targeting, typically the latest one available.</p></li>
+
+<li><p>Then, in the dialog that follows, make sure that <span class="dialog-option">Copy items into&hellip;</span> is unselected.  Select the targets you will be using <span class="rkl">RegexKit<i>Lite</i></span> in and then click <span class="context-menu">Add</span> to add the ICU dynamic shared library to your project.</p></li>
+
+<li><p>Once the ICU dynamic shared library is added to your project, you will need to add it to the libraries that your executable is linked with.  To do so, expand the <span class="xcode-group">Targets</span> group, and then expand the executable targets you will be using <span class="rkl">RegexKit<i>Lite</i></span> in.  You will then need to select the <span class="file">libicucore.dylib</span> file that you added in the previous step and drag it in to the <span class="xcode-group">Link Binary With Libraries</span> group for each excutable target that you will be using <span class="rkl">RegexKit<i>Lite</i></span> in.  The order of the files within the <span class="xcode-group">Link Binary With Libraries</span> group is not important, and for a typical Cocoa application the group will contain the <span class="file">Cocoa.framework</span> file.</p></li>
 
 <li>
 <p>Next, add the <span class="rkl">RegexKit<i>Lite</i></span> source files to your Xcode project.  In the <span class="xcode-group">Groups &amp; Files</span> outline view on the left, control/right-click on the group that would like to add the files to, then select <span class="context-menu">Add &gt; Existing Files&hellip;</span></p>
@@ -870,7 +881,7 @@ shell% </span><span class="cursor">&#9612;</span></div>
   
   <div class="box classSpecs hasRows zebraRows">
     <div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html" target="_top">NSString</a></span></div>
-    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">1.1</span></span></div>
+    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">1.2</span></span></div>
     <div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
     <div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
       <ul class="cell right lastCell">
@@ -905,6 +916,14 @@ shell% </span><span class="cursor">&#9612;</span></div>
   </ul>
 </div>
 
+<h3><a name="NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"></a>Xcode 3 Integrated Documentation</h3>
+
+<p>This documentation is available in the Xcode DocSet format.  To add this documentation to Xcode, select <span class="context-menu">Help &gt; Documentation</span>. Then, in the lower left hand corner of the documentation window, there should be a gear icon with a drop down menu indicator which you should select and choose <span class="context-menu">New Subscription&hellip;</span> and enter the following URL:</p>
+
+<p class="indent printURL"><span class="code">feed://regexkit.sourceforge.net/RegexKitLiteDocSets.atom</span></p>
+
+<p>Once you have added the URL, a new group should appear, inside which will be the <span class="rkl">RegexKit<i>Lite</i></span> documentation with a <span class="code">Get</span> button.  Click on the <span class="code">Get</span> button and follow the prompts.  Xcode will ask you to enter an administrators password to install the documentation for the first time, which is explained <a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/Documentation_Sets/UpdatingDocumentation/chapter_8_section_4.html" class="printURL_small">here</a>.</p>
+
 <h3><a name="NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings"></a>Cached Information and Mutable Strings</h3>
 
 <p>While <span class="rkl">RegexKit<i>Lite</i></span> takes steps to ensure that the information it has cached is valid for the strings it searches, there exists the possibility that out of date cached information may be used when searching mutable strings.  For each compiled regular expression, <span class="rkl">RegexKit<i>Lite</i></span> caches the following information about the last <span class="code">NSString</span> that was searched:</p>
@@ -930,7 +949,7 @@ shell% </span><span class="cursor">&#9612;</span></div>
 </div></div></div></div>
 
 
-<h4>Exceptions Raised</h4>
+<h3>Exceptions Raised</h3>
 
 <p>Methods will raise an exception if their arguments are invalid, such as passing <span class="code">NULL</span> for a required parameter.  An invalid regular expression or <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> parameter will not raise an exception.  Instead, a <span class="code">NSError</span> object with information about the error will be created and returned via the address given with the optional <span class="argument">error</span> argument.  If information about the problem is not required, <span class="argument">error</span> may be <span class="code">NULL</span>.  For convenience methods that do not have an <span class="argument">error</span> argument, they behave as if <span class="argument">error</span> was set to <span class="code">NULL</span> when invoking the primary method.</p>
 
@@ -1453,6 +1472,19 @@ A <span class="code">NSString</span> containing the substring of the receiver ma
   <h2><a name="ReleaseInformation"></a>Release Information</h2>
   
   <div class="chrono">
+
+    <div class="entry">
+      <div class="banner"><span class="date">2008/04/01</span><span class="bannerItemSpacer">-</span><span class="release">1.2</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	
+	<p>Changes:</p>
+	<ul class="square">
+	  <li>Updated and clarified the documentation regarding adding <span class="rkl">RegexKit<i>Lite</i></span> to an Xcode project.</li>
+	  <li>Created Xcode 3 DocSet documentation.</li>
+	</ul>
+      </div>
+    </div>
     
     <div class="entry">
       <div class="banner"><span class="date">2008/03/28</span><span class="bannerItemSpacer">-</span><span class="release">1.1</span></div>
