@@ -3,5 +3,5 @@
 #import <stddef.h>
 
 @interface NSString (RegexKitLiteEnumeratorAdditions)
-- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regexString;
+- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regex;
 @end

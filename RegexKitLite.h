@@ -1,7 +1,7 @@
 //
 //  RegexKitLite.h
 //  http://regexkit.sourceforge.net/
-//  Licensesd under the terms of the BSD License, as specified below.
+//  Licensed under the terms of the BSD License, as specified below.
 //
 
 /*
@@ -45,6 +45,7 @@
 #endif // __OBJC__
 
 #include <limits.h>
+#include <stdint.h>
 #include <sys/types.h>
 
 #ifdef __cplusplus
@@ -60,32 +61,17 @@ typedef unsigned long  NSUInteger;
 #define NSIntegerMin   LONG_MIN
 #define NSIntegerMax   LONG_MAX
 #define NSUIntegerMax  ULONG_MAX
-#else
+#else // 32-bit
 typedef int            NSInteger;
 typedef unsigned int   NSUInteger;
 #define NSIntegerMin   INT_MIN
 #define NSIntegerMax   INT_MAX
 #define NSUIntegerMax  UINT_MAX
-#endif
+#endif // __LP64__ || NS_BUILD_32_LIKE_64
 #endif // NSINTEGER_DEFINED
 
-#ifndef _REGEXKITLITE_H_
-#define _REGEXKITLITE_H_
-
-#ifdef __OBJC__
-
-@class NSError;
-
-// NSError error domains and user info keys.
-extern NSString * const RKLICURegexErrorDomain;
-
-extern NSString * const RKLICURegexErrorNameErrorKey;
-extern NSString * const RKLICURegexLineErrorKey;
-extern NSString * const RKLICURegexOffsetErrorKey;
-extern NSString * const RKLICURegexPreContextErrorKey;
-extern NSString * const RKLICURegexPostContextErrorKey;
-extern NSString * const RKLICURegexRegexErrorKey;
-extern NSString * const RKLICURegexRegexOptionsErrorKey;
+#ifndef RKLREGEXOPTIONS_DEFINED
+#define RKLREGEXOPTIONS_DEFINED
 
 // These must be idential to their ICU regex counterparts. See http://www.icu-project.org/userguide/regexp.html
 enum {
@@ -97,26 +83,66 @@ enum {
   RKLUnicodeWordBoundaries = 256
 };
 typedef uint32_t RKLRegexOptions;
+#endif
+
+#ifndef _REGEXKITLITE_H_
+#define _REGEXKITLITE_H_
+
+#ifdef __OBJC__
+
+@class NSError;
+
+// NSException exception name.
+extern NSString * const RKLICURegexException;
+
+// NSError error domains and user info keys.
+extern NSString * const RKLICURegexErrorDomain;
+
+extern NSString * const RKLICURegexErrorCodeErrorKey;
+extern NSString * const RKLICURegexErrorNameErrorKey;
+extern NSString * const RKLICURegexLineErrorKey;
+extern NSString * const RKLICURegexOffsetErrorKey;
+extern NSString * const RKLICURegexPreContextErrorKey;
+extern NSString * const RKLICURegexPostContextErrorKey;
+extern NSString * const RKLICURegexRegexErrorKey;
+extern NSString * const RKLICURegexRegexOptionsErrorKey;
 
 @interface NSString (RegexKitLiteAdditions)
 
 + (void)clearStringCache;
 
-+ (NSInteger)captureCountForRegex:(NSString *)regexString;
-+ (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError **)error;
++ (NSInteger)captureCountForRegex:(NSString *)regex;
++ (NSInteger)captureCountForRegex:(NSString *)regex options:(RKLRegexOptions)options error:(NSError **)error;
 
-- (BOOL)isMatchedByRegex:(NSString *)regexString;
-- (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error;
+- (NSArray *)componentsSeparatedByRegex:(NSString *)regex;
+- (NSArray *)componentsSeparatedByRegex:(NSString *)regex range:(NSRange)range;
+- (NSArray *)componentsSeparatedByRegex:(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error;
 
-- (NSRange)rangeOfRegex:(NSString *)regexString;
-- (NSRange)rangeOfRegex:(NSString *)regexString capture:(NSInteger)capture;
-- (NSRange)rangeOfRegex:(NSString *)regexString inRange:(NSRange)range;
-- (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+- (BOOL)isMatchedByRegex:(NSString *)regex;
+- (BOOL)isMatchedByRegex:(NSString *)regex inRange:(NSRange)range;
+- (BOOL)isMatchedByRegex:(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error;
 
-- (NSString *)stringByMatching:(NSString *)regexString;
-- (NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture;
-- (NSString *)stringByMatching:(NSString *)regexString inRange:(NSRange)range;
-- (NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+- (NSRange)rangeOfRegex:(NSString *)regex;
+- (NSRange)rangeOfRegex:(NSString *)regex capture:(NSInteger)capture;
+- (NSRange)rangeOfRegex:(NSString *)regex inRange:(NSRange)range;
+- (NSRange)rangeOfRegex:(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+
+- (NSString *)stringByMatching:(NSString *)regex;
+- (NSString *)stringByMatching:(NSString *)regex capture:(NSInteger)capture;
+- (NSString *)stringByMatching:(NSString *)regex inRange:(NSRange)range;
+- (NSString *)stringByMatching:(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+
+- (NSString *)stringByReplacingOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement;
+- (NSString *)stringByReplacingOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement range:(NSRange)searchRange;
+- (NSString *)stringByReplacingOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement options:(RKLRegexOptions)options range:(NSRange)searchRange error:(NSError **)error;
+
+@end
+
+@interface NSMutableString (RegexKitLiteAdditions)
+
+- (NSUInteger)replaceOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement;
+- (NSUInteger)replaceOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement range:(NSRange)searchRange;
+- (NSUInteger)replaceOccurrencesOfRegex:(NSString *)regex withString:(NSString *)replacement options:(RKLRegexOptions)options range:(NSRange)searchRange error:(NSError **)error;
 
 @end
 
@@ -127,4 +153,3 @@ typedef uint32_t RKLRegexOptions;
 #ifdef __cplusplus
 }  // extern "C"
 #endif
-

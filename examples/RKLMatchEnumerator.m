@@ -49,9 +49,9 @@
 
 @implementation NSString (RegexKitLiteEnumeratorAdditions)
 
-- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regexString
+- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regex
 {
-  return([[[RKLMatchEnumerator alloc] initWithString:self regex:regexString] autorelease]);
+  return([[[RKLMatchEnumerator alloc] initWithString:self regex:regex] autorelease]);
 }
 
 @end
