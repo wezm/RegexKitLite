@@ -389,7 +389,7 @@ static RKLCacheSlot *getCachedRegexSetToString(NSString *regexString, RKLRegexOp
     if(((isSetTo == NO) || (cacheSlot->setToIsImmutable == NO)) && (cacheSlot->setToString != NULL)) { isSetTo = ((cacheSlot->setToLength == matchLength) && (cacheSlot->setToHash == CFHash((CFStringRef)(matchString)))); }
 
     if((isSetTo == YES)) { // Make sure that the UTF16 conversion cache is set to this string, if conversion is required.
-      if((cacheSlot->setToString != (CFStringRef)matchString) && (cacheSlot->setToNeedsConversion == YES) && (setCacheSlotToString(cacheSlot, matchRange, status, exception) == NO)) { *exception = RKLCAssert(@"Failed to set up UTF16 buffer."); goto exitNow; }
+      if((cacheSlot->setToNeedsConversion == YES) && (setCacheSlotToString(cacheSlot, matchRange, status, exception) == NO)) { *exception = RKLCAssert(@"Failed to set up UTF16 buffer."); goto exitNow; }
       if(NSEqualRanges(cacheSlot->setToRange, *matchRange) == YES) { goto exitNow; } // Verify that the range to search is what the cached regex was prepped for last time.
     }
   }
@@ -444,6 +444,11 @@ static id performRegexOp(id self, SEL _cmd, RKLRegexOp doRegexOp, NSString *rege
   if(stringU16Length     < NSMaxRange(searchRange)) { exception = [NSException exceptionWithName:NSRangeException reason:@"Range or index out of bounds" userInfo:NULL]; goto exitNow; }
 
   RKLCDelayedAssert((cacheSlot->icu_regex != NULL) && (exception == NULL), &exception, exitNow);
+
+  if(cacheSlot->setToNeedsConversion != 0) {
+    RKLBuffer *buffer = (cacheSlot->setToLength < RKL_FIXED_LENGTH) ? &fixedBuffer : &dynamicBuffer;
+    RKLCDelayedAssert((cacheSlot->setToHash == buffer->hash) && (cacheSlot->setToLength == buffer->length) && (cacheSlot->setToUniChar == buffer->uniChar), &exception, exitNow);
+  }
 
   switch(regexOp) {
     case RKLRangeOp:                  rkl_find(cacheSlot, capture, searchRange, (NSRange *)result, &exception, &status); break;
