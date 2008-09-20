@@ -576,7 +576,15 @@ static NSArray *rkl_splitArray(RKLCacheSlot *cacheSlot, id *exception, int32_t *
   id          *splitStrings     = NULL;
 
   if((stackUsed + splitStringsSize) < RKL_STACK_LIMIT) { if((splitStrings = alloca(splitStringsSize)) == NULL) { goto exitNow; } stackUsed += splitStringsSize; }
+#ifdef __OBJC_GC__
   else { if((splitStrings = rkl_realloc(&scratchBuffer[1], splitStringsSize, (NSUInteger)NSScannedOption)) == NULL) { goto exitNow; } }
+#else
+  // http://sourceforge.net/tracker/index.php?func=detail&aid=2050825&group_id=204582&atid=990188
+  // This is to get around an iPhone quirk.  For whatever reason, the iPhone NSZone.h explicitly removes all NSAllocateCollectable()
+  // bits and pieces using #if pre-processor conditions.  Since NSScannedOption is only really used when the compiler has -fobjc-gc enabled,
+  // we just chop it out here.
+  else { if((splitStrings = rkl_realloc(&scratchBuffer[1], splitStringsSize, 0)) == NULL) { goto exitNow; } }
+#endif
 
 #ifdef __OBJC_GC__ 
   if(rkl_collectingEnabled() == YES) { // I just don't trust the GC system with the faster CF way of doing things...  It never seems to work quite the way you expect it to.
@@ -671,7 +679,12 @@ static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacemen
   int32_t    u16Length = 0;
   RKLCDelayedAssert((cacheSlot != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (status != NULL), exception, exitNow);
   
+  cacheSlot->lastFindRange = cacheSlot->lastMatchRange = NSNotFoundRange; // Clear the cached find information for this regex so a subsequent find works correctly.
   uregex_reset(cacheSlot->icu_regex, 0, status);
+
+  // Work around for ICU uregex_reset() bug, see http://bugs.icu-project.org/trac/ticket/6545
+  // http://sourceforge.net/tracker/index.php?func=detail&aid=2105213&group_id=204582&atid=990188
+  if((cacheSlot->setToLength == 0) && (*status == 8)) { *status = 0; }
 
   while(uregex_findNext(cacheSlot->icu_regex, status)) {
     replaced++;
