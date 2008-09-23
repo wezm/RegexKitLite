@@ -277,8 +277,9 @@ static CFArrayCallBacks transferOwnershipArrayCallBacks =                       
 //  ----------
 
 static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions options, NSError **error, id *exception) {
-  CFHashCode    regexHash = 0;
   RKLCacheSlot *cacheSlot = NULL;
+  CFHashCode    regexHash = 0;
+  int32_t       status    = 0;
 
   RKLCDelayedAssert(regexString != NULL, exception, exitNow);
 
@@ -299,7 +300,6 @@ static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions optio
   CFIndex      regexStringU16Length = CFStringGetLength(cacheSlot->regexString); // In UTF16 code units.
   UParseError  parseError           = (UParseError){-1, -1, {0}, {0}};
   UniChar     *regexUniChar         = NULL;
-  int32_t      status               = 0;
 
   // Try to quickly obtain regexString in UTF16 format.
   if((regexUniChar = (UniChar *)CFStringGetCharactersPtr(cacheSlot->regexString)) == NULL) { // We didn't get the UTF16 pointer quickly and need to perform a full conversion in a temp buffer.
@@ -620,17 +620,15 @@ static NSString *rkl_replaceString(RKLCacheSlot *cacheSlot, id searchString, NSU
   NSUInteger     replacedCount      = 0;
 
   // Zero order approximation of the buffer sizes for holding the replaced string or split strings and split strings pointer offsets.  As UTF16 code units.
-  tempUniCharBufferU16Capacity = (int32_t)((searchU16Length + (searchU16Length >> 1)) + (replacementU16Length * 2));
+  tempUniCharBufferU16Capacity = (int32_t)(16 + (searchU16Length + (searchU16Length >> 1)) + (replacementU16Length * 2));
   
   // Buffer sizes converted from native units to bytes.
   size_t stackSize = 0, replacementSize = (replacementU16Length * sizeof(UniChar)), tempUniCharBufferSize = (tempUniCharBufferU16Capacity * sizeof(UniChar));
   
   // For the various buffers we require, we first try to allocate from the stack if we're not over the RKL_STACK_LIMIT.  If we are, switch to using the heap for the buffer.
   
-  if(tempUniCharBufferSize > 0) {
-    if((stackSize + tempUniCharBufferSize) < RKL_STACK_LIMIT) { if((tempUniCharBuffer = alloca(tempUniCharBufferSize)) == NULL) { goto exitNow; } stackSize += tempUniCharBufferSize; }
-    else { if((tempUniCharBuffer = rkl_realloc(&scratchBuffer[0], tempUniCharBufferSize, 0UL)) == NULL) { goto exitNow; } }
-  }
+  if((stackSize + tempUniCharBufferSize) < RKL_STACK_LIMIT) { if((tempUniCharBuffer = alloca(tempUniCharBufferSize)) == NULL) { goto exitNow; } stackSize += tempUniCharBufferSize; }
+  else { if((tempUniCharBuffer = rkl_realloc(&scratchBuffer[0], tempUniCharBufferSize, 0UL)) == NULL) { goto exitNow; } }
   
   // Try to get the pointer to the replacement strings UTF16 data.  If we can't, allocate some buffer space, then covert to UTF16.
   if((replacementUniChar = CFStringGetCharactersPtr((CFStringRef)replacementString)) == NULL) {
@@ -679,7 +677,6 @@ static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacemen
   int32_t    u16Length = 0;
   RKLCDelayedAssert((cacheSlot != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (status != NULL), exception, exitNow);
   
-  cacheSlot->lastFindRange = cacheSlot->lastMatchRange = NSNotFoundRange; // Clear the cached find information for this regex so a subsequent find works correctly.
   uregex_reset(cacheSlot->icu_regex, 0, status);
 
   // Work around for ICU uregex_reset() bug, see http://bugs.icu-project.org/trac/ticket/6545
