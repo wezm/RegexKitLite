@@ -107,6 +107,13 @@ extern NSString * const RKLICURegexPostContextErrorKey;
 extern NSString * const RKLICURegexRegexErrorKey;
 extern NSString * const RKLICURegexRegexOptionsErrorKey;
 
+// If it looks like low memory notifications might be available, add code to register and respond to them.
+// This is (should be) harmless if it turns out that this isn't the case, since the notification that we register for,
+// UIApplicationDidReceiveMemoryWarningNotification, is dynamically looked up via dlsym().
+#if (TARGET_OS_EMBEDDED || TARGET_OS_IPHONE) && (!defined(RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS) || (RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS != 0))
+#define RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS 1
+#endif
+
 #ifdef RKL_PREPEND_TO_METHODS
 // This requires a few levels of rewriting to get the desired results.
 #define RKL_METHOD_PREPEND_2(c,d) c ## d

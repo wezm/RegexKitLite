@@ -275,7 +275,7 @@ static Boolean          RKLCFArrayEqualCallBack           (const void *value1,  
 static void             RKLCFArrayRelease                 (CFAllocatorRef allocator, const void *ptr)    { allocator=allocator;/*unused*/ CFRelease(ptr);            }
 static CFArrayCallBacks transferOwnershipArrayCallBacks =                                                { 0, NULL, RKLCFArrayRelease, NULL, RKLCFArrayEqualCallBack };
 
-#ifdef RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS
+#if defined(RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS) && (RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS == 1)
 
 // The next few lines are specifically for the iPhone to catch low memory conditions.
 // The basic idea is that rkl_RegisterForLowMemoryNotifications() is set to be run once by the linker at load time via __attribute((constructor)).
