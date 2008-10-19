@@ -36,17 +36,31 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */ 
 
-#ifdef __OBJC__
-
+#ifdef    __OBJC__
 #import <Foundation/NSObjCRuntime.h>
 #import <Foundation/NSRange.h>
 #import <Foundation/NSString.h>
-
 #endif // __OBJC__
 
 #include <limits.h>
 #include <stdint.h>
 #include <sys/types.h>
+
+#ifndef REGEXKITLITE_VERSION_DEFINED
+#define REGEXKITLITE_VERSION_DEFINED
+
+#define REGEXKITLITE_VERSION_MAJOR 2
+#define REGEXKITLITE_VERSION_MINOR 2
+
+#define REGEXKITLITE_VERSION_CSTRING   _RKL_VERSION_STRING(REGEXKITLITE_VERSION_MAJOR, REGEXKITLITE_VERSION_MINOR)
+#define REGEXKITLITE_VERSION_NSSTRING  @REGEXKITLITE_VERSION_CSTRING
+
+#define _RKL__STRINGIFY(b)       #b
+#define _RKL_STRINGIFY(a)        _RKL__STRINGIFY(a)
+#define _RKL_JOIN_VERSION(a,b)   _RKL_STRINGIFY(a##.##b)
+#define _RKL_VERSION_STRING(a,b) _RKL_JOIN_VERSION(a,b)
+
+#endif // REGEXKITLITE_VERSION_DEFINED
 
 #ifdef __cplusplus
 extern "C" {
@@ -83,7 +97,8 @@ enum {
   RKLUnicodeWordBoundaries = 256
 };
 typedef uint32_t RKLRegexOptions;
-#endif
+
+#endif // RKLREGEXOPTIONS_DEFINED
 
 #ifndef _REGEXKITLITE_H_
 #define _REGEXKITLITE_H_
