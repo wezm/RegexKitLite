@@ -711,8 +711,9 @@ static NSString *rkl_replaceString(RKLCacheSlot *cacheSlot, id searchString, NSU
 
 // Modified version of the ICU libraries uregex_replaceAll() that keeps count of the number of replacements made.
 static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacementUniChar, int32_t replacementU16Length, UniChar *replacedUniChar, int32_t replacedU16Capacity, NSUInteger *replacedCount, id *exception, int32_t *status) {
-  NSUInteger replaced  = 0;
-  int32_t    u16Length = 0;
+  BOOL       bufferOverflowed = NO;
+  NSUInteger replaced         = 0;
+  int32_t    u16Length        = 0;
   RKLCDelayedAssert((cacheSlot != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (status != NULL), exception, exitNow);
   
   uregex_reset(cacheSlot->icu_regex, 0, status);
@@ -721,10 +722,17 @@ static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacemen
   // http://sourceforge.net/tracker/index.php?func=detail&aid=2105213&group_id=204582&atid=990188
   if((cacheSlot->setToLength == 0) && (*status == 8)) { *status = 0; }
 
+  // This loop originally came from ICU source/i18n/uregex.cpp, uregex_replaceAll.
+  // There is a bug in that code which causes the size of the buffer required for the replaced text to not be calculated correctly.
+  // This contains a work around using the variable bufferOverflowed.
+  // ICU bug: http://bugs.icu-project.org/trac/ticket/6656
+  // http://sourceforge.net/tracker/index.php?func=detail&aid=2408447&group_id=204582&atid=990188
   while(uregex_findNext(cacheSlot->icu_regex, status)) {
     replaced++;
     u16Length += uregex_appendReplacement(cacheSlot->icu_regex, replacementUniChar, replacementU16Length, &replacedUniChar, &replacedU16Capacity, status);
+    if(*status == U_BUFFER_OVERFLOW_ERROR) { bufferOverflowed = YES; *status = 0; }
   }
+  if((*status == 0) && (bufferOverflowed == YES)) { *status = U_BUFFER_OVERFLOW_ERROR; }
   u16Length += uregex_appendTail(cacheSlot->icu_regex, &replacedUniChar, &replacedU16Capacity, status);
  
   if(replacedCount != 0) { *replacedCount = replaced; }
