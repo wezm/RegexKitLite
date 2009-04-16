@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name = "format-detection" content = "telephone=no">
+    <meta name = "viewport" content = "width = 480">
     <style type="text/css">
 body { font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; color: #000; background-color: #FFF; }
 h1   { margin-top: 1.0em; margin-bottom: 0.8334em; font-size: 2.5000em; }
@@ -120,7 +121,7 @@ table.regexSyntax td                    {  padding-left: 0.75ex; padding-right: 
 .copyToClipboardHUD { -moz-user-select: none; -webkit-user-select: none; cursor: default; }
 .copyToClipboardHUD > .top { padding-top: 0px; padding-bottom: 0px; margin-left: 35px; margin-right: 35px; background: rgba(8,8,8,0.75); -webkit-border-bottom-left-radius: 10px; -webkit-border-bottom-right-radius: 10px; -moz-border-radius-bottomleft: 10px; -moz-border-radius-bottomright: 10px;  border: 2px solid rgb(207,207,207); border-top: 0px solid transparent; -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.9); color: #fff; text-shadow: 0px 0px 1px rgba(0,0,0,0.75); -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.9); z-index: 100; text-align: center; -webkit-background-origin: border !important; -moz-background-origin: border; }
 .copyToClipboardHUD > .top > .padding { padding-top: 0.25em; padding-bottom: 0.5em; }
-.copyToClipboardHUD > .top > .padding > .copiedAs { margin-left: 3ex; margin-right: 3ex; font-weight: bold; }
+.copyToClipboardHUD > .top > .padding > .copiedAs { white-space: nowrap; margin-left: 3ex; margin-right: 3ex; font-weight: bold; }
 .copyToClipboardHUD .copyToClipboardHUDRegex { margin-top: 0.75em; margin-left: 4ex; margin-right: 4ex;  color: #fff; text-shadow: 0px 0px 2px rgba(0,0,0,0.75); overflow: hidden; text-overflow: ellipsis; -webkit-background-origin: border; -moz-background-origin: border; }
 .copyToClipboardHUD.example > .top { margin-right: 13px; margin-left: 13px; }
 
@@ -160,7 +161,7 @@ div#clip { overflow: hidden; }
 .box.small .label { padding-right: 0.5ex; }
 
 .box.sourcecode, .box.shell, .box.quote { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; }
-.box.sourcecode, .box.shell { font: 0.9167em monaco, courier, monospace; }
+.box.sourcecode, .box.shell { font: 0.9167em monaco, "Lucida Console", courier, monospace; }
 .box.sourcecode, .box.shell { white-space: pre; white-space: pre-wrap !important; }
 .box.sourcecode { border: 1px solid #c7cfd5; background-color: #f1f5f9; }
 .box.shell      { border: 1px solid #bddbc5; background-color: #eafff5; }
@@ -190,9 +191,9 @@ div#clip { overflow: hidden; }
 .box .metainfo > .entry > .item { display: table-cell; }
 .box .metainfo > .entry > .meta { font-style: italic; }
 
-.box .metainfo .filename > .info, .box .metainfo .taggedAs > .info { font: 0.9167em monaco, courier, monospace; white-space: nowrap; }
-.box .metainfo .continues.above > .info { padding-left: 0px; font: italic 0.9167em monaco, courier, monospace; white-space: nowrap; }
-.box .metainfo .description > .info { padding-left: 0px; font: italic 0.9167em monaco, courier, monospace; white-space: nowrap; }
+.box .metainfo .filename > .info, .box .metainfo .taggedAs > .info { font: 0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.box .metainfo .continues.above > .info { padding-left: 0px; font: italic 0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.box .metainfo .description > .info { padding-left: 0px; font: italic 0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 
 .box.titled           { margin: 0px; padding: 0px; border: 0px solid transparent; background-color: transparent; -webkit-border-radius: 0.625em; -moz-border-radius: 0.625em; }
 .box.titled > .title    { padding: 0.25em 2ex; line-height: 1.5em; font-size: 13px; font-weight: bold; -webkit-border-top-left-radius: 0.625em; -webkit-border-top-right-radius: 0.625em; -moz-border-radius-topleft: 0.625em; -moz-border-radius-topright: 0.625em; -webkit-user-select: none; -moz-user-select: none; cursor: default; -webkit-background-origin: border; -moz-background-origin: border; }
@@ -232,7 +233,7 @@ border-top: 1px solid rgba(255,255,255,0.125); border-left: 1px solid rgba(0,0,0
 .box.titled.regexEscapeTool.UIpane textarea.regex { width: 100%; resize: none; -webkit-border-radius: 3px; border-color: #c4c4c4; border-top-color: #aaa; padding: 1px; font-size: 1em; }
 
 .box.titled.regexEscapeTool.UIpane .inset { font-size: 12px; }
-.box.titled.regexEscapeTool.UIpane .inset #interactiveEscapedOutput { height: 5em; margin: 0.125em 1.0ex; white-space: pre-wrap; overflow: auto; text-shadow: 1px 1px 1px rgba(0,0,0,0.2); color: #333; }
+.box.titled.regexEscapeTool.UIpane .inset #interactiveEscapedOutput { min-height: 5em; max-height: 12em; margin: 0.125em 1.0ex; white-space: pre-wrap; overflow: auto; text-shadow: 1px 1px 1px rgba(0,0,0,0.2); color: #333;  }
 
 .safariOnly { display: none; }
 .enhancedCopyOnly { display: none; }
@@ -241,7 +242,7 @@ border-top: 1px solid rgba(255,255,255,0.125); border-left: 1px solid rgba(0,0,0
 .copyToClipboard.preferences .hidden { opacity: 0; }
 
 .copyToClipboard.preferences .marginAndOpacityTransition        { -webkit-transition: margin-bottom 0.25s ease-out,    opacity 0.15s ease-out; -webkit-transition-delay: 1s; }
-.copyToClipboard.preferences .marginAndOpacityTransition.hidden { -webkit-transition: margin-bottom 0.25s ease-in-out, opacity 0.15s ease-out; }
+.copyToClipboard.preferences .marginAndOpacityTransition.hidden { -webkit-transition: margin-bottom 0.25s ease-in-out, opacity 0.15s ease-out; -webkit-transition-delay: 1s;}
 
 .UIcontrolLabel { cursor: default; }
 
@@ -267,7 +268,7 @@ hr.beveled { margin: 0px; border: 0px solid transparent; border-top: 1px solid r
 .figure .caption { margin-bottom: 0.5em; margin-top: 0.5em; }
 .figure .caption .number { font-weight: bold; margin-right: 1.25ex; white-space: nowrap; }
 
-.signature { margin-top: 1em; margin-bottom: 0.75em; font: 0.9166em monaco, courier, monospace; }
+.signature { margin-top: 1em; margin-bottom: 0.75em; font: 0.9166em monaco, "Lucida Console", courier, monospace; }
 .signature .code { font-size: 1em !important; }
 .signature .argument { font: italic 1.090em "lucida grande", geneva, helvetica, arial, sans-serif; }
 
@@ -294,13 +295,13 @@ hr.beveled { margin: 0px; border: 0px solid transparent; border-top: 1px solid r
 .block.typedef { margin-top: 5em; margin-bottom: 0px; padding-top: 0px; }
 .block.typedef > .section.name { margin-bottom: 0.5em; }
 .block.typedef > .section.summary { margin-top: 1em; }
-.block.typedef > .section.type { margin-bottom: 0.75em; font: 0.9166em monaco, courier, monospace; }
+.block.typedef > .section.type { margin-bottom: 0.75em; font: 0.9166em monaco, "Lucida Console", courier, monospace; }
 
 .block.constants { margin-top: 1.5em; padding-top: 0px; }
 .block.constants > .section.summary { margin-top: 1em; margin-bottom: 1.25em; }
 .block.constants > .section.declaration .code { font-size: 1em; color: #000; }
 
-.block > .section.declaration { font: 0.9167em monaco, courier, monospace; color: #000; margin-top: 0px; margin-bottom: 0px; }
+.block > .section.declaration { font: 0.9167em monaco, "Lucida Console", courier, monospace; color: #000; margin-top: 0px; margin-bottom: 0px; }
 .block > .section.declaration > .enum > .identifier { padding-left: 4ex; }
 .block > .section.declaration > .enum > .equals {  padding-left: 2ex; padding-right: 2ex; }
 
@@ -309,7 +310,7 @@ hr.beveled { margin: 0px; border: 0px solid transparent; border-top: 1px solid r
 .block > .section.constants > .section.header { margin-bottom: 0.25em; }
 .block > .section.constants > .section.declaration .name.code { color: #000; }
 .block > .section.constants > .constant  { margin-top: 0.5em; margin-bottom: 0.5em; }
-.block > .section.constants > .constant > .identifier { font: 0.9167em monaco, courier, monospace; color: #666; }
+.block > .section.constants > .constant > .identifier { font: 0.9167em monaco, "Lucida Console", courier, monospace; color: #666; }
 .block > .section.constants > .constant > .text { margin-left: 2ex; }
 .block > .section.constants > .constant > .text > p { margin-top: 0px; margin-bottom: 0px; }
 .block > .section.constants > .constant > .text > p + p { margin-top: 1em; }
@@ -325,7 +326,7 @@ h4 .code { color: black; }
 .overview .seealso > ul { margin: 0px; padding: 0px; list-style-type: none; }
 .overview .seealso > ul > li { margin-left: 6.25ex; }
 
-.syntax > .specification { margin-left: 6.25ex; font: 1.1667em monaco, courier, monospace; }
+.syntax > .specification { margin-left: 6.25ex; font: 1.1667em monaco, "Lucida Console", courier, monospace; }
 .syntax > .specification .parameter { font-style: italic; font: 1.0834em "lucida grande", geneva, helvetica, arial, sans-serif; margin: 0px; border: 0px; }
 .syntax > .specification .optional { -webkit-border-radius: 3px; -moz-border-radius: 3px; margin-left: 0.75ex; margin-right: 0.75ex; padding-left: 0.5ex; padding-right: 0.5ex; border: 1px solid #d1d5d9; background-color: #e8e8e8; }
 .syntax > .parameters { margin-top: 0.75em; }
@@ -370,39 +371,40 @@ h4 .code { color: black; }
 .sourceLicense li { margin-bottom: 0.75em; }
 .sourceLicense .disclaimer { font-family: courier, monospace; }
 
-.pop-up_menu-selection, .pop-up_menu-name, .menu-selection, .checkbox-name, .tab-name, .button-name, .icon-button-name { font: 0.9167em monaco, courier, monospace !important; white-space: nowrap !important; }
+.pop-up_menu-selection, .pop-up_menu-name, .menu-selection, .checkbox-name, .tab-name, .button-name, .icon-button-name { font: 0.9167em monaco, "Lucida Console", courier, monospace !important; white-space: nowrap !important; }
 
 a .code             { color: #00f; }
 
-.quotedText        {        font:         0.9167em monaco, courier, monospace; }
-.code              {        font:         0.9167em monaco, courier, monospace; color: #666; }
+.quotedText        {        font:         0.9167em monaco, "Lucida Console", courier, monospace; }
+.code              {        font:         0.9167em monaco, "Lucida Console", courier, monospace; color: #666; }
 .parameterChoice   {  font-style: italic; font-size: 0.9167em; white-space: nowrap; margin-right: 0.2em; }
-.consoleText       {        font:         0.8334em monaco, courier, monospace; white-space: nowrap; }
-.regex             {        font:         0.8334em monaco, courier, monospace; white-space: nowrap; }
-.regex b           {        font: bold    1.1000em monaco, courier, monospace; white-space: nowrap; }
-.regex-textual     {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
-.regex-def         {        font: italic  0.9167em monaco, courier, monospace; white-space: nowrap; }
-.regexMatch        {        font:         0.8334em monaco, courier, monospace; white-space: nowrap; }
+.consoleText       {        font:         0.8334em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.regex             {        font:         0.8334em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.regex b           {        font: bold    1.1000em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.regex-textual     {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.regex-def         {        font: italic  0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.regexMatch        {        font:         0.8334em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 .argument          {  font-style: italic; white-space: nowrap; }
 .section-link      {  font-style: italic; white-space: nowrap; white-space: pre-wrap !important; }
 .cpp_flag          { font-weight: bold; white-space: nowrap; }
 .code .cpp_flag    { font-weight: normal; font-style: italic; white-space: nowrap; }
 .cpp_definition    { font-weight: bold; }
-.header_file       {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; color: #666; }
+.header_file       {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; color: #666; }
 .frameworkabstract {   font-size:         1.0000em; }
-.file              {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; color: #666; }
-.build-phase       {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
-.dialog-option     {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
-.xcode-group       {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
+.file              {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; color: #666; }
+.build-phase       {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.dialog-option     {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.xcode-group       {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 .xcode-setting     { font-weight: bold;   white-space: nowrap; }
-.xcode-target      {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
-.window-name       {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
-.context-menu      {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; }
+.xcode-target      {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.window-name       {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.context-menu      {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
+.xcode-button      {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 .user-supplied     {  font-style: italic; white-space: nowrap; }
 .new-term          { font-weight: bold;   white-space: nowrap; }
 .exponent          {   font-size:         0.7500em; vertical-align: super; } 
-.unicodeCharName   {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; color: #666; }
-.unicodeProperty   {        font:         0.9167em monaco, courier, monospace; white-space: nowrap; color: #666; }
+.unicodeCharName   {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; color: #666; }
+.unicodeProperty   {        font:         0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; color: #666; }
 
 .rkl { white-space: nowrap; }
 
@@ -516,6 +518,11 @@ table.slate > tbody > tr > td.code { font-size: 0.8334em; color: #202020; text-s
 div.table.regexSyntax, div.table.regexSyntax > .row, div.table.regexSyntax > .row > .cell { display: block; }
 div.table.regexSyntax > .row > .cell { width: 100%; }
 .metacharacters + .operators { margin-top: 1em; }
+}
+
+@media screen and (max-width: 900px) {
+table.regexList .regex { white-space: pre-wrap; }
+.softNobr    { white-space: pre-wrap; }
 }
 
 
@@ -980,6 +987,7 @@ function updatePrefsUI() {
   } else {
     var turnIntoNSString = (prefs.current.turnIntoString && prefs.current.asNSString);
 
+    smartElementUpdate(ui.e.copyRegexPrefsStyleRow,                   "className", "copyRegexPrefsRow enabledPref");
     smartElementUpdate(ui.e.copyRegexPrefsStyle[0],                   "selected", false);
     smartElementUpdate(ui.e.copyRegexPrefsStyle[1],                   "selected", !prefs.current.turnIntoString);
     smartElementUpdate(ui.e.copyRegexPrefsStyle[2],                   "selected", prefs.current.turnIntoString && !prefs.current.asNSString);
@@ -1016,7 +1024,7 @@ function updatePrefsUI() {
   
   updateRegexEscapedExamples();
   
-  ui.e.interactiveEscapedOutput.innerHTML = ui.e.interactiveEscapedInput.value.toPrefsEscapedString();
+  ui.e.interactiveEscapedOutput.innerHTML = escapeToCharacterEntities(ui.e.interactiveEscapedInput.value.toPrefsEscapedString());
 }
 
 function prefsEscapedStringOptions() {
@@ -1087,7 +1095,7 @@ function setCopyToClipboardHUD(hudString) {
 	    ui.e.copyToClipboardHUD.style.width = "";
 	    ui.e.copyToClipboardHUDRegex.replaceChild(document.createTextNode(hudString), ui.e.copyToClipboardHUDRegex.childNodes[0]);
 	    var updateWidth                     = Math.min(Number(ui.e.copyToClipboardHUD.clientWidth), Math.floor(window.outerWidth * 0.9));
-	    var updateLeft                      = ((Number(window.outerWidth) / 2) - (updateWidth / 2));
+	    var updateLeft                      = ((Number(document.width) / 2) - (updateWidth / 2));
 	    ui.e.copyToClipboardHUD.style.width = originalWidth;
 	    
 	    window.setTimeout(function () {
@@ -1108,8 +1116,7 @@ function setCopyToClipboardHUD(hudString) {
     
     ui.e.copyToClipboardHUD.style.top   = (window.pageYOffset +1) + "px";
     var updateWidth                     = Math.min(Number(ui.e.copyToClipboardHUD.clientWidth), Math.floor(window.outerWidth * 0.9));
-    var updateLeft                      = ((Number(window.outerWidth) / 2) - (updateWidth / 2));
-    ui.e.copyToClipboardHUD.style.left  = updateLeft  + "px";
+    var updateLeft                      = ((Number(document.width) / 2) - (updateWidth / 2));    ui.e.copyToClipboardHUD.style.left  = updateLeft  + "px";
     ui.e.copyToClipboardHUD.style.width = updateWidth + "px";
     window.setTimeout(function() { ui.e.copyToClipboardHUD.className += " copyToClipboardHUDAnimate"; }, 7);
   }
@@ -1258,7 +1265,7 @@ function copyRegexPrefsStyleChanged() {
 function interactiveEscapedInputChanged() {
   if(ui.state.interactiveInput.updatePending === false) {
     window.setTimeout(function() {
-	    ui.e.interactiveEscapedOutput.innerHTML = ui.e.interactiveEscapedInput.value.toPrefsEscapedString();
+	    ui.e.interactiveEscapedOutput.innerHTML = escapeToCharacterEntities(ui.e.interactiveEscapedInput.value.toPrefsEscapedString());
 	    ui.state.interactiveInput.updatePending = false;
 	}, 127.0);
     ui.state.interactiveInput.updatePending = true;
@@ -1526,16 +1533,16 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
     <tr><td><b>Regex Library</b></td><td>PCRE</td><td>ICU</td></tr>
     <tr><td><b>Library Included</b></td><td>Yes, built into framework object file.</td><td>No, provided by <span class="hardNobr">Mac OS X.</span></td></tr>
     <tr><td><b>Library Linked As</b></td><td>Statically linked into framework.</td><td>Dynamically linked to <span class="file">/usr/lib/libicucore.dylb.</span></td></tr>
-    <tr><td><b>Compiled Size</b></td><td>Approximately <span class="hardNobr">371KB&dagger;</span> per architecture.</td><td>Very small, approximately <span class="hardNobr">16KB&mdash;20KB&Dagger;</span> per architecture.</td></tr>
+    <tr><td><b>Compiled Size</b></td><td>Approximately <span class="hardNobr">371KB<sup>&dagger;</sup></span> per architecture.</td><td>Very small, approximately <span class="hardNobr">16KB&mdash;20KB<sup>&Dagger;</sup></span> per architecture.</td></tr>
     <tr><td><b>Style</b></td><td>External, linked to framework.</td><td>Compiled directly in to final executable.</td></tr>
     <tr><td><b>Feature Set</b></td><td>Large, with additions to many classes.</td><td>Minimal, <span class="code">NSString</span> only.</td></tr>
   </table>
 
   <div class="table" style="margin: 1em 0px">
-    <div class="row"><div class="cell">&dagger;</div><div class="cell"><span style="margin:0px 1ex">-</span></div><div class="cell"><span class="hardNobr">Version 0.6.0.</span> About half of the <span class="hardNobr">371KB</span> is the PCRE library.<br>
+    <div class="row"><div class="cell"><sup>&dagger;</sup></div><div class="cell"><span style="margin:0px 1ex">-</span></div><div class="cell"><span class="hardNobr">Version 0.6.0.</span> About half of the <span class="hardNobr">371KB</span> is the PCRE library.<br>
 The default distribution framework shared library file is <span class="hardNobr">1.4MB</span> in size and includes the <span class="quotedText">ppc</span>, <span class="quotedText">ppc64</span>, <span class="quotedText">i386</span>, and <span class="quotedText">x86_64</span> architectures.<br>
 If <span class="hardNobr">64-bit</span> support is removed, the framework shared library file size drops to <span class="hardNobr">664KB</span>.</div></div>
-    <div class="row"><div class="cell">&Dagger;</div><div class="cell"><span style="margin:0px 1ex">-</span></div><div class="cell">Since the ICU library is part of <span class="hardNobr">Mac OS X,</span> it does not add to the final size.</div></div>
+    <div class="row"><div class="cell"><sup>&Dagger;</sup></div><div class="cell"><span style="margin:0px 1ex">-</span></div><div class="cell">Since the ICU library is part of <span class="hardNobr">Mac OS X,</span> it does not add to the final size.</div></div>
   </div>
 
   <h3>Compiled Regular Expression Cache</h3>
@@ -2949,13 +2956,13 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <table class="standard cppTuneables" summary="Compile Time Preprocessor Tuneables">
 <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-<tr><td><span class="cpp_flag">NS_BLOCK_ASSERTIONS</span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="xcode-setting">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
-<tr><td><span class="cpp_flag">RKL_CACHE_SIZE</span></td><td><span class="code">23</span></td><td>Controls the number of compiled regular expressions that are cached.  This should always be a prime number to maximize the use of the available cache slots.</td></tr>
-<tr><td><span class="cpp_flag">RKL_FAST_MUTABLE_CHECK</span></td><td><i>Disabled</i></td><td>Enables the use of the undocumented, private <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> <span class="code hardNobr">__CFStringIsMutable()</span> function to determine if the string to be searched is immutable.  This can significantly increase the number of matches per second that can be performed on immutable strings since a number of mutation checks can be safely skipped.</td></tr>
-<tr><td><span class="cpp_flag">RKL_FIXED_LENGTH</span></td><td><span class="code">2048</span></td><td>Sets the size of the fixed length <span class="code hardNobr">UTF-16</span> conversion cache buffer.  Strings that need to be converted to <span class="code">UTF-16</span> that are smaller than this size will use this buffer.  Using a single fixed buffer for all small strings means less <span class="code">malloc()</span> overhead, heap fragmentation, and reduces the chances of a memory leak occurring.</td></tr>
-<tr><td><span class="cpp_flag">RKL_STACK_LIMIT</span></td><td><span class="code">131072</span></td><td>The maximum amount of stack space that will be used before switching to heap based allocations.  This can be useful for multithreading programs where the stack size of secondary threads is much smaller than the main thread.</td></tr>
-<tr><td><span class="cpp_flag">RKL_METHOD_PREPEND</span></td><td><i>None</i></td><td>When set, this preprocessor define causes the <span class="rkl">RegexKit<i>Lite</i></span> methods defined in <span class="file">RegexKitLite.h</span> to have the value of <span class="cpp_flag">RKL_METHOD_PREPEND</span> prepended to them.  For example, if <span class="cpp_flag">RKL_METHOD_PREPEND</span> is set to <span class="code">xyz_</span> <span class="hardNobr">(i.e., <span class="consoleText">-Dxyz_</span>),</span> it would cause <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to become <span class="code">xyz_clearStringCache</span>.</td></tr>
-<tr><td><span class="cpp_flag softNobr">RKL_REGISTER_FOR_IPHONE_&#8203;LOWMEM_NOTIFICATIONS</span></td><td><i>Automatic</i></td><td>This preprocessor define controls whether or not extra code is included that attempts to automatically register with the <span class="code">NSNotificationCenter</span> for the <span class="code">UIApplicationDidReceiveMemoryWarningNotification</span> notification.  This feature is automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
+<tr><td><span class="cpp_flag softNobr">NS_&#8203;BLOCK_&#8203;ASSERTIONS</span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="xcode-setting">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;CACHE_&#8203;SIZE</span></td><td><span class="code">23</span></td><td>Controls the number of compiled regular expressions that are cached.  This should always be a prime number to maximize the use of the available cache slots.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;FAST_&#8203;MUTABLE_&#8203;CHECK</span></td><td><i>Disabled</i></td><td>Enables the use of the undocumented, private <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> <span class="code hardNobr">__CFStringIsMutable()</span> function to determine if the string to be searched is immutable.  This can significantly increase the number of matches per second that can be performed on immutable strings since a number of mutation checks can be safely skipped.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;FIXED_&#8203;LENGTH</span></td><td><span class="code">2048</span></td><td>Sets the size of the fixed length <span class="code hardNobr">UTF-16</span> conversion cache buffer.  Strings that need to be converted to <span class="code">UTF-16</span> that are smaller than this size will use this buffer.  Using a single fixed buffer for all small strings means less <span class="code">malloc()</span> overhead, heap fragmentation, and reduces the chances of a memory leak occurring.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;STACK_&#8203;LIMIT</span></td><td><span class="code">131072</span></td><td>The maximum amount of stack space that will be used before switching to heap based allocations.  This can be useful for multithreading programs where the stack size of secondary threads is much smaller than the main thread.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;METHOD_&#8203;PREPEND</span></td><td><i>None</i></td><td>When set, this preprocessor define causes the <span class="rkl">RegexKit<i>Lite</i></span> methods defined in <span class="file">RegexKitLite.h</span> to have the value of <span class="cpp_flag">RKL_METHOD_PREPEND</span> prepended to them.  For example, if <span class="cpp_flag">RKL_METHOD_PREPEND</span> is set to <span class="code">xyz_</span> <span class="hardNobr">(i.e., <span class="consoleText">-DRKL_METHOD_PREPEND=xyz_</span>),</span> it would cause <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to become <span class="code">xyz_clearStringCache</span>.</td></tr>
+<tr><td><span class="cpp_flag softNobr">RKL_&#8203;REGISTER_&#8203;FOR_&#8203;IPHONE_&#8203;LOWMEM_&#8203;NOTIFICATIONS</span></td><td><i>Automatic</i></td><td>This preprocessor define controls whether or not extra code is included that attempts to automatically register with the <span class="code">NSNotificationCenter</span> for the <span class="code">UIApplicationDidReceiveMemoryWarningNotification</span> notification.  This feature is automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
 </table>
 
 <h4>Fast Mutable Checks</h4>
@@ -2970,7 +2977,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <p>The <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> preprocessor define controls whether or not extra code is compiled in that automatically registers for the iPhone UIKit <span class="code">UIApplicationDidReceiveMemoryWarningNotification</span> notification.  When enabled, an initialization function tagged with <span class="code">__attribute__((constructor))</span> is executed by the linker at load time which causes <span class="rkl">RegexKit<i>Lite</i></span> to check if the low memory notification symbol is available.  If the symbol is present then <span class="rkl">RegexKit<i>Lite</i></span> registers to receive the notification.  When the notification is received, <span class="rkl">RegexKit<i>Lite</i></span> will automatically call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to flush the caches and return the memory used to hold any cached data.</p>
 
-<p>This feature is normally automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature is safe to enable even if the target is Mac OS X for the desktop.  It can also be explicitly disabled, even when targeting the iPhone, by setting <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> to <span class="code">0</span>.</p>
+<p>This feature is normally automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature is safe to enable even if the target is Mac OS X for the desktop.  It can also be explicitly disabled, even when targeting the iPhone, by setting <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> to <span class="code">0</span> <span class="hardNobr">(i.e., <span class="consoleText">-DRKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS=0</span>).</span></p>
 
 <div class="section seealso"><div class="header">See Also</div>
   <ul class="offset">
@@ -2984,7 +2991,13 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <p class="indent"><span class="code">feed://regexkit.sourceforge.net/RegexKitLiteDocSets.atom</span></p>
 
-<p>Once you have added the URL, a new group should appear, inside which will be the <span class="rkl">RegexKit<i>Lite</i></span> documentation with a <span class="code">Get</span> button.  Click on the <span class="code">Get</span> button and follow the prompts.  Xcode will ask you to enter an administrators password to install the documentation for the first time, which is explained <a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/Documentation_Sets/UpdatingDocumentation/chapter_8_section_4.html" class="printURL_small">here</a>.</p>
+<p>Once you have added the URL, a new group should appear, inside which will be the <span class="rkl">RegexKit<i>Lite</i></span> documentation with a <span class="xcode-button">Get</span> button.  Click on the <span class="xcode-button">Get</span> button and follow the prompts.</p>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+<p>Xcode will ask you to enter an administrators password to install the documentation, which is explained <a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/Documentation_Sets/UpdatingDocumentation/chapter_8_section_4.html" class="printURL_small">here</a>.</p>
+</div></div></div></div>
+
+<p></p>
 
 <h3 id="NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings">Cached Information and Mutable Strings</h3>
 
@@ -3095,7 +3108,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
   <ul>
     <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:" title="Returns a new string in which all matches of the regular expression regex of the receiver are replaced with the contents of the replacement string after performing capture group substitutions." class="code">- stringByReplacingOccurrencesOfRegex:withString:</a></li>
     <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:range:" title="Returns a new string in which all matches of the regular expression regex within range of the receiver are replaced with the contents of the replacement string after performing capture group substitutions." class="code">- stringByReplacingOccurrencesOfRegex:withString:range:</a></li>
-    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:options:range:error:" title="Returns a new string in which all matches of the regular expression regex using options within range of the receiver are replaced with the contents of the replacement string after performing capture group substitutions." class="code">- stringByReplacingOccurrencesOfRegex:withString:options:range:error:</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:options:range:error:" title="Returns a new string in which all matches of the regular expression regex using options within range of the receiver are replaced with the contents of the replacement string after performing capture group substitutions." class="code softNobr">- stringByReplacingOccurrencesOfRegex:&#8203;withString:options:range:error:</a></li>
   </ul>
 </div>
 
@@ -3571,7 +3584,7 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 </div>
 
 <div class="block method">
-  <div class="section name" id="NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:options:range:error:">stringByReplacingOccurrencesOfRegex:withString:options:range:error:</div>
+  <div class="section name softNobr" id="NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:options:range:error:">stringByReplacingOccurrencesOfRegex:&#8203;withString:options:range:error:</div>
   <div class="section summary">Returns a new string in which all matches of the regular expression <span class="argument">regex</span> using <span class="argument">options</span> within <span class="argument">range</span> of the receiver are replaced with the contents of the <span class="argument">replacement</span> string after performing capture group substitutions.</div>
   <div class="signature"><span class="hardNobr">- (NSString *)<span class="selector">stringByReplacingOccurrencesOfRegex:</span>(NSString *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">withString:</span>(NSString *)<span class="argument">replacement</span></span> <span class="hardNobr"><span class="selector">range:</span>(NSRange)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(NSError **)<span class="argument">error</span>;</span></div>
   <div class="section parameters"><div class="header">Parameters</div>
@@ -3733,7 +3746,7 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 <div class="block constants">
   <div class="section summary">The following <span class="code">NSError</span> error domains are defined.</div>
   <div class="section declaration table">
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexErrorDomain">RKLICURegexErrorDomain</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexErrorDomain">RKLICURegexErrorDomain</a>;</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
   <div class="section constant">
@@ -3757,7 +3770,7 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 <div class="block constants">
   <div class="section summary">The following <span class="code">NSException</span> exception names are defined.</div>
   <div class="section declaration table">
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexException">RKLICURegexException</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexException">RKLICURegexException</a>;</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
     <div class="section constant">
@@ -3784,14 +3797,14 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 
 <div class="block constants">
   <div class="section declaration table">
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexErrorCodeErrorKey">RKLICURegexErrorCodeErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexErrorNameErrorKey">RKLICURegexErrorNameErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexLineErrorKey">RKLICURegexLineErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexOffsetErrorKey">RKLICURegexOffsetErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexPreContextErrorKey">RKLICURegexPreContextErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexPostContextErrorKey">RKLICURegexPostContextErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexRegexErrorKey">RKLICURegexRegexErrorKey</a>;</div></div>
-    <div class="row"><div class="name code cell">extern NSString * const <a href="#RKLICURegexRegexOptionsErrorKey">RKLICURegexRegexOptionsErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexErrorCodeErrorKey">RKLICURegexErrorCodeErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexErrorNameErrorKey">RKLICURegexErrorNameErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexLineErrorKey">RKLICURegexLineErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexOffsetErrorKey">RKLICURegexOffsetErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexPreContextErrorKey">RKLICURegexPreContextErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexPostContextErrorKey">RKLICURegexPostContextErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexRegexErrorKey">RKLICURegexRegexErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern NSString * const <a href="#RKLICURegexRegexOptionsErrorKey">RKLICURegexRegexOptionsErrorKey</a>;</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
   <div class="section constant">
@@ -3977,7 +3990,6 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 	</ul>
       </div>
     </div>
-
     
   </div>
 </div>
