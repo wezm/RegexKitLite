@@ -182,8 +182,8 @@ extern NSString * const RKLICURegexRegexOptionsErrorKey;
 - (NSInteger)RKL_METHOD_PREPEND(captureCount);
 - (NSInteger)RKL_METHOD_PREPEND(captureCountWithOptions):(RKLRegexOptions)options error:(NSError **)error;
 
-- (BOOL)RKL_METHOD_PREPEND(isValidRegex);
-- (BOOL)RKL_METHOD_PREPEND(isValidRegexWithOptions):(RKLRegexOptions)options error:(NSError **)error;
+- (BOOL)RKL_METHOD_PREPEND(isRegexValid);
+- (BOOL)RKL_METHOD_PREPEND(isRegexValidWithOptions):(RKLRegexOptions)options error:(NSError **)error;
 
 - (void)RKL_METHOD_PREPEND(invalidateCachedRegexState);
 
