@@ -11,10 +11,11 @@
   const char *cptr;
 
   if((cptr = CFStringGetCStringPtr(cfSelf, kCFStringEncodingMacRoman)) == NULL) {
-    CFRange range     = CFRangeMake(0, CFStringGetLength(cfSelf));
-    CFIndex converted = CFStringGetBytes(cfSelf, range, kCFStringEncodingUTF8, '?', false, &buffer[0], 60, NULL);
-    buffer[converted] = 0;
-    cptr              = (char *)&buffer[0];
+    CFRange range     = CFRangeMake(0L, CFStringGetLength(cfSelf));
+    CFIndex usedBytes = 0L;
+    CFStringGetBytes(cfSelf, range, kCFStringEncodingUTF8, '?', false, buffer, 60L, &usedBytes);
+    buffer[usedBytes] = 0;
+    cptr              = (const char *)buffer;
   }
 
   return(strtol(cptr, NULL, 16));

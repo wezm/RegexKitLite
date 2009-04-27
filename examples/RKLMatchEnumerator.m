@@ -29,7 +29,7 @@
     NSRange searchRange  = NSMakeRange(location, [string length] - location);
     NSRange matchedRange = [string rangeOfRegex:regex inRange:searchRange];
 
-    location = NSMaxRange(matchedRange) + ((matchedRange.length == 0) ? 1 : 0);
+    location = NSMaxRange(matchedRange) + ((matchedRange.length == 0UL) ? 1UL : 0UL);
 
     if(matchedRange.location != NSNotFound) {
       return([string substringWithRange:matchedRange]);

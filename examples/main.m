@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
   matchEnumerator = [searchString matchEnumeratorWithRegex:regexString];
 
-  NSUInteger  line          = 0;
+  NSUInteger  line          = 0UL;
   NSString   *matchedString = NULL;
 
   while((matchedString = [matchEnumerator nextObject]) != NULL) {

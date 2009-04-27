@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
   NSString *regexString = @"Copyright (.*) (\\d+)";
 
   NSString *subjectString = [NSString stringWithUTF8String:utf8CString];
-  NSString *matchedString = [subjectString stringByMatching:regexString capture:1];
+  NSString *matchedString = [subjectString stringByMatching:regexString capture:1L];
 
   NSLog(@"subject: \"%@\"", subjectString);
   NSLog(@"matched: \"%@\"", matchedString);
