@@ -277,8 +277,8 @@ static RKL_STRONG_REF void *scratchBuffer[(RKL_SCRATCH_BUFFERS)]; // Used to hol
 // The split strings are created, but not autoreleased.  The (immutable) array is created using these callbacks, which skips the CFRetain() call, effectively transferring ownership to the CFArray object.
 // For each split string this saves the overhead of an autorelease, then an array retain, then an NSAutoreleasePool release. This is good for a ~30% speed increase.
 
-static void             RKLCFArrayRelease                 (CFAllocatorRef allocator RKL_UNUSED_ARG, const void *ptr) { CFRelease((CFTypeRef)ptr);                                      }
-static CFArrayCallBacks transferOwnershipArrayCallBacks =                                                            { (CFIndex)0, NULL, RKLCFArrayRelease, CFCopyDescription, CFEqual };
+static void             RKLCFArrayRelease                 (CFAllocatorRef allocator RKL_UNUSED_ARG, const void *ptr) { CFRelease((CFTypeRef)ptr);                                       }
+static CFArrayCallBacks transferOwnershipArrayCallBacks =                                                            { (CFIndex)0L, NULL, RKLCFArrayRelease, CFCopyDescription, CFEqual };
 
 #if defined(__OBJC_GC__) || defined(RKL_FORCE_GC)
 ////////////
@@ -509,13 +509,13 @@ __attribute__((constructor)) static void rkl_RegisterForLowMemoryNotifications(v
 
 #ifdef    _RKL_DTRACE_ENABLED
 
-// compiledRegexCache(unsigned long eventID, const char *regexUTF8, int options, int captures, int hitMiss, int icuStatusCode, const char *icuErrorMessage, double *hitRate)
-// convertedStringU16Cache(unsigned long eventID, unsigned int lookupResultFlags, double *hitRate, const void *string, unsigned long NSRange.location, unsigned long NSRange.length, long length);
+// compiledRegexCache(unsigned long eventID, const char *regexUTF8, int options, int captures, int hitMiss, int icuStatusCode, const char *icuErrorMessage, double *hitRate);
+// utf16ConversionCache(unsigned long eventID, unsigned int lookupResultFlags, double *hitRate, const void *string, unsigned long NSRange.location, unsigned long NSRange.length, long length);
 
 /*
 provider RegexKitLite {
  probe compiledRegexCache(unsigned long, const char *, unsigned int, int, int, int, const char *, double *);
- probe convertedStringU16Cache(unsigned long, unsigned int, double *, const void *, unsigned long, unsigned long, long);
+ probe utf16ConversionCache(unsigned long, unsigned int, double *, const void *, unsigned long, unsigned long, long);
 };
  
 #pragma D attributes Unstable/Unstable/Common provider RegexKitLite provider
@@ -529,13 +529,13 @@ provider RegexKitLite {
 #define REGEXKITLITE_TYPEDEFS  "___dtrace_typedefs$RegexKitLite$v1"
 #define REGEXKITLITE_COMPILEDREGEXCACHE(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) { __asm__ volatile(".reference " REGEXKITLITE_TYPEDEFS); __dtrace_probe$RegexKitLite$compiledRegexCache$v1$756e7369676e6564206c6f6e67$63686172202a$756e7369676e656420696e74$696e74$696e74$696e74$63686172202a$646f75626c65202a(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7); __asm__ volatile(".reference " REGEXKITLITE_STABILITY); }
 #define REGEXKITLITE_COMPILEDREGEXCACHE_ENABLED() __dtrace_isenabled$RegexKitLite$compiledRegexCache$v1()
-#define	REGEXKITLITE_CONVERTEDSTRINGU16CACHE(arg0, arg1, arg2, arg3, arg4, arg5, arg6) { __asm__ volatile(".reference " REGEXKITLITE_TYPEDEFS); __dtrace_probe$RegexKitLite$convertedStringU16Cache$v1$756e7369676e6564206c6f6e67$756e7369676e656420696e74$646f75626c65202a$766f6964202a$756e7369676e6564206c6f6e67$756e7369676e6564206c6f6e67$6c6f6e67(arg0, arg1, arg2, arg3, arg4, arg5, arg6); __asm__ volatile(".reference " REGEXKITLITE_STABILITY); }
-#define	REGEXKITLITE_CONVERTEDSTRINGU16CACHE_ENABLED() __dtrace_isenabled$RegexKitLite$convertedStringU16Cache$v1()
+#define	REGEXKITLITE_CONVERTEDSTRINGU16CACHE(arg0, arg1, arg2, arg3, arg4, arg5, arg6) { __asm__ volatile(".reference " REGEXKITLITE_TYPEDEFS); __dtrace_probe$RegexKitLite$utf16ConversionCache$v1$756e7369676e6564206c6f6e67$756e7369676e656420696e74$646f75626c65202a$766f6964202a$756e7369676e6564206c6f6e67$756e7369676e6564206c6f6e67$6c6f6e67(arg0, arg1, arg2, arg3, arg4, arg5, arg6); __asm__ volatile(".reference " REGEXKITLITE_STABILITY); }
+#define	REGEXKITLITE_CONVERTEDSTRINGU16CACHE_ENABLED() __dtrace_isenabled$RegexKitLite$utf16ConversionCache$v1()
 
 extern void __dtrace_probe$RegexKitLite$compiledRegexCache$v1$756e7369676e6564206c6f6e67$63686172202a$756e7369676e656420696e74$696e74$696e74$696e74$63686172202a$646f75626c65202a(unsigned long, const char *, unsigned int, int, int, int, const char *, double *);
 extern int  __dtrace_isenabled$RegexKitLite$compiledRegexCache$v1(void);
-extern void __dtrace_probe$RegexKitLite$convertedStringU16Cache$v1$756e7369676e6564206c6f6e67$756e7369676e656420696e74$646f75626c65202a$766f6964202a$756e7369676e6564206c6f6e67$756e7369676e6564206c6f6e67$6c6f6e67(unsigned long, unsigned int, double *, const void *, unsigned long, unsigned long, long);
-extern int  __dtrace_isenabled$RegexKitLite$convertedStringU16Cache$v1(void);
+extern void __dtrace_probe$RegexKitLite$utf16ConversionCache$v1$756e7369676e6564206c6f6e67$756e7369676e656420696e74$646f75626c65202a$766f6964202a$756e7369676e6564206c6f6e67$756e7369676e6564206c6f6e67$6c6f6e67(unsigned long, unsigned int, double *, const void *, unsigned long, unsigned long, long);
+extern int  __dtrace_isenabled$RegexKitLite$utf16ConversionCache$v1(void);
 
 ////////////////////////////
 
@@ -553,8 +553,8 @@ static char rkl_dtrace_regexUTF8[(RKL_CACHE_SIZE) + 1][(RKL_DTRACE_REGEXUTF8_SIZ
 static NSUInteger rkl_dtrace_eventID, rkl_dtrace_compiledCacheLookups, rkl_dtrace_compiledCacheHits, rkl_dtrace_conversionBufferLookups, rkl_dtrace_conversionBufferHits;
 
 #define rkl_dtrace_incrementEventID() do { rkl_dtrace_eventID++; } while(0)
-#define rkl_dtrace_compiledRegexCache(a0, a1, a2, a3, a4, a5) do { int _a3 = (a3); rkl_dtrace_compiledCacheLookups++; if(_a3 == 1) { rkl_dtrace_compiledCacheHits++; } if(RKL_EXPECTED(REGEXKITLITE_COMPILEDREGEXCACHE_ENABLED(), 0L)) { double hitRate = 0.0; if(rkl_dtrace_compiledCacheLookups > 0) { hitRate = ((double)rkl_dtrace_compiledCacheHits / (double)rkl_dtrace_compiledCacheLookups) * 100.0; } REGEXKITLITE_COMPILEDREGEXCACHE(rkl_dtrace_eventID, a0, a1, a2, _a3, a4, a5, &hitRate); } } while(0)
-#define rkl_dtrace_convertedStringU16Cache(a0, a1, a2, a3, a4) do { unsigned int _a0 = (a0); if((_a0 & RKLConversionRequiredLookupFlag) != 0) { rkl_dtrace_conversionBufferLookups++; if((_a0 & RKLCacheHitLookupFlag) != 0) { rkl_dtrace_conversionBufferHits++; } } if(RKL_EXPECTED(REGEXKITLITE_CONVERTEDSTRINGU16CACHE_ENABLED(), 0L)) { double hitRate = 0.0; if(rkl_dtrace_conversionBufferLookups > 0UL) { hitRate = ((double)rkl_dtrace_conversionBufferHits / (double)rkl_dtrace_conversionBufferLookups) * 100.0; } REGEXKITLITE_CONVERTEDSTRINGU16CACHE(rkl_dtrace_eventID, _a0, &hitRate, a1, a2, a3, a4); } } while(0)
+#define rkl_dtrace_compiledRegexCache(a0, a1, a2, a3, a4, a5) do { int _a3 = (a3); rkl_dtrace_compiledCacheLookups++; if(_a3 == 1) { rkl_dtrace_compiledCacheHits++; } if(RKL_EXPECTED(REGEXKITLITE_COMPILEDREGEXCACHE_ENABLED(), 0L)) { double hitRate = 0.0; if(rkl_dtrace_compiledCacheLookups > 0UL) { hitRate = ((double)rkl_dtrace_compiledCacheHits / (double)rkl_dtrace_compiledCacheLookups) * 100.0; } REGEXKITLITE_COMPILEDREGEXCACHE(rkl_dtrace_eventID, a0, a1, a2, _a3, a4, a5, &hitRate); } } while(0)
+#define rkl_dtrace_utf16ConversionCache(a0, a1, a2, a3, a4) do { unsigned int _a0 = (a0); if((_a0 & RKLConversionRequiredLookupFlag) != 0U) { rkl_dtrace_conversionBufferLookups++; if((_a0 & RKLCacheHitLookupFlag) != 0U) { rkl_dtrace_conversionBufferHits++; } } if(RKL_EXPECTED(REGEXKITLITE_CONVERTEDSTRINGU16CACHE_ENABLED(), 0L)) { double hitRate = 0.0; if(rkl_dtrace_conversionBufferLookups > 0UL) { hitRate = ((double)rkl_dtrace_conversionBufferHits / (double)rkl_dtrace_conversionBufferLookups) * 100.0; } REGEXKITLITE_CONVERTEDSTRINGU16CACHE(rkl_dtrace_eventID, _a0, &hitRate, a1, a2, a3, a4); } } while(0)
 
 
 // \342\200\246 == UTF8 for HORIZONTAL ELLIPSIS, aka triple dots '...'
@@ -574,7 +574,7 @@ static void rkl_dtrace_getRegexUTF8(CFStringRef str, char *utf8Buffer) {
 
 #define rkl_dtrace_incrementEventID()
 #define rkl_dtrace_compiledRegexCache(a0, a1, a2, a3, a4, a5)
-#define rkl_dtrace_convertedStringU16Cache(a0, a1, a2, a3, a4)
+#define rkl_dtrace_utf16ConversionCache(a0, a1, a2, a3, a4)
 #define rkl_dtrace_getRegexUTF8(str, buf)
 #define rkl_dtrace_addLookupFlag(a,b)
 
@@ -705,7 +705,7 @@ setRegexText:
     if(RKL_EXPECTED(*status > U_ZERO_ERROR, 0L)) { goto exitNow; }
   }
   
-  rkl_dtrace_convertedStringU16Cache(lookupResultFlags, cacheSlot->setToString, cacheSlot->setToRange.location, cacheSlot->setToRange.length, cacheSlot->setToLength);
+  rkl_dtrace_utf16ConversionCache(lookupResultFlags, cacheSlot->setToString, cacheSlot->setToRange.location, cacheSlot->setToRange.length, cacheSlot->setToLength);
   return(1UL);
   
 exitNow:
@@ -979,10 +979,10 @@ static BOOL rkl_findRanges(RKLCacheSlot *cacheSlot, RKLRegexOp regexOp, RKLFindA
       case RKLSplitOp:         // Fall-thru...
       case RKLCapturesArrayOp: // Fall-thru...
       case RKLArrayOfCapturesOp:
-        findAll->ranges[findAll->found]  = ((maskedRegexOp == RKLSplitOp) ? NSMakeRange(lastLocation, cacheSlot->lastMatchRange.location - lastLocation) : cacheSlot->lastMatchRange);
+        findAll->ranges[findAll->found] = ((maskedRegexOp == RKLSplitOp) ? NSMakeRange(lastLocation, cacheSlot->lastMatchRange.location - lastLocation) : cacheSlot->lastMatchRange);
         
         for(loopCapture = 1L; loopCapture <= captureCount; loopCapture++) {
-          RKLCDelayedAssert((findAll->found >= 0L) && (findAll->found < (findAll->capacity - 2L)), exception, exitNow);
+          RKLCDelayedAssert((findAll->found >= 0L) && (findAll->found < (findAll->capacity - 2L)) && (loopCapture < INT_MAX), exception, exitNow);
           if(RKL_EXPECTED(rkl_getRangeForCapture(cacheSlot, status, (int32_t)loopCapture, &findAll->ranges[++findAll->found]) > U_ZERO_ERROR, 0L)) { goto exitNow; }
         }
         break;
@@ -1063,7 +1063,7 @@ static NSArray *rkl_makeArray(RKLCacheSlot *cacheSlot, RKLRegexOp regexOp, RKLFi
   NSUInteger  arrayCount   = createdStringsCount;
   id         *arrayObjects = matchedStrings;
   
-  if((regexOp & RKLSubcapturesArray) != 0) {
+  if((regexOp & RKLSubcapturesArray) != 0UL) {
     RKLCDelayedAssert(((createdStringsCount % ((NSUInteger)cacheSlot->captureCount + 1UL)) == 0UL) && (createdArraysCount == 0UL), exception, exitNow);
     
     NSUInteger captureCount          = ((NSUInteger)cacheSlot->captureCount + 1UL);
@@ -1093,7 +1093,7 @@ static NSArray *rkl_makeArray(RKLCacheSlot *cacheSlot, RKLRegexOp regexOp, RKLFi
   resultArray = rkl_CreateAutoreleasedArray((void **)arrayObjects, (NSUInteger)arrayCount);
   
 exitNow:
-  if(RKL_EXPECTED(resultArray == NULL, 0L)) { // If we did not create an array then we need to make sure that we release any objects we created.
+  if(RKL_EXPECTED(resultArray == NULL, 0L) && (rkl_collectingEnabled() == NO)) { // If we did not create an array then we need to make sure that we release any objects we created.
     NSUInteger x;
     if(matchedStrings   != NULL) { for(x = transferedStringsCount; x < createdStringsCount; x++) { if((matchedStrings[x]  != NULL) && (matchedStrings[x] != emptyString)) { matchedStrings[x]   = rkl_ReleaseObject(matchedStrings[x]);   } } }
     if(subcaptureArrays != NULL) { for(x = 0UL;                    x < createdArraysCount;  x++) { if(subcaptureArrays[x] != NULL)                                        { subcaptureArrays[x] = rkl_ReleaseObject(subcaptureArrays[x]); } } }
@@ -1113,6 +1113,7 @@ static NSString *rkl_replaceString(RKLCacheSlot *cacheSlot, id searchString, NSU
   id             resultObject       = NULL;
   NSUInteger     replacedCount      = 0UL;
   
+  RKLCDelayedAssert((searchU16Length < INT_MAX) && (replacementU16Length < INT_MAX) && ((16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL)) < INT_MAX), exception, exitNow);
   // Zero order approximation of the buffer sizes for holding the replaced string or split strings and split strings pointer offsets.  As UTF16 code units.
   tempUniCharBufferU16Capacity = (int32_t)(16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL));
   
@@ -1171,7 +1172,7 @@ exitNow:
 static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacementUniChar, int32_t replacementU16Length, UniChar *replacedUniChar, int32_t replacedU16Capacity, NSUInteger *replacedCount, id *exception RKL_UNUSED_ASSERTION_ARG, int32_t *status) {
   NSUInteger replaced  = 0UL, bufferOverflowed = 0UL;
   int32_t    u16Length = 0;
-  RKLCDelayedAssert((cacheSlot != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (status != NULL), exception, exitNow);
+  RKLCDelayedAssert((cacheSlot != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (status != NULL) && (replacementU16Length >= 0) && (replacedU16Capacity >= 0), exception, exitNow);
 
   cacheSlot->lastFindRange = cacheSlot->lastMatchRange = NSNotFoundRange; // Clear the cached find information for this regex so a subsequent find works correctly.
   RKL_ICU_FUNCTION_APPEND(uregex_reset)(cacheSlot->icu_regex, 0, status);
