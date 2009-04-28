@@ -393,7 +393,7 @@ RKL_STATIC_INLINE id    rkl_ReleaseObject             (id obj)                  
 #pragma mark -
 #pragma mark ICU function prototypes
 
-// ICU functions.  See http://www.icu-project.org/apiref/icu4c/RKL_ICU_FUNCTION_APPEND(uregex_8h).html Tweaked slightly from the originals, but functionally identical.
+// ICU functions.  See http://www.icu-project.org/apiref/icu4c/uregex_8h.html Tweaked slightly from the originals, but functionally identical.
 const char *RKL_ICU_FUNCTION_APPEND(u_errorName)              (int32_t status)   RKL_ATTRIBUTES(pure);
 int32_t     RKL_ICU_FUNCTION_APPEND(u_strlen)                 (const UniChar *s) RKL_ATTRIBUTES(nonnull(1), pure);
 int32_t     RKL_ICU_FUNCTION_APPEND(uregex_appendReplacement) (uregex *regexp, const UniChar *replacementText, int32_t replacementLength, UniChar **destBuf, int32_t *destCapacity, int32_t *status) RKL_NONNULL_ARGS(1,2,4,5,6);
@@ -407,8 +407,6 @@ uregex     *RKL_ICU_FUNCTION_APPEND(uregex_open)              (const UniChar *pa
 void        RKL_ICU_FUNCTION_APPEND(uregex_reset)             (uregex *regexp, int32_t newIndex, int32_t *status) RKL_NONNULL_ARGS(1,3);
 void        RKL_ICU_FUNCTION_APPEND(uregex_setText)           (uregex *regexp, const UniChar *text, int32_t textLength, int32_t *status) RKL_NONNULL_ARGS(1,2,4);
 int32_t     RKL_ICU_FUNCTION_APPEND(uregex_start)             (uregex *regexp, int32_t groupNum, int32_t *status) RKL_NONNULL_ARGS(1,3);
-
-//const UniChar *RKL_ICU_FUNCTION_APPEND(uregex_getText)(uregex *regexp, int32_t *textLength, int32_t *status);
 
 ////////////
 #pragma mark -
@@ -827,7 +825,8 @@ static id rkl_performRegexOp(id self, SEL _cmd, RKLRegexOp regexOp, NSString *re
   
   if(RKL_EXPECTED((cacheSlot = rkl_getCachedRegexSetToString(regexString, options, matchString, &stringU16Length, matchRange, error, &exception, &status)) == NULL, 0L)) { stringU16Length = (NSUInteger)CFStringGetLength((CFStringRef)matchString); }
   if(RKL_EXPECTED(matchRange->length == NSUIntegerMax, 1L)) { matchRange->length = stringU16Length; } // For convenience.
-  if(RKL_EXPECTED(stringU16Length < NSMaxRange(*matchRange), 0L) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"Range or index out of bounds"); goto exitNow; }
+  if(RKL_EXPECTED(stringU16Length  < NSMaxRange(*matchRange), 0L) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"Range or index out of bounds"); goto exitNow; }
+  if(RKL_EXPECTED(stringU16Length >= INT_MAX, 0L)                 && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"String length exceeds INT_MAX"); goto exitNow; }
   if(((maskedRegexOp == RKLRangeOp) || (maskedRegexOp == RKLArrayOfStringsOp)) && RKL_EXPECTED(cacheSlot != NULL, 1L) && (RKL_EXPECTED(capture < 0L, 0L) || RKL_EXPECTED(capture > cacheSlot->captureCount, 0L)) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSInvalidArgumentException, @"The capture argument is not valid."); }
   if(RKL_EXPECTED(cacheSlot == NULL, 0L) || RKL_EXPECTED(status > U_ZERO_ERROR, 0L) || RKL_EXPECTED(exception != NULL, 0L)) { goto exitNow; }
   
@@ -1113,6 +1112,8 @@ static NSString *rkl_replaceString(RKLCacheSlot *cacheSlot, id searchString, NSU
   id             resultObject       = NULL;
   NSUInteger     replacedCount      = 0UL;
   
+  if((RKL_EXPECTED(replacementU16Length >= INT_MAX, 0L) || RKL_EXPECTED((((uint64_t)searchU16Length / 2ULL) + ((uint64_t)replacementU16Length * 2ULL)) >= (uint64_t)INT_MAX, 0L))) { *exception = [NSException exceptionWithName:NSRangeException reason:@"String length exceeds INT_MAX" userInfo:NULL]; }
+
   RKLCDelayedAssert((searchU16Length < INT_MAX) && (replacementU16Length < INT_MAX) && ((16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL)) < INT_MAX), exception, exitNow);
   // Zero order approximation of the buffer sizes for holding the replaced string or split strings and split strings pointer offsets.  As UTF16 code units.
   tempUniCharBufferU16Capacity = (int32_t)(16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL));
@@ -1426,9 +1427,9 @@ static NSString *rkl_stringFromClassAndMethod(id object, SEL selector, NSString 
   return(rkl_isRegexValid(self, _cmd, self, options,      NULL, error) == 1UL ? YES : NO);
 }
 
-#pragma mark -invalidateCachedRegexState
+#pragma mark -flushCachedRegexData
 
-- (void)RKL_METHOD_PREPEND(invalidateCachedRegexState)
+- (void)RKL_METHOD_PREPEND(flushCachedRegexData)
 {
   volatile NSUInteger RKL_CLEANUP(rkl_cleanup_cacheSpinLockStatus) cacheSpinLockStatus = 0UL;
 

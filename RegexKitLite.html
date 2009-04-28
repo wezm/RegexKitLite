@@ -55,9 +55,9 @@ img.noBorder { border: 0px solid #000; }
 .clearRight { clear: right; }
 .clearBoth  { clear: both;  }
 
-.rightHack { text-align: -webkit-right; text-align: -moz-right; }
-.centerHack { text-align: -webkit-center; text-align: -moz-center; }
-.leftHack { text-align: -webkit-left; text-align: -moz-left; }
+.rightHack { text-align: right; text-align: -webkit-right; text-align: -moz-right; }
+.centerHack { text-align: center; text-align: -webkit-center; text-align: -moz-center; }
+.leftHack { text-align: left; text-align: -webkit-left; text-align: -moz-left; }
 
 .submenuArrow { font-size: 0.75em; }
 
@@ -458,7 +458,7 @@ table.slate caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
 table.slate th                    {
 white-space: nowrap; font-size: 0.9167em; padding: 0.1em 0.75ex; text-align: left;
 background: #ccc; background: -webkit-gradient(linear, left top, left bottom, from(#dbdbdb), to(#bbb));
-color: #202020; text-shadow: 1px 1px 1px #fcfcfc; text-shadow: 0px 1px 1px rgba(255,255,255,0.95);
+color: #202020; text-shadow: 1px 1px 1px #cfcfcf; text-shadow: 0px 1px 1px rgba(255,255,255,0.95);
 border-bottom: 1px solid #b8b8b8;
 border-top:    1px solid #f3f3f3;
 border-left:   1px solid #e0e0e0; border-left:  1px solid rgba(255,255,255,0.35);
@@ -1480,7 +1480,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
       <h1 id="RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
       <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
-      <div class="printOnlyX XXX dateAndRevision">2009-04-27, v3.0</div>
+      <div class="printOnlyX XXX dateAndRevision">2009-04-28, v3.0</div>
     </div>
 
 <div class="printPageBreakAfter">
@@ -1506,7 +1506,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li>Distributed under the terms of the <a href="#LicenseInformation" class="hardNobr section-link">BSD License</a>.</li>
 </ul>
 
-<h3 id="Introduction_Contributing">Contributing</h3>
+<h3 id="Introduction_Contributing">Contributing to <span class="rkl">RegexKit<i>Lite</i></span></h3>
 
 <p>A significant amount of time and effort has gone in to the development of <span class="rkl">RegexKit<i>Lite</i></span>. Even though it is distributed under the terms of the <a href="#LicenseInformation" class="hardNobr section-link">BSD License</a>, you are encouraged to contribute financially if you are using <span class="rkl">RegexKit<i>Lite</i></span> in a profitable commercial application. Should you decide to contribute to <span class="rkl">RegexKit<i>Lite</i></span>, please keep the following in mind:</p>
 
@@ -1667,12 +1667,9 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
 <p>While it is safe to use the same regular expression from any thread at any time, the usual multithreading caveats apply.  For example, it is not safe to mutate a <span class="code">NSMutableString</span> in one thread while performing a match on the mutating string in another.</p>
 </div></div></div></div>
 
-<div class="XXX marginTopSpacer marginBottomSpacer">
 <h3>64-bit Support</h3>
 
-<p>Add note about ICU only using <span class="code">int</span> values, so limited to 4gigs of strings...</p>
-
-</div>
+<p><span class="rkl">RegexKit<i>Lite</i></span> is <span class="hardNobr">64-bit</span> clean.  Internally, <span class="rkl">RegexKit<i>Lite</i></span> uses Cocoas standard <span class="code">NSInteger</span> and <span class="code">NSUInteger</span> types for representing integer values.  The size of these types change between <span class="hardNobr">32-bit</span> and <span class="hardNobr">64-bit</span> automatically, depending on the target architecture.  ICU, on the other hand, uses a signed <span class="hardNobr">32-bit</span> <span class="code">int</span> type for many of its arguments, such as string offset values. Because of this, the maximum length of a string that <span class="rkl">RegexKit<i>Lite</i></span> will accept is the maximum value that can be represented by a signed 32-bit integer, which is approximately 2 gigabytes.  Strings that are longer this limit will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a>. This limitation may be significant to those who are switching to <span class="hardNobr">64-bit</span> because the size of the data they need to process exceeds what can be represented with <span class="hardNobr">32-bits.</span></p>
 
 </div>
 
@@ -2617,9 +2614,9 @@ NSString *euroString = @"\u20ac1.99";</div>
 
   </div> <!-- enhancedCopyOnly screenOnly -->
   
-  <h3 style="clear: Both" id="PatternMatchingRecipes">Pattern Matching Recipes</h3>
+  <h3 style="clear: Both" id="RegexKitLiteCookbook_PatternMatchingRecipes">Pattern Matching Recipes</h3>
 
-  <h4>Numbers</h4>
+  <h4 id="RegexKitLiteCookbook_PatternMatchingRecipes_Numbers">Numbers</h4>
   
   <table class="slate regexList">
     <tr><th>Description</th><th>Regex</th><th>Examples</th></tr>
@@ -2631,7 +2628,7 @@ NSString *euroString = @"\u20ac1.99";</div>
     <tr><td class="description">Comma Separated Number</td><td class="regex">[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?</td><td class="example"><span class="regexMatch">42</span><span class="regexMatch">1,234</span><span class="regexMatch">1,234,567.89</span></td></tr>
   </table>
   
-  <h5>Extracting and Converting Numbers</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_Numbers_ExtractingandConvertingNumbers">Extracting and Converting Numbers</h5>
   
   <p><span class="code">NSString</span> includes several methods for converting the contents of the string in to a numeric value in the various <b>C</b> primitive types.  The following demonstrates the matching of an <span class="code">int</span> and <span class="code">double</span> in a <span class="code">NSString</span>, and then converting the matched string in to its base type.</p>
   
@@ -2653,7 +2650,7 @@ double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching
 
   <p>The variable <span class="code">matchedDouble</span> now contains the value of <span class="code">101048.9</span>.</p>
 
-  <h5>Extracting and Converting Hex Numbers</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_Numbers_ExtractingandConvertingHexNumbers">Extracting and Converting Hex Numbers</h5>
 
   <p>Converting a string that contains a hex number in to a more basic type, such as an <span class="code">int</span>, takes a little more work.  Unfortunately, Foundation does not provide an easy way to convert a hex value in a string in to a more basic type as it does with <span class="code">intValue</span> or <span class="code">doubleValue</span>.  Thankfully the standard <b>C</b> library provides a set of functions for performing such a conversion.  For this example we will use the <span class="code">strtol()</span> (<i>string to long</i>) function to convert the hex value we&#39;ve extracted from <span class="code">searchString</span>.  We can not pass the pointer to the <span class="code">NSString</span> object that contains the matched hex value since <span class="code">strtol()</span> is part of the standard <b>C</b> library which can only work on pointers to <b>C</b> strings.  We use the <span class="code">UTF8String</span> method to get a pointer to a compatible <b>C</b> string of the matched hex value.</p>
 
@@ -2670,7 +2667,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
 
   <p>The full set of <i>string to&hellip;</i> functions are: <span class="code">strtol()</span>, <span class="code">strtoll()</span>, <span class="code">strtoul()</span>, and <span class="code">strtoull()</span>.  These convert a string value, from base 2 to base 36, in to a <span class="code">long</span>, <span class="code">long long</span>, <span class="code">unsigned long</span>, and <span class="code">unsigned long long</span> respectively.</p>
 
-  <h5>Adding Hex Value Conversions to <span class="code">NSString</span></h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_Numbers_AddingHexValueConversionstoNSString">Adding Hex Value Conversions to <span class="code">NSString</span></h5>
 
   <p>Since it seems to be a frequently asked question, and a common search engine query for RegexKit web site visitors, here is a <span class="code">NSString</span> category addition that converts the receivers text in to a <span class="code">NSInteger</span> value.  This is the same functionality as <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/intValue" class="code">intValue</a> or <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/doubleValue" class="code">doubleValue</a>, except that it converts hexadecimal text values instead of decimal text values.</p>
 
@@ -2723,7 +2720,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
     </ul>
   </div>
   
-  <h4>Text Files</h4>
+  <h4 id="RegexKitLiteCookbook_PatternMatchingRecipes_TextFiles">Text Files</h4>
   
   <table class="slate regexList">
     <tr><th>Description</th><th>Regex</th></tr>
@@ -2741,7 +2738,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
     <tr><td class="description">C, C++, or ObjC Comment</td><td class="regex">(?s:/\*.*?\*/)</td></tr>
   </table>
 
-  <h5>The Newline Debacle</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_TextFiles_TheNewlineDebacle">The Newline Debacle</h5>
 
   <p>Unfortunately, when processing text files, there is no standard &#39;newline&#39; character or character sequence.  Today this most commonly surfaces when converting text between Microsoft Windows / MS-DOS and Unix / <span class="hardNobr">Mac OS X</span>.  The reason for the proliferation of newline standards is largely historical and goes back many decades.  Below is a table of the dominant newline character sequence &#39;standards&#39;:</p>
 
@@ -2771,7 +2768,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
     </ul>
   </div>
 
-  <h5>Matching the Beginning and End of a Line</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_TextFiles_MatchingtheBeginningandEndofaLine">Matching the Beginning and End of a Line</h5>
 
 <p>It is often necessary to work with the individual lines of a file. There are two regular expression metacharacters, <span class="regex">^</span> and <span class="regex">$</span>, that match the <i>beginning</i> and <i>end</i> of a line, respectively. However, exactly what is matched by <span class="regex">^</span> and <span class="regex">$</span> depends on whether or not the <span class="regex-def">multi-line</span> option is enabled for the regular expression, which by default is disabled. It can be enabled for the entire regular expression by passing <a href="#RKLRegexOptions_RKLMultiline" class="code">RKLMultiline</a> via the <span class="code">options:</span> method argument, or within the regular expression using the options syntax&mdash; <span class="regex">(?m:</span>&hellip;<span class="regex">)</span>.</p>
 
@@ -2780,7 +2777,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
 <p>If <span class="regex-def">multi-line</span> is <b><i>enabled</i></b>, then <span class="regex">^</span> and <span class="regex">$</span> match the beginning and end of a line, where the end of a line is the <span class="regex-def">newline</span> character sequence.  The metacharacter <span class="regex">^</span> matches either the first character in the string, or the first character following a <span class="regex-def">newline</span> character sequence.  The metacharacter <span class="regex">$</span> matches either the last character in the string, or the character just before a <span class="regex-def">newline</span> character sequence.</p>
 
 
-  <h5>Creating a <span class="code">NSArray</span> Containing Every Line in a String</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_TextFiles_CreatingaNSArrayContainingEveryLineinaString">Creating a <span class="code">NSArray</span> Containing Every Line in a String</h5>
 
   <p>A common text processing pattern is to process a file one line at a time.  Using the recommended regular expression for matching any newline and the <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> method, you can easily create a <span class="code">NSArray</span> containing every line in a file and process it one line at a time:</p>
 
@@ -2808,7 +2805,7 @@ if(fileString) {
 
   <p>The <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> method effectively &#39;chops off&#39; the matched regular expression, or in this case any newline character.  In the example above, within the <span class="code">for&hellip;in</span> loop, <span class="code">lineString</span> will not have a newline character at the end of the string.</p>
 
-  <h5>Parsing CSV Data</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_TextFiles_ParsingCSVData">Parsing CSV Data</h5>
 
   <table class="slate regexList">
     <tr><th>Description</th><th>Regex</th></tr>
@@ -2846,7 +2843,7 @@ for(NSString *csvLineString in csvLinesArray) { <span class="screenOnly">&nbsp; 
 // Gather up all the individual comma split results in to a single NSArray.
 NSArray *splitLinesArray = [NSArray <span class="hardNobr">arrayWithObjects:</span><span class="hardNobr">&amp;splitLines[0]</span> <span class="hardNobr">count:</span><span class="hardNobr">splitLinesIndex];</span></div>
 
-  <h4>Network and URL</h4>
+  <h4 id="RegexKitLiteCookbook_PatternMatchingRecipes_NetworkandURL">Network and URL</h4>
 
   <table class="slate regexList">
     <tr><th>Description</th><th>Regex</th></tr>
@@ -2860,7 +2857,7 @@ NSArray *splitLinesArray = [NSArray <span class="hardNobr">arrayWithObjects:</sp
     <tr><td class="description">IP or Hostname</td><td class="regex">\b(?:(?:\d{1,3}\.){3}\d{1,3}|(?:[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}?[a-zA-Z0-9]\.)+[a-zA-Z]{2,6})\b</td></tr>
   </table>
 
-  <h5>Creating a <span class="code">NSDictionary</span> of URL Information</h5>
+  <h5 id="RegexKitLiteCookbook_PatternMatchingRecipes_NetworkandURL_CreatingaNSDictionaryofURLInformation">Creating a <span class="code">NSDictionary</span> of URL Information</h5>
 
   <p>The following example demonstrates how to match several fields in a URL and create a <span class="code">NSDictionary</span> with the extracted results.  Only the capture groups that result in a successful match will create a corresponding key in the dictionary.</p>
 
@@ -2922,7 +2919,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <div class="section seealso"><div class="header">See Also</div>
   <ul class="offset">
-    <li><a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide/Contents/Resources/en.lproj/05_08_bs_linking/chapter_36_section_1.html" class="section-link printURL_verySmall">Xcode Users Guide - Linking</a></li>
+    <li><a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeBuildSystem/500-Linking/bs_linking.html" class="section-link printURL">Xcode Build System Guide - Linking</a></li>
   </ul>
 </div>
 
@@ -2956,7 +2953,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <div class="section seealso"><div class="header">See Also</div>
   <ul class="offset">
-    <li><a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide/Contents/Resources/en.lproj/05_04_bs_build_settings/chapter_33_section_1.html#//apple_ref/doc/uid/TP40002691-BACIFADG" class="section-link">Xcode Users Guide - Build Settings</a></li>
+    <li><a href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeBuildSystem/300-Build_Settings/bs_build_settings.html" class="section-link">Xcode Build System Guide - Build Settings</a></li>
   </ul>
 </div>
 
@@ -2978,7 +2975,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <ol>
 
- <li><p>Next, add the <span class="rkl">RegexKit<i>Lite</i></span> source files to your Xcode project.  In the <span class="xcode-group">Groups &amp; Files</span> outline view on the left, control/right-click on the group that would like to add the files to, then select <span class="context-menu">Add </span><span class="submenuArrow">&#9658;</span><span class="context-menu"> Existing Files&hellip;</span></p>
+ <li><p>Next, add the <span class="rkl">RegexKit<i>Lite</i></span> source files to your Xcode project.  In the <span class="xcode-group">Groups &amp; Files</span> outline view on the left, <span class="hardNobr">control/right-click</span> on the group that would like to add the files to, then select <span class="hardNobr"><span class="context-menu">Add </span><span class="submenuArrow">&#9658;</span><span class="context-menu"> Existing Files&hellip;</span></span></p>
 
 <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
 <p>You can perform the following steps once for each file (<span class="file">RegexKitLite.h</span> and <span class="file">RegexKitLite.m</span>), or once by selecting both files from the file dialog.</p>
@@ -3080,14 +3077,14 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <table class="standard cppTuneables" summary="Compile Time Preprocessor Tuneables">
 <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-<tr><td><span><span class="cpp_flag softNobr tbrOn">NS_&#8203;BLOCK_&#8203;ASSERTIONS</span><span class="cpp_flag softNobr tbrOff">NS_BLOCK_ASSERTIONS</span></span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="xcode-setting">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
+<tr><td><span><span class="cpp_flag softNobr tbrOn">NS_&#8203;BLOCK_&#8203;ASSERTIONS</span><span class="cpp_flag softNobr tbrOff">NS_BLOCK_ASSERTIONS</span></span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="context-menu">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span></td><td><i>None</i></td><td>This flag is useful if you are supplying your own version of the ICU library. When set, this preprocessor define causes the ICU functions used by <span class="rkl">RegexKit<i>Lite</i></span> to have the value of <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> appended to them. For example, if <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> is set to <span class="code">_3_6</span> <span class="softNobr">(i.e., <span><span class="consoleText tbrOn">-DRKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS=_3_6</span><span class="consoleText tbrOff">-DRKL_APPEND_TO_ICU_FUNCTIONS=_3_6</span></span>),</span> it would cause <span class="code">uregex_find()</span> to become <span class="code">uregex_find_3_6()</span>.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span></td><td><span class="code">23</span></td><td>Controls the number of compiled regular expressions that are cached.  This should always be a prime number to maximize the use of the available cache slots.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;DTRACE</span><span class="cpp_flag softNobr tbrOff">RKL_DTRACE</span></span></td><td><i>Disabled</i></td><td>This preprocessor define controls whether or not <span class="rkl">RegexKit<i>Lite</i></span> provider DTrace probe points are enabled.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;FAST_&#8203;MUTABLE_&#8203;CHECK</span><span class="cpp_flag softNobr tbrOff">RKL_FAST_MUTABLE_CHECK</span></span></td><td><i>Disabled</i></td><td>Enables the use of the undocumented, private <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> <span class="code hardNobr">__CFStringIsMutable()</span> function to determine if the string to be searched is immutable.  This can significantly increase the number of matches per second that can be performed on immutable strings since a number of mutation checks can be safely skipped.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;FIXED_&#8203;LENGTH</span><span class="cpp_flag softNobr tbrOff">RKL_FIXED_LENGTH</span></span></td><td><span class="code">2048</span></td><td>Sets the size of the fixed length <span class="code hardNobr">UTF-16</span> conversion cache buffer.  Strings that need to be converted to <span class="code">UTF-16</span> that are smaller than this size will use this buffer.  Using a single fixed buffer for all small strings means less <span class="code">malloc()</span> overhead, heap fragmentation, and reduces the chances of a memory leak occurring.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;METHOD_&#8203;PREPEND</span><span class="cpp_flag softNobr tbrOff">RKL_METHOD_PREPEND</span></span></td><td><i>None</i></td><td>When set, this preprocessor define causes the <span class="rkl">RegexKit<i>Lite</i></span> methods defined in <span class="file">RegexKitLite.h</span> to have the value of <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;METHOD_&#8203;PREPEND</span><span class="cpp_flag softNobr tbrOff">RKL_METHOD_PREPEND</span></span> prepended to them.  For example, if <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;METHOD_&#8203;PREPEND</span><span class="cpp_flag softNobr tbrOff">RKL_METHOD_PREPEND</span></span> is set to <span class="code">xyz_</span> <span class="softNobr">(i.e., <span><span class="consoleText tbrOn">-DRKL_&#8203;METHOD_&#8203;PREPEND=xyz_</span><span class="consoleText tbrOff">-DRKL_METHOD_PREPEND=xyz_</span></span>),</span> it would cause <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to become <span class="code">xyz_clearStringCache</span>.</td></tr>
-<tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;REGISTER_&#8203;FOR_&#8203;IPHONE_&#8203;LOWMEM_&#8203;NOTIFICATIONS</span><span class="cpp_flag softNobr tbrOff">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span></span></td><td><i>Automatic</i></td><td>This preprocessor define controls whether or not extra code is included that attempts to automatically register with the <span class="code">NSNotificationCenter</span> for the <span><span class="code tbrOn">UIApplication&#8203;DidReceive&#8203;MemoryWarning&#8203;Notification</span><span class="code tbrOff">UIApplicationDidReceiveMemoryWarningNotification</span></span> notification.  This feature is automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
+<tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;REGISTER_&#8203;FOR_&#8203;IPHONE_&#8203;LOWMEM_&#8203;NOTIFICATIONS</span><span class="cpp_flag softNobr tbrOff">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span></span></td><td><i>Automatic</i></td><td>This preprocessor define controls whether or not extra code is included that attempts to automatically register with the <span class="code">NSNotificationCenter</span> for the <span><a href="http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/c/data/UIApplicationDidReceiveMemoryWarningNotification" class="code tbrOn">UIApplication&#8203;DidReceive&#8203;MemoryWarning&#8203;Notification</a><a href="http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/c/data/UIApplicationDidReceiveMemoryWarningNotification" class="code tbrOff">UIApplicationDidReceiveMemoryWarningNotification</a></span> notification.  This feature is automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;STACK_&#8203;LIMIT</span><span class="cpp_flag softNobr tbrOff">RKL_STACK_LIMIT</span></span></td><td><span class="code">131072</span></td><td>The maximum amount of stack space that will be used before switching to heap based allocations.  This can be useful for multithreading programs where the stack size of secondary threads is much smaller than the main thread.</td></tr>
 </table>
 
@@ -3109,7 +3106,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <h4>iPhone Low Memory Notifications</h4>
 
-<p>The <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> preprocessor define controls whether or not extra code is compiled in that automatically registers for the iPhone UIKit <span class="code">UIApplicationDidReceiveMemoryWarningNotification</span> notification.  When enabled, an initialization function tagged with <span class="code">__attribute__((constructor))</span> is executed by the linker at load time which causes <span class="rkl">RegexKit<i>Lite</i></span> to check if the low memory notification symbol is available.  If the symbol is present then <span class="rkl">RegexKit<i>Lite</i></span> registers to receive the notification.  When the notification is received, <span class="rkl">RegexKit<i>Lite</i></span> will automatically call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to flush the caches and return the memory used to hold any cached compiled regular expressions.</p>
+<p>The <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> preprocessor define controls whether or not extra code is compiled in that automatically registers for the iPhone UIKit <a href="http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/c/data/UIApplicationDidReceiveMemoryWarningNotification" class="code">UIApplicationDidReceiveMemoryWarningNotification</a> notification.  When enabled, an initialization function tagged with <span class="code">__attribute__((constructor))</span> is executed by the linker at load time which causes <span class="rkl">RegexKit<i>Lite</i></span> to check if the low memory notification symbol is available.  If the symbol is present then <span class="rkl">RegexKit<i>Lite</i></span> registers to receive the notification.  When the notification is received, <span class="rkl">RegexKit<i>Lite</i></span> will automatically call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> to flush the caches and return the memory used to hold any cached compiled regular expressions.</p>
 
 <p>This feature is normally automatically enabled if it can be determined at compile time that the iPhone is being targeted.  This feature is safe to enable even if the target is Mac OS X for the desktop.  It can also be explicitly disabled, even when targeting the iPhone, by setting <span class="cpp_flag">RKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS</span> to <span class="code">0</span> <span class="hardNobr">(i.e., <span class="consoleText">-DRKL_REGISTER_FOR_IPHONE_LOWMEM_NOTIFICATIONS=0</span>).</span></p>
 
@@ -3282,8 +3279,6 @@ extern int __dtrace_isenabled$RegexKitLite$utf16ConversionCache$v1(void);
 
 <h3 id="NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings">Cached Information and Mutable Strings</h3>
 
-<p class="XXX">Add info about <a href="#NSString_RegexKitLiteAdditions__-invalidateCachedRegexState" class="code">invalidateCachedRegexState</a>.</p>
-
 <p>While <span class="rkl">RegexKit<i>Lite</i></span> takes steps to ensure that the information it has cached is valid for the strings it searches, there exists the possibility that out of date cached information may be used when searching mutable strings.  For each compiled regular expression, <span class="rkl">RegexKit<i>Lite</i></span> caches the following information about the last <span class="code">NSString</span> that was searched:</p>
 
 <ul class="square">
@@ -3292,18 +3287,23 @@ extern int __dtrace_isenabled$RegexKitLite$utf16ConversionCache$v1(void);
 <li>The <span class="code">NSRange</span> used for the <span class="code">inRange:</span> parameter for the last search, and the <span class="code">NSRange</span> result for capture <span class="code">0</span> of that search.</li>
 </ul>
 
-<p>An ICU compiled regular expression must be <span class="hardNobr">"set"</span> to the text to be searched.  Before a compiled regular expression is used, the pointer to the string object to search, its <span class="code">hash</span>, <span class="code">length</span>, and the pointer to the <span class="code">UTF-16</span> buffer is compared with the values that the compiled regular expression was last <span class="hardNobr">"set"</span> to.  If any of these values are different, the compiled regular expression is reset and <span class="hardNobr">"set"</span> to the new string.</p>
+<p>An ICU compiled regular expression must be <span class="hardNobr">&quot;set&quot;</span> to the text to be searched.  Before a compiled regular expression is used, the pointer to the string object to search, its <span class="code">hash</span>, <span class="code">length</span>, and the pointer to the <span class="code">UTF-16</span> buffer is compared with the values that the compiled regular expression was last <span class="hardNobr">&quot;set&quot;</span> to.  If any of these values are different, the compiled regular expression is reset and <span class="hardNobr">&quot;set&quot;</span> to the new string.</p>
 
 <p>If a <span class="code">NSMutableString</span> is mutated between two uses of the same compiled regular expression and its <span class="code">hash</span>, <span class="code">length</span>, or <span class="code hardNobr">UTF-16</span> buffer changes between uses, <span class="rkl">RegexKit<i>Lite</i></span> will automatically reset the compiled regular expression with the new values of the mutated string.  The results returned will correctly reflect the mutations that have taken place between searches.</p>
 
 <p>It is possible that the mutations to a string can go undetected, however.  If the mutation keeps the <span class="code">length</span> the same, then the only way a change can be detected is if the strings <span class="code">hash</span> value changes.  For most mutations the <span class="code">hash</span> value will change, but it is possible for two different strings to share the same <span class="code">hash</span>.  This is known as a <i>hash collision</i>.  Should this happen, the results returned by <span class="rkl">RegexKit<i>Lite</i></span> may not be correct.</p>
 
-<p>Therefore, if you are using <span class="rkl">RegexKit<i>Lite</i></span> to search <span class="code">NSMutableString</span> objects, and those strings may have mutated in such a way that <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that the string has changed, you must manually clear the internal cache to ensure that the results accurately reflect the mutations.  You can clear the cache by calling the following class method:</p>
+<p>Therefore, if you are using <span class="rkl">RegexKit<i>Lite</i></span> to search <span class="code">NSMutableString</span> objects, and those strings may have mutated in such a way that <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that the string has changed, you must manually clear the internal cache to ensure that the results accurately reflect the mutations.  To clear the cached information for a specific string you send the instance a <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> message:</p>
+
+<div class="box sourcecode">NSMutableString *aMutableString; // Assumed to be valid.
+[aMutableString flushCachedRegexData];</div>
+
+<p>To clear all of the cached information in <span class="rkl">RegexKit<i>Lite</i></span>, which includes all the cached compiled regular expressions along with any cached information about strings that have been searched, you use the following class method:</p>
 
 <div class="box sourcecode">[NSString clearStringCache];</div>
 
 <div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
-<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.</p>
+<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.  Use <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> to selectively clear the cached information about a <span class="code">NSMutableString</span> object.</p>
 </div></div></div></div>
 
 <div class="XXX marginTopSpacer marginBottomSpacer">
@@ -3326,7 +3326,11 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a> if <span class="argument">range</span> exceeds the bounds of the receiver.
 </div></div></div></div>
 
-<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">Search and replaced methods raise <a href="#RKLICURegexException" class="code">RKLICURegexException</a> if <span class="argument">replacement</span> contains <span class="regex">$</span><span class="argument" title="Decimal Number">n</span> capture references where <span class="argument" title="Decimal Number">n</span> is greater than the number of capture groups in the regular expression <span class="argument">regex</span>.</div></div></div></div>
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a> if the receivers length exceeds the maximum value that can be represented by a signed <span class="hardNobr">32-bit</span> integer, even in 64-bit mode.
+</div></div></div></div>
+
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">Search and replace methods raise <a href="#RKLICURegexException" class="code">RKLICURegexException</a> if <span class="argument">replacement</span> contains <span class="regex">$</span><span class="argument" title="Decimal Number">n</span> capture references where <span class="argument" title="Decimal Number">n</span> is greater than the number of capture groups in the regular expression <span class="argument">regex</span>.</div></div></div></div>
 
 
 <div class="section seealso"><div class="header">See Also</div>
@@ -3344,7 +3348,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
   <div class="header">Clearing Cached Information</div>
   <ul>
     <li><a href="#NSString_RegexKitLiteAdditions__.clearStringCache" title="Clears the cached information about strings." class="code">+ clearStringCache</a></li>
-    <li><a href="#NSString_RegexKitLiteAdditions__-invalidateCachedRegexState" title="Clears any cached information about the receiver." class="code">- invalidateCachedRegexState</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" title="Clears any cached information about the receiver." class="code">- flushCachedRegexData</a></li>
   </ul>
 </div>
 <div class="tasks">
@@ -3442,32 +3446,6 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 <h2>Class Methods</h2>
 
 <div class="block method">
-  <div class="section name" id="NSString_RegexKitLiteAdditions__.clearStringCache">clearStringCache</div>
-  <div class="section summary">Clears the cached information about strings.</div>
-  <div class="signature"><span class="hardNobr">+ (void)<span class="selector">clearStringCache</span>;</span></div>
-  <div class="section discussion"><div class="header">Discussion</div>
-    <p>This method should be used when performing searches on <span class="code">NSMutableString</span> objects and there is the possibility that the string has mutated in between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
-
-    <p>An example of clearing the cache:</p>
-
-<div class="box sourcecode">[NSString clearStringCache]; // Clears the RegexKitLite string cache.</div>
-
-    <div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
-	<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.</p>
-    </div></div></div></div>
-    <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
-	<p>You do not need to call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" title="Clears the cached information about strings." class="code">clearStringCache</a> when using the <span class="code">NSMutableString</span> <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" title="Replaces all occurrences of the regular expression regex with the contents of replacement string after performing capture group substitutions, returning the number of replacements made." class="code">replaceOccurrencesOfRegex:withString:</a> methods. The cache entry for that regular expression and <span class="code">NSMutableString</span> is automatically cleared as necessary.</p>
-    </div></div></div></div>
-  </div>
-  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.1 and later.</p></div>
-  <div class="section seealso"><div class="header">See Also</div>
-    <ul>
-      <li><a href="#NSString_RegexKitLiteAdditions__-invalidateCachedRegexState" class="code">- invalidateCachedRegexState</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="block method">
   <div class="section name" id="NSString_RegexKitLiteAdditions__.captureCountForRegex:">captureCountForRegex:</div>
   <div class="section summary">Returns the number of captures that <span class="argument">regex</span> contains. <span class="deprecated">Deprecated in <span class="rkl">RegexKit<i>Lite</i></span> 3.0.</span>  Use <a href="#NSString_RegexKitLiteAdditions__-captureCount" class="code">captureCount</a> instead.</div>
   <div class="signature"><span class="hardNobr">+ (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCountForRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div>
@@ -3519,6 +3497,36 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
     </ul>
   </div>
 </div>
+
+
+<div class="block method">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__.clearStringCache">clearStringCache</div>
+  <div class="section summary">Clears the cached information about strings and cached compiled regular expressions.</div>
+  <div class="signature"><span class="hardNobr">+ (void)<span class="selector">clearStringCache</span>;</span></div>
+  <div class="section discussion"><div class="header">Discussion</div>
+    <p>This method clears all the the cached state maintained by <span class="rkl">RegexKit<i>Lite</i></span>.  This includes all the cached compiled regular expressions and any cached <span class="code">UTF-16</span> conversions.</p>
+
+    <p>An example of clearing the cache:</p>
+
+<div class="box sourcecode">[NSString clearStringCache]; // Clears all RegexKitLite cache state.</div>
+
+    <div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
+	<p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.  Use <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> to selectively clear the cached information about a <span class="code">NSMutableString</span> object.</p>
+    </div></div></div></div>
+
+    <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+	<p>You do not need to call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> or <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> when using the <span class="code">NSMutableString</span> <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" class="code">replaceOccurrencesOfRegex:withString:</a> methods. The cache entry for that regular expression and <span class="code">NSMutableString</span> is automatically cleared as necessary.</p>
+    </div></div></div></div>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.1 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">- flushCachedRegexData</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference - Cached Information and Mutable Strings</a></li>
+    </ul>
+  </div>
+</div>
+
 
 <h2 class="InstanceMethods">Instance Methods</h2>
 
@@ -3942,13 +3950,19 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 
 
 <div class="block method">
-  <div class="section name" id="NSString_RegexKitLiteAdditions__-invalidateCachedRegexState">invalidateCachedRegexState</div>
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-flushCachedRegexData">flushCachedRegexData</div>
   <div class="section summary">Clears any cached information about the receiver.</div>
-  <div class="signature"><span class="hardNobr">- (void)<span class="selector">invalidateCachedRegexState</span>;</span></div>
+  <div class="signature"><span class="hardNobr">- (void)<span class="selector">flushCachedRegexData</span>;</span></div>
   <div class="section discussion"><div class="header">Discussion</div>
-    <p><span class="code">NSMutableString</span> objects which may have mutated in between calls to <span class="rkl">RegexKit<i>Lite</i></span> should have this message sent to them.</p>
+    <p>This method should be used when performing searches on <span class="code">NSMutableString</span> objects and there is the possibility that the string has mutated in between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
 
     <p>This method clears the cached information for the receiver <b>only</b>.  This is more selective than <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a>, which clears all the cached information from <span class="rkl">RegexKit<i>Lite</i></span>, including all the cached compiled regular expressions.</p>
+
+    <p><span class="rkl">RegexKit<i>Lite</i></span> automatically detects the vast majority of string mutations and clears any cached information about the mutated string.  To detect mutations, <span class="rkl">RegexKit<i>Lite</i></span> records a strings <span class="code">length</span> and <span class="code">hash</span> value at the point in time when it caches data about a string.  Cached data about a string is invalidated if either of these values change between calls to <span class="rkl">RegexKit<i>Lite</i></span>.  The problem case is when a string is mutated but the strings length remains the same <b>and</b> the hash value for the mutated string is identical to the hash value of the string before it was mutated.  This is known as a <i>hash collision</i>.  Since <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that a string has mutated when this happens, the programmer needs to explicitly inform <span class="rkl">RegexKit<i>Lite</i></span> that any cached data about the receiver needs to be cleared by sending <span class="code">flushCachedRegexData</span> to the mutated string.</p>
+
+    <p>While it is possible to have &quot;perfect mutation detection&quot;, and therefore guarantee that only valid cached data is used, it has a significant performance penalty.  The first problem is that when caching information about a string, an immutable copy of that string needs to be made.  The second problem is that determing that two strings are not identical is usually very fast and cheap&mdash; if their lengths are not the same, no further checks are required.  The most expensive case is when two strings are identical because it requires a character by character comparsion of the entire string to guarantee that they are equal.  The most expensive case is also the most common case by far.  To make matters worst, Cocoa provides no public way to determine if an instance is a mutable <span class="code">NSMutableString</span> or an immutable <span class="code">NSString</span> object and therefore must assume the worst case that all strings are mutable.</p>
+
+    <p><span class="rkl">RegexKit<i>Lite</i></span> is optimized for the common case which is when regular expression operations are performed on strings that are not mutating. The majority of mutations to a string can be quickly and cheaply detected by <span class="rkl">RegexKit<i>Lite</i></span> automatically. Since the programmer has the context of the string that is to be matched, and whether or not the string is being mutated, <span class="rkl">RegexKit<i>Lite</i></span> relies on the programmer to inform it whether or not the possibility exists that the string could have mutated in a way that is undetectable.</p>
 
     <p>An example of clearing a strings cached information:</p>
 
@@ -3957,13 +3971,13 @@ NSString *foundString = [mutableSearchString stringByMatching:@"\\d+"]; // Searc
 
 [mutableSearchString replaceCharactersInRange:NSMakeRange(5, 10) withString:@"[replaced]"]; // Mutated..
 
-[mutableSearchString invalidateCachedRegexState]; // Clear cached information about mutableSearchString.</div>
+[mutableSearchString flushCachedRegexData]; // Clear cached information about mutableSearchString.</div>
 
     <div class="box warning"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
 	    <p>Failure to clear the cached information for a <span class="code">NSMutableString</span> object that has mutated between searches may result in undefined behavior.</p>
     </div></div></div></div>
     <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
-	<p>You do not need to call <a href="#NSString_RegexKitLiteAdditions__-invalidateCachedRegexState" class="code">invalidateCachedRegexState</a> when using the <span class="code">NSMutableString</span> <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" class="code">replaceOccurrencesOfRegex:withString:</a> methods. The cached information for that <span class="code">NSMutableString</span> is automatically cleared as necessary.</p>
+	<p>You do not need to call <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a> or <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> when using the <span class="code">NSMutableString</span> <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" class="code">replaceOccurrencesOfRegex:withString:</a> methods. The cached information for that <span class="code">NSMutableString</span> is automatically cleared as necessary.</p>
     </div></div></div></div>
   </div>
 
@@ -3971,6 +3985,7 @@ NSString *foundString = [mutableSearchString stringByMatching:@"\\d+"]; // Searc
   <div class="section seealso"><div class="header">See Also</div>
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">+ clearStringCache</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__CachedInformationandMutableStrings" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference - Cached Information and Mutable Strings</a></li>
     </ul>
   </div>
 </div>
@@ -4810,7 +4825,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 
     <div class="entry XXX">
-      <div class="banner"><span class="date XXX">2009/04/27</span><span class="bannerItemSpacer">-</span><span class="release">3.0</span></div>
+      <div class="banner"><span class="date XXX">2009/04/28</span><span class="bannerItemSpacer">-</span><span class="release">3.0</span></div>
       <div class="bannerSpacer"></div>
       <div class="content">
 	
@@ -4828,7 +4843,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">captureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
 	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCount</span>;</span></div></li>
 	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">componentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (void)<span class="selector">invalidateCachedRegexState</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (void)<span class="selector">flushCachedRegexData</span>;</span></div></li>
 	  <li><div class="signature"><span class="hardNobr">- (BOOL)<span class="selector">isRegexValid</span>;</span></div></li>
 	</ul>
 
@@ -4842,6 +4857,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	  <li>Use of GCC's <span class="code">cleanup</span>...</li>
 	  <li>Minor GC changes</li>
 	  <li>64-bit cleanup.  64-bit was always supported, just tidied up some internals.</li>
+	  <li>64-bit cleanup.  Added checks to verify that a strings length < INT_MAX and throw an exception if it isn't due to the signed 32-bit int limitation of ICU.</li>
 	  <li>Changed some macros to static inline functions for prototype checking.</li>
 	  <li>Updated examples/NSString-HexConversion.[hm]</li>
 	  <li>Updated examples/RKLMatchEnumerator.[hm]</li>
