@@ -373,6 +373,7 @@ h4 .code { color: black; }
 .chrono > .entry > .bannerSpacer                { margin-left: -2.0ex; border-bottom: 1px solid #d8d8d8; margin-top: 0.25em; margin-bottom: 0.25em; width: 95% }
 .chrono > .entry > .content                     { margin-top: 0.5em; }
 .chrono > .entry > .content > p:first-child     { margin-top: 0px; margin-bottom: 0px; }
+.chrono > .entry > .content .standout           { margin-top: 1.75em; /*margin-bottom: 0.5000em;*/ font-size: 1.0875em; font-weight: bold; }
 
 .quotation { margin: 1em 6.25ex 1em 6.25ex; }
 .quotation .quote { font-style: italic; padding-right: 2.5ex; }
@@ -2575,15 +2576,12 @@ NSString *euroString = @"\u20ac1.99";</div>
 
     <p>The compiler converts these strings to <span class="code hardNobr">UTF-16</span> using the endianness of the target architecture.  Since <span class="hardNobr">Mach-O</span> object file format allows for multiple architectures, this allows each architecture to encode the string as native <span class="code hardNobr">UTF-16</span> byte ordering for that architecture, so there are no issues with proper byte ordering.  Within the object file itself, these strings are essentially identical to their <span class="hardNobr"><span class="code">ASCII</span>-only</span> counterparts: effectively they are pre-instantiated objects.  The only real difference is that the compiler sets some internal <span class="code">CFString</span> bits differently so that the <span class="code">CFString</span> object knows that the strings data is encoded as <span class="code hardNobr">UTF-16</span> and not simple <span class="hardNobr">8-bit</span> data.</p>
 
-    <p>This means that constant <span class="code">NSString</span> objects created this way should work on <span class="hardNobr">Mac OS X</span> version prior to <span class="hardNobr">10.5.</span>  The author has tried this on <span class="hardNobr">Mac OS X 10.4</span> and did not encounter any problems on either architecture (ppc, i386).  Since the author is unaware of any publicly available documentation regarding this feature it is difficult to say if there are any minimum requirements or other limitations when using constant <span class="code">NSString</span> literals that contain Unicode characters.</p>
-    <div class="XXX">
-      <p>Update this.  Now officially documented in NSString.</p>
-    <div class="box warning clearBoth"><div class="table"><div class="row"><div class="label cell">Warning:</div><div class="message cell">
-	    <p>The author is not aware of any publicly available documentation regarding the use of Unicode characters directly in constant <span class="code">NSString</span> literals other than being mentioned in passing on the <a href="http://lists.apple.com/mailman/listinfo/cocoa-dev" class="consoleText">cocoa-dev@lists.apple.com</a> mailing list.  It is probably safest to consider this an &#39;undocumented and unsupported&#39; feature and your decision as to whether or not to use it should be made with this in mind.</p>
-    </div></div></div></div>
-    </div>
-    <h4>Visual Indication that the Selected Text has been Escaped</h4>
+    <p>Although this functionality has been present since the release of 10.5, it has only recently been documented in <a href="http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/ocLanguageSummary.html#//apple_ref/doc/uid/TP30001163-CH3-TPXREF104" class="printURL section-link">The Objective-C 2.0 Programming Language - Compiler Directives</a>, under the <span class="hardNobr code">@&quot;string&quot;</span> entry.  A copy of the relevent text is provided below:</p>
 
+    <div class="box quote"><p>On <span class="hardNobr">Mac OS X v10.4</span> and earlier, the string must be <span class="hardNobr code">7-bit</span> <span class="hardNobr"><span class="hardNobr code">ASCII</span>-encoded.</span> On <span class="hardNobr">Mac OS X v10.5</span> and later (with <span class="hardNobr">Xcode 3.0</span> and later), you can also use <span class="hardNobr code">UTF-16</span> encoded strings. (The runtime from <span class="hardNobr">Mac OS X v10.2</span> and later supports <span class="hardNobr code">UTF-16</span> encoded strings, so if you use <span class="hardNobr">Mac OS X v10.5</span> to compile an application for <span class="hardNobr">Mac OS X v10.2</span> and later, you can use <span class="hardNobr code">UTF-16</span> encoded strings.)</p></div>
+
+    <h4>Visual Indication that the Selected Text has been Escaped</h4>
+    
     <p>This document will briefly add a red outline around the selected text as a visual aid in determining whether or not the selected text was modified before placing it in the clipboard.  In addition to this, a <span title="Heads Up Display">HUD</span> display will drop down briefly at the top of the documents window and will display the escaped text that was placed in to the clipboard.  Here is an example of what would be displayed if the <span class="context-menu">NSString</span> escape style was selected:</p>
 
 
@@ -3306,6 +3304,14 @@ extern int __dtrace_isenabled$RegexKitLite$utf16ConversionCache$v1(void);
 <p>When searching <span class="code">NSMutableString</span> objects that have mutated between searches, failure to clear the cache may result in undefined behavior.  Use <a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">flushCachedRegexData</a> to selectively clear the cached information about a <span class="code">NSMutableString</span> object.</p>
 </div></div></div></div>
 
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
+    <li><a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">+ clearStringCache</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="code">- flushCachedRegexData</a></li>
+  </ul>
+</div>
+
+
 <div class="XXX marginTopSpacer marginBottomSpacer">
 
 <h3>Applies to all..</h3>
@@ -3618,55 +3624,6 @@ NSArray  <span class="hardNobr">*listItems = [list</span> arrayOfCaptureComponen
 </div>
 
 
-<!-- .................................... --> <!-- .................................... --> <!-- .................................... -->
-
-
-<div class="block method">
-  <div class="section name" id="NSString_RegexKitLiteAdditions__-captureCount">captureCount</div>
-  <div class="section summary">Returns the number of captures that <span class="argument">regex</span> contains.</div>
-  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCount</span>;</span></div>
-  <div class="section discussion"><div class="header">Discussion</div>
-<p>Returns the capture count of the receiver, which should be a valid regular expression.  For example:</p>
-
-<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCount];
-// regexCaptureCount would be set to 2.</div>
-  </div>
-  <div class="section result"><div class="header">Return Value</div>
-    <p>Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regex</span> is returned, or <span class="code">0</span> if <span class="argument">regex</span> does not contain any captures.</p>
-  </div>
-  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
-  <div class="section seealso"><div class="header">See Also</div>
-    <ul>
-      <li><a href="#NSString_RegexKitLiteAdditions__-captureCountWithOptions:error:" class="code">- captureCountWithOptions:error:</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="block method">
-  <div class="section name" id="NSString_RegexKitLiteAdditions__-captureCountWithOptions:error:">captureCountWithOptions:error:</div>
-  <div class="section summary">Returns the number of captures that <span class="argument">regex</span> contains.</div>
-  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCountWithOptions:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div>
-  <div class="section discussion"><div class="header">Discussion</div>
-<p>The optional <span class="argument">error</span> parameter, if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.</p>
-
-<p>Returns the capture count of the receiver, which should be a valid regular expression.  For example:</p>
-
-<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCountWithOptions:0 error:NULL];
-// regexCaptureCount would be set to 2.</div>
-  </div>
-  <div class="section result"><div class="header">Return Value</div>
-    <p>Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regex</span> is returned, or <span class="code">0</span> if <span class="argument">regex</span> does not contain any captures.</p>
-  </div>
-  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
-  <div class="section seealso"><div class="header">See Also</div>
-    <ul>
-      <li><a href="#NSString_RegexKitLiteAdditions__-captureCount" class="code">- captureCount</a></li>
-      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
-      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
-      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
-    </ul>
-  </div>
-</div>
 
 
 <!-- .................................... --> <!-- .................................... --> <!-- .................................... -->
@@ -3744,6 +3701,56 @@ NSArray  *listItems = [list captureComponentsMatchedByRegex:@&quot;,\\s*&quot;];
     <ul>
       <li><a href="#NSString_RegexKitLiteAdditions__-captureComponentsMatchedByRegex:" class="code">- captureComponentsMatchedByRegex:</a></li>
       <li><a href="#NSString_RegexKitLiteAdditions__-captureComponentsMatchedByRegex:range:" class="code">- captureComponentsMatchedByRegex:range:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- .................................... --> <!-- .................................... --> <!-- .................................... -->
+
+
+<div class="block method">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-captureCount">captureCount</div>
+  <div class="section summary">Returns the number of captures that <span class="argument">regex</span> contains.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCount</span>;</span></div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>Returns the capture count of the receiver, which should be a valid regular expression.  For example:</p>
+
+<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCount];
+// regexCaptureCount would be set to 2.</div>
+  </div>
+  <div class="section result"><div class="header">Return Value</div>
+    <p>Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regex</span> is returned, or <span class="code">0</span> if <span class="argument">regex</span> does not contain any captures.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-captureCountWithOptions:error:" class="code">- captureCountWithOptions:error:</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block method">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-captureCountWithOptions:error:">captureCountWithOptions:error:</div>
+  <div class="section summary">Returns the number of captures that <span class="argument">regex</span> contains.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCountWithOptions:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The optional <span class="argument">error</span> parameter, if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.</p>
+
+<p>Returns the capture count of the receiver, which should be a valid regular expression.  For example:</p>
+
+<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCountWithOptions:0 error:NULL];
+// regexCaptureCount would be set to 2.</div>
+  </div>
+  <div class="section result"><div class="header">Return Value</div>
+    <p>Returns <span class="code hardNobr">-1</span> if an error occurs.  Otherwise the number of captures in <span class="argument">regex</span> is returned, or <span class="code">0</span> if <span class="argument">regex</span> does not contain any captures.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-captureCount" class="code">- captureCount</a></li>
       <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
       <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
       <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
@@ -3958,9 +3965,9 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 
     <p>This method clears the cached information for the receiver <b>only</b>.  This is more selective than <a href="#NSString_RegexKitLiteAdditions__.clearStringCache" class="code">clearStringCache</a>, which clears all the cached information from <span class="rkl">RegexKit<i>Lite</i></span>, including all the cached compiled regular expressions.</p>
 
-    <p><span class="rkl">RegexKit<i>Lite</i></span> automatically detects the vast majority of string mutations and clears any cached information about the mutated string.  To detect mutations, <span class="rkl">RegexKit<i>Lite</i></span> records a strings <span class="code">length</span> and <span class="code">hash</span> value at the point in time when it caches data about a string.  Cached data about a string is invalidated if either of these values change between calls to <span class="rkl">RegexKit<i>Lite</i></span>.  The problem case is when a string is mutated but the strings length remains the same <b>and</b> the hash value for the mutated string is identical to the hash value of the string before it was mutated.  This is known as a <i>hash collision</i>.  Since <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that a string has mutated when this happens, the programmer needs to explicitly inform <span class="rkl">RegexKit<i>Lite</i></span> that any cached data about the receiver needs to be cleared by sending <span class="code">flushCachedRegexData</span> to the mutated string.</p>
+    <p><span class="rkl">RegexKit<i>Lite</i></span> automatically detects the vast majority of string mutations and clears any cached information for the mutated string.  To detect mutations, <span class="rkl">RegexKit<i>Lite</i></span> records a strings <span class="code">length</span> and <span class="code">hash</span> value at the point in time when it caches data for a string.  Cached data for a string is invalidated if either of these values change between calls to <span class="rkl">RegexKit<i>Lite</i></span>.  The problem case is when a string is mutated but the strings length remains the same <b>and</b> the hash value for the mutated string is identical to the hash value of the string before it was mutated.  This is known as a <i>hash collision</i>.  Since <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that a string has mutated when this happens, the programmer needs to explicitly inform <span class="rkl">RegexKit<i>Lite</i></span> that any cached data about the receiver needs to be cleared by sending <span class="code">flushCachedRegexData</span> to the mutated string.</p>
 
-    <p>While it is possible to have &quot;perfect mutation detection&quot;, and therefore guarantee that only valid cached data is used, it has a significant performance penalty.  The first problem is that when caching information about a string, an immutable copy of that string needs to be made.  The second problem is that determing that two strings are not identical is usually very fast and cheap&mdash; if their lengths are not the same, no further checks are required.  The most expensive case is when two strings are identical because it requires a character by character comparsion of the entire string to guarantee that they are equal.  The most expensive case is also the most common case by far.  To make matters worst, Cocoa provides no public way to determine if an instance is a mutable <span class="code">NSMutableString</span> or an immutable <span class="code">NSString</span> object and therefore must assume the worst case that all strings are mutable.</p>
+    <p>While it is possible to have &quot;perfect mutation detection&quot;, and therefore guarantee that only valid cached data is used, it has a significant performance penalty.  The first problem is that when caching information about a string, an immutable copy of that string needs to be made.  The second problem is that determing that two strings are not identical is usually very fast and cheap&mdash; if their lengths are not the same, no further checks are required.  The most expensive case is when two strings are identical because it requires a character by character comparsion of the entire string to guarantee that they are equal.  The most expensive case also happens to be the most common case, by far.  To make matters worst, Cocoa provides no public way to determine if an instance is a mutable <span class="code">NSMutableString</span> or an immutable <span class="code">NSString</span> object.  Therefore <span class="rkl">RegexKit<i>Lite</i></span> must assume the worst case that all strings are mutable and have potentially mutated between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
 
     <p><span class="rkl">RegexKit<i>Lite</i></span> is optimized for the common case which is when regular expression operations are performed on strings that are not mutating. The majority of mutations to a string can be quickly and cheaply detected by <span class="rkl">RegexKit<i>Lite</i></span> automatically. Since the programmer has the context of the string that is to be matched, and whether or not the string is being mutated, <span class="rkl">RegexKit<i>Lite</i></span> relies on the programmer to inform it whether or not the possibility exists that the string could have mutated in a way that is undetectable.</p>
 
@@ -4839,17 +4846,41 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 	<p>New <span class="code">NSString</span> Methods:</p>
 	<ul class="square">
-	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfCaptureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">captureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCount</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">componentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (void)<span class="selector">flushCachedRegexData</span>;</span></div></li>
-	  <li><div class="signature"><span class="hardNobr">- (BOOL)<span class="selector">isRegexValid</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<a href="#NSString_RegexKitLiteAdditions__-arrayOfCaptureComponentsMatchedByRegex:" class="selector">arrayOfCaptureComponentsMatchedByRegex:</a>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<a href="#NSString_RegexKitLiteAdditions__-captureComponentsMatchedByRegex:" class="selector">captureComponentsMatchedByRegex:</a>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<a href="#NSString_RegexKitLiteAdditions__-captureCount" class="selector">captureCount</a>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<a href="#NSString_RegexKitLiteAdditions__-componentsMatchedByRegex:" class="selector">componentsMatchedByRegex:</a>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (void)<a href="#NSString_RegexKitLiteAdditions__-flushCachedRegexData" class="selector">flushCachedRegexData</a>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">- (BOOL)<a href="#NSString_RegexKitLiteAdditions__-isRegexValid" class="selector">isRegexValid</a>;</span></div></li>
 	</ul>
 
 	<p>Deprecated <span class="code">NSString</span> Methods:</p>
 	<ul class="square">
-	  <li><div class="signature"><span class="hardNobr">+ (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="selector">captureCountForRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
+	  <li><div class="signature"><span class="hardNobr">+ (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<a href="#NSString_RegexKitLiteAdditions__.captureCountForRegex:" class="selector">captureCountForRegex:</a>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div></li>
+	</ul>
+
+	<p class="standout">Changes that effect the results that are returned</p>
+
+	<ul class="square">
+	  <li>
+<p>When the regular expression matched the tail end of the string to search, <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> would incorrectly add a zero length string to the results returned.</p>
+
+<div class="box sourcecode">NSArray *splitArray = [@&quot;Bob, Tom, Sam,&quot; componentsSeparatedByRegex:@&quot;,\\s*&quot;];
+
+// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;, @&quot;&quot; } <- RegexKitLite &le; v2.2.
+// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } <- RegexKitLite &ge; v3.0.</div>
+</li>
+	  <li>
+	    <p>The results returned by <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> were found to differ from the expected results when zero-width assertions, such as <span class="regex">\b</span>, were used.  Prior to v3.0, regular expressions that matched zero characters would be considered a 'match', and a zero length string would be added to the results array.
+The expected results are the results that are returned by the <span class="quotedText">perl</span> <span class="code">split()</span> function, which does not create a zero length string in such cases.</p>
+
+<div class="box sourcecode">NSArray *splitArray = [@&quot;I|at|ice I eat rice&quot; componentsSeparatedByRegex:@&quot;\\b\\s*&quot;];
+
+// ICU : { @&quot;&quot;, @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;, @&quot;&quot;, @&quot;I&quot;, @&quot;&quot;, @&quot;eat&quot;, @&quot;&quot;, @&quot;rice&quot; } <- RegexKitLite &le; v2.2.
+// perl: {      @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;,      @&quot;I&quot;,      @&quot;eat&quot;,      @&quot;rice&quot; } <- RegexKitLite &ge; v3.0.</div>
+
+	  </li>
+	  
 	</ul>
 
 	<p>Other Changes:</p>
@@ -4875,7 +4906,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 	  <li><p>componentsSeparatedByRegex: bug fixed. When the last match ended on the end of the string, an extra zero length string would be added in error.</p></li>
 	  <li><p>rangeOfRegex, stringByMatching: bug fixed. Bug where inRange: parameter was not correctly honored.</p></li>
-	  <li><p><span class="code">uregex_split()</span> <a href="http://bugs.icu-project.org/trac/ticket/6826" class="printURL">ICU 6826</a></p></li>
+	  <li><p><span class="code">uregex_split()</span> Ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826">6826</a> was opened with the ICU project: <a href="http://bugs.icu-project.org/trac/ticket/6826">http://bugs.icu-project.org/trac/ticket/6826</a></p></li>
 	  <li><p>Direct access to string buffer change checks</p></li>
 	  <li><p>Replace all, catch some additional buffer overflow cases.</p></li>
 	  <li><p><span class="code">isMatchedByRegex:inRange:</span> was never documented.  Fixed.</p></li>
