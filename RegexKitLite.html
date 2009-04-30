@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="Content-Language" content="EN-US">
     <meta name = "format-detection" content = "telephone=no">
-    <meta name = "viewport" content = "width = 480">
     <style type="text/css">
 body { font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; color: #000; background-color: #FFF; }
 h1   { margin-top: 1.0em; margin-bottom: 0.8334em; font-size: 2.5000em; }
@@ -428,7 +427,7 @@ h4 .code { color: black; }
 .softNobr    { white-space: nowrap; }
 
 .syntax > .specification .optional { -moz-box-shadow: 2px 3px 5px #888; -webkit-box-shadow: 2px 3px 5px #888; }
-.XXX { -moz-box-shadow: 8px 8px 10px #444; -webkit-box-shadow: 3px 3px 8px #666; }
+.XXX { -moz-box-shadow: 8px 8px 10px #666; -webkit-box-shadow: 3px 3px 8px #666; }
 .box { -moz-box-shadow: 3px 3px 4px #999; -webkit-box-shadow: 3px 3px 4px #999; }
 .box.caution { -moz-box-shadow: 0px 0px 5px #000; -webkit-box-shadow: 0px 0px 5px #000; }
 .box .metainfo { -moz-box-shadow: 2px 2px 3px #999; -webkit-box-shadow: 2px 2px 3px #999; }
@@ -4871,14 +4870,16 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 // { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } <- RegexKitLite &ge; v3.0.</div>
 </li>
 	  <li>
-	    <p>The results returned by <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> were found to differ from the expected results when zero-width assertions, such as <span class="regex">\b</span>, were used.  Prior to v3.0, regular expressions that matched zero characters would be considered a 'match', and a zero length string would be added to the results array.
-The expected results are the results that are returned by the <span class="quotedText">perl</span> <span class="code">split()</span> function, which does not create a zero length string in such cases.</p>
+	    <p>The results returned by <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> were found to differ from the expected results when zero-width assertions, such as <span class="regex">\b</span>, were used.  Prior to v3.0, regular expressions that matched zero characters would be considered a 'match', and a zero length string would be added to the results array.  The expected results are the results that are returned by the <span class="quotedText">perl</span> <span class="code">split()</span> function, which does not create a zero length string in such cases.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826">6826</a>.</p>
 
 <div class="box sourcecode">NSArray *splitArray = [@&quot;I|at|ice I eat rice&quot; componentsSeparatedByRegex:@&quot;\\b\\s*&quot;];
 
 // ICU : { @&quot;&quot;, @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;, @&quot;&quot;, @&quot;I&quot;, @&quot;&quot;, @&quot;eat&quot;, @&quot;&quot;, @&quot;rice&quot; } <- RegexKitLite &le; v2.2.
 // perl: {      @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;,      @&quot;I&quot;,      @&quot;eat&quot;,      @&quot;rice&quot; } <- RegexKitLite &ge; v3.0.</div>
 
+	  </li>
+	  <li>
+	    <p>As part of the <span class="hardNobr">64-bit</span> tidy, a check of the length of a string that is passed to <span class="rkl">RegexKit<i>Lite</i></span>, and therefore ICU, was added to ensure that the length is less than <span class="code">INT_MAX</span>. If the length of the string <span class="hardNobr">is &ge; <span class="code">INT_MAX</span>,</span> then <span class="rkl">RegexKit<i>Lite</i></span> will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a>.  The value of <span class="hardNobr"><span class="code">INT_MAX</span> is 2<sup>31</sup>-1 (<span class="code">0x7fffffff</span>).</span>  This was done because ICU uses the <span class="code">int</span> type for representing offset values.</p>
 	  </li>
 	  
 	</ul>

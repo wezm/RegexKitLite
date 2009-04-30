@@ -623,6 +623,8 @@ static RKLCacheSlot *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions o
   UParseError    parseError           = (UParseError){-1, -1, {0}, {0}};
   const UniChar *regexUniChar         = NULL;
   
+  if(RKL_EXPECTED(regexStringU16Length >= (CFIndex)INT_MAX, 0L)) { *exception = [NSException exceptionWithName:NSRangeException reason:@"Regex string length exceeds INT_MAX" userInfo:NULL]; goto exitNow; }
+
   // Try to quickly obtain regexString in UTF16 format.
   if((regexUniChar = CFStringGetCharactersPtr(cacheSlot->regexString)) == NULL) { // We didn't get the UTF16 pointer quickly and need to perform a full conversion in a temp buffer.
     UniChar *uniCharBuffer = NULL;
@@ -825,9 +827,9 @@ static id rkl_performRegexOp(id self, SEL _cmd, RKLRegexOp regexOp, NSString *re
   
   if(RKL_EXPECTED((cacheSlot = rkl_getCachedRegexSetToString(regexString, options, matchString, &stringU16Length, matchRange, error, &exception, &status)) == NULL, 0L)) { stringU16Length = (NSUInteger)CFStringGetLength((CFStringRef)matchString); }
   if(RKL_EXPECTED(matchRange->length == NSUIntegerMax, 1L)) { matchRange->length = stringU16Length; } // For convenience.
-  if(RKL_EXPECTED(stringU16Length  < NSMaxRange(*matchRange), 0L) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"Range or index out of bounds"); goto exitNow; }
-  if(RKL_EXPECTED(stringU16Length >= INT_MAX, 0L)                 && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"String length exceeds INT_MAX"); goto exitNow; }
-  if(((maskedRegexOp == RKLRangeOp) || (maskedRegexOp == RKLArrayOfStringsOp)) && RKL_EXPECTED(cacheSlot != NULL, 1L) && (RKL_EXPECTED(capture < 0L, 0L) || RKL_EXPECTED(capture > cacheSlot->captureCount, 0L)) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSInvalidArgumentException, @"The capture argument is not valid."); }
+  if(RKL_EXPECTED(stringU16Length  < NSMaxRange(*matchRange), 0L) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"Range or index out of bounds");  goto exitNow; }
+  if(RKL_EXPECTED(stringU16Length >= (NSUInteger)INT_MAX,     0L) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSRangeException, @"String length exceeds INT_MAX"); goto exitNow; }
+  if(((maskedRegexOp == RKLRangeOp) || (maskedRegexOp == RKLArrayOfStringsOp)) && RKL_EXPECTED(cacheSlot != NULL, 1L) && (RKL_EXPECTED(capture < 0L, 0L) || RKL_EXPECTED(capture > cacheSlot->captureCount, 0L)) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSInvalidArgumentException, @"The capture argument is not valid."); goto exitNow; }
   if(RKL_EXPECTED(cacheSlot == NULL, 0L) || RKL_EXPECTED(status > U_ZERO_ERROR, 0L) || RKL_EXPECTED(exception != NULL, 0L)) { goto exitNow; }
   
   RKLCDelayedAssert((cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (cacheSlot->captureCount >= 0L) && (cacheSlot->setToString != NULL) && (cacheSlot->setToLength >= 0L) && (cacheSlot->setToUniChar != NULL) && ((CFIndex)NSMaxRange(cacheSlot->setToRange) <= cacheSlot->setToLength), &exception, exitNow);
@@ -1106,15 +1108,17 @@ exitNow:
 //  ----------
 
 static NSString *rkl_replaceString(RKLCacheSlot *cacheSlot, id searchString, NSUInteger searchU16Length, NSString *replacementString, NSUInteger replacementU16Length, NSUInteger *replacedCountPtr, NSUInteger replaceMutable, id *exception, int32_t *status) {
+  uint64_t       searchU16Length64  = (uint64_t)searchU16Length, replacementU16Length64 = (uint64_t)replacementU16Length;
   int32_t        resultU16Length    = 0, tempUniCharBufferU16Capacity = 0;
   UniChar       *tempUniCharBuffer  = NULL;
   const UniChar *replacementUniChar = NULL;
   id             resultObject       = NULL;
   NSUInteger     replacedCount      = 0UL;
   
-  if((RKL_EXPECTED(replacementU16Length >= INT_MAX, 0L) || RKL_EXPECTED((((uint64_t)searchU16Length / 2ULL) + ((uint64_t)replacementU16Length * 2ULL)) >= (uint64_t)INT_MAX, 0L))) { *exception = [NSException exceptionWithName:NSRangeException reason:@"String length exceeds INT_MAX" userInfo:NULL]; }
+  if((RKL_EXPECTED(replacementU16Length64 >= (uint64_t)INT_MAX, 0L) || RKL_EXPECTED(((searchU16Length64 / 2ULL) + (replacementU16Length64 * 2ULL)) >= (uint64_t)INT_MAX, 0L))) { *exception = [NSException exceptionWithName:NSRangeException reason:@"Replacement string length exceeds INT_MAX" userInfo:NULL]; goto exitNow; }
 
-  RKLCDelayedAssert((searchU16Length < INT_MAX) && (replacementU16Length < INT_MAX) && ((16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL)) < INT_MAX), exception, exitNow);
+  RKLCDelayedAssert((searchU16Length64 < (uint64_t)INT_MAX) && (replacementU16Length64 < (uint64_t)INT_MAX) && (((searchU16Length64 / 2ULL) + (replacementU16Length64 * 2ULL)) < (uint64_t)INT_MAX), exception, exitNow);
+  
   // Zero order approximation of the buffer sizes for holding the replaced string or split strings and split strings pointer offsets.  As UTF16 code units.
   tempUniCharBufferU16Capacity = (int32_t)(16UL + (searchU16Length + (searchU16Length / 2UL)) + (replacementU16Length * 2UL));
   
