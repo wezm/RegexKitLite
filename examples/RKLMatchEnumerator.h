@@ -1,9 +1,8 @@
 #import <Foundation/NSEnumerator.h>
 #import <Foundation/NSString.h>
-#import <stddef.h>
-
-#warning The functionality provided by RKLMatchEnumerator has been deprecated in favor of '- componentsSeparatedByRegex:'
+#import "RegexKitLite.h"
+#include <stddef.h>
 
 @interface NSString (RegexKitLiteEnumeratorAdditions)
-- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regex;
+- (NSEnumerator *)matchEnumeratorWithRegex:(NSString *)regex RKL_DEPRECATED_ATTRIBUTE;
 @end

@@ -3,6 +3,8 @@
 #import "RegexKitLite.h"
 #import "RKLMatchEnumerator.h"
 
+#warning The functionality provided by RKLMatchEnumerator has been deprecated in favor of '- componentsMatchedByRegex:'
+
 @interface RKLMatchEnumerator : NSEnumerator {
   NSString   *string;
   NSString   *regex;
