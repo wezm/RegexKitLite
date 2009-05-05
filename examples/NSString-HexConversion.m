@@ -18,7 +18,7 @@
     cptr              = (const char *)buffer;
   }
 
-  return(strtol(cptr, NULL, 16));
+  return((NSInteger)strtol(cptr, NULL, 16));
 }
 
 @end

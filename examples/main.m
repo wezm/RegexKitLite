@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   NSString   *matchedString = NULL;
 
   while((matchedString = [matchEnumerator nextObject]) != NULL) {
-    NSLog(@"%d: %d '%@'", ++line, [matchedString length], matchedString);
+    NSLog(@"%lu: %lu '%@'", (u_long)++line, (u_long)[matchedString length], matchedString);
   }
 
   [pool release];

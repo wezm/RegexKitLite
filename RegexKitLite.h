@@ -37,6 +37,8 @@
 */
 
 #ifdef    __OBJC__
+#import <Foundation/NSArray.h>
+#import <Foundation/NSError.h>
 #import <Foundation/NSObjCRuntime.h>
 #import <Foundation/NSRange.h>
 #import <Foundation/NSString.h>
@@ -129,8 +131,6 @@ typedef uint32_t RKLRegexOptions; // This must be identical to the ICU 'flags' a
 #endif
 
 #ifdef __OBJC__
-
-@class NSError;
 
 // NSException exception name.
 extern NSString * const RKLICURegexException;

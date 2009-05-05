@@ -25,9 +25,9 @@ A:visited:hover, a:link .code	{ text-decoration: underline; color: #036; }
 
 .hide { display: none; }
 
-.RED { border: 2px solid #f00; padding: 1ex; -webkit-border-radius: 5px; -webkit-box-shadow: 3px 3px 4px #900; -moz-border-radius: 5px; -moz-box-shadow: 3px 3px 4px #900; white-space: pre-wrap; }
-.XXX { border: 2px solid red; padding: 2px; }
-.XXX { border-color: rgba(255,0,0,0.8); -webkit-border-radius: 6px; /*text-shadow: 2px 2px 2px rgba(68,0,0,0.4);*/ -moz-border-radius: 4px; -moz-border-bottom-colors: #F00 #D00; -moz-border-top-colors: #F00 #D00; -moz-border-right-colors: #F00 #D00; -moz-border-left-colors: #F00 #D00; }
+.RED { border: 2px solid #f00; padding: 1ex; -webkit-border-radius: 5px; -webkit-box-shadow: 3px 3px 4px #900; -moz-border-radius: 5px; -moz-box-shadow: 3px 3px 4px #900; border-radius: 5px; box-shadow: 3px 3px 4px #900; white-space: pre-wrap; }
+.XXX { border: 2px solid red; padding: 2px; margin: 0.75em 0px; }
+.XXX { border-color: rgba(255,0,0,0.8); -webkit-border-radius: 6px; /*text-shadow: 2px 2px 2px rgba(68,0,0,0.4);*/ -moz-border-radius: 6px; border-radius: 6px; }
 
 .nobr        { white-space: nowrap; white-space: pre-wrap !important; }
 .hardNobr    { white-space: nowrap; }
@@ -89,7 +89,7 @@ table + table { margin-top: 1em; }
 table + .box { margin-top: 1em; }
 
 /* The standard table style */
-table.standard                       { border-spacing: 0px; border-top: 1px solid #919699; border-left: 1px solid #919699; -moz-border-radius: 0.5ex; -webkit-border-radius: 0.5ex; }
+table.standard                       { border-spacing: 0px; border-top: 1px solid #919699; border-left: 1px solid #919699; -moz-border-radius: 0.5ex; -webkit-border-radius: 0.5ex; border-radius: 0.5ex; }
 table.standard caption               { margin-bottom: 0.5em; text-align: left; }
 table.standard caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
 table.standard th                    { padding: 0.3334em 1ex; text-align: left;  border-bottom: 1px solid #919699; border-right: 1px solid #919699; background: #E2E2E2; }
@@ -154,15 +154,15 @@ div#clip { overflow: hidden; }
 .box.caution         { border-color: #000; background-color: #fcfcfc; border-width: 2px; }
 .box.tip, .box.small { border-color: #c3c3c3; background-color: #e9e9e9; padding: 0.25em 1.0ex; }
 
-.box.tip   { display: table; -webkit-border-radius: 1.0em; -moz-border-radius: 1.0em; }
-.box.small { float: left; clear: both; margin: 0.5ex; -webkit-border-radius: 0.85em; -moz-border-radius: 0.85em; }
-.box.note, .box.important, .box.warning, .box.caution { -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; color: #000; }
+.box.tip   { display: table; -webkit-border-radius: 1.0em; -moz-border-radius: 1.0em; border-radius: 1.0em; }
+.box.small { float: left; clear: both; margin: 0.5ex; -webkit-border-radius: 0.85em; -moz-border-radius: 0.85em; border-radius: 0.85em; }
+.box.note, .box.important, .box.warning, .box.caution { -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; border-radius: 0.5em; color: #000; }
 
 .box       .label { padding-right: 1.5ex; font-weight: bold; vertical-align: middle; }
 .box.tip   .label { padding-right: 1.0ex; }
 .box.small .label { padding-right: 0.5ex; }
 
-.box.sourcecode, .box.shell, .box.quote { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; }
+.box.sourcecode, .box.shell, .box.quote { margin-left: 0px; margin-right: 0px; padding: 1.0em 2ex; -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; border-radius: 0.5ex; }
 .box.sourcecode, .box.shell { font: 0.9167em monaco, "Lucida Console", courier, monospace; }
 .box.sourcecode, .box.shell { white-space: pre; white-space: pre-wrap !important; }
 .box.sourcecode { border: 1px solid #c7cfd5; background-color: #f1f5f9; }
@@ -186,7 +186,7 @@ div#clip { overflow: hidden; }
 .box.classSpecs > .row > .cell.left { font-weight: bold; border-right: none; }
 .box.classSpecs > .row > ul.cell.right { list-style-type: none; }
 
-.box.classSpecs { -webkit-border-radius: 0.5ex; }
+.box.classSpecs { -webkit-border-radius: 0.5ex; -moz-border-radius: 0.5ex; border-radius: 0.5ex; }
 
 .box.hasRows > .row:first-child  { -moz-border-radius-topleft:     0.5ex; -webkit-border-top-left-radius:     0.5ex; -moz-border-radius-topright:    0.5ex; -webkit-border-top-right-radius:    0.5ex; }
 .box.hasRows > .row:last-child   { -moz-border-radius-bottomleft:  0.5ex; -webkit-border-bottom-left-radius:  0.5ex; -moz-border-radius-bottomright: 0.5ex; -webkit-border-bottom-right-radius: 0.5ex; }
@@ -197,7 +197,7 @@ div#clip { overflow: hidden; }
 .box.hasRows > .row:last-child  > *:last-child  { -moz-border-radius-bottomright: 0.5ex; -webkit-border-bottom-right-radius: 0.5ex; }
 
 
-.box .metainfo { display: table; font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; white-space: normal; padding: 0.125em 0.75ex; border: 1px solid #ccc; border-color: rgba(0,0,0,0.15); background-color: rgba(0,0,0,0.05); -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; float: right; -webkit-user-select: none; -moz-user-select: none; cursor: default; -webkit-background-origin: border; -moz-background-origin: border; }
+.box .metainfo { display: table; font: 12px "lucida grande", geneva, helvetica, arial, sans-serif; white-space: normal; padding: 0.125em 0.75ex; border: 1px solid #ccc; border-color: rgba(0,0,0,0.15); background-color: rgba(0,0,0,0.05); -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; border-radius: 0.5em; float: right; -webkit-user-select: none; -moz-user-select: none; cursor: default; -webkit-background-origin: border; -moz-background-origin: border; }
 .box .metainfo .info { padding-left: 1.0ex; }
 .box .metainfo > .entry { display: table-row; }
 .box .metainfo > .entry > .item { display: table-cell; }
@@ -207,7 +207,7 @@ div#clip { overflow: hidden; }
 .box .metainfo .continues.above > .info { padding-left: 0px; font: italic 0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 .box .metainfo .description > .info { padding-left: 0px; font: italic 0.9167em monaco, "Lucida Console", courier, monospace; white-space: nowrap; }
 
-.box.titled           { margin: 0px; padding: 0px; border: 0px solid transparent; background-color: transparent; -webkit-border-radius: 0.625em; -moz-border-radius: 0.625em; }
+.box.titled           { margin: 0px; padding: 0px; border: 0px solid transparent; background-color: transparent; -webkit-border-radius: 0.625em; -moz-border-radius: 0.625em; border-radius: 0.625em; }
 .box.titled > .title    { padding: 0.25em 2ex; line-height: 1.5em; font-size: 13px; font-weight: bold; -webkit-border-top-left-radius: 0.625em; -webkit-border-top-right-radius: 0.625em; -moz-border-radius-topleft: 0.625em; -moz-border-radius-topright: 0.625em; -webkit-user-select: none; -moz-user-select: none; cursor: default; -webkit-background-origin: border; -moz-background-origin: border; }
 .box.titled > .contents { padding: 0.5em 2ex; line-height: 1.5em; font-size: 11px; -webkit-border-bottom-left-radius: 0.625em; -webkit-border-bottom-right-radius: 0.625em; -moz-border-radius-bottomleft: 0.625em; -moz-border-radius-bottomright: 0.625em; border: 1px solid #e5e5e5; border-top: 0px !important; background: #f5f5f5; color: #555; -webkit-background-origin: border; -moz-background-origin: border; }
 
@@ -340,7 +340,7 @@ h4 .code { color: black; }
 
 .syntax > .specification { margin-left: 6.25ex; font: 1.1667em monaco, "Lucida Console", courier, monospace; }
 .syntax > .specification .parameter { font-style: italic; font: 1.0834em "lucida grande", geneva, helvetica, arial, sans-serif; margin: 0px; border: 0px; }
-.syntax > .specification .optional { -webkit-border-radius: 3px; -moz-border-radius: 3px; margin-left: 0.75ex; margin-right: 0.75ex; padding-left: 0.5ex; padding-right: 0.5ex; border: 1px solid #d1d5d9; background-color: #e8e8e8; }
+.syntax > .specification .optional { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; margin-left: 0.75ex; margin-right: 0.75ex; padding-left: 0.5ex; padding-right: 0.5ex; border: 1px solid #d1d5d9; background-color: #e8e8e8; }
 .syntax > .parameters { margin-top: 0.75em; }
 .syntax > .parameters > ul > li > .name { font-style: italic; }
 .syntax > .examples { margin-top: 0.75em; margin-left: 2ex; }
@@ -365,8 +365,10 @@ h4 .code { color: black; }
 .chrono                                         { margin-left: 1.5ex; margin-bottom: 2em; padding-right: 4ex; }
 .chrono ul                                      { margin-left: 4.0ex; padding-left: 1ex; list-style-type: square; }
 .chrono ul li                                   { margin-top: 0.5em; }
-.chrono ul.square li > *:first-child { margin-top: 0px; }
-.chrono ul.square li > *:last-child { margin-bottom: 0px; }
+.chrono ul.square > li > *:first-child { margin-top: 0px; }
+.chrono ul.square > li > *:last-child { margin-bottom: 0px; }
+.chrono ul.square > li > * { margin-top: 0.5em; margin-bottom: 0.5em; }
+.chrono ul.square > li > .box.sourcecode { margin-bottom: 0.85em; }
 .chrono > .entry                                { margin-left: 2ex; margin-bottom: 1.75em; padding-right: 2ex; }
 .chrono > .entry > .banner                      { margin-left: -1.25ex; font-size: 1.0834em; }
 .chrono > .entry > .banner > .bannerItemSpacer  { margin-right: 1.25ex; margin-left: 1.25ex; }
@@ -432,7 +434,7 @@ h4 .code { color: black; }
 .box { -moz-box-shadow: 3px 3px 4px #999; -webkit-box-shadow: 3px 3px 4px #999; }
 .box.caution { -moz-box-shadow: 0px 0px 5px #000; -webkit-box-shadow: 0px 0px 5px #000; }
 .box .metainfo { -moz-box-shadow: 2px 2px 3px #999; -webkit-box-shadow: 2px 2px 3px #999; }
-.box .metainfo.bottom { margin-top: -0.5em; }
+.box .metainfo.bottom { margin-top: -1.6666em; }
 
 .box.titled.UIpane { -moz-box-shadow: 0px 5px 10px #aaa; -webkit-box-shadow: 0px 5px 10px #aaa; }
 
@@ -635,7 +637,7 @@ table.regexList caption { -moz-box-shadow: 0px 0px 0px #000; -webkit-box-shadow:
 
 .code, .regex, .regex-textual, .regex-def, .header_file, .file, .build-phase, .xcode-group, .xcode-target, .window-name, .box.sourcecode, .box.shell, .guide .sourceLicense pre, .signature, .block > .section.constants > .constant > .identifier, .dialog-option, .context-menu, .block.typedef > .section.code, .block.typedef > .section.type, .quotedText, .unicodeCharName, .block > .section.declaration, .regexMatch, .unicodeProperty, .consoleText, .section.parameters li > .name { font-size: 0.8334em !important; font-family: "Letter Gothic Std", "Letter Gothic", "LetterGothic", "Courier New", monaco, courier, monospace; }
 
-.regex-def, .cppTuneables .cpp_flag, .cppTuneables .code { font-size: 8pt !important; }
+.regex-def, .cppTunables .cpp_flag, .cppTunables .code { font-size: 8pt !important; }
 table.regexSyntax.unicodeProperties .consoleText { font-size: 8pt !important; }
 
 .box .metainfo.noPrintBorder { margin-right: 0px; padding: 0px; border: 0px none transparent; background-color: white; -webkit-border-radius: 0px; -moz-border-radius: 0px; }
@@ -647,7 +649,7 @@ table.regexSyntax.unicodeProperties .consoleText { font-size: 8pt !important; }
 .section.parameters ul { margin: 0px 0px 0px 0px; }
 
 .argument { font-family: "Letter Gothic Std", "Letter Gothic", "LetterGothic", "Courier New", monaco, courier, monospace; font-style: italic; font-size:0.85em; }
-/*.signature .argument { font-size: 1.08em; }*/
+.signature .argument { font-size: 1.08em; }
 .signature .selector, .signature .function { font-weight: bold; }
 .code .cpp_flag    { font-weight: bold; font-size: 95%; }
 
@@ -1481,7 +1483,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
       <h1 id="RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
       <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
-      <div class="printOnlyX XXX dateAndRevision">2009-05-01, v3.0</div>
+      <div class="printOnlyX XXX dateAndRevision">2009-05-02, v3.0</div>
     </div>
 
 <div class="printPageBreakAfter">
@@ -1507,7 +1509,11 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li>Distributed under the terms of the <a href="#LicenseInformation" class="hardNobr section-link">BSD License</a>.</li>
 </ul>
 
-<h3 id="Introduction_Contributing">Contributing to <span class="rkl">RegexKit<i>Lite</i></span></h3>
+<h3 id="Introduction_DevelopmentServices">Development Services</h3>
+
+<p>The author of <span class="rkl">RegexKit<i>Lite</i></span> is available on a consulting basis for your Mac OS X or iPhone projects, and at the time of this writing, also available for hire on a full-time basis.  Contact <img style="margin-bottom: -4px;" width="158" height="15" alt="email address" src="data:image/png;base64,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"> to discuss opportunities.</p>
+
+<h3 id="Introduction_SupportingRegexKitLitethroughFinancialDonations">Supporting <span class="rkl">RegexKit<i>Lite</i></span> through Financial Donations</h3>
 
 <p>A significant amount of time and effort has gone in to the development of <span class="rkl">RegexKit<i>Lite</i></span>. Even though it is distributed under the terms of the <a href="#LicenseInformation" class="hardNobr section-link">BSD License</a>, you are encouraged to contribute financially if you are using <span class="rkl">RegexKit<i>Lite</i></span> in a profitable commercial application. Should you decide to contribute to <span class="rkl">RegexKit<i>Lite</i></span>, please keep the following in mind:</p>
 
@@ -1519,25 +1525,24 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 	<li>The Ohloh.net metrics do not factor in the cost of writing documentation, which is where most of the effort is spent.</li>
 	<li>The target audience for <span class="rkl">RegexKit<i>Lite</i></span> is very small, so there are relatively few units &quot;sold&quot;.</li>
       </ul>
-      <p>You can contribute by visting SourceForge.net&#39;s <a href="http://sourceforge.net/donate/index.php?group_id=204582" class="printURL">donation page for <span class="rkl">RegexKit<i>Lite</i></span></a>.</p>
+      <p>You can contribute by visiting SourceForge.net&#39;s <a href="http://sourceforge.net/donate/index.php?group_id=204582" class="printURL">donation page for <span class="rkl">RegexKit<i>Lite</i></span></a>.</p>
     </div>
     <div class="cell" style="vertical-align: bottom;">
       <div style="margin-left: 4ex;">
-	<div class="centerHack"><div style="margin-bottom: 0.75em;"><a href="http://www.ohloh.net/p/RegexKitLite"><img class="noBorder" width="100" height="16" alt="Metrics by Ohloh.net" src="data:image/gif;base64,R0lGODlhZAAQAPMAAAABABUXFR8gHiwtKzI1NWhHKUNEQk5QTmxrapdXHO5xCJlyTIuOjaaopM/Pyvz++iH5BAAsAQAAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4LB4TC6bw8FkYksoEIGwuArxqD8a8rycrnI4DnwHDIAPLIGDenppaW9uSYkrdAgShZCJfH6RhJuGnJYwQQpXR0WOQGd0V6kHDg9/dHcPKa1/DYV3dLYxBqm0qV29rqzCZ0pCb41vVAQHdg8MBBcGDg3UB7bRDdPatCl1DgZwD8zjzUvm5tLUywSTBAbaghgI7OQqDOOt34XkBPquBPDRa5ZLXD9zStDls+OAnTt4BjS0gwbER7MZFy+0Q0AN3oMBhxrd+Wl4UdKAiwpXkDs5LiQCH0AeamugRFvFHgY+Dsi5sxssWz1deSTwjOcAfFc+EtXmLOmApdOEwtzYbmbNcAROmGjwEp/Wr2BHxJwkTaIEJWFFwPqTtm1YOBcQxLMwSAmAu3jz6t3Lt6/fv4AD77XRjkAOwYgTK17sV8CHrCEEMJ5MufLeCAAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/sK94DL6qzGVvjMz2BpOJLaFABMLuqwoCz+czVBqAKnsHfyyGhH18b291dEmKKwgPDpUOkZGTBwgODZuXCJ6akqCemHdBCldHRY9AbV2TCBIPKbOEtwy2s5t/GrKdMQcNBgwPs7Vdw8XHm7ywV0pCdY51VAQHx6EOBJyVEp0ND92WyMZ7D+IHduPif+NK2QTu3g4I1933BsSFGPf42S50mmevkwNdxghyakDAQTpslOyxg0gx3jh5DQoyvDaLwL5iu/ckKPEhr9uDAZY6HTMwCaUlhuIYZht2CeIAedm62JSXsoEPIB0/bpxnAIgPAycHIB1gQcKwBqFONjVkMMZJAweVniTwwOotj1u7Tj3wM183YkOJATkxj0NbAhYYkLvwIABcDGcHQG0bIBSQBgH0yr1w4W9gvHEJsM0XipiGbnLXnigxQQLgyZgzi7BzIVSKuOuAABhNurTp06WL4UXNurXr161tdCOQA7bt27hz3xbwQXEIAbqDCx/uOgIAIfkEAAUAAAAsAAAAAGQAEAAABP4QsUlZa5WhwLv3wyeOZBCW3Imun3G88KEs8WEMeK7rxO7/wEEviBsSjzuCMqFQJAjO5lNJrVqVB6XBcO16sVoqlzDOVsfjr5q5jTqZ0618Pj8gYi5YXo/fu+56Bgh5f3SDL3s2dItbS1MJcAQFTlg1li8ImZmYdp2cnYB3oXaAnqMxp6KXl46OlJNTq5YampyiqaabBwykMKe8qJ+qsjFLCm2RsFqMdLuaDH+gt9GhurybLtC7L9Byu9m2isxyVEyUr5RqVQcNzwSbt6TvqoKZLg12vAS7+/js5PzY9bqjrkomMg2yYUBQcJ0DTQ3mScsn8U69Qw7yZTEQ8d8BB/5nOiaEZ6bhQY4GNLxjQAXJgI+ZLAyQ0EmDnQYzr2WhsC+jhQMDDDh46cAFSCVBh34UpNOlkpMJIypJiBSJgQcxh0qgaRMBzq36MES8ugtf0pcPyKRFKhTtSppO572LSoUqARYBrm5B8CCAha0Ydjnw207lhbEP2CUMQGDwgbRXeThO+1cD3qeZLqRkKIHK5bV8A1zwisABPgZ9R7dr7GAogcQWDDDu+1jJgxyzA9RWvYEFFtUK9SkBQLy48eIDbqMFcGGABgcM/D5gjlMDgNYOACR/B1L79OTeO3gf39z68fPaeTAEgv48eACvqc/8GB21/DvXW49/fGA8+OQ5+C83XXP4tWecAB/cNYIABhr3HngXADAIdNJRJ6EB+WUH3mv9/fedcgMIaOEgDRYXAQAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/8cIjLcEBxjQDgoY3jrIAdDQzPEQaLiK26gIMhwKBoPisXxYJA5n1BnRUYYjBqDlQ5Rda4I4CyW0CAyrBrGYZCOut1gQkKhSBDqdHt8z+8TNBJgBwQ/DQQGDRIIg3GIRoeGjgiGkxNcFH6ZfnMGBnh1c3qdo6SloxVECAYjLgeJP6SusK5EDUVllho6E0ymvqVgCXrCdQQFxTlLyks/aig8Ercti0ev1Lau0hKWu87L349yw6HGyODfP9SL6UXOIkuA1M7z0Orv5+DBCp14dseiv37xYIIi1aJUnZ6NqldEVcGH91L1Chgwzpxixf5p2sixo8ePeCD3iIBkBgOXkChTqkw5EpEBDYRwhHlDs6bNmzhzRgHTsowhMGVm6hxKtOhQnlwmIYoTlICQp1CjSp1KNQjSSbiSynRatavXr14FXVCqAwMjAgDSql3Ltq3bt3Djyp3bFgqhLlHo6t3Lty9cAR+4ghDgt7Dhw20jAAAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu//cQIzeIBLBgIjGUG7eEZpuas41qH/G4f8HxQJ4aNGOyCPw2POJGIQDwmgiMJCrwWHUIhi8JsM3SSaPCAmFIkFYq9nnuHxOQNgR8Tv+4DhMtmd8cQYNIwg+e4dTdXZ0jnRpYm5raXBil5iZlxYXRUUUDQYIDwgXU5ejPz0OPQ12DKIaGn4Tmra2IwlwumsEBb1RRMJEFw19UgfFfaMMDq5AqT8Iyw4SDX7Fh8XD3ES5u5W+wN3cxdfIGsZSDxaz0qR26+sSfc3GDHzq5N25CpLhvyzduoWhkxRRpa5NKzULVbV400RRI1QQ37aBGM+k6dUr4KNHswY0lBKD51WoZFJcfRmR7E6rKIWSWSk4hdPKj48aEerRDg9OR3q8lHzlBUpIn1xE4glZtKmeLUR/5lwaSkMdKCPKaJUyRcQKhF2ySCFAg1GjOl7TRjlEFpnWtyd0hio0IlRWuHjz6t3LtwqjOnPP2EWxo7Dhw4gTKwZhyM6Fo1fPLJ5MuXJllqZOtgNEAIDnz6BDix5NurTp06hFI6lDlkzq17Bjyy4t4ANhEAJm697NW3QEACH5BAABAAAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHnter/gsHhMLpvDwWRiSygQgbC4fE6v2+/4VTr9difzgAcIDyoODiyDiISBjCpBCldHRX5AZ14ND5kIXQyZDQaDBoYxXaFdgpapaI9vfW9UTBgIMUoPGg8EBw+YB0y6S7+6Dru5w4eixLBOCAgEBp8HFhrKTMPJSgcODbmZDk2/2Li6ErgXBNrjn9RMzM6f0xJKPjWzujI0Bp3cCNo2ujX/Aj4YYO2BN0ze5tkA0u7ZMyXqCCgccI4ZLgIIBjyw6GzguBpwBh50GRCS5MCSFwa0a2BvIg2GzRB82gYk4gkPnTYGCBlgkK2dDzjo6xAyEy6eSIMiS4ipwYCbH2DKfBeTgRKoWLNq1QrngswU0noBAUC2rNmzaNOqXcu2rVu0C5vleEu3rt27awVEFSEAr9+/gNFGAAAh+QQALAEAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4LB4TC6bw8FkYksoEIGwuHzOQjxUDkf9vrLT/4BxaWlvbkmBMA0PiwgrDIsNB355MH51iJh0QQpXR0WGQGdeDhqNXQ8aDwZ2ijFedq+qdg4PDSm0ega4omBKQm+Fb1RMtLVMCA4NBAeLDgZMzEvRzBIPBBe6kQ8IkcNOCAgEBrYHFhrexyp30o8p28bS1krT1tHFDw7X+OhN4OK25yQo8UGDgANw8sJtg8VsgB0ENZitWPZgQMOGFwj403aAoA0gbv7GjVNiC4jHGY9QDTBQMSWDlRUHtKPBcpEqljBz6sIng1aDkzVAhuM2EkhJAieSKl3KdIRQbgCHMlDStKrVqyDgXCBaDsMBJQDCih1LtqzZs2jTql1b9mO4HGzjyp1LF62AD0hDCKjLt6/fshEAACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHnter/gsDeWInfNV7R4zf4Gk4ktoUAEwu74PIyh0uz/eoGCMG9vdXRJgzASEyyMCAcID5EODY6TKwgOipx6QQpXR0WIQG1gDQ6pZqiVBpKall6SYw0pGhopCLoxugimYkpCdYd1VEyVuEoNEg4EBw8Nk0zPS9TPrASaqb6ptcZOugQGtQcWGt9MF6lLKajOD9vTD9Xzz7rzqLDPFgboTOHjDJyToMQHDQJ8ZjnLJqHeJFQHCNB41uXdgGcXHwxI1Y0ANoOHNoAArNVAWT+JID1OaIZw40pxGg04YFDDwINeMAfY1KnRgoSIGJqBrCESQTaSJoGc8IDgwoEAHgMcuLAhaoCmBDp4vFAyqtcGUM1JNDdg6YeiTWsNZKDErNu3cOHaoUrOXEQgAPLq3cu3r9+/gAMLHtw3pNEchBMrXswYsICzIgQ0nky5ct8IACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC7/2DYDWJAlmiaGkfrHsryHsZg33iu7zfBD76fcDgkGBMKRYKgTC6N0Kh0Sp0ejAarNFvter1Ig6GpRD7F6LQa/Uq3D4g2G6Gms1g0uWvN5x+fCWYEBUpGM4eHCIpxLouMcYqJM48tlJaImDN/f4WET5mYji+iBwxwjC+mo5WscK6nqKCIRwpiTUueWH19oneOLKaRbgzDLI/GrgaLu8xcBEiFnYVfU8rLBFmLxAcNcKZR3GgEpdiPBJFx1nTUXYrYDcAYCOxU2ljnigzjDt5XUAcOohhogE2VPnRXFtGr4m6gAQ3n9BkhgoOABgQEsQ1YRBBgqW78OABCGWDAAUl4pTYGSyghCMWK+N4NhAJv4ksbGCz48HGxAckHHw/gMPBgZEkgKH1KkHBFA8GbMN1hnGmkJgEVHgbkNElSqwSTRLnB80C0ooMABBwoO2thqVefWEEY4QgPYksjcTl4RcDVQIAGih4AAWrBbwcCgm2gfbD4HOMLGBF4NZnXgyHIKC18MwKgs+fPoAH8hcMYgAEA3Q4wHlCUL4HPrDsAYD2bMWLUPjWMLh26N+gc51zm8O37rxjGAQ4A4KfaxAMAqpV7Zn2jtnXaFzYeCGCKN3HfAj5cDSHge2jjzZMDeEBn9XPE0jtTt3H9OfYGAOhwRzzAvO8IACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC79wjyhGQ4EA7BDUGJoIdkeNoRq2G8tWFgNKqP0GOwGW2KxfFgGDifUKjGIZlIXoaUkzCwamBfKcJgGA9ypq5kcHA0o3AoYZ5QKBKEux0/7/v/c1MhGCQEPwZzBwSEIT9Xin01MYheDIETBAcNkICdfXVkend1fGSmp6gSDhVVZJtFY5WaJacaJEy2MgcUNq+ov6d0fAmkBAV3iUvKNoMUJAy9Rgi7z5oxkszP07nQuxO908viwsLIx3ziyoMuObvSOrfd7dm38O312OlHdAqhxedzgAG7Fu4WmWmwYN0jE4OJKR0O4UVEWMahwF+f9uTBA9CTpzJ+iDyKHEmyJMkQhhoUsfDFpMuXMGN6Qnnoi4Q+cXLq3Mmzp8+fc2iqBDJH5ZyfSJMqXSqHAEoEQ/sYDTKkqtWrWLNqzRp0kEqbluZsHUu2rFkPiS5AXYmBE4C3cOPKnUu3rt27ePPOjeKUSxy9gAMLHmxXwAeqHwQQXsy48dwIACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC79wSBhENIDMFwfCU5IKWBdoQRyumgz3u6fsCP4UAsHhQL40G2azpVBwZxSDyJTjvqIcQgHBBM3Zc4apl0Blup/GzrTAmFIkGYy+mmvD6PQDj6gAhLBw02JoFEDlFSeRN9jEohgF6Fe5Z6cWl2c3F4aZ+goRcPGBaOX39pS6YaCA8IF2CfFxMNYIFgiwwGfrKhv58hCXjDcwQFxl5Ky0SjF8+xroJj0LYPDA62Rtl92qUWzRdRr8zlWwTDwp3HyeZKoxbZpl/kY/IYrqbTia0ahBjiDmRTxKCeOyPCFGhah8wTsF8WSD2zUMhAqi8GaMX6g29JGnzPEsDgszDkWSKPD3/BuVOHTsNLl/o4oKjBQogGW3gRGIkTJywwJhxJ2GKrWw2KJc/BtNSnRqEo+JYy7YVrBIFdNUbgMtCFq9UQXwDZwCVJwlGlUvmMyOhVRBcXbprw0uZFEJYyIkqMkSSGjd4+TOpu6XtgTeG4T8o6zWiiEhbETWBAnky5suUWTWExvmkoiOcUn0OLHk16dFlYhTS4NVG6tevXsEFQsvV0ngkAuHPr3s27t+/fwIML5+3kipvhyJMrX/5bwAcCngUwn069Ou8IACH5BAABAAAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHnter/gsHhMLpvDwWRiSygQgbC4fE6v2+/4VTr9difzBwwPDHOEdAgPKg4OMA4PDw15hoBBCldHRX5AZwYODQ+LCI6QCJ8IXqKPDYidjF4NDhKDZqycV0pCb31vVEAPiIGeKgaliUvCMQeQxku/QAgIBKmxBJ2QBI4OvUvQ1Q0pFhrbQIKQyqMMvgfN6MqgTcxKngawBMqlKQ/jSt30BuISlPiYYQCUo3SCZiSqMYiAoHuebPyaoWHAQmUDCHzShnHgjGeX0fw1UPINyEBGiUAx+PdAoQxpAxysFFRwwL0asA4gQhBzJKyMkR5caekxo7Ro+EYCKUngRIBygw5kO8BBaICCAaSCivGAg6CmHAZ8GjQg69QAYiEpbOCUA8hS3wCmA9KWgL62ePPqhXMBXyAM64AAGEy4sGEABA4rXsy4sePHhW1II5ADsuXLmDMzFvABLAgBmkOLHn04AgAh+QQALAEAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4LB4TC6bw8FkYksoEIGwOIvxYMgPmvsB8VA5HDAODw8NejB2hnFpaW9uSYkrfw9/CIKECA0PCCyVgw18B38wDQ4SdZCgkCxBCldHRY5AZwaafQwOnyqYml64m3uEfV+8BggIxYKlV8kGzLMGSkJvjW9UQJmEB5ODDEB9S9ungw7Q4AhMuAekBNqYKg/WTMYEBg0pFhrxStqS3XTeB8D561OrARNNQPJ903ZtEjt4+oDMq2cgnwQlPgaUquXATqYZjX0GEECg0SPBAXxI0iBlTJNGg6REFurDMOMMiecoGrxWLiMdbqEmHQApg9aAoICMDqAj4yY2BjOQDtVISGRVmzhH2ttJwB6QExwIwANLtqxZDzgx2bPY7StZA2fjyiUB5wKmexgCAgHAt6/fv4ADCx5MuLBhwDZGEshxuLHjx5AHC/hAQISAyJgzawYcAQAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/1xh4PBarviyyev0NJhNbQoEIhNlZEsT9oN+rGH99KxIafjCChixubnRzSYkrFg8YfBp6CA2IlQicD3wODXgOo5mQmJAwQQpXR0WOQGxdoJMYow4aDQ8IXgy2GrqgYlegnA67fJxinLsMurFeSkJ0jXRUQLMSoBOczQdL2oWTnky6QHoEvQ23BAakBrkM1kuc7A0pFhry5g6TzRegQMYpoRXswSgE5BASUEHgAQMDvRY6tHfggT4l9N5BRChBiY8Bs3om8XvYbIanAQsHOIToyZM6bzRupcikkuMDlOocSCTwcYY5hBobKLEH5CMGh6AyXTApA92AC5js3WzHoAaCW70OPFXaAGfEhlp7/iSA6d1QA0BOBMA0CSE+AxyEBiDQYO5buhwwEegAEuoAuxj2DsA3A4NaDj+jbiQbL63ap38PS548uQ5Uivi8AQHAubPnzwACgB5NurTp06g92yDLE0fq17Bjyy4t4MPeEAJm697NG3QEACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC7/8EAjqRInmgKGkfrHsryHsZg33g+EHrv876gcKgjGBMKRYKgTC6N0Kg0ephCDVaqESvlZq3erxVpMDSVyGd5zW63ELMWi8aOw1312Ry/n7f/f0dPCWkEBUpGcYoHCI2Oj28zj3CUdy6Ti4yam5lxgoKIh0+dL40ak3eWb5AMjKqujquuq6mkngRkZoWiW4B/pqh3rWU0mK2NdGWYBsiNys4Hw76AUEiIoYhiUo0NwSwNVQRYmOAS4UaYBM0I4o7f59pRjeINLBYa8VIaDhKn0OBbCPiD44BRqygTTFVZh27egXr5trEzUA+fBChEbOzrp2ECgQP+DmqIG5BwAsho4HBg4HaAJCUGO0x9DJnxRkN6FKFABEKk2wMEFzoyEPegxo4BKycYeICy5Y0LLF0a3KGhwccHPDPeBJrTyE4VHHwCddDtwoClBkKkJQu0HtMLaTuQ/QguAAaUIcoOOIAVbIeGbQ1YHGrEr1gHDlpZsNH3bIDEKAkwtRCXw1yKBx4rdpAXgYO9ff0GSAS1HsqDRgCoXs2aNTimiBkIdqD6wQDVBgAknj0Aq2cCrhucraebQQAGtO3yDfGgtXPnOdRlxfH8uVWmD/gF8Fz7doADujd47g2AL/jVF2aCT3w8easHzKvLF/CBAAkB8ls7kCyZH0naANgaBsB34f1HnmTnqYbcVesZh9yAQ9lGXn7ORQAAIfkEAAUAAAAsAAAAAGQAEAAABP4QsUlZa5WhwLv3A+EQnngcUoAiiEG0CLG2YsCuwdDgszEwhMFn+DGcjifFAnnwDZ7QKJRgGEVFVERjIJE0GQeGoQsWcRGrkCNNPhAaLqlcSqgnFIoEIY/X1/+AgX8GcICEJxIvGBphXloTLQ0EkBMyDhJAjxqHLoKegHcGBnx5d36iqKmqojupBw0sEgaUaBpgtK+zsWIHl7K4ravCqHZ+CaYEBXl1TM1MO8+xaJiMFCgUaDsaLGAIvt3Yr87jR8XFy8p+5M5gTNs30ojwsSfd8a/09+3rzXYKonz0pKszbBgaV/RErThh5OBCRA1vGOnW5CGKggX/3FmGbtmnj4AgQ4o0FGOkyT8sqMAJg6HkyZcwPbmJKTIlIV0vgNSZw7Onz59AgwqtYxOOpDqFgghdyrSp0ykvYmgh9CcpkatYs2rdyrUrURYXcCaq07Ws2bNoS8i4MJVlmToA4sqdS7eu3bt48+rdW5dODJ58AwseTBivgA8kiAgozLix47oRAAAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu//DASIEYRDcoAbrkLabKr8rW9df7hlH7x+Kxe9gkBmPMgLJSGD0EIiBySQtnqbFprRUUh24VWqIgCwzSwmFIkFYq9ncuDzOa1xLBwd0Qjgg/Dwkf36AeX0/JYNfhAgnf3dzkWgKBgZua2lwlZucnX56nAgPExcGEqcSBxqnqw+mUFB1sKYaGgcNj526nGhwCZkEBWt4Q8VPoop+D1ANDqoXuAi4uBYXUA+3FA2f1c/WCHrJxkO9vcPCcOPGyD/IEs4MDs0aenrx86K3GBfK3fcOGpaJU9djUiU3bNCV2MXQAKhN4PbYuWDByT59FcEZwCDBDjILxhv30cvVsBOXNMPODZPEclucW3sYNNnXqKKBirhuEYgmrY/ABjMt/AHKsigUE3aeaSjKkgGkm3u+wPqjZOlUIjKnksgDSwksrExZHt0ItSoYM2WWJPlKpg/VAabaEkokZS7cbUvcflGCFm0iEmSJ7rzSt7Dhw2W0IEb8V8lELnZK6JhMubLlySEua/bwV5odqzIlbx5NurTpDnisJa24lwCA17Bjy55Nu7bt27hzzz6ihEwZ3cCDCx9uW8AHFDoEEF/OvPnsCAAh+QQAAQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4LB4TC6bw8FkYksoEIGwuHxOr9vv+FU6/XYn8yoMMAgPhQ6AKoSIizBBCldHRX5AZwYIDQ8IXoQICA4NlVeEoaRojm99b1RAlw8HSwcPrLIHDg+HnwQXtbcqsp63CASxtsK8h7EXq0udBAagBxYay0uusLLDssqfDLKZ2w2xBJ/PDtkS5uCxgtSsws8G0xJKPjSuNbEzhAO2hgSZsvr1ejDgXj5x+QQeklWPhjtnoBooAQWkYUEZNAw8SPFpwIUBep08PmjgkWQnjfwkNnAwQCO6kiA1EbQ44OGlZxMNADnRYaMHjf4CGLBlLgAnoUSdPQhw7IDQW5mQ3lLK04O7S6DkMVBStavXD/++loBz4WY0DK+AAFjLtq3bt3Djyo1bcK5dujUICMtxt6/fv4D9CgArQkDgw4gTz40AACH5BAAsAQAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHnter/gsHhMLpvDwWRiSygQgbA4TMNCPO4OhHx/sPP/gHtpaW9uSYEqCA0Peit2CAgODYiOD5SXfEEKV0dFhkBnBoqMXnZXpgcODw6pDQYNrKqsppGrCKKrpKmrfQ8XoVdKQm+Fb1RLlksHD0B2BL+SDA8GjNCTzJIHsATLig7Prtm+B8dLkASvKRYa5cjkSsvN2Her1M6qePHJ8fzz+cztlJxLx06CEh80LNVYpkLSgAsEID309bBBRD0PBkh65mBANwZ5HSFCWoawRjME6FxZBOIKSMkB02pQw0NggAFZMh7ZxEnNo6wDNnMh2Fmv58sBJyOqVNKSwImnUEtQi3ripCJXBRkoocqVK4EHXUnAuaBIHYZ3BACoXcu2rdu3cOPKnUvXrY2INXHU3cu3r9+4Aj44DSHgr+HDiN1GAAAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4C4rTBaXz2hyMJnYEgpEIGwOQ8wpdrpexdj7/3pra3FwSYArCA15KggPDo99h4wPkpV7QQpXR0WFQGlXiQ8IXo0HiQ4pCKqmo6uqdo2pqykaqrJ5tZ9dSkJxhHFUQBKUSwcPwscIjw6nBg6Ky3bHDM8ODATGDc8Eyo/SGMFLqgQGDbQYCOFLxErGyATayoqUovHP7g8MBtTYogzH9hoYs6NOWLpy+9JJUOKDBqUaxq5QG7BsWzUCFQU+GCCK20Zjl6Y2ZjTWsIZBcuYaKDEHpCRHGTQM+LM2wIKEAwO0MaipqI/MnIouDJBpoQHPmz9dDjiZqNxKA0BOdFDpAd6FnQEIWLgW4IDArFuBNAALLgBRc2SvwZNalZuqCwm5qSXAtq7dDwQe3C0h50LTA1sPKAFAuLDhw4gTK16sOEADxpAV2+BGIEfky5gza8YsAK8IAZtDix7NOAIAIfkEAAUAAAAsAAAAAGQAEAAABP4QsUlZa5WhwLv/IDeEJDiWaBoaR+seyvIexmDfeK7bxO7rvZ9wuCMYEwpFgqBMLo3QqDRqmB6M1ak2et16v2AC0mBoKpFPsnrNZtHWB8TL3XKz6LQ4/j2f39uAa0dPCWgEBUpGM4szco0IkI5yknEtk5aMlZqXmpmZg4OJiE+ejI4vGpGYlKwtDHGTrK2dpTNHCmRNS6NYgWyub2QHqZAsnMeaDAaQsMbNlZTBvoK3iaKJYVAsDV2K3JAMBMyt4y0N4rEEy7DoletZ2VCQ6g0sFhrx2gfcXA5xE+3IcXIQEIG6V/PKGXgFL988A/XwSYBChMcBBzVuXHTVYICEZP4SliFs4WCAhn8DIKL8KEdlkIoDjDysd85IPSMw1T3IaMPAA3MdJXxcGFIowwcmJzGI2QCcRw2vCNyEyQOdOJpQbhJQIcKnAQ8+bToIYEEoRAQRm2rwGQDDsAYBCDiQALcsPoxbuXKQCekCUXHhjOi18SDvXqQEGIy9gBaBAQeKpTZtSuBBAMjDxlaWsHiywZ2GuXqbbM8tFACoU6teDQCp6gGWTTYAcCHp5QttO2qADQAyWQcAYMcBXnu3ZdbIX+MQ9zJH8uSuU8O2cYF20AO0HcyuLYe3b8XBdyIgfp338+QCPoT2IOA86+iop8vdPttxdvoAHHtn8Dv8cOv51QbwgHvIRQAAIfkEAAUAAAAsAAAAAGQAEAAABP4QsUlZa5WhwANxmuQEB2IaRkMMzDo0AXLMnLl137wRMkJ0Gh3D4yAchp9Yb1c8dgyz6EyxkB4Mg+zgY5o4BhLJzGEgNMpmsC2rYWi3jpL7KMGyEShEAw51f9QlCHxHWgSGCQoKCQSKiYuGkAQpEhoqehMyDVeaKCqYLQQUkZN6RhgMB5BBJSoprJKebS2upZGIKI2KiI8oKAcNlHoGn5kznL/DXTMUV77AesYTzck2qL/GUGchddfIKIePCbsEBYqGVpqYmpRBwN3X28vSUs/WF9Y6NibG/PDV/ZpmgANnrtwjK6j2JbSxTAa+hfsCyZAS74g7KfomWtsoMSJHgbgEbhlotMigoV5Q8EzEE2iGgZW+WO6LOS1liStyaqaUETOlT4k4ZfaChMhcQXORkipdyrQp05c+nEqdCskErD4YolLdylXpla5gI1lNkYwHKBdv0qpdy7at27dw3Roae0aFoTOG4urdy7dv27k+hNk1g6aD4cOIEytezLix48WA9WgLfPax5cuYM0M2BeyMRVSQAIgeTbq06dOoU6tezdp0Wh5o07aeTbu27dQCDv9ILOC279/ATUcAACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocDDQMcwHJsnegd3Bqm4up2HwOcaEAahE7LZu7WNzXAoGg+KxfFgABI0uMkAh5siCCPsZ7oTGXJORrcKFpGKiNlT13xyx+KqaJdQKBKEux2/2x0cDSQNDgRnCEQNOSBfDYVGOmlXfg5ohVcgOxKRYn+Vf46PnSR9BHVfend1fF9fCA8OEg4PBpoaCLAHDSB/tJFFFKy0D2kMtAwHGqwXExckwxLCvZHCxKw6CXzYdwQF26DOGBcPyBe6DM+waZQYE0XlR67Mggi6RoDElK4Sga65FPzDLDwqlU0VN2/wHlgQhwyQgwnPnvVbFujPoIQWKDF4iKvIw0j++QKGzBUOYKyBpgzowdNtFatb9HQ5MEDxWD5ct2hqqPjuZbqbzZTZokfiJq2ZGPYdLWrt2p48LL31yUUy15NwIHjqsKorzZeFObZ2TUQTQ1gCmiQUs8q2UVd6hRpZ7ZMGRyJyUEhFeVJMTKRFxwzEEYw2EiQJfQQbfgJr6t8DewkT/ntFcpxMlRNBQazDyYwiaKecgQR5hhUrIMykdoGWRBt6TYCQwHQ6tO3RtU1zqUuT5o5EnYEIH068uPHhhY8rXz6nMNpEjXQA5xGjuvXr2LNbz6K9u3cOh2MqRnv5u/nz6NNnF6vrroVjOwDIn0+/vv37+PPr38/fvnC0WgwW19+ABBZoYH4CVEeddQIc6OCDENoXAQAh+QQAAQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyWw6n9CodCoVGgxHojB57Xq/4LB4TC6bw8FkYksoEIGwuHxOr9vv+FU6/XYnWQgPDioPD3IMMIF5incNhYMHjCqSgIYwQQpXR0V+QF6BhqBggV+RZwakZY4aDg2oD5+wo7JeSkJvfW9MB4ISDg8EB7+Dw7wXvASgDQQGv8tKvL8MBK0EDQ5KD9PJsMYPy8gIwwjB399MCOQGrgcWGk7GFo7Wy63IvIjIDoiWDwiu0PwxADaQgL9sBxDykgBMn6tr5RiiU+fqnQQlNRY6cBBowK9HxbwGIBP5YIAhGtYEEaCBzGBCf8Bo+Jtxr2TIkCdv2iw5A0g6Zg+VAFxJwwCwQiEvDEhndEBTpyX3CTNgjZeMGUbT8XTUoMbAdK2gim1a7dpYngN8kvu3TihVAh6MBhAkt5lKk64ecJCrbAbXAR2M/toQIBBhDgMcfQNcV69cYYIOBGjcQe2/imu3wT3BubOHkJ5DB4BzgW07DAmBAFjNurXr17BjywZgEMHs27hX20hG9Ebu38CDC5ct4MNmEAKGK1/O/HUEACH5BAAsAQAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHnter/gsHhMLpvDwWRiSygQgSzEw6F6PGAqBkyO7x/4fiwNdnR/dyuAe4csaWlvbklxdoaLiJUqCIGKmiqDGg50iYZ9oipBCldHRZBAXnIOEg4PKbJ0tXIXcgZyDw1Xta5zDwwGDr4NDl3DV3yvvbuzCLfQsr5XSkJvj29MB70XgwQXxQ3eBN7l5g4aD5nt5UreE7MMs+1K9wQGh+315w8EjB1A9k8CwCUIEOjzdcCCBifepMECKIuQOXP/CNxZMsjBEoy9d/b5w6cw40WA5jaezIhQoQFfDyUoqeFt350HAy4QSHhyhrcB6w7QEeftAI2Icgjk7FWjXkJjA35KxWlMnIOoOH/OAJJw4UslvoDU2DdgDtliZjX6wjmALK8GM6qNFYZghpy6NQb1UnoWJ1mhc4z2pcFVIYJjYA0AOcG4sQesAxxLDlD4MEzDDJRM3jxCHufGcHIxdHhACYDTqFOrXs26tevXsGOvtrFTKQ7ZuHPr3u1awAcCIgTwHk68+OoIACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocC7/2AojmRpgsahroeysIcxzHRt33iu73x/E8CEQpEgEIdFoHLJbDqf0Kh0KhUaDEeiMHntqq7frnicIpvB5zHLqz7HxsFkYksoEIGwiUoPOyD6DH2Ce4MwEhorgSyKgH1xcXd2SSwIDw5+Dw99CA2Gl4WUmqB+DqUOf5WhgqkwQQpXR0WSQGKVDwi2Kbh/DLcHGn8NBrsIV7u1t7jDxcpXDaecl5USzA+6uDHTGl1KQneRd0wHlhYODwQIppwPgQ8Y4wTPDsIGpcJK48/Cz/UNSrd4RLkrRQAeg3kOGBQc6IAJLgIGhP3CgMDJuHK94p2aB2/cH3jt7A50ungvIC5rqQACUTlORbJzIBkYOLjwpMOKEWdWlKCkhsdSlQaY4gjzwYxxA24NAyKPAI2W4wwQQOh0RsI9DZFqNQow6FYaQB7m9MdUatUZBs6VSjvAgoQDBDSxHcD2QjqmNGmkneBgRgN2NdLxZUDXKNu6DTg1KMx4Rtid+5SU9BAvAIbKBCwoHHC5AYfKERPP0DygQzwLBwIMSOVhtd3SmD1j1kwgQGzT6HBd0IlOIZATwIO3Pii8+OeCdiVqhgsEgPPn0KNLn069OgDOB6xr3+7cBrqzNriLH0++fHUBH2qHEGC+vfv30iMAACH5BAAFAAAALAAAAABkABAAAAT+ELFJWWuVocD56MEHjmRZimYajihLGkcsH8oyH8ag68Q+9L6gcDgEEo+/oFEpJDgTCkWCII1OnVgnzgnLYg1eAjhMJhzK3nH2vC6zw1CDoSqFXuXyA2KGgMn8eXh9M3kxeDB7hoqHNzh6gI83iIByT1cJdgQFUlp8ewigMZ+ipKSJMqN8pamioK6rpY2Jp5aWnJtXNxquDKawvnqtpzG9wcHDrq8HxYm9oaHLsU8KclVTuFx4y8kMiMbMMt3POK6MzN57gsmD58sGz+yieFhQnLecXgcYoBYE4/rkHDHw90lOOSwAI43Csq5bQgRmGhDUA/GhF1BiGsCwoIHMAQf+uxg4mJhIo4FeciQ+c+JqjQOKZhY6mcDLzMtlNklWvDkwC0YDGjtKwOLjo4YJDgZIMOYg5RkDSTXoYTl0x0c9A7d120FTgsSPGwd8HCBVgtimy3ZQzQgUi0YnPgw8mHDhgdKjMR44eQuV7J6eGiTukAuqgdijOXRcKGxYLozGdssyGOBYn1qC/jRK3DsGhFwLGB4EsCBhj14CTZ04CNBgj+DWhjsQRpAUqAUDHS7IEUlZL+0Acln3sgDc92oOVBHoFtqTAAgCD2g7QCB6cesDpx+MEQ1SX4/WSTtAB1Ub5Mjcb3lD9ycaeoDuIgOspy4+IuyNGN4A2A9ggF4HTT2JAMAFfvnXn2gHAjDdALE1gF0A/PmXFwcOXADhfhf0INKB8gloIEijOcAhdBH64M8SPvB3oH96CUjgHgYamOCCsfWC4H4SPjhghSqKBMYFCcYoIIgbCsmfACM4V4IAKvoXwAN2udgAAH0YOSMCA4Q3kF0RPqCHgAM+MCV/tOHAo5EfMhBikGACEAEAIfkEAAUAAAAsAAAAAGQAEAAABP4QsUlZa5WhwLvvhIOMTXCMiDGe5TkaBDqEJ2MEQ2k0RDj8OB3PlfoYOYaDcnlQLJgHw29KpYYMqsZAIjlMSFsN40AQ9xxeBGGmPThgjt6a0H5zx9X8T55QKBIEf36AcoWGcjtKCDyLXxYScY0aBxgNUQ1cZDsElJdLBJudkmqHpQR9WIJ/fYRYrq+vlCgNBo6NkLViCF4TSpgoSbSdsi+UwbxcsMpYPQmEzn8EBdGcUNa+ipYSXxgS2hQjFNiZw5jEu+XhX9fWzc+s0tTs1mNKYyi7Fdooiite/fbs5eP3Lw2+eVCaKUgFb1qrZbBOYJHoQpEGCUn8SUSXIqMiLJIcCXYMqQQiLD6DAgFyaKqlyxMuXMqcSdPlCFDCLGioWTOJEp5Ag7a8uaOWGgly9ChdyrSp06dQexClxaMHrR5Qs2rdytVKjKNU5VwlcKSs2bNo06pdK5UErZ1Ie6ydS7euXQ89KGHKiYFMDwCAAwseTLiw4cOIEysmXCXGGj2LI0ueTPmwgA9kjwiozLmzZ8IRAAAh+QQABQAAACwAAAAAZAAQAAAE/hCxSVlrlaHAu/9gKI5kaYLGoa6HsrCHMcx0bd94ru98fxPAhEKRIBCHRaByyQQins+mdOp0IqqEA1Z5zVK/QYXBcCQKk+O0Wo14ON6O8Uo+T6nsKUP7gHA0UnEHDXwPageBg3Yxa4xjQUkJZwQFREAwlyptTwwPmRp8ExKeCKASTw99g3yDnKcsCKyopZiYj4+VlEm0MG0TDQ4HDHASbw2dwm8SD5wabrKEgg8Neyt7xhjDuyxhY0dFuUCNjG1wf2/C19EG536HbnpuDqTw9G1shfbsf+JqSkKVuCqBUXKgEyECDuIZI9UGoUID11J0+qWlYJZCBedYLLhO4UAuqVcgprCg4SPBB5ZQWjB1AZbKaZ/8ANvo5+JFUssmSLy5sqTJKCJLSlDiA+IMoxAxEEhlbEBSBksbEJhmdACsMQ0GTGWQ9AJWrRieEvBhhYBIqUD+APHRI9QFtnDj6ih7Fe1UA0BOmBB04YDev4BHWIH1RyjUvIETK14sOEvLP8EwaAECoLLly5gza97MubPnz5ltLB2LA7Tp06hTcxbwgYAIAapjy56dOQIAIfkEAAEAAAAsAAAAAGQAEAAABP4QsUlZa5WhwLv/YCiOZGmCxqGuh7KwhzHMdG3feK7vfH8TwIRCkSAQh0WgcslsOp/QqHQqFRoMR6Iwee16v+CweEwum8PBZGJLKBCBsLh8Tq/b7/hVOv12J/EID4IPDXlzgSoODgeIBwyMDyyNj4Z6BFZYbH5AZ4EIEg9nY4EGijGMBqSkXairol1KQm99b1QEBw9AgbcOD4uBhLkHvYsNkQ+PwQdwucS4S8/OzrYEnwQGDSkWGtS3g8gEFwQODeQHxuEN4+qKDt6+Ss/yufHCueLk1NbYBtwSSj5wXQk0oJegXgcG4Co4yMEABg8QKIxIbsbCiw9qYGR40IcuBJPXsqkDkg2IDwMZB6AccGHAp3zGWDZwKbGdyoy4JK7cGerKzZ8tP3msBhKBSCUlCZxAyYFpKXi4ggV46g4iAWRMA1hlOoAQykHXHgTomo2YUhMfjWbzx0DJCRMNNgR6S7fuCDgXjGrDsAwIgL+AAwseHBjYIsKIEytenNhGNQI5GEueTLnyZAEfzoIQYLmz58+KIwAAOw=="></a></div></div>
-	<div class="centerHack"><div style="margin-bottom: 1em;"><a href="http://sourceforge.net/donate/index.php?group_id=204582"><img alt="Support This Project" width="88" height="32" class="noBorder" src="data:image/jpg;base64,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"></a></div></div>
+	<div class="centerHack"><div style="margin-bottom: 0.75em;"><a href="http://www.ohloh.net/p/RegexKitLite"><img class="noBorder screenOnly" width="100" height="16" alt="Metrics by Ohloh.net" src="data:image/gif;base64,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"></a></div></div>
+	<div class="centerHack"><div style="margin-bottom: 1em;"><a href="http://sourceforge.net/donate/index.php?group_id=204582"><img alt="Support This Project" width="88" height="32" class="noBorder screenOnly" src="data:image/jpg;base64,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"></a></div></div>
       </div>
     </div>
 </div></div>
   
-<p>The author of <span class="rkl">RegexKit<i>Lite</i></span> is also available on a consulting basis for your Mac OS X or iPhone projects, and at the time of this writing, also available for hire on a full-time basis.  Contact <img style="margin-bottom: -4px;" width="158" height="15" alt="email address" src="data:image/png;base64,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"> to discuss opportunities.</p>
-  
-<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
 <p>You are always required to acknowledge the use of <span class="rkl">RegexKit<i>Lite</i></span> in your product as specified in the terms of the <a href="#LicenseInformation" class="hardNobr section-link">BSD License</a>.</p>
 </div></div></div></div>
 
+
 <h3 id="Introduction_Download">Download</h3>
 
-<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation here&mdash; <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.0.tar.bz2" class="printURL file">RegexKitLite-3.0.tar.bz2</a>, <span class="XXX">107.3K</span>. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
+<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.0.tar.bz2" class="printURL file">RegexKitLite-3.0.tar.bz2</a>, <span class="XXX">107.3K</span>. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
 
 <h3 id="Introduction_PrintingThisDocument">Printing This Document</h3>
 
@@ -1561,7 +1566,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li><a href="#RegexKitLiteCookbook"><span class="rkl">RegexKit<i>Lite</i></span> Cookbook</a></li>
 <li><a href="#AddingRegexKitLitetoyourProject">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
 <li><a href="#NSStringRegexKitLiteAdditionsReference">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
-<li><a href="#ReleaseInformation">Release Information</a></li>
+<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_30">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.0</a></li>
 <li><a href="#Epilogue">Epilogue</a></li>
 <li><a href="#LicenseInformation">License Information</a></li>
 </ul>
@@ -1595,7 +1600,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
     <tr><th>&nbsp;</th><th>RegexKit.framework</th><th><span class="rkl">RegexKit<i>Lite</i></span></th></tr>
     <tr><td><b>Regex Library</b></td><td>PCRE</td><td>ICU</td></tr>
     <tr><td><b>Library Included</b></td><td>Yes, built into framework object file.</td><td>No, provided by <span class="hardNobr">Mac OS X.</span></td></tr>
-    <tr><td><b>Library Linked As</b></td><td>Statically linked into framework.</td><td>Dynamically linked to <span class="file">/usr/lib/libicucore.dylb.</span></td></tr>
+    <tr><td><b>Library Linked As</b></td><td>Statically linked into framework.</td><td>Dynamically linked to <span class="file">/usr/lib/libicucore.dylib.</span></td></tr>
     <tr><td><b>Compiled Size</b></td><td>Approximately <span class="hardNobr">371KB<sup>&dagger;</sup></span> per architecture.</td><td>Very small, approximately <span class="hardNobr">16KB&mdash;20KB<sup>&Dagger;</sup></span> per architecture.</td></tr>
     <tr><td><b>Style</b></td><td>External, linked to framework.</td><td>Compiled directly in to final executable.</td></tr>
     <tr><td><b>Feature Set</b></td><td>Large, with additions to many classes.</td><td>Minimal, <span class="code">NSString</span> only.</td></tr>
@@ -1662,7 +1667,7 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
 
 <h3>Multithreading Safety</h3>
 
-<p><span class="rkl">RegexKit<i>Lite</i></span> is also multithreading safe.  Access to the compiled regular expression cache and the conversion cache is protected by a single <span class="code">OSSpinLock</span> to ensure that only one thread has access at a time.  The lock remains held while the regular expression match is performed since the compiled regular expression returned by the ICU library is not safe to use from multiple threads.  Once the match has completed, the lock is released, and another thread is free to lock the cache and perform a match.</p>
+<p><span class="rkl">RegexKit<i>Lite</i></span> is also multithreading safe.  Access to the compiled regular expression cache and the conversion cache is protected by a single <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/spinlock.3.html" class="code">OSSpinLock</a> to ensure that only one thread has access at a time.  The lock remains held while the regular expression match is performed since the compiled regular expression returned by the ICU library is not safe to use from multiple threads.  Once the match has completed, the lock is released, and another thread is free to lock the cache and perform a match.</p>
 
 <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
 <p>While it is safe to use the same regular expression from any thread at any time, the usual multithreading caveats apply.  For example, it is not safe to mutate a <span class="code">NSMutableString</span> in one thread while performing a match on the mutating string in another.</p>
@@ -1671,6 +1676,11 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
 <h3>64-bit Support</h3>
 
 <p><span class="rkl">RegexKit<i>Lite</i></span> is <span class="hardNobr">64-bit</span> clean.  Internally, <span class="rkl">RegexKit<i>Lite</i></span> uses Cocoas standard <span class="code">NSInteger</span> and <span class="code">NSUInteger</span> types for representing integer values.  The size of these types change between <span class="hardNobr">32-bit</span> and <span class="hardNobr">64-bit</span> automatically, depending on the target architecture.  ICU, on the other hand, uses a signed <span class="hardNobr">32-bit</span> <span class="code">int</span> type for many of its arguments, such as string offset values. Because of this, the maximum length of a string that <span class="rkl">RegexKit<i>Lite</i></span> will accept is the maximum value that can be represented by a signed 32-bit integer, which is approximately 2 gigabytes.  Strings that are longer this limit will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a>. This limitation may be significant to those who are switching to <span class="hardNobr">64-bit</span> because the size of the data they need to process exceeds what can be represented with <span class="hardNobr">32-bits.</span></p>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+<p>Several numeric constants throughout this document will have either <span class="code">L</span> or <span class="code">UL</span> appended to them&mdash; for example <span class="code">0UL</span>, or <span class="code">2L</span>.  This is to ensure that they are treated as <span class="hardNobr">64-bit</span> <span class="code">long</span> or <span class="code">unsigned long</span> values, respectively, when targeting a <span class="hardNobr">64-bit</span> architecture.</p>
+</div></div></div></div>
+
 
 </div>
 
@@ -1684,7 +1694,13 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
   <li><span class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="selector">rangeOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">capture:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="argument">capture</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></span></li>
 </ul>
 
-<p><span class="rkl">RegexKit<i>Lite</i></span> 2.0 adds the ability to split strings by dividing them with a regular expression, and the ability to perform search and replace operations using common <span class="hardNobr"><span class="regex">$</span><span class="argument">n</span></span> substitution syntax.  <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" title="Replaces all occurrences of the regular expression regex with the contents of replacement string after performing capture group substitutions, returning the number of replacements made." class="code">replaceOccurrencesOfRegex:withString:</a> is used to modify the contents of <span class="code">NSMutableString</span> objects directly and <a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:" title="Returns a string created from the characters of the receiver that are in the range of the first match of regex." class="code">stringByReplacingOccurrencesOfRegex:withString:</a> will create a new, immutable <span class="code">NSString</span> from the receiver.</p>
+<p>There is often a need to create a new string of the characters that were matched by a regular expression.  <span class="rkl">RegexKit<i>Lite</i></span> provides the following method which conveniently combines sending the receiver <span class="code">substringWithRange:</span> with the range returned by <span class="code">rangeOfRegex:</span>.</p>
+
+<ul class="square highlights">
+  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="selector">stringByMatching:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">capture:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="argument">capture</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div></li>
+</ul>
+
+<p><span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 2.0</span> adds the ability to split strings by dividing them with a regular expression, and the ability to perform search and replace operations using common <span class="hardNobr"><span class="regex">$</span><span class="argument">n</span></span> substitution syntax.  <a href="#NSMutableString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:withString:" title="Replaces all occurrences of the regular expression regex with the contents of replacement string after performing capture group substitutions, returning the number of replacements made." class="code">replaceOccurrencesOfRegex:withString:</a> is used to modify the contents of <span class="code">NSMutableString</span> objects directly and <a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:" title="Returns a string created from the characters of the receiver that are in the range of the first match of regex." class="code">stringByReplacingOccurrencesOfRegex:withString:</a> will create a new, immutable <span class="code">NSString</span> from the receiver.</p>
 
 <ul class="square highlights">
   <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">componentsSeparatedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div></li>
@@ -1692,32 +1708,50 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
   <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="selector">stringByReplacingOccurrencesOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">withString:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">replacement</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div></li>
 </ul>
 
+<p><span class="rkl">RegexKit<i>Lite</i></span> 3.0 adds several new methods that return a <span class="code">NSArray</span> containing the aggregated results of a number of individual regex operations.</p>
+
+<ul class="square highlights">
+  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfCaptureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div></li>
+  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">captureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div></li>
+  <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">componentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span>;</span></div></li>
+</ul>
+
 <p>There are no additional classes that supply the regular expression matching functionality, everything is accomplished with the two methods above.  These methods are added to the existing <span class="code">NSString</span> class via an <span class="hardNobr">Objective-C</span> category extension.  See <a href="#NSStringRegexKitLiteAdditionsReference" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a> for a complete list of methods.</p>
 
 <p>The real workhorse is the <a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:options:inRange:capture:error:" class="code hardNobr">rangeOfRegex:options:inRange:capture:error:</a> method.  The receiver of the message is an ordinary <span class="code">NSString</span> class member that you wish to perform a regular expression match on.  The parameters of the method are a <span class="code">NSString</span> containing the regular expression <span class="argument">regex</span>, any <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> match <span class="argument">options</span>, the <span class="code">NSRange</span> <span class="argument">range</span> of the receiver that is to be searched, the <span class="argument">capture</span> number from the regular expression <span class="argument">regex</span> that you would like the result for, and an optional <span class="argument">error</span> parameter that will contain a <span class="code">NSError</span> object if a problem occurs with the details of the error.</p>
 
 <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
-<p>The <span class="hardNobr">C language</span> assigns special meaning to <span class="hardNobr">the <span class="consoleText">\</span> character</span> when inside a <span class="hardNobr">quoted <span class="consoleText">"&nbsp;"</span> string</span> in your source code.  <span class="hardNobr">The <span class="consoleText">\</span> character</span> is the escape character, and the character that follows has a different meaning than normal.  The most common example of this <span class="hardNobr">is <span class="consoleText">\n</span>,</span> which translates in to the <span class="regex-def">new-line</span> character.  Because of this, you are required to <span class="hardNobr">&#39;escape&#39;</span> any uses <span class="hardNobr">of <span class="consoleText">\</span> by</span> prepending it with <span class="hardNobr">another <span class="consoleText">\</span>.</span>  In practical terms this means doubling <span class="hardNobr">any <span class="consoleText">\</span> in</span> a regular expression, which unfortunately is quite common, that are inside of <span class="hardNobr">quoted <span class="consoleText">"&nbsp;"</span> strings</span> in your source code. Failure to do so will result in numerous warnings from the compiler about unknown escape sequences.</p>
+<p>The <span class="hardNobr">C language</span> assigns special meaning to <span class="hardNobr">the <span class="consoleText">\</span> character</span> when inside a <span class="hardNobr">quoted <span class="consoleText">"&nbsp;"</span> string</span> in your source code.  <span class="hardNobr">The <span class="consoleText">\</span> character</span> is the escape character, and the character that follows has a different meaning than normal.  The most common example of this <span class="hardNobr">is <span class="consoleText">\n</span>,</span> which translates in to the <span class="regex-def">new-line</span> character.  Because of this, you are required to <span class="hardNobr">&#39;escape&#39;</span> any uses <span class="hardNobr">of <span class="consoleText">\</span> by</span> prepending it with <span class="hardNobr">another <span class="consoleText">\</span>.</span>  In practical terms this means doubling <span class="hardNobr">any <span class="consoleText">\</span> in</span> a regular expression, which unfortunately is quite common, that are inside of <span class="hardNobr">quoted <span class="consoleText">"&nbsp;"</span> strings</span> in your source code. Failure to do so will result in numerous warnings from the compiler about unknown escape sequences. To match a single literal <span class="consoleText">\</span> with a regular expression requires no less than four backslashes: <span class="consoleText">&quot;\\\\&quot;</span>.</p>
 </div></div></div></div>
 
 <p>A simple example:</p>
 
-<div class="box sourcecode">NSString *searchString = <span class="hardNobr">@&quot;This is neat.&quot;;</span>
+<div class="box sourcecode"><div>NSString *searchString = <span class="hardNobr">@&quot;This is neat.&quot;;</span>
 NSString *regexString  = <span class="hardNobr">@&quot;(\\w+)\\s+(\\w+)\\s+(\\w+)&quot;;</span>
-NSRange   matchedRange = <span class="hardNobr">NSMakeRange(NSNotFound, 0);</span>
+NSRange   matchedRange = <span class="hardNobr">NSMakeRange(NSNotFound, 0UL);</span>
 NSError  *error        = NULL;
 
-<span class="hardNobr">matchedRange = [searchString</span> <span class="hardNobr">rangeOfRegex:regexString</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">inRange:searchRange</span> <span class="hardNobr">capture:2</span> <span class="hardNobr">error:&amp;error];</span>
+<span class="hardNobr">matchedRange = [searchString</span> <span class="hardNobr">rangeOfRegex:regexString</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">inRange:searchRange</span> <span class="hardNobr">capture:2L</span> <span class="hardNobr">error:&amp;error];</span>
 
-NSLog(@&quot;matchedRange   : %@&quot;, NSStringFromRange(matchedRange));
-// 2008-03-18 03:51:16.530 test[51583:813] matchedRange   : {5, 2}<div class="metainfo bottom noPrintBorder" style="margin-top: -0.5em"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+NSLog(@&quot;matchedRange: %@&quot;, NSStringFromRange(matchedRange));
+// 2008-03-18 03:51:16.530 test[51583:813] matchedRange: {5, 2}</div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>In the previous example, the <span class="code">NSRange</span> that capture number <span class="code">2</span> matched is <span class="code hardNobr">{5, 2}</span>, which corresponds to the word <span class="quotedText">is</span> in <span class="code">searchString</span>.  Once the <span class="code">NSRange</span> is known, you can create a new string containing just the matching text:</p>
 
-<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;example</span></span></div><span class="hardNobr">NSString *matchedString = [searchString</span> <span class="hardNobr">substringWithRange:matchedRange];</span>
+<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;example</span></span></div><div><span class="hardNobr">NSString *matchedString = [searchString</span> <span class="hardNobr">substringWithRange:matchedRange];</span>
 
 NSLog(@&quot;matchedString: &#39;%@&#39;&quot;, matchedString);
-// 2008-03-18 03:51:16.532 test[51583:813] matchedString: &#39;is&#39;</div>
+// 2008-03-18 03:51:16.532 test[51583:813] matchedString: &#39;is&#39;</div></div>
+
+<p><span class="rkl">RegexKit<i>Lite</i></span> can conveniently combine the two steps above with <span class="code">stringByMatching:</span>.  This example also demonstrates the use of one of the simpler convenience methods, where some of the arguments are automatically filled in with default values:</p>
+
+<div class="box sourcecode"><div>NSString *searchString  = <span class="hardNobr">@&quot;This is neat.&quot;;</span>
+NSString *regexString   = <span class="hardNobr">@&quot;(\\w+)\\s+(\\w+)\\s+(\\w+)&quot;;</span>
+
+NSString *matchedString = [searchString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:2L];</span>
+
+NSLog(@&quot;matchedString: &#39;%@&#39;&quot;, matchedString);
+// 2008-03-18 03:53:42.949 test[51583:813] matchedString: &#39;is&#39;</div></div>
 
 <h4>Search and Replace</h4>
 
@@ -1742,25 +1776,25 @@ NSLog(@&quot;replaced string: &#39;%@&#39;&quot;, replacedString);
 <div class="box sourcecode">NSMutableString *mutableString     <span class="hardNobr">= [NSMutableString</span> <span class="hardNobr">stringWithString:@&quot;This is neat.&quot;];</span>
 NSString        *regexString       <span class="hardNobr">= @&quot;\\b(\\w+)\\b&quot;;</span>
 NSString        *replaceWithString <span class="hardNobr">= @&quot;{$1}&quot;;</span>
-NSUInteger       replacedCount     <span class="hardNobr">= 0;</span>
+NSUInteger       replacedCount     <span class="hardNobr">= 0UL;</span>
 
 replacedCount = <span class="hardNobr">[mutableString</span> <span class="hardNobr">replaceOccurrencesOfRegex:regexString</span> <span class="hardNobr">withString:replaceWithString];</span>
 
-NSLog(@&quot;count: %u string: &#39;%@&#39;&quot;, replacedCount, mutableString);
+NSLog(@&quot;count: %lu string: &#39;%@&#39;&quot;, (u_long)replacedCount, mutableString);
 // 2008-07-01 21:25:43.433 test[69689:813] <span class="hardNobr">count: 3</span> string: &#39;<span class="hardNobr">{This}</span> <span class="hardNobr">{is}</span> <span class="hardNobr">{neat}.&#39;</span></div>
 
 <h4>Splitting Strings</h4>
 
 <p>Strings can be split with a regular expression using the <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" title="Returns a NSArray containing substrings of the receiver that have been divided by the regular expression regex." class="code">componentsSeparatedByRegex:</a> methods.  This functionality is nearly identical to the preexisting <span class="code">NSString</span> method <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/componentsSeparatedByString:" class="code hardNobr">componentsSeparatedByString:</a>, except instead of only being able to use a fixed string as a separator, you can use a regular expression:</p>
 
-<div class="box sourcecode">NSString *searchString <span class="hardNobr">= @&quot;This is neat.&quot;;</span>
+<div class="box sourcecode"><div>NSString *searchString <span class="hardNobr">= @&quot;This is neat.&quot;;</span>
 NSString *regexString  <span class="hardNobr">= @&quot;\\s+&quot;;</span>
 NSArray  *splitArray   <span class="hardNobr">= NULL;</span>
 
 splitArray = <span class="hardNobr">[searchString</span> <span class="hardNobr">componentsSeparatedByRegex:regexString];</span>
 // splitArray == { @&quot;This&quot;, @&quot;is&quot;, @&quot;neat.&quot; }
 
-<span class="hardNobr">NSLog(@&quot;splitArray: %@&quot;,</span> <span class="hardNobr">splitArray);</span><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+<span class="hardNobr">NSLog(@&quot;splitArray: %@&quot;,</span> <span class="hardNobr">splitArray);</span></div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>The output from <span class="code">NSLog()</span> when run from a shell:</p>
 
@@ -1788,14 +1822,14 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <p>Strings can be split with a regular expression using the <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" title="Returns a NSArray containing substrings of the receiver that have been divided by the regular expression regex." class="code">componentsSeparatedByRegex:</a> methods.  This functionality is nearly identical to the preexisting <span class="code">NSString</span> method <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/componentsSeparatedByString:" class="code hardNobr">componentsSeparatedByString:</a>, except instead of only being able to use a fixed string as a separator, you can use a regular expression:</p>
 
-<div class="box sourcecode">NSString *searchString <span class="hardNobr">= @&quot;This is neat.&quot;;</span>
+<div class="box sourcecode"><div>NSString *searchString <span class="hardNobr">= @&quot;This is neat.&quot;;</span>
 NSString *regexString  <span class="hardNobr">= @&quot;\\s+&quot;;</span>
 NSArray  *splitArray   <span class="hardNobr">= NULL;</span>
 
 splitArray = <span class="hardNobr">[searchString</span> <span class="hardNobr">componentsSeparatedByRegex:regexString];</span>
 // splitArray == { @&quot;This&quot;, @&quot;is&quot;, @&quot;neat.&quot; }
 
-<span class="hardNobr">NSLog(@&quot;splitArray: %@&quot;,</span> <span class="hardNobr">splitArray);</span><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+<span class="hardNobr">NSLog(@&quot;splitArray: %@&quot;,</span> <span class="hardNobr">splitArray);</span></div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>The output from <span class="code">NSLog()</span> when run from a shell:</p>
 
@@ -1826,13 +1860,18 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 </div>
 
-<h3>Creating A Match Enumerator</h3>
+<h3 id="UsingRegexKitLite_CreatingAMatchEnumerator">Creating A Match Enumerator</h3>
 
-<div class="XXX">
-<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
-<p>Should use<a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">- componentsSeparatedByRegex:</a> instead...</p>
-</div></div></div></div>
+<p>The use of <span class="code">RKLMatchEnumerator</span>, described below, is <span class="deprecated">deprecated in <span class="rkl">RegexKit<i>Lite</i></span> 3.0</span> in favor of <span class="code">componentsMatchedByRegex:</span>.  The description of the implementation of <span class="code">RKLMatchEnumerator</span> is still a useful tutorial on how to use the functionality provided by <span class="rkl">RegexKit<i>Lite</i></span> so it is kept for pedagogical purposes only.</p>
+
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
+    <li><a href="#NSString_RegexKitLiteAdditions__-componentsMatchedByRegex:" class="code">- componentsMatchedByRegex:</a></li>
+    <li><a href="#UsingRegexKitLite_CreatingAMatchEnumerator_MatchEnumerationinRegexKitLite30" class="section-link">Creating A Match Enumerator - Match Enumeration in <span class="rkl">RegexKit<i>Lite</i></span> 3.0</a></li>
+  </ul>
 </div>
+
+<h4>Implementing <span class="code">RKLMatchEnumerator</span></h4>
 
 <p>As a practical example of how to use the simple primitives provided by <span class="rkl">RegexKit<i>Lite</i></span>, consider the common need of having to enumerate all the matches of a regular expression in a target string.  The following example creates a simple <span class="code">NSEnumerator</span> based enumerator for all the matches of a regular expression in a target string, returning a <span class="code">NSString</span> of the text matched by the regular expression <span class="hardNobr">(capture <span class="code">0</span>)</span> for each call to <span class="code">nextObject</span> until the end of the string is reached.  Each match begins searching where the last match ended.</p>
 
@@ -1848,7 +1887,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <p>Next, in <span class="file">RKLMatchEnumerator.m</span>, we define our private <span class="hardNobr">sub-class</span> of <span class="code">NSEnumerator</span>.  In it we declare three instance variables, <span class="code">string</span>, <span class="code">regex</span>, and <span class="code">location</span>.  The <span class="code">string</span> ivar holds the string to search, while <span class="code">regex</span> holds the regular expression string.  To guard against mutations to either, an immutable copy is made.  The <span class="code">location</span> ivar is used to keep track of the current location from which to begin matching.  Finally, we declare our designated initializer which initializes the instantiated <span class="code">RKLMatchEnumerator</span> object with the string to search and the regular expression to use.</p>
 
-<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.m</span></span></div>#import &lt;Foundation/NSArray.h&gt;
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">RKLMatchEnumerator.m</span></span></div><div>#import &lt;Foundation/NSArray.h&gt;
 #import &lt;Foundation/NSRange.h&gt;
 #import "RegexKitLite.h"
 #import "RKLMatchEnumerator.h"
@@ -1859,11 +1898,11 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
   NSUInteger  location;
 }
 - (id)initWithString:<span class="hardNobr">(NSString *)initString</span> <span class="hardNobr">regex:(NSString *)initRegex;</span>
-@end<div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+@end</div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>The following begins the implementation section of <span class="code">RKLMatchEnumerator</span> and a fairly standard initialization <span class="hardNobr">method, <span class="code">initWithString:regex:</span>.</span></p>
 
-<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div>@implementation RKLMatchEnumerator
+<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div><div>@implementation RKLMatchEnumerator
 
 - (id)initWithString:(NSString *)initString regex:(NSString *)initRegex
 {
@@ -1871,7 +1910,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
   string = [initString copy];
   regex  = [initRegex copy];
   return(self);
-}<div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+}</div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>The following implements the heart of any <span class="code">NSEnumerator</span>, the <span class="code">nextObject</span> method.  If all of the matches have been enumerated, <span class="code">location</span> will be set to <span class="code">NSNotFound</span>, and the body of the <span class="code">if</span> statement won&#39;t be evaluated and <span class="code">NULL</span> will be returned.</p>
 
@@ -1883,31 +1922,31 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 <p>If the matched range location is not <span class="code">NSNotFound</span>, then a substring of the matched range will be returned.  Otherwise, we will exit the <span class="code">if</span> body and return <span class="code">NULL</span>, indicating that the <span class="code">NSEnumerator</span> has no more matches to enumerate.</p>
 
-<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div>- (id)nextObject
+<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div><div>- (id)nextObject
 {
   if(location != NSNotFound) {
     NSRange searchRange  = NSMakeRange(location, <span class="hardNobr">[string length] - location);</span>
     NSRange matchedRange = [string rangeOfRegex:regex <span class="hardNobr">inRange:searchRange];</span>
 
-    location = NSMaxRange(matchedRange) + <span class="hardNobr">((matchedRange.length == 0)</span> <span class="hardNobr">? 1 : 0);</span>
+    location = NSMaxRange(matchedRange) + <span class="hardNobr">((matchedRange.length == 0UL)</span> <span class="hardNobr">? 1UL : 0UL);</span>
 
     if(matchedRange.location != NSNotFound) {
       return([string substringWithRange:matchedRange]);
     }
   }
   return(NULL);
-}<div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+}</div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>A standard <span class="code">dealloc</span>, releasing the <span class="code">string</span> and <span class="code">regex</span> ivar objects created during initialization.</p>
 
-<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div>- (void) dealloc
+<div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry continues above"><span class="item meta">&hellip;</span><span class="item info">RKLMatchEnumerator.m</span></span></div><div>- (void) dealloc
 {
   [string release];
   [regex release];
   [super dealloc];
 }
 
-@end<div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder">&nbsp;</div></div>
+@end</div><div class="metainfo bottom noPrintBorder"><span class="entry continues below"><span class="item meta">Continues&hellip;</span></span></div><div class="floatRightPadder noSelect">&nbsp;</div></div>
 
 <p>And finally, the <span class="code">NSString</span> category addition that returns our match enumerator.  This simply creates an instance of our private <span class="code">NSEnumerator</span> <span class="hardNobr">sub-class</span> <span class="code">RKLMatchEnumerator</span>, initializes it with the string to <span class="hardNobr">match, <span class="argument">self</span>,</span> using the regular expression <span class="argument">regex</span>, then sends the instantiated object <span class="code">autorelease</span>, which is finally returned.  Since this is a <span class="code">NSString</span> category addition, this message will be sent to an instance of an object that is a member of the <span class="code">NSString</span> class, which includes any objects whose super class is ultimately <span class="code">NSString</span>.  Therefore, the string to match is the instance receiving the <span class="hardNobr">message, <span class="argument">self</span>.</span></p>
 
@@ -1920,7 +1959,14 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 
 @end</div>
 
+<h4>Using <span class="code">RKLMatchEnumerator</span></h4>
+
 <p>The following piece of code is a simple demonstration of the match enumerator which will use a regular expression to enumerate all the lines in the string to be searched.</p>
+
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p><span class="code">RKLMatchEnumerator</span> and <span class="code">matchEnumeratorWithRegex:</span> are <span class="deprecated">deprecated in <span class="rkl">RegexKit<i>Lite</i></span> 3.0</span>. See <a href="#UsingRegexKitLite_CreatingAMatchEnumerator_MatchEnumerationinRegexKitLite30" class="section-link">Creating A Match Enumerator - Match Enumeration in <span class="rkl">RegexKit<i>Lite</i></span> 3.0</a> for more information.</p>
+</div></div></div></div>
+
 
 <p>The variable <span class="code">searchString</span> contains the string to search.  The example string includes several embedded <span class="regex">\n</span>, or <span class="regex-def">new-line</span> characters.  There are a total of four lines of text, with the third line containing no characters.</p>
 
@@ -1931,8 +1977,8 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
 <p>The match enumerator is then instantiated and the results are enumerated with a standard <span class="code">while</span> loop, setting <span class="code">matchedString</span> to the object returned by <span class="code">nextObject</span>.  For each line that is returned, the current line number, length of the matched string, and the matched string are printed.</p>
 
 <div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">main.m</span></span></div>#import &lt;Foundation/NSAutoreleasePool.h&gt;
-#import "RegexKitLite.h"
-#import "RKLMatchEnumerator.h"
+#import &quot;RegexKitLite.h&quot;
+#import &quot;RKLMatchEnumerator.h&quot;
 
 int main(int argc, char *argv[]) {
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -1946,18 +1992,18 @@ int main(int argc, char *argv[]) {
 
   matchEnumerator = [searchString matchEnumeratorWithRegex:regexString];
 
-  NSUInteger  line          = 0;
+  NSUInteger  line          = 0UL;
   NSString   *matchedString = NULL;
 
   while((matchedString = [matchEnumerator nextObject]) != NULL) {
-    NSLog(@&quot;%d: %d &#39;%@&#39;&quot;, ++line, [matchedString length], matchedString);
+    NSLog(@&quot;%lu: %lu &#39;%@&#39;&quot;, <span class="hardNobr">(u_long)++line,</span> <span class="hardNobr">(u_long)[matchedString length],</span> <span class="hardNobr">matchedString);</span>
   }
 
   [pool release];
   return(0);
 }</div>
 
-<p>The following shell transcript demonstrates compiling the example and executing it.  Line number three clearly demonstrates that matches of zero length are possible.  Without the additional logic in <span class="code">nextObject</span> to handle this special case, the enumerator would never advance past the match.</p>
+<p id="UsingRegexKitLite_CreatingAMatchEnumerator_exampleShellOutput">The following shell transcript demonstrates compiling the example and executing it.  Line number three clearly demonstrates that matches of zero length are possible.  Without the additional logic in <span class="code">nextObject</span> to handle this special case, the enumerator would never advance past the match.</p>
 
 <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
 <p>In the shell transcript below, the <span class="code hardNobr">NSLog()</span> line that prints <span class="code">searchString</span> has been annotated with the <span class="hardNobr">&#39;&#9166;&#39;</span> character to help visually identify the corresponding <span class="regex">\n</span> <span class="regex-def">new-line</span> characters in <span class="code">searchString</span>.</p>
@@ -1976,6 +2022,109 @@ four</span><span title="\n in searchString">&#9166;</span><span class="shellOutp
 2008-03-21 15:56:17.584 main[44050:807] 3: 0 &#39;&#39;
 2008-03-21 15:56:17.590 main[44050:807] 4: 4 &#39;four&#39;
 shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div>
+
+
+
+<h4 id="UsingRegexKitLite_CreatingAMatchEnumerator_MatchEnumerationinRegexKitLite30">Match Enumeration in <span class="rkl">RegexKit<i>Lite</i></span> 3.0</h4>
+
+<p><span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 3.0</span> adds the <span class="code">componentsMatchedByRegex:</span> method which enables you to quickly create a <span class="code">NSArray</span> containing all the matches of a regular expression in a string.  To enumerate the contents of the <span class="code">NSArray</span>, you send it an <span class="code">objectEnumerator</span> message.  The <span class="code">NSEnumerator</span> that is returned by <span class="code">objectEnumerator</span> behaves exactly the same way as, and produces the same results as, a <span class="code">NSEnumerator</span> created with the deprecated <span class="code">matchEnumeratorWithRegex:</span>.</p>
+
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
+    <li><a href="#NSString_RegexKitLiteAdditions__-componentsMatchedByRegex:" class="code">- componentsMatchedByRegex:</a></li>
+    <li><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html" class="printURL section-link">NSArray Class Reference</a></li>
+    <li><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSEnumerator_Class/Reference/Reference.html" class="printURL section-link">NSEnumerator Class Reference</a></li>
+    <li><a href="http://developer.apple.com/documentation/Cocoa/Conceptual/Collections/Articles/Enumerators.html" class="printURL section-link">Collections Programming Topics for Cocoa - Enumerators: Traversing a Collection&#39;s Elements</a></li>
+  </ul>
+</div>
+
+<p style="margin-bottom: 0.5em;">An example using <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 3.0&#39;s</span> <span class="code">componentsMatchedByRegex:</span> and a <span class="code">NSEnumerator</span>:</p>
+
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">main.m</span></span></div>#import &lt;Foundation/Foundation.h&gt;
+#import &quot;RegexKitLite.h&quot;
+// The RKLMatchEnumerator.h header file should not be
+// #imported in RegexKitLite &ge; 3.0.
+
+int main(int argc, char *argv[]) {
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  NSString     *searchString    = @&quot;one\ntwo\n\nfour\n&quot;;
+  NSArray      *matchArray      = NULL;
+  NSEnumerator *matchEnumerator = NULL;
+  NSString     *regexString     = @&quot;(?m)^.*$&quot;;
+
+  NSLog(@&quot;searchString: &#39;%@&#39;&quot;, searchString);
+  NSLog(@&quot;regexString : &#39;%@&#39;&quot;, regexString);
+
+  // Prior to RegexKitLite 3.0, a RKLMatchEnumerator was created with the
+  // following line:
+
+  matchEnumerator = [searchString matchEnumeratorWithRegex:regexString]; <span class="hardNobr">// &le; 2.2</span>
+
+  // In RegexKitLite &ge; 3.0, RKLMatchEnumerator is deprecated in favor of
+  // componentsMatchedByRegex: which returns a NSArray containing the
+  // matched strings.  The NSArray result is then sent a objectEnumerator
+  // message to obtain a standard NSEnumerator.
+
+  matchArray      = [searchString componentsMatchedByRegex:regexString]; <span class="hardNobr">// &ge; 3.0</span>
+  matchEnumerator = [matchArray objectEnumerator];                       <span class="hardNobr">// &ge; 3.0</span>
+
+  NSUInteger  line          = 0UL;
+  NSString   *matchedString = NULL;
+
+  while((matchedString = [matchEnumerator nextObject]) != NULL) {
+    NSLog(@&quot;%lu: %lu &#39;%@&#39;&quot;, <span class="hardNobr">(u_long)++line,</span> <span class="hardNobr">(u_long)[matchedString length],</span> <span class="hardNobr">matchedString);</span>
+  }
+
+  [pool release];
+  return(0);
+}</div>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+<p>The output of the preceding example is identical to the <span class="code">RKLMatchEnumerator</span> <a href="#UsingRegexKitLite_CreatingAMatchEnumerator_exampleShellOutput">shell output</a>.</p>
+</div></div></div></div>
+
+<h4>Enumerating Matches with Objective-C 2.0</h4>
+
+<p>You can enumerate all the matches of a regular expression in a string using <span class="hardNobr">Objective-C 2.0&#39;s</span> <span class="code hardNobr">for&hellip;in</span> feature.  Compared to using a <span class="code">NSEnumerator</span>, using <span class="code hardNobr">for&hellip;in</span> not only takes fewer lines of code to accomplish the same thing, it is usually faster as well.</p>
+
+<div class="section seealso"><div class="header">See Also</div>
+  <ul class="offset">
+    <li><a href="http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/ocFastEnumeration.html" class="printURL section-link">The Objective-C 2.0 Porgramming Language - Fast Enumeration</a></li>
+    <li><a href="http://developer.apple.com/documentation/Cocoa/Conceptual/Collections/Articles/Enumerators.html" class="printURL section-link">Collections Programming Topics for Cocoa - Enumerators: Traversing a Collection&#39;s Elements</a></li>
+  </ul>
+</div>
+
+<p style="margin-bottom: 0.5em;">An example using <span class="hardNobr">Objective-C 2.0</span> <span class="code hardNobr">for&hellip;in</span> feature:</p>
+
+<div class="box sourcecode"><div class="metainfo printShadow"><span class="entry filename"><span class="item meta">File name:</span><span class="item info">for_in.m</span></span></div>#import &lt;Foundation/Foundation.h&gt;
+#import &quot;RegexKitLite.h&quot;
+
+int main(int argc, char *argv[]) {
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+  NSString   *searchString = @&quot;one\ntwo\n\nfour\n&quot;;
+  NSString   *regexString  = @&quot;(?m)^.*$&quot;;
+  NSUInteger  line         = 0UL;
+
+  NSLog(@&quot;searchString: &#39;%@&#39;&quot;, searchString);
+  NSLog(@&quot;regexString : &#39;%@&#39;&quot;, regexString);
+
+  for(NSString *matchedString in [searchString <span class="hardNobr">componentsMatchedByRegex:regexString]) {</span>
+    NSLog(@&quot;%lu: %lu &#39;%@&#39;&quot;, <span class="hardNobr">(u_long)++line,</span> <span class="hardNobr">(u_long)[matchedString length],</span> <span class="hardNobr">matchedString);</span>
+  }
+
+  [pool release];
+  return(0);
+}</div>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+<p>The output of the preceding example is identical to the <span class="code">RKLMatchEnumerator</span> <a href="#UsingRegexKitLite_CreatingAMatchEnumerator_exampleShellOutput">shell output</a>.</p>
+</div></div></div></div>
+
+
+
+
 </div>
 
 
@@ -2408,9 +2557,9 @@ From time to time the UCD is <a href="http://www.unicode.org/versions/">revised 
 <div class="box sourcecode">searchString = @&quot;http://www.example.com:8080/index.html&quot;;
 regexString  = @&quot;\\bhttps?://[a-zA-Z0-9\\-.]+(?::(\\d+))?(?:(?:/[a-zA-Z0-9\\-._?,&#39;+\\&amp;%$=~*!():@\\\\]*)+)?&quot;;
 
-NSInteger portInteger = [[searchString stringByMatching:regexString capture:1] integerValue];
+NSInteger portInteger = [[searchString stringByMatching:regexString capture:1L] integerValue];
 
-NSLog(@&quot;portInteger: &#39;%ld&#39;&quot;, portInteger);
+NSLog(@&quot;portInteger: &#39;%ld&#39;&quot;, (long)portInteger);
 // 2008-10-15 08:52:52.500 host_port[8021:807] portInteger: &#39;8080&#39;</div>
 
 <p>Inside you&#39;ll find more examples like this that you can use as the starting point for your own regular expression pattern matching solution. Keep in mind that these are meant to be examples to help get you started and not necessarily the ideal solution for every need. Trade&#8209;offs are usually made when creating a regular expression, matching an email address is a perfect example of this.  A regular expression that precisely matches the formal definition of email address is both complicated and usually unnecessary.  Knowing which trade&#8209;offs are acceptable requires that you understand what it is you&#39;re trying to match, the data that you&#39;re searching through, and the requirements and uses of the matched results. It won&#39;t take long until you gain an appreciation for Jamie Zawinski&#39;s infamous quote.</p>
@@ -2554,8 +2703,6 @@ NSLog(@&quot;portInteger: &#39;%ld&#39;&quot;, portInteger);
     
     <p>If this option is <i><b>enabled</b></i> then certain escape sequences are interpreted and rewritten using the current preference options.</p>
 
-    <p class="XXX">Add note wrt/2779965 &quot;matching a literal <span class="consoleText">\</span> requires <span class="consoleText">\\\\</span>&quot;.</p>
-
     <h5>Use <b>C99</b> <span class="consoleText">\u</span> character escapes</h5>
 
     <p>Normally, Unicode characters are embedded in string literals as the characters <span class="code hardNobr">UTF-8</span> byte sequence using <span class="hardNobr"><span class="consoleText">\</span><i>ddd</i></span> octal escapes.  When this option is enabled, the <b>C99</b> <span class="consoleText">\u</span> and <span class="consoleText">\U</span> character escape sequences are used instead.  <span class="consoleText">gcc</span> will issue a warning if <span class="consoleText">\u</span> character escape sequences are present and the compiler is not configured to use the <b>C99</b> (or later) standard <span class="hardNobr">(i.e., <span class="consoleText">gcc -std=</span><span class="parameterChoice">(c|gnu)</span><span class="consoleText">99</span>).</span></p>
@@ -2632,19 +2779,19 @@ NSString *euroString = @"\u20ac1.99";</div>
   
   <div class="box sourcecode clearBoth"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Integer conversion&hellip;</span></span></div>NSString *searchString = @&quot;The int 5542 to convert&quot;;
 NSString *regexString  = @&quot;([+\\-]?[0-9]+)&quot;;
-int       matchedInt   = [[searchString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1]</span> <span class="hardNobr">intValue];</span></div>
+int       matchedInt   = [[searchString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1L]</span> <span class="hardNobr">intValue];</span></div>
 
   <p>The variable <span class="code">matchedInt</span> now contains the value of <span class="code">5542</span>.</p>
 
   <div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Floating Point conversion&hellip;</span></span></div>NSString *searchString  = @&quot;The double 4321.9876 to convert&quot;;
 NSString *regexString   = <span class="hardNobr">@&quot;([+\\-]?(?:[0-9]*\\.[0-9]+|[0-9]+\\.))&quot;;</span>
-double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1]</span> <span class="hardNobr">doubleValue];</span></div>
+double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1L]</span> <span class="hardNobr">doubleValue];</span></div>
 
   <p>The variable <span class="code">matchedDouble</span> now contains the value of <span class="code">4321.9876</span>. <span class="code">doubleValue</span> can even convert numbers that are in scientific notation, which represent numbers as <i><b>a</b> times ten to the power of <b>b</b></i>:</p>
 
   <div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Floating Point conversion&hellip;</span></span></div>NSString *searchString  = @&quot;The double 1.010489e5 to convert&quot;;
 NSString *regexString   = <span class="hardNobr">@&quot;([+\\-]?(?:[0-9]*\\.[0-9]+|[0-9]+\\.)(?:[eE][+\\-]?[0-9]+)?)&quot;;</span>
-double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching:regexString capture:1]</span> <span class="hardNobr">doubleValue];</span></div>
+double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching:regexString capture:1L]</span> <span class="hardNobr">doubleValue];</span></div>
 
   <p>The variable <span class="code">matchedDouble</span> now contains the value of <span class="code">101048.9</span>.</p>
 
@@ -2655,12 +2802,12 @@ double    matchedDouble = [[searchString <span class="hardNobr">stringByMatching
   <div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Hex conversion&hellip;</span></span></div>NSString *searchString = @&quot;A hex value: 0x0badf00d&quot;;
 NSString *regexString  = @&quot;\\b(0[xX][0-9a-fA-F]+)\\b&quot;;
 
-NSString *hexString    = [searchString stringByMatching:regexString <span class="hardNobr">capture:1];</span>
+NSString *hexString    = [searchString stringByMatching:regexString <span class="hardNobr">capture:1L];</span>
 
 // Use strtol() to convert the string to a long.
 long hexLong = strtol([hexString UTF8String], NULL, 16);
 
-NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
+NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, (u_long)hexLong, hexLong);
 // 2008-09-01 09:40:44.848 hex_example[30583:807] hexLong: 0xbadf00d / 195948557</div>
 
   <p>The full set of <i>string to&hellip;</i> functions are: <span class="code">strtol()</span>, <span class="code">strtoll()</span>, <span class="code">strtoul()</span>, and <span class="code">strtoull()</span>.  These convert a string value, from base 2 to base 36, in to a <span class="code">long</span>, <span class="code">long long</span>, <span class="code">unsigned long</span>, and <span class="code">unsigned long long</span> respectively.</p>
@@ -2705,7 +2852,7 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
     cptr              = (const char *)buffer;
   }
 
-  return(strtol(cptr, NULL, 16));
+  return((NSInteger)strtol(cptr, NULL, 16));
 }
 
 @end</div>
@@ -2779,15 +2926,10 @@ NSLog(@&quot;hexLong: 0x%lx / %ld&quot;, hexLong, hexLong);
 
   <p>A common text processing pattern is to process a file one line at a time.  Using the recommended regular expression for matching any newline and the <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> method, you can easily create a <span class="code">NSArray</span> containing every line in a file and process it one line at a time:</p>
 
-  <div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Process every line&hellip;</span></span></div>NSString <span class="screenOnly">&nbsp;       </span>*fileNameString = @&quot;example&quot;;
-NSString <span class="screenOnly">&nbsp;       </span>*regexString    = <span class="hardNobr">@&quot;(?:\r\n|[\n\v\f\r\302\205\\p{Zl}\\p{Zp}])&quot;;</span>
-
-NSStringEncoding  fileEncoding   = 0;
-NSError          *error          = NULL;
-NSString         *fileString     =
-  [NSString <span class="hardNobr">stringWithContentsOfFile: fileNameString</span>
-                        <span class="hardNobr">usedEncoding: &amp;fileEncoding</span>
-                               <span class="hardNobr">error: &amp;error];</span>
+  <div class="box sourcecode"><div class="metainfo noPrintBorder"><span class="entry description"><span class="item meta">Process every line&hellip;</span></span></div>NSString *fileNameString = @&quot;example&quot;;
+NSString *regexString    = <span class="hardNobr">@&quot;(?:\r\n|[\n\v\f\r\302\205\\p{Zl}\\p{Zp}])&quot;;</span>
+NSError  *error          = NULL;
+NSString *fileString     = [NSString <span class="hardNobr">stringWithContentsOfFile:fileNameString</span> <span class="hardNobr">usedEncoding:NULL</span> <span class="hardNobr">error:&amp;error];</span>
 
 if(fileString) {
   NSArray *linesArray = [fileString <span class="hardNobr">componentsSeparatedByRegex:regexString];</span>
@@ -2831,7 +2973,7 @@ NSArray    *csvLinesArray     = <span class="hardNobr">[csvFileString components
 
 // Create an id array to hold the comma split line results.
 id          splitLines[[csvLinesArray count]]; // C99 variable length array.
-NSUInteger  splitLinesIndex = 0; <span class="screenOnly">&nbsp;             </span>// Index of next splitLines[] member.
+NSUInteger  splitLinesIndex = 0UL; <span class="screenOnly">&nbsp;           </span>// Index of next splitLines[] member.
 
 for(NSString *csvLineString in csvLinesArray) { <span class="screenOnly">&nbsp;              </span>// ObjC 2 for&hellip;in loop.
   if([csvLineString <span class="hardNobr">isMatchedByRegex:@&quot;^\\s*$&quot;])</span> <span class="hardNobr">{ continue; }</span> // Skip empty lines.
@@ -2863,12 +3005,12 @@ NSArray *splitLinesArray = [NSArray <span class="hardNobr">arrayWithObjects:</sp
 NSString *regexString  = <span class="softNobr">@&quot;\\b(https?)://(?:(\\S+?)(?::(\\S+?))?@)?([a-zA-Z0-9\\-.]+)(?::(\\d+))?((?:/[a-zA-Z0-9\\-._?,&#39;+\\&amp;%$=~*!():@\\\\]*)+)?&quot;;</span>
 
 if([searchString isMatchedByRegex:regexString]) {
-  NSString *protocolString = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:1];</span>
-  NSString *userString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:2];</span>
-  NSString *passwordString = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:3];</span>
-  NSString *hostString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:4];</span>
-  NSString *portString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:5];</span>
-  NSString *pathString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:6];</span>
+  NSString *protocolString = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:1L];</span>
+  NSString *userString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:2L];</span>
+  NSString *passwordString = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:3L];</span>
+  NSString *hostString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:4L];</span>
+  NSString *portString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:5L];</span>
+  NSString *pathString     = [searchString <span class="softNobr">stringByMatching:regexString</span> <span class="softNobr">capture:6L];</span>
 
   NSMutableDictionary *urlDictionary = <span class="softNobr">[NSMutableDictionary dictionary];</span>
 
@@ -3010,7 +3152,7 @@ int main(int argc, char *argv[]) {
   NSString *regexString = @&quot;Copyright (.*) (\\d+)&quot;;
 
   NSString *subjectString = [NSString <span class="hardNobr">stringWithUTF8String:utf8CString];</span>
-  NSString *matchedString = [subjectString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1];</span>
+  NSString *matchedString = [subjectString <span class="hardNobr">stringByMatching:regexString</span> <span class="hardNobr">capture:1L];</span>
 
   NSLog(@&quot;subject: \&quot;%@\&quot;&quot;, subjectString);
   NSLog(@&quot;matched: \&quot;%@\&quot;&quot;, matchedString);
@@ -3069,11 +3211,11 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
   </ul>
 </div>
 
-<h3 id="NSString_RegexKitLiteAdditions__CompileTimePreprocessorTuneables">Compile Time Preprocessor Tuneables</h3>
+<h3 id="NSString_RegexKitLiteAdditions__CompileTimePreprocessorTunables">Compile Time Preprocessor Tunables</h3>
 
 <p>The settings listed below are implemented using the C Preprocessor.  Some of the setting are simple boolean <span class="code">enabled</span> or <span class="code">disabled</span> settings, while others specify a value, such as the number of cache slot entries.  There are several ways to alter these settings, but if you are not familiar with this style of compile time configuration settings and how to alter them using the C Preprocessor, it is recommended that you use the default values provided.</p>
 
-<table class="standard cppTuneables" summary="Compile Time Preprocessor Tuneables">
+<table class="standard cppTunables" summary="Compile Time Preprocessor Tunables">
 <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">NS_&#8203;BLOCK_&#8203;ASSERTIONS</span><span class="cpp_flag softNobr tbrOff">NS_BLOCK_ASSERTIONS</span></span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="context-menu">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span></td><td><i>None</i></td><td>This flag is useful if you are supplying your own version of the ICU library. When set, this preprocessor define causes the ICU functions used by <span class="rkl">RegexKit<i>Lite</i></span> to have the value of <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> appended to them. For example, if <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> is set to <span class="code">_3_6</span> <span class="softNobr">(i.e., <span><span class="consoleText tbrOn">-DRKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS=_3_6</span><span class="consoleText tbrOff">-DRKL_APPEND_TO_ICU_FUNCTIONS=_3_6</span></span>),</span> it would cause <span class="code">uregex_find()</span> to become <span class="code">uregex_find_3_6()</span>.</td></tr>
@@ -3483,7 +3625,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 
 <p>Since the capture count of a regular expression does not depend on the string to be searched, this is a <span class="code">NSString</span> class method.  For example:</p>
 
-<div class="box sourcecode">NSInteger regexCaptureCount = [NSString captureCountForRegex:@&quot;(\\d+)\.(\\d+)&quot; options:0 error:NULL];
+<div class="box sourcecode">NSInteger regexCaptureCount = [NSString captureCountForRegex:@&quot;(\\d+)\.(\\d+)&quot; options:RKLNoOptions error:NULL];
 // regexCaptureCount would be set to 2.</div>
   </div>
   <div class="section availability"><div class="header">Availability</div>
@@ -3544,7 +3686,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
   <div class="section name" id="NSString_RegexKitLiteAdditions__-arrayOfCaptureComponentsMatchedByRegex:">arrayOfCaptureComponentsMatchedByRegex:</div>
   <div class="section summary">Returns an array containing all the matches from the receiver that were matched by the regular expression <span class="argument">regex</span>. Each match result consists of an array of the substrings matched by all the capture groups present in the regular expression.</div>
   <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfCaptureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span>;</span></div>
-  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containg all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
+  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containing all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
   <div class="section discussion"><div class="header">Discussion</div><p>A match result array index will contain an empty string, or <span class="hardNobr code">@&quot;&quot;</span>, if a capture group did not match any text.</p></div>
   <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
   <div class="section seealso"><div class="header">See Also</div>
@@ -3559,7 +3701,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
   <div class="section name" id="NSString_RegexKitLiteAdditions__-arrayOfCaptureComponentsMatchedByRegex:range:">arrayOfCaptureComponentsMatchedByRegex:range:</div>
   <div class="section summary">Returns an array containing all the matches from the receiver that were matched by the regular expression <span class="argument">regex</span> within <span class="argument">range</span>. Each match result consists of an array of the substrings matched by all the capture groups present in the regular expression.</div>
   <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfCaptureComponentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span>;</span></div>
-  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containg all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
+  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containing all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
   <div class="section discussion"><div class="header">Discussion</div><p>A match result array index will contain an empty string, or <span class="hardNobr code">@&quot;&quot;</span>, if a capture group did not match any text.</p></div>
   <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
   <div class="section seealso"><div class="header">See Also</div>
@@ -3594,7 +3736,7 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
       </li>
     </ul>
   </div>
-  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containg all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
+  <div class="section result"><div class="header">Return Value</div><p>A <span class="code">NSArray</span> object containing all the matches from the receiver by <span class="argument">regex</span>. Each match result consists of a <span class="code">NSArray</span> which contains all the capture groups present in <span class="argument">regex</span>.  Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</p></div>
   <div class="section discussion"><div class="header">Discussion</div>
 <p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSArray</span> that contains no items.</p>
 
@@ -3604,7 +3746,8 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 <div class="box sourcecode">NSString *list      = <span class="hardNobr">@"$10.23, $1024.42, $3099";</span>
 NSArray  <span class="hardNobr">*listItems = [list</span> arrayOfCaptureComponentsMatchedByRegex:<span class="hardNobr">@"\\$((\\d+)(?:\\.(\\d+)|\\.?))"];</span></div>
 
-<p>produces a <span class="code">NSArray</span> equivalent to:</p>
+<p style="margin-top: 0.75em">produces a <span class="code">NSArray</span> equivalent to:</p>
+
 <div class="box sourcecode">[NSArray arrayWithObjects:
     [NSArray arrayWithObjects:  <span class="hardNobr">@&quot;$10.23&quot;,</span>   <span class="hardNobr">@&quot;10.23&quot;,</span>   <span class="hardNobr">@&quot;10&quot;,</span> <span class="hardNobr">@&quot;23&quot;,</span> <span class="hardNobr">NULL],</span> <span class="hardNobr">// Index 0</span>
     [NSArray arrayWithObjects:<span class="hardNobr">@&quot;$1024.42&quot;,</span> <span class="hardNobr">@&quot;1024.42&quot;,</span> <span class="hardNobr">@&quot;1024&quot;,</span> <span class="hardNobr">@&quot;42&quot;,</span> <span class="hardNobr">NULL],</span> <span class="hardNobr">// Index 1</span>
@@ -3741,7 +3884,7 @@ NSArray  *listItems = [list captureComponentsMatchedByRegex:@&quot;,\\s*&quot;];
 
 <p>Returns the capture count of the receiver, which should be a valid regular expression.  For example:</p>
 
-<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCountWithOptions:0 error:NULL];
+<div class="box sourcecode">NSInteger regexCaptureCount = [@&quot;(\\d+)\.(\\d+)&quot; captureCountWithOptions:RKLNoOptions error:NULL];
 // regexCaptureCount would be set to 2.</div>
   </div>
   <div class="section result"><div class="header">Return Value</div>
@@ -3851,6 +3994,14 @@ NSArray  *listItems = [list captureComponentsMatchedByRegex:@&quot;,\\s*&quot;];
 NSArray  <span class="hardNobr">*listItems = [list</span> componentsMatchedByRegex:<span class="hardNobr">@"\\$((\\d+)(?:\\.(\\d+)|\\.?))"</span>];
 
 // listItems == [NSArray arrayWithObjects:@&quot;$10.23&quot;, @&quot;$1024.42&quot;, @&quot;$3099&quot;, NULL];</div>
+
+<p style="margin-top: 1em">Example of extracting a specific capture group:</p>
+<div class="box sourcecode">NSString *list      = <span class="hardNobr">@"$10.23, $1024.42, $3099";</span>
+NSRange   listRange = <span class="hardNobr">NSMakeRange(0UL,</span> <span class="hardNobr">[list length]);</span>
+NSArray  <span class="hardNobr">*listItems = [list</span> componentsMatchedByRegex:<span class="hardNobr">@"\\$((\\d+)(?:\\.(\\d+)|\\.?))"</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">range:listRange</span> <span class="hardNobr">capture:3L</span> <span class="hardNobr">error:NULL];</span>
+
+// listItems == [NSArray arrayWithObjects:@&quot;23&quot;, @&quot;42&quot;, @&quot;&quot;, NULL];</div>
+
   </div>
   <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</p></div>
   <div class="section seealso"><div class="header">See Also</div>
@@ -3967,7 +4118,7 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 
     <p><span class="rkl">RegexKit<i>Lite</i></span> automatically detects the vast majority of string mutations and clears any cached information for the mutated string.  To detect mutations, <span class="rkl">RegexKit<i>Lite</i></span> records a strings <span class="code">length</span> and <span class="code">hash</span> value at the point in time when it caches data for a string.  Cached data for a string is invalidated if either of these values change between calls to <span class="rkl">RegexKit<i>Lite</i></span>.  The problem case is when a string is mutated but the strings length remains the same <b>and</b> the hash value for the mutated string is identical to the hash value of the string before it was mutated.  This is known as a <i>hash collision</i>.  Since <span class="rkl">RegexKit<i>Lite</i></span> is unable to detect that a string has mutated when this happens, the programmer needs to explicitly inform <span class="rkl">RegexKit<i>Lite</i></span> that any cached data about the receiver needs to be cleared by sending <span class="code">flushCachedRegexData</span> to the mutated string.</p>
 
-    <p>While it is possible to have &quot;perfect mutation detection&quot;, and therefore guarantee that only valid cached data is used, it has a significant performance penalty.  The first problem is that when caching information about a string, an immutable copy of that string needs to be made.  The second problem is that determing that two strings are not identical is usually very fast and cheap&mdash; if their lengths are not the same, no further checks are required.  The most expensive case is when two strings are identical because it requires a character by character comparsion of the entire string to guarantee that they are equal.  The most expensive case also happens to be the most common case, by far.  To make matters worst, Cocoa provides no public way to determine if an instance is a mutable <span class="code">NSMutableString</span> or an immutable <span class="code">NSString</span> object.  Therefore <span class="rkl">RegexKit<i>Lite</i></span> must assume the worst case that all strings are mutable and have potentially mutated between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
+    <p>While it is possible to have &quot;perfect mutation detection&quot;, and therefore guarantee that only valid cached data is used, it has a significant performance penalty.  The first problem is that when caching information about a string, an immutable copy of that string needs to be made.  The second problem is that determining that two strings are not identical is usually very fast and cheap&mdash; if their lengths are not the same, no further checks are required.  The most expensive case is when two strings are identical because it requires a character by character comparison of the entire string to guarantee that they are equal.  The most expensive case also happens to be the most common case, by far.  To make matters worst, Cocoa provides no public way to determine if an instance is a mutable <span class="code">NSMutableString</span> or an immutable <span class="code">NSString</span> object.  Therefore <span class="rkl">RegexKit<i>Lite</i></span> must assume the worst case that all strings are mutable and have potentially mutated between calls to <span class="rkl">RegexKit<i>Lite</i></span>.</p>
 
     <p><span class="rkl">RegexKit<i>Lite</i></span> is optimized for the common case which is when regular expression operations are performed on strings that are not mutating. The majority of mutations to a string can be quickly and cheaply detected by <span class="rkl">RegexKit<i>Lite</i></span> automatically. Since the programmer has the context of the string that is to be matched, and whether or not the string is being mutated, <span class="rkl">RegexKit<i>Lite</i></span> relies on the programmer to inform it whether or not the possibility exists that the string could have mutated in a way that is undetectable.</p>
 
@@ -3976,7 +4127,7 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
     <div class="box sourcecode">NSMutableString *mutableSearchString; // Assumed to be valid.
 NSString *foundString = [mutableSearchString stringByMatching:@"\\d+"]; // Searched..
 
-[mutableSearchString replaceCharactersInRange:NSMakeRange(5, 10) withString:@"[replaced]"]; // Mutated..
+[mutableSearchString replaceCharactersInRange:NSMakeRange(5UL, 10UL) withString:@"[replaced]"]; // Mutated..
 
 [mutableSearchString flushCachedRegexData]; // Clear cached information about mutableSearchString.</div>
 
@@ -4326,7 +4477,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 <div class="block method">
   <div class="section name" id="NSString_RegexKitLiteAdditions__-stringByMatching:options:inRange:capture:error:">stringByMatching:options:inRange:capture:error:</div>
-<div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regex</span> using <span class="argument">options</span> within <span class="argument">range</span> of the receiver for <span class="argument">capture</span>.</div>
+  <div class="section summary">Returns a string created from the characters of the receiver that are in the range of the first match of <span class="argument">regex</span> using <span class="argument">options</span> within <span class="argument">range</span> of the receiver for <span class="argument">capture</span>.</div>
   <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="selector">stringByMatching:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">capture:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a>)<span class="argument">capture</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span>;</span></div>
   <div class="section parameters"><div class="header">Parameters</div>
     <ul>
@@ -4829,17 +4980,17 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 
 
-    <div class="entry XXX">
-      <div class="banner"><span class="date XXX">2009/05/01</span><span class="bannerItemSpacer">-</span><span class="release">3.0</span></div>
+    <div class="entry" id="ReleaseInformation_30">
+      <div class="banner"><span class="date XXX">2009/05/02</span><span class="bannerItemSpacer">-</span><span class="release">3.0</span></div>
       <div class="bannerSpacer"></div>
       <div class="content">
 	
-	<p>RKL 3.0</p>
+	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a major release that includes new features, new APIs, and a number of bug fixes.</p>
 
 	<p>New Features:</p>
 	<ul class="square">
-	  <li>DTrace support. <span class="cpp_flag">RKL_DTRACE</span></li>
-	  <li>A new compile time configuration option, <span class="cpp_flag">RKL_APPEND_TO_ICU_FUNCTIONS</span>, can be used to append...</li>
+	  <li>DTrace support. This release includes <span class="rkl">RegexKit<i>Lite</i></span> specific DTrace provider probe points that allow you to monitor the effectiveness of <span class="rkl">RegexKit<i>Lite</i></span>&#39;s caches.  DTrace support can be enabled with the compile time configuration option <span class="cpp_flag">RKL_DTRACE</span>.</li>
+	  <li>Easy support for custom built ICU libraries. A new compile time configuration option, <span class="cpp_flag">RKL_APPEND_TO_ICU_FUNCTIONS</span>, can be used to append a string to the ICU functions called by <span class="rkl">RegexKit<i>Lite</i></span>.  Custom builds of the ICU library include the ICU version appended to all functions by default and this feature allows you to easily retarget <span class="rkl">RegexKit<i>Lite</i></span> to your custom build. Example usage: <span class="consoleText">-DRKL_APPEND_TO_ICU_FUNCTIONS=_3_6</span></li>
 	</ul>
 
 	<p>New <span class="code">NSString</span> Methods:</p>
@@ -4864,25 +5015,25 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	  </li>
 	</ul>
 
-	<p class="standout">Changes that effect the results that are returned</p>
+	<p class="standout">Changes that effect the results that are returned:</p>
 
 	<ul class="square">
 	  <li>
-<p>When the regular expression matched the tail end of the string to search, <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> would incorrectly add a zero length string to the results returned.</p>
+	    <p>When the regular expression matched the tail end of the string to search, <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> would incorrectly add a zero length string to the results returned.</p>
 
-<div class="box sourcecode">NSArray *splitArray = [@&quot;Bob, Tom, Sam,&quot; componentsSeparatedByRegex:@&quot;,\\s*&quot;];
+	    <div class="box sourcecode">NSArray *splitArray = [@&quot;Bob, Tom, Sam,&quot; componentsSeparatedByRegex:@&quot;,\\s*&quot;];
 
-// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;, @&quot;&quot; } <- RegexKitLite &le; v2.2.
-// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } <- RegexKitLite &ge; v3.0.</div>
-</li>
+// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;, @&quot;&quot; } &lt;- RegexKitLite &le; v2.2.
+// { @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } &lt;- RegexKitLite &ge; v3.0.</div>
+	  </li>
+
 	  <li>
-	    <p>The results returned by <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> were found to differ from the expected results when zero-width assertions, such as <span class="regex">\b</span>, were used.  Prior to v3.0, regular expressions that matched zero characters would be considered a &#39;match&#39;, and a zero length string would be added to the results array.  The expected results are the results that are returned by the <span class="quotedText">perl</span> <span class="code">split()</span> function, which does not create a zero length string in such cases.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826">6826</a>.</p>
+	    <p>The results returned by <a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:" class="code">componentsSeparatedByRegex:</a> were found to differ from the expected results when zero-width assertions, such as <span class="regex">\b</span>, were used.  Prior to v3.0, regular expressions that matched zero characters would be considered a &#39;match&#39;, and a zero length string would be added to the results array.  The expected results are the results that are returned by the <span class="quotedText">perl</span> <span class="code">split()</span> function, which does not create a zero length string in such cases.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826" class="printURL">6826</a>.</p>
 
 <div class="box sourcecode">NSArray *splitArray = [@&quot;I|at|ice I eat rice&quot; componentsSeparatedByRegex:@&quot;\\b\\s*&quot;];
 
-// ICU : { @&quot;&quot;, @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;, @&quot;&quot;, @&quot;I&quot;, @&quot;&quot;, @&quot;eat&quot;, @&quot;&quot;, @&quot;rice&quot; } <- RegexKitLite &le; v2.2.
-// perl: {      @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;,      @&quot;I&quot;,      @&quot;eat&quot;,      @&quot;rice&quot; } <- RegexKitLite &ge; v3.0.</div>
-
+// ICU : { @&quot;&quot;, @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;, @&quot;&quot;, @&quot;I&quot;, @&quot;&quot;, @&quot;eat&quot;, @&quot;&quot;, @&quot;rice&quot; } &lt;- RegexKitLite &le; v2.2.
+// perl: {      @&quot;I&quot;, @&quot;|&quot;, @&quot;at&quot;, @&quot;|&quot;, @&quot;ice&quot;,      @&quot;I&quot;,      @&quot;eat&quot;,      @&quot;rice&quot; } &lt;- RegexKitLite &ge; v3.0.</div>
 	  </li>
 
 	  <li>As part of the <span class="hardNobr">64-bit</span> tidy, a check of the length of a string that is passed to <span class="rkl">RegexKit<i>Lite</i></span>, and therefore ICU, was added to ensure that the length is less than <span class="code">INT_MAX</span>. If the length of the string <span class="hardNobr">is &ge; <span class="code">INT_MAX</span>,</span> then <span class="rkl">RegexKit<i>Lite</i></span> will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSRangeException" class="code">NSRangeException</a>.  The value of <span class="hardNobr"><span class="code">INT_MAX</span> is 2<sup>31</sup>-1 (<span class="code">0x7fffffff</span>).</span>  This was done because ICU uses the <span class="code">int</span> type for representing offset values.</li>
@@ -4891,12 +5042,13 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 	<p>Other Changes:</p>
 	<ul class="square">
-	  <li>Ticket #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2027975&amp;group_id=204582&amp;atid=990188">2027975</a> - Request for <span class="code">captureCount</span> like functionality.</li>
-	  <li>Ticket #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2779301&amp;group_id=204582&amp;atid=990191">2779301</a> - Request for <span class="code">componentsMatchedByRegex:</span> functionality.</li>
+	  <li>Ticket #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2027975&amp;group_id=204582&amp;atid=990188" class="printURL">2027975</a> - Request for <span class="code">captureCount</span> like functionality.</li>
+	  <li>Ticket #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2779301&amp;group_id=204582&amp;atid=990191" class="printURL">2779301</a> - Request for <span class="code">componentsMatchedByRegex:</span> functionality.</li>
+	  <li>Ticket #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2786878&amp;group_id=204582&amp;atid=990191" class="printURL">2786878</a> - Request for <span class="code">isRegexValid</span> functionality.</li>
 	  <li>The GCC variable <span class="code">cleanup</span> <span class="hardNobr code">__attribute__()</span> is now used to provide an extra safety net around the use of the <span class="rkl">RegexKit<i>Lite</i></span> spin lock.  The <span class="code">cleanup</span> function ensures that if the spin lock was locked by a function that it was also unlocked by the function.  If a function obtains the lock but does not unlock it, the <span class="code">cleanup</span> function forcibly unlocks the spin lock.</li>
-	  <li>Minor GC changes</li>
-	  <li><span class="hardNobr">64-bit</span> cleanup.  Various literal numeric constant values had either <span class="code">L</span> or <span class="code">UL</span> appended to them.</li>
-	  <li><span class="hardNobr">64-bit</span> cleanup.  Added checks to verify that a strings length is &lt; <span class="code">INT_MAX</span> and throw an exception if it isn&#39;t due to the signed <span class="hardNobr">32-bit</span> <span class="code">int</span> limitation of ICU.</li>
+	  <li>Minor GC changes.  Some minor changes in the way heap buffers were allocated was required to support the new methods that return a <span class="code">NSArray</span>.</li>
+	  <li><span class="hardNobr">64-bit</span> cleanup.  Various literal numeric constant values had either <span class="code">L</span> or <span class="code">UL</span> appended to them if they were used with <span class="code">NSInteger</span>, <span class="code">NSUInteger</span>, or various other &#39;<span class="code">long</span>&#39; data types.</li>
+	  <li><span class="hardNobr">64-bit</span> cleanup.  Added checks to verify that a strings length is &lt; <span class="code">INT_MAX</span> and throw an exception if it isn&#39;t. This check was added because ICU uses signed <span class="hardNobr">32-bit</span> <span class="code">int</span> values to represent offsets.</li>
 	  <li>Changed some macros to static inline functions for compile-time prototype checking.</li>
 	  <li>Updated <span class="hardNobr file">examples/NSString-HexConversion.m</span>.  <span class="hardNobr">64-bit</span> tidies.</li>
 	  <li>Updated <span class="hardNobr file">examples/RKLMatchEnumerator.h</span>.  Added the deprecated attribute to <span class="code">matchEnumeratorWithRegex:</span>.</li>
@@ -4911,7 +5063,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2319200&amp;group_id=204582&amp;atid=990188" class="printURL">2319200</a> - The documentation for <span class="code">stringByReplacingOccurrencesOfRegex:withString:</span> (and related methods) was updated.  The text for the Returned Value section was obviously copy and pasted from somewhere else and never updated.  This has been fixed.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2408447&amp;group_id=204582&amp;atid=990188" class="printURL">2408447</a> - <span class="code">stringByReplacingOccurrencesOfRegex:</span> bug fixed. There was a bug in ICU that would cause a search and replace operation to fail with <span class="code">U_BUFFER_OVERFLOW_ERROR</span>, which would then cause <span class="rkl">RegexKit<i>Lite</i></span> to throw <a href="#RKLICURegexException" class="code">RKLICURegexException</a>, if the length of the replaced string was significantly longer than the original string.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6656" class="printURL">6656</a></li>
 	  <li><span class="code">componentsSeparatedByRegex:</span> bug fixed. When the regular expression matched the tail end of the string, an extra zero length string was incorrectly added to the results.</li>
-	  <li><span class="code">componentsSeparatedByRegex:</span> bug fixed. The results returned by the ICU function <span class="code">uregex_split()</span> was found to be different that the results returned by the <span class="quotedText">perl</span> <span class="hardNobr code">split()</span> function.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826">6826</a></li>
+	  <li><span class="code">componentsSeparatedByRegex:</span> bug fixed. The results returned by the ICU function <span class="code">uregex_split()</span> was found to be different that the results returned by the <span class="quotedText">perl</span> <span class="hardNobr code">split()</span> function.  ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6826" class="printURL">6826</a></li>
 	  <li><span class="code">rangeOfRegex</span>, <span class="code">stringByMatching:</span> bug fixed. A bug was fixed where the <span class="code">inRange:</span> parameter was not correctly honored.</li>
 	  <li>If <span class="rkl">RegexKit<i>Lite</i></span> was able to get direct access to a strings <span class="hardNobr code">UTF-16</span> buffer, there was a very remote chance that <span class="rkl">RegexKit<i>Lite</i></span> would continue to use a pointer to a strings older <span class="hardNobr code">UTF-16</span> buffer if the string mutated and allocated a new buffer.  The pointer to a strings direct buffer is now verified before each use.</li>
 	  <li><span class="code">isMatchedByRegex:inRange:</span> was never documented.  Fixed.</li>
