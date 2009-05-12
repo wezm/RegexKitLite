@@ -412,7 +412,7 @@ int32_t     RKL_ICU_FUNCTION_APPEND(uregex_start)             (uregex *regexp, i
 #pragma mark -
 #pragma mark RegexKitLite internal, private function prototypes
 
-static RKLCacheSlot *rkl_getCachedRegex            (NSString *regexString, RKLRegexOptions options, NSError **error, id *exception RKL_UNUSED_ASSERTION_ARG)                                                                                                   RKL_NONNULL_ARGS_WARN_UNUSED(1,4);
+static RKLCacheSlot *rkl_getCachedRegex            (NSString *regexString, RKLRegexOptions options, NSError **error, id *exception)                                                                                                                            RKL_NONNULL_ARGS_WARN_UNUSED(1,4);
 static NSUInteger    rkl_setCacheSlotToString      (RKLCacheSlot *cacheSlot, const NSRange *range, int32_t *status, id *exception RKL_UNUSED_ASSERTION_ARG)                                                                                                    RKL_NONNULL_ARGS_WARN_UNUSED(1,2,3,4);
 static RKLCacheSlot *rkl_getCachedRegexSetToString (NSString *regexString, RKLRegexOptions options, NSString *matchString, NSUInteger *matchLengthPtr, NSRange *matchRange, NSError **error, id *exception, int32_t *status)                                   RKL_NONNULL_ARGS_WARN_UNUSED(1,3,4,5,7,8);
 static id            rkl_performRegexOp            (id self, SEL _cmd, RKLRegexOp regexOp, NSString *regexString, RKLRegexOptions options, NSInteger capture, id matchString, NSRange *matchRange, NSString *replacementString, NSError **error, void *result) RKL_NONNULL_ARGS(1,2);
@@ -586,7 +586,7 @@ static void rkl_dtrace_getRegexUTF8(CFStringRef str, char *utf8Buffer) {
 //  IMPORTANT!   Should only be called with cacheSpinLock already locked!
 //  ----------
 
-static RKLCacheSlot *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions options, NSError **error, id *exception RKL_UNUSED_ASSERTION_ARG) {
+static RKLCacheSlot *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions options, NSError **error, id *exception) {
   RKLCacheSlot *cacheSlot = NULL;
   CFHashCode    regexHash = 0UL;
   int32_t       status    = 0;
@@ -600,9 +600,10 @@ static RKLCacheSlot *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions o
     rkl_dtrace_compiledRegexCache(&rkl_dtrace_regexUTF8[(lastCacheSlot - &rkl_cacheSlots[0])][0], lastCacheSlot->options, (int)lastCacheSlot->captureCount, 1, 0, NULL);
     return(lastCacheSlot);
   }
-  
-  regexHash = CFHash((CFTypeRef)regexString);
-  cacheSlot = &rkl_cacheSlots[(regexHash % (CFHashCode)(RKL_CACHE_SIZE))]; // Retrieve the cache slot for this regex.
+
+  lastCacheSlot = NULL; 
+  regexHash     = CFHash((CFTypeRef)regexString);
+  cacheSlot     = &rkl_cacheSlots[(regexHash % (CFHashCode)(RKL_CACHE_SIZE))]; // Retrieve the cache slot for this regex.
   
   // Return the cached entry if it's a match, otherwise clear the slot and create a new ICU regex in its place.
   // If regexString is mutable, the pointer equality test will fail, and CFEqual() is used to determine true
@@ -641,7 +642,7 @@ static RKLCacheSlot *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions o
   
 exitNow:
   if(RKL_EXPECTED(scratchBuffer[0] != NULL,         0L)) { scratchBuffer[0] = rkl_free(&scratchBuffer[0]); }
-  if(RKL_EXPECTED(status            > U_ZERO_ERROR, 0L)) { cacheSlot = NULL; if(error != NULL) { *error = rkl_NSErrorForRegex(regexString, options, &parseError, status); } }
+  if(RKL_EXPECTED(status            > U_ZERO_ERROR, 0L)) { rkl_clearCacheSlotRegex(cacheSlot); cacheSlot = NULL; if(error != NULL) { *error = rkl_NSErrorForRegex(regexString, options, &parseError, status); } }
   
 #ifdef    _RKL_DTRACE_ENABLED
   if(RKL_EXPECTED(cacheSlot != NULL, 1L)) { rkl_dtrace_compiledRegexCache(&rkl_dtrace_regexUTF8[(cacheSlot - &rkl_cacheSlots[0])][0], cacheSlot->options, (int)cacheSlot->captureCount, 0, status, NULL); }
@@ -721,9 +722,10 @@ static RKLCacheSlot *rkl_getCachedRegexSetToString(NSString *regexString, RKLReg
   RKLCDelayedAssert((regexString != NULL) && (exception != NULL) && (status != NULL) && (matchLengthPtr != NULL), exception, exitNow);
   
   // Fast path the common case where this regex is exactly the same one used last time.
-  if(RKL_EXPECTED(lastCacheSlot != NULL, 1L) && RKL_EXPECTED(lastCacheSlot->regexString == (CFStringRef)regexString, 1L) && RKL_EXPECTED(lastCacheSlot->options == options, 1L)) { cacheSlot = lastCacheSlot; rkl_dtrace_compiledRegexCache(&rkl_dtrace_regexUTF8[(cacheSlot - &rkl_cacheSlots[0])][0], cacheSlot->options, (int)cacheSlot->captureCount, 1, 0, NULL); }
-  else { if(RKL_EXPECTED((cacheSlot = rkl_getCachedRegex(regexString, options, error, exception)) == NULL, 0L)) { goto exitNow; } }
-  
+  if(RKL_EXPECTED(lastCacheSlot != NULL, 1L) && RKL_EXPECTED(lastCacheSlot->icu_regex != NULL, 1L) && RKL_EXPECTED(lastCacheSlot->regexString == (CFStringRef)regexString, 1L) && RKL_EXPECTED(lastCacheSlot->options == options, 1L)) { cacheSlot = lastCacheSlot; rkl_dtrace_compiledRegexCache(&rkl_dtrace_regexUTF8[(cacheSlot - &rkl_cacheSlots[0])][0], cacheSlot->options, (int)cacheSlot->captureCount, 1, 0, NULL); }
+  else { lastCacheSlot = NULL; if(RKL_EXPECTED((cacheSlot = rkl_getCachedRegex(regexString, options, error, exception)) == NULL, 0L)) { goto exitNow; } }
+  RKLCDelayedAssert((cacheSlot != NULL) && (cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (cacheSlot->captureCount >= 0L) && (cacheSlot == lastCacheSlot), exception, exitNow);
+
   // Optimize the case where the string to search (matchString) is immutable and the setToString immutable copy is the same string with its reference count incremented.
   NSUInteger isSetTo     = ((cacheSlot->setToString != NULL) && (cacheSlot->setToString      == (CFStringRef)matchString)) ? 1UL : 0UL;
   CFIndex    matchLength = ((isSetTo                == 1UL)  && (cacheSlot->setToIsImmutable == 1U))                       ? cacheSlot->setToLength : CFStringGetLength((CFStringRef)matchString);
@@ -832,7 +834,7 @@ static id rkl_performRegexOp(id self, SEL _cmd, RKLRegexOp regexOp, NSString *re
   if(((maskedRegexOp == RKLRangeOp) || (maskedRegexOp == RKLArrayOfStringsOp)) && RKL_EXPECTED(cacheSlot != NULL, 1L) && (RKL_EXPECTED(capture < 0L, 0L) || RKL_EXPECTED(capture > cacheSlot->captureCount, 0L)) && RKL_EXPECTED(exception == NULL, 1L)) { exception = (id)RKL_EXCEPTION(NSInvalidArgumentException, @"The capture argument is not valid."); goto exitNow; }
   if(RKL_EXPECTED(cacheSlot == NULL, 0L) || RKL_EXPECTED(status > U_ZERO_ERROR, 0L) || RKL_EXPECTED(exception != NULL, 0L)) { goto exitNow; }
   
-  RKLCDelayedAssert((cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (cacheSlot->captureCount >= 0L) && (cacheSlot->setToString != NULL) && (cacheSlot->setToLength >= 0L) && (cacheSlot->setToUniChar != NULL) && ((CFIndex)NSMaxRange(cacheSlot->setToRange) <= cacheSlot->setToLength), &exception, exitNow);
+  RKLCDelayedAssert((cacheSlot != NULL) && (cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (cacheSlot->captureCount >= 0L) && (cacheSlot->setToString != NULL) && (cacheSlot->setToLength >= 0L) && (cacheSlot->setToUniChar != NULL) && ((CFIndex)NSMaxRange(cacheSlot->setToRange) <= cacheSlot->setToLength), &exception, exitNow);
   
 #ifndef NS_BLOCK_ASSERTIONS
   if(cacheSlot->setToNeedsConversion == 0U) { RKLCDelayedAssert((cacheSlot->setToUniChar == CFStringGetCharactersPtr(cacheSlot->setToString)), &exception, exitNow); }
@@ -934,7 +936,9 @@ finishedFind:
     }
   }
   
+#ifndef NS_BLOCK_ASSERTIONS
 exitNow:
+#endif
   return(foundMatch);
 }
 
@@ -1201,7 +1205,10 @@ static int32_t rkl_replaceAll(RKLCacheSlot *cacheSlot, const UniChar *replacemen
   
   if(RKL_EXPECTED(*status == U_ZERO_ERROR, 1L) && RKL_EXPECTED(bufferOverflowed == 1UL, 0L)) { *status = U_BUFFER_OVERFLOW_ERROR; } 
   if(replacedCount != NULL) { *replacedCount = replaced; }
+
+#ifndef NS_BLOCK_ASSERTIONS
 exitNow:
+#endif
   return(u16Length);
 }
 
