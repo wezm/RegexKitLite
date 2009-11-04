@@ -15,9 +15,9 @@ h5   { margin-top: 1.5em; margin-bottom: 0.5000em; font-size: 1.0834em; padding:
 A:link, a:link .code          { text-decoration: none;      color: #093d92; }
 A:link:hover, a:link .code    { text-decoration: underline; color: #093d92; }
 A:active, a:link .code        { text-decoration: underline; color: #093d92; }
-A[name]:active  { text-decoration: none;      color: #000; }
+A[name]:active                { text-decoration: none;      color: #000; }
 A:visited, a:link .code       { text-decoration: none;      color: #036; }
-A:visited:hover, a:link .code	{ text-decoration: underline; color: #036; }
+A:visited:hover, a:link .code { text-decoration: underline; color: #036; }
 
 .spacer { height: 0px; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em; border-top: 1px solid #fafafa; border-bottom: 1px solid #fdfdfd; }
 .indent  { margin-left: 4ex; }
@@ -211,7 +211,7 @@ div#clip { overflow: hidden; }
 .box.titled > .title    { padding: 0.25em 2ex; line-height: 1.5em; font-size: 13px; font-weight: bold; -webkit-border-top-left-radius: 0.625em; -webkit-border-top-right-radius: 0.625em; -moz-border-radius-topleft: 0.625em; -moz-border-radius-topright: 0.625em; -webkit-user-select: none; -moz-user-select: none; cursor: default; -webkit-background-origin: border; -moz-background-origin: border; }
 .box.titled > .contents { padding: 0.5em 2ex; line-height: 1.5em; font-size: 11px; -webkit-border-bottom-left-radius: 0.625em; -webkit-border-bottom-right-radius: 0.625em; -moz-border-radius-bottomleft: 0.625em; -moz-border-radius-bottomright: 0.625em; border: 1px solid #e5e5e5; border-top: 0px !important; background: #f5f5f5; color: #555; -webkit-background-origin: border; -moz-background-origin: border; }
 
-.box.titled > .title.blueGrey { background: #7a88a1; background: -webkit-gradient(linear, left top, left bottom, from(rgba(162,170,186,1.0)), to(rgba(114,131,157,1.0))); color: #fff; text-shadow: 0px 1px 2px #333;
+.box.titled > .title.blueGrey { background: #7a88a1; background: -webkit-gradient(linear, left top, left bottom, from(rgba(162,170,186,1.0)), to(rgba(114,131,157,1.0))); background: -moz-linear-gradient(left top, left bottom, from(rgba(162,170,186,1.0)), to(rgba(114,131,157,1.0))); color: #fff; text-shadow: 0px 1px 2px #333;
 border-top: 1px solid rgba(255,255,255,0.125); border-left: 1px solid rgba(0,0,0,0.025); border-right: 1px solid rgba(0,0,0,0.025); border-bottom: 1px solid rgba(0,0,0,0.025); -webkit-background-origin: border !important;
 }
 
@@ -340,19 +340,6 @@ h4 .code { color: black; }
 .overview .seealso > ul { margin: 0px; padding: 0px; list-style-type: none; }
 .overview .seealso > ul > li { margin-left: 6.25ex; }
 
-.syntax > .specification { margin-left: 6.25ex; font: 1.1667em monaco, "Lucida Console", courier, monospace; }
-.syntax > .specification .parameter { font-style: italic; font: 1.0834em "lucida grande", geneva, helvetica, arial, sans-serif; margin: 0px; border: 0px; }
-.syntax > .specification .optional { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; margin-left: 0.75ex; margin-right: 0.75ex; padding-left: 0.5ex; padding-right: 0.5ex; border: 1px solid #d1d5d9; background-color: #e8e8e8; }
-.syntax > .parameters { margin-top: 0.75em; }
-.syntax > .parameters > ul > li > .name { font-style: italic; }
-.syntax > .examples { margin-top: 0.75em; margin-left: 2ex; }
-.syntax > .examples > .header { font-weight: bold; font-size: 1em; margin-bottom: 0.1667em; margin-right: 1.25ex; }
-.syntax   ul { list-style-type: none; margin: 0px 0px 0px 2ex; padding: 0px; } 
-.syntax   li { margin: 0px; }
-.syntax   li > .name { font-style: italic; }
-.syntax   li > .text { margin-top: 0.0834em; margin-left: 4ex; margin-bottom: 0.5em; }
-
-
 .tasks { margin-bottom: 1em; }
 .tasks > .header { font-size: /*1.5833em;*/ 1.4166em; font-weight: bold; margin-top: 1.5em; margin-bottom: 0.5em; }
 .tasks .header .code { font: bold 1em "lucida grande", geneva, helvetica, arial, sans-serif; }
@@ -462,7 +449,7 @@ table.slate caption > .identifier { font-weight: bold; margin-right: 1.5ex; }
 
 table.slate th                    {
 white-space: nowrap; font-size: 0.9167em; padding: 0.1em 0.75ex; text-align: left;
-background: #ccc; background: -webkit-gradient(linear, left top, left bottom, from(#dbdbdb), to(#bbb));
+background: #ccc; background: -webkit-gradient(linear, left top, left bottom, from(#dbdbdb), to(#bbb)); background: -moz-linear-gradient(left top, left bottom, from(#dbdbdb), to(#bbb));
 color: #202020; text-shadow: 1px 1px 1px #cfcfcf; text-shadow: 0px 1px 1px rgba(255,255,255,0.95);
 border-bottom: 1px solid #b8b8b8;
 border-top:    1px solid #f3f3f3;
@@ -472,15 +459,16 @@ border-right:  1px solid #c0c0c0; border-right: 1px solid rgba(0,0,0,0.05);
 
 table.slate td                    {
 padding: 0.1em 1.0ex; color: #202020; text-shadow: 0px 1px 0px #fbfbfb; text-shadow: 0px 1px 0px rgba(255,255,255,0.75);
-background: #f5f5f5; background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ebebeb));
+background: #f5f5f5; background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ebebeb)); background: -moz-linear-gradient(left top, left bottom, from(#fafafa), to(#ebebeb));
 border-top:    1px  solid #fbfbfb; border-top:    1px solid rgba(255,255,255,0.25);
 border-bottom: 1px  solid #e8e8e8; border-bottom: 1px solid rgba(0,0,0,0.015);
 border-left:   1px  solid #f6f6f6; border-left:   1px solid rgba(255,255,255,0.375);
 border-right:  1px  solid #ececec; border-right:  1px solid rgba(0,0,0,0.02);
 -webkit-background-origin: border !important;
+-moz-background-origin: border !important;
 }
 
-table.slate tr:nth-child(odd) > td { text-shadow: 0px 1px 0px #ecf2fc;  background: #dde8fa; background: -webkit-gradient(linear, left top, left bottom, from(#eaf1fb), to(#d1e0f9)); text-shadow: 0px 1px 0px rgba(255,255,255,0.5);}
+table.slate tr:nth-child(odd) > td { text-shadow: 0px 1px 0px #ecf2fc;  background: #dde8fa; background: -webkit-gradient(linear, left top, left bottom, from(#eaf1fb), to(#d1e0f9)); background: -moz-linear-gradient(left top, left bottom, from(#eaf1fb), to(#d1e0f9)); text-shadow: 0px 1px 0px rgba(255,255,255,0.5);}
 
 table.slate tr:first-child > * { border-top:    1px solid #d0d0d0 !important; }
 table.slate tr > *:first-child { border-left:   1px solid #d0d0d0 !important; border-left:   1px solid rgba(0,0,0,0.1) !important; }
@@ -920,9 +908,9 @@ function stringToEscapedString(string, options) {
     else {
       switch(u32) { // Pretty escape some characters.
 	case 10: es += (options.smartEscape ? "\\n" : "\\\\n"); break;
-	case 11: es += (options.smartEscape ? "\\v" : "\\\\v"); break;
-	case 12: es += (options.smartEscape ? "\\f" : "\\\\f"); break;
-	case 13: es += (options.smartEscape ? "\\r" : "\\\\r"); break;	
+	//case 11: es += (options.smartEscape ? "\\v" : "\\\\v"); break;
+	//case 12: es += (options.smartEscape ? "\\f" : "\\\\f"); break;
+	//case 13: es += (options.smartEscape ? "\\r" : "\\\\r"); break;	
 	default:
 	  if(options.escapeUnicodeCharacters === false) {
 	    es += String.fromCharCode(u16h);
@@ -1485,7 +1473,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
       <h1 id="RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
       <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
-      <div class="printOnly dateAndRevision">2009-05-15, v3.1</div>
+      <div class="printOnly dateAndRevision">2009-11-04, v3.2</div>
     </div>
 
 <div class="printPageBreakAfter">
@@ -1545,7 +1533,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 
 <h3 id="Introduction_Download">Download</h3>
 
-<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.0.tar.bz2" class="printURL file">RegexKitLite-3.0.tar.bz2</a>, 113.9K. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
+<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.2.tar.bz2" class="printURL file">RegexKitLite-3.2.tar.bz2</a>, 113.9K. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
 
 <h3 id="Introduction_PrintingThisDocument">Printing This Document</h3>
 
@@ -1569,7 +1557,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li><a href="#RegexKitLiteCookbook"><span class="rkl">RegexKit<i>Lite</i></span> Cookbook</a></li>
 <li><a href="#AddingRegexKitLitetoyourProject">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
 <li><a href="#NSStringRegexKitLiteAdditionsReference">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
-<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_31">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.1</a></li>
+<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_32">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.2</a></li>
 <li><a href="#Epilogue">Epilogue</a></li>
 <li><a href="#LicenseInformation">License Information</a></li>
 </ul>
@@ -3373,7 +3361,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
   
   <div class="box classSpecs hasRows zebraRows">
     <div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html">NSString</a>, <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html">NSMutableString</a></span></div>
-    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">3.0</span></span></div>
+    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">3.2</span></span></div>
     <div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
     <div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
       <ul class="cell right lastCell">
@@ -5305,6 +5293,23 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	</ul>
       </div>
     </div> <!-- release notes 3.1 -->
+
+    <div class="entry" id="ReleaseInformation_32">
+      <div class="banner"><span class="date">2009/11/04</span><span class="bannerItemSpacer">-</span><span class="release">3.2</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	
+	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a bug fix release.</p>
+
+	<p>Bug Fixes:</p>
+	<ul class="square">
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a> - Fixed a minor bug that caused compiling on <span class="hardNobr">Mac OS X 10.4</span> to fail.  Changed the header include line from <span class="code">#include &lt;objc/runtime.h&gt;</span>, which is available only on <span class="hardNobr">Mac OS X &ge; 10.5</span>, to <span class="code">#include &lt;objc/objc-runtime.h&gt;</span>, which is available on <span class="hardNobr">Mac OS X &ge; 10.4</span>.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2862398&amp;group_id=204582&amp;atid=990188" class="printURL">2862398</a> - Modified the logic for determining if the cached <span class="code hardNobr">UTF-16</span> conversion is valid for the string to be searched.  Previously, <span class="rkl">RegexKit<i>Lite</i></span> used a combination of the string to be searched <span class="code">hash</span> and <span class="code">length</span> to determine if the cached <span class="code hardNobr">UTF-16</span> conversion was a match.  For speed, <span class="code">NSString</span> only uses a fixed number of characters to calculate the hash.  This means that as the length of a string grows, the hash function becomes less effective at detecting differences between strings.  The original intent behind the <span class="code hardNobr">UTF-16</span> conversion cache logic was to be able to re-use the <span class="code hardNobr">UTF-16</span> conversion for strings that were <span class="hardNobr">&quot;the same&quot;</span> <span class="hardNobr">(i.e., hash equality),</span> but were different instantiations <span class="hardNobr">(i.e., pointer inequality).</span>  On reflection, it was decided that the more likely real-world case would be strings that would share the same hash value, but actually be slightly different.  <span class="rkl">RegexKit<i>Lite</i></span> now requires that the <span class="code">NSString</span> pointer, as well as the <span class="code">hash</span> and <span class="code">length</span>, be the same as the string used for the cached <span class="code hardNobr">UTF-16</span> conversion.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2879356&amp;group_id=204582&amp;atid=990188" class="printURL">2879356</a> - <span class="code">arrayOfCaptureComponentsMatchedByRegex:</span>, <span class="code">captureComponentsMatchedByRegex:</span>, <span class="code">componentsMatchedByRegex:</span>, and <span class="code">componentsSeparatedByRegex:</span> bug fixed.  Originally reported by Jesse Grosjean. Duplicate bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2890342&amp;group_id=204582&amp;atid=990188" class="printURL">2890342</a>.  If a regex matched a part of the string that included the very end of the string, subsequent matches would incorrectly return that the regex did not match the string.  Clearing the cache, either manually or because another regex match replaced the affected cache slot, would clear the condition.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2890810&amp;group_id=204582" class="printURL">2890810</a> - <span class="code">stringByReplacingOccurrencesOfRegex:</span> bug fixed.  If the size of the buffer needed to hold the replaced string was larger than the initial estimated buffer size, ICU should return an error of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.  However, due to a bug in ICU (see bug #<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2408447&amp;group_id=204582&amp;atid=990188" class="printURL">2408447</a>, ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6656" class="printURL">6656</a>), this error was not reported correctly and a workaround was implemented.  A rare corner case could cause ICU to return <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during the time that <span class="rkl">RegexKit<i>Lite</i></span> was calculating the size of the buffer needed to hold the all of the replaced string.  When this happened it would cause <span class="rkl">RegexKit<i>Lite</i></span> to miss the <span class="code">U_BUFFER_OVERFLOW_ERROR</span> error needed to resize the buffer.</li>
+	</ul>
+      </div>
+    </div> <!-- release notes 3.2 -->
 
 
     
