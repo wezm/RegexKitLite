@@ -1473,7 +1473,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
       <h1 id="RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
       <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
-      <div class="printOnly dateAndRevision">2009-11-04, v3.2</div>
+      <div class="printOnly dateAndRevision">2009-11-07, v3.3</div>
     </div>
 
 <div class="printPageBreakAfter">
@@ -1533,7 +1533,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 
 <h3 id="Introduction_Download">Download</h3>
 
-<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.2.tar.bz2" class="printURL file">RegexKitLite-3.2.tar.bz2</a>, 113.9K. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
+<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.3.tar.bz2" class="printURL file">RegexKitLite-3.3.tar.bz2</a>, 115.5K. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
 
 <h3 id="Introduction_PrintingThisDocument">Printing This Document</h3>
 
@@ -1557,7 +1557,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li><a href="#RegexKitLiteCookbook"><span class="rkl">RegexKit<i>Lite</i></span> Cookbook</a></li>
 <li><a href="#AddingRegexKitLitetoyourProject">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
 <li><a href="#NSStringRegexKitLiteAdditionsReference">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
-<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_32">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.2</a></li>
+<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_33">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.3</a></li>
 <li><a href="#Epilogue">Epilogue</a></li>
 <li><a href="#LicenseInformation">License Information</a></li>
 </ul>
@@ -3361,7 +3361,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
   
   <div class="box classSpecs hasRows zebraRows">
     <div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html">NSString</a>, <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html">NSMutableString</a></span></div>
-    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">3.2</span></span></div>
+    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">3.3</span></span></div>
     <div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
     <div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
       <ul class="cell right lastCell">
@@ -5306,11 +5306,24 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a> - Fixed a minor bug that caused compiling on <span class="hardNobr">Mac OS X 10.4</span> to fail.  Changed the header include line from <span class="code">#include &lt;objc/runtime.h&gt;</span>, which is available only on <span class="hardNobr">Mac OS X &ge; 10.5</span>, to <span class="code">#include &lt;objc/objc-runtime.h&gt;</span>, which is available on <span class="hardNobr">Mac OS X &ge; 10.4</span>.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2862398&amp;group_id=204582&amp;atid=990188" class="printURL">2862398</a> - Modified the logic for determining if the cached <span class="code hardNobr">UTF-16</span> conversion is valid for the string to be searched.  Previously, <span class="rkl">RegexKit<i>Lite</i></span> used a combination of the string to be searched <span class="code">hash</span> and <span class="code">length</span> to determine if the cached <span class="code hardNobr">UTF-16</span> conversion was a match.  For speed, <span class="code">NSString</span> only uses a fixed number of characters to calculate the hash.  This means that as the length of a string grows, the hash function becomes less effective at detecting differences between strings.  The original intent behind the <span class="code hardNobr">UTF-16</span> conversion cache logic was to be able to re-use the <span class="code hardNobr">UTF-16</span> conversion for strings that were <span class="hardNobr">&quot;the same&quot;</span> <span class="hardNobr">(i.e., hash equality),</span> but were different instantiations <span class="hardNobr">(i.e., pointer inequality).</span>  On reflection, it was decided that the more likely real-world case would be strings that would share the same hash value, but actually be slightly different.  <span class="rkl">RegexKit<i>Lite</i></span> now requires that the <span class="code">NSString</span> pointer, as well as the <span class="code">hash</span> and <span class="code">length</span>, be the same as the string used for the cached <span class="code hardNobr">UTF-16</span> conversion.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2879356&amp;group_id=204582&amp;atid=990188" class="printURL">2879356</a> - <span class="code">arrayOfCaptureComponentsMatchedByRegex:</span>, <span class="code">captureComponentsMatchedByRegex:</span>, <span class="code">componentsMatchedByRegex:</span>, and <span class="code">componentsSeparatedByRegex:</span> bug fixed.  Originally reported by Jesse Grosjean. Duplicate bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2890342&amp;group_id=204582&amp;atid=990188" class="printURL">2890342</a>.  If a regex matched a part of the string that included the very end of the string, subsequent matches would incorrectly return that the regex did not match the string.  Clearing the cache, either manually or because another regex match replaced the affected cache slot, would clear the condition.</li>
-	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2890810&amp;group_id=204582" class="printURL">2890810</a> - <span class="code">stringByReplacingOccurrencesOfRegex:</span> bug fixed.  If the size of the buffer needed to hold the replaced string was larger than the initial estimated buffer size, ICU should return an error of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.  However, due to a bug in ICU (see bug #<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2408447&amp;group_id=204582&amp;atid=990188" class="printURL">2408447</a>, ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6656" class="printURL">6656</a>), this error was not reported correctly and a workaround was implemented.  A rare corner case could cause ICU to return <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during the time that <span class="rkl">RegexKit<i>Lite</i></span> was calculating the size of the buffer needed to hold the all of the replaced string.  When this happened it would cause <span class="rkl">RegexKit<i>Lite</i></span> to miss the <span class="code">U_BUFFER_OVERFLOW_ERROR</span> error needed to resize the buffer.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2890810&amp;group_id=204582" class="printURL">2890810</a> - <span class="code">stringByReplacingOccurrencesOfRegex:</span> bug fixed.  If the size of the buffer needed to hold the replaced string was larger than the initial estimated buffer size, ICU should return an error of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.  However, due to a bug in ICU (see bug #<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2408447&amp;group_id=204582&amp;atid=990188" class="printURL">2408447</a>, ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6656" class="printURL">6656</a>), this error was not reported correctly and a workaround was implemented.  A rare corner case could cause ICU to return <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during the time that <span class="rkl">RegexKit<i>Lite</i></span> was calculating the size of the buffer needed to hold all of the replaced string.  When this happened it would cause <span class="rkl">RegexKit<i>Lite</i></span> to miss the <span class="code">U_BUFFER_OVERFLOW_ERROR</span> error needed to resize the buffer.</li>
 	</ul>
       </div>
     </div> <!-- release notes 3.2 -->
 
+    <div class="entry" id="ReleaseInformation_33">
+      <div class="banner"><span class="date">2009/11/07</span><span class="bannerItemSpacer">-</span><span class="release">3.3</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	
+	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a bug fix release.</p>
+
+	<p>Bug Fixes:</p>
+	<ul class="square">
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2893824&amp;group_id=204582" class="printURL">2893824</a> - Fixed a minor bug that caused compiling with the iPhone device SDK to fail.  This is related to the <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 3.2</span> fix for bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a>.  It turns out that the iPhone simulator SDK has the header file <span class="file">objc/objc-runtime.h</span>, but the iPhone device SDK only has the header file <span class="file">objc/runtime.h</span>.  <span class="rkl">RegexKit<i>Lite</i></span> will now conditionally use <span class="code">#include &lt;objc/runtime.h&gt;</span> when targeting the iPhone or <span class="hardNobr">Mac OS X &ge; 10.5</span>, and <span class="code">#include &lt;objc/objc-runtime.h&gt;</span> when targeting <span class="hardNobr">Mac OS X &le; 10.4</span>.</li>
+	</ul>
+      </div>
+    </div> <!-- release notes 3.3 -->
 
     
   </div>

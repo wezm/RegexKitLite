@@ -52,7 +52,12 @@
 #define RKL_STRONG_REF
 #endif // __OBJC_GC__
 
+#if (defined(TARGET_OS_EMBEDDED) && (TARGET_OS_EMBEDDED != 0)) || (defined(TARGET_OS_IPHONE) && (TARGET_OS_IPHONE != 0)) || (defined(MAC_OS_X_VERSION_MIN_REQUIRED) && (MAC_OS_X_VERSION_MIN_REQUIRED >= 1050))
+#include <objc/runtime.h>
+#else
 #include <objc/objc-runtime.h>
+#endif
+
 #include <libkern/OSAtomic.h>
 #include <mach-o/loader.h>
 #include <AvailabilityMacros.h>
