@@ -292,6 +292,7 @@ hr.beveled { margin: 0px; border: 0px solid transparent; border-top: 1px solid r
 .section { margin-top: 1em; margin-bottom: 1em; padding: 0px; }
 .section > .header { font-weight: bold; font-size: 1.0834em; margin-bottom: 0.1667em; }
 .section p { margin-top: 0.5em; margin-bottom: 0.5em; }
+.section.discussion p { margin-top: 1em; margin-bottom: 1em; }
 
 .section.summary { margin-top: 0.75em; margin-bottom: 0.75em; }
 .section.name { font-size: 1.5833em; font-weight: bold; margin-top: 0px; margin-bottom: 0px; }
@@ -639,7 +640,8 @@ table.regexSyntax.unicodeProperties .consoleText { font-size: 8pt !important; }
 .section.parameters ul { margin: 0px 0px 0px 0px; }
 
 .argument { font-family: "Letter Gothic Std", "Letter Gothic", "LetterGothic", "Courier New", monaco, courier, monospace; font-style: italic; font-size:0.85em; }
-.signature .argument { font-size: 1.08em; }
+.signature .argument { font-size: 1.02em; }
+/*.signature .argument { font-size: 8pt; }*/
 .signature .selector, .signature .function { font-weight: bold; }
 .code .cpp_flag    { font-weight: bold; font-size: 95%; }
 
@@ -1473,13 +1475,13 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
       <h1 id="RegexKitLiteGuide"><span class="rkl">RegexKit<i>Lite</i></span></h1>
 
       <span class="frameworkabstract">Lightweight <span class="hardNobr">Objective-C</span> Regular Expressions for <span class="hardNobr">Mac OS X</span> using the ICU Library</span>
-      <div class="printOnly dateAndRevision">2009-11-07, v3.3</div>
+      <div class="printOnlyX XXX dateAndRevision">2010-01-01, v4.0</div>
     </div>
 
 <div class="printPageBreakAfter">
 <h2 id="Introduction">Introduction to <span class="rkl">RegexKit<i>Lite</i></span></h2>
 
-<p>This document introduces <span class="rkl">RegexKit<i>Lite</i></span> for <span class="hardNobr">Mac OS X</span>. <span class="rkl">RegexKit<i>Lite</i></span> enables easy access to regular expressions by providing a number of additions to the standard <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html" class="section-link">Foundation</a> <span class="code">NSString</span> class. <span class="rkl">RegexKit<i>Lite</i></span> acts as a bridge between the <span class="code">NSString</span> class and the regular expression engine in the <a href="http://www.icu-project.org" class="section-link NBSP_printURL">International Components for Unicode</a>, or <span class="new-term">ICU</span>, dynamic shared library that is shipped with <span class="hardNobr">Mac OS X</span>.</p>
+<p>This document introduces <span class="rkl">RegexKit<i>Lite</i></span> for <span class="hardNobr">Mac OS X</span>. <span class="rkl">RegexKit<i>Lite</i></span> enables easy access to regular expressions by providing a number of additions to the standard <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html" class="section-link">Foundation</a> <span class="code">NSString</span> class. <span class="rkl">RegexKit<i>Lite</i></span> acts as a bridge between the <span class="code">NSString</span> class and the regular expression engine in the <a href="http://www.icu-project.org/" class="section-link NBSP_printURL">International Components for Unicode</a>, or <span class="new-term">ICU</span>, dynamic shared library that is shipped with <span class="hardNobr">Mac OS X</span>.</p>
 
 <h3 id="Introduction_Highlights">Highlights</h3>
 
@@ -1533,7 +1535,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 
 <h3 id="Introduction_Download">Download</h3>
 
-<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-3.3.tar.bz2" class="printURL file">RegexKitLite-3.3.tar.bz2</a>, 115.5K. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
+<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-4.0.tar.bz2" class="printURL file">RegexKitLite-4.0.tar.bz2</a>, <span class="XXX">115.5K</span>. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
 
 <h3 id="Introduction_PrintingThisDocument">Printing This Document</h3>
 
@@ -1557,7 +1559,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li><a href="#RegexKitLiteCookbook"><span class="rkl">RegexKit<i>Lite</i></span> Cookbook</a></li>
 <li><a href="#AddingRegexKitLitetoyourProject">Adding <span class="rkl">RegexKit<i>Lite</i></span> to your Project</a></li>
 <li><a href="#NSStringRegexKitLiteAdditionsReference">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
-<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_33">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 3.3</a></li>
+<li><a href="#ReleaseInformation">Release Information</a> - <a href="#ReleaseInformation_40">Release Notes for <span class="rkl">RegexKit<i>Lite</i></span> 4.0</a></li>
 <li><a href="#Epilogue">Epilogue</a></li>
 <li><a href="#LicenseInformation">License Information</a></li>
 </ul>
@@ -1567,7 +1569,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <div class="printPageBreakAfter">
 <h2 id="RegexKitLiteOverview"><span class="hardNobr">RegexKit<i class="rk">Lite</i> Overview</span></h2>
 
-<p>While <span class="rkl">RegexKit<i>Lite</i></span> is not a descendant of the <span class="file">RegexKit.framework</span> source code, it does provide a small subset of <a href="http://regexkit.sourceforge.net" class="section-link NBSP_printURL">RegexKits</a> <span class="code">NSString</span> methods for performing various regular expression tasks. These include determining the range that a regular expression matches within a string, easily creating a new string from the results of a match, splitting a string in to a <span class="code">NSArray</span> with a regular expression, and performing search and replace operations with regular expressions using common <span class="hardNobr"><span class="regex">$</span><span class="argument">n</span></span> substitution syntax.</p>
+<p>While <span class="rkl">RegexKit<i>Lite</i></span> is not a descendant of the <span class="file">RegexKit.framework</span> source code, it does provide a small subset of <a href="http://regexkit.sourceforge.net/" class="section-link NBSP_printURL">RegexKits</a> <span class="code">NSString</span> methods for performing various regular expression tasks. These include determining the range that a regular expression matches within a string, easily creating a new string from the results of a match, splitting a string in to a <span class="code">NSArray</span> with a regular expression, and performing search and replace operations with regular expressions using common <span class="hardNobr"><span class="regex">$</span><span class="argument">n</span></span> substitution syntax.</p>
 
 <p><span class="rkl">RegexKit<i>Lite</i></span> uses the regular expression provided by the ICU library that ships with <span class="hardNobr">Mac OS X</span>.  The two files, <span class="file">RegexKitLite.h</span> and <span class="file">RegexKitLite.m</span>, and linking against the <span class="file">/usr/lib/libicucore.dylib</span> ICU shared library is all that is required.  Adding <span class="rkl">RegexKit<i>Lite</i></span> to your project only adds a few kilobytes of overhead to your applications size and typically only requires a few kilobytes of memory at run-time.  Since a regular expression must first be compiled by the ICU library before it can be used, <span class="rkl">RegexKit<i>Lite</i></span> keeps a small <i>pseudo</i> Least Recently Used cache of the compiled regular expressions.</p>
 
@@ -1604,6 +1606,10 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 The default distribution framework shared library file is <span class="hardNobr">1.4MB</span> in size and includes the <span class="quotedText">ppc</span>, <span class="quotedText">ppc64</span>, <span class="quotedText">i386</span>, and <span class="quotedText">x86_64</span> architectures.<br>
 If <span class="hardNobr">64-bit</span> support is removed, the framework shared library file size drops to <span class="hardNobr">664KB</span>.</div></div>
     <div class="row"><div class="cell"><sup>&Dagger;</sup></div><div class="cell"><span style="margin:0px 1ex">-</span></div><div class="cell">Since the ICU library is part of <span class="hardNobr">Mac OS X,</span> it does not add to the final size.</div></div>
+  </div>
+
+  <div class="XXX">
+    Add PCRE vs. ICU regex differences.
   </div>
 
   <h3>Compiled Regular Expression Cache</h3>
@@ -1709,6 +1715,22 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
   <li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">componentsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span>;</span></div></li>
 </ul>
 
+<p><span class="rkl">RegexKit<i>Lite</i></span> 4.0 adds several new methods that take advantage of the new blocks language extension.</p>
+
+<ul class="square highlights">
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a>)</span><span class="selector">enumerateStringsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">usingBlock:</span><span class="hardNobr">(void (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a>)</span><span class="selector">enumerateStringsMatchedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span> <span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span> <span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span> <span class="selector">enumerationOptions:</span>(<a href="#RKLRegexEnumerationOptions">RKLRegexEnumerationOptions</a>)<span class="argument">enumerationOptions</span> <span class="selector">usingBlock:</span><span class="hardNobr">(void (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a>)</span><span class="selector">enumerateStringsSeparatedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">usingBlock:</span><span class="hardNobr">(void (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a>)</span><span class="selector">enumerateStringsSeparatedByRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span> <span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span> <span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span> <span class="selector">enumerationOptions:</span>(<a href="#RKLRegexEnumerationOptions">RKLRegexEnumerationOptions</a>)<span class="argument">enumerationOptions</span> <span class="selector">usingBlock:</span><span class="hardNobr">(void (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)</span><span class="selector">stringByReplacingOccurrencesOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">usingBlock:</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)</span><span class="selector">stringByReplacingOccurrencesOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span> <span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span> <span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span> <span class="selector">enumerationOptions:</span>(<a href="#RKLRegexEnumerationOptions">RKLRegexEnumerationOptions</a>)<span class="argument">enumerationOptions</span> <span class="selector">usingBlock:</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSUInteger">NSUInteger</a>)</span><span class="selector">replaceOccurrencesOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">usingBlock:</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+<li><div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSUInteger">NSUInteger</a>)</span><span class="selector">replaceOccurrencesOfRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span> <span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span> <span class="selector">inRange:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span> <span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span> <span class="selector">enumerationOptions:</span>(<a href="#RKLRegexEnumerationOptions">RKLRegexEnumerationOptions</a>)<span class="argument">enumerationOptions</span> <span class="selector">usingBlock:</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> (^)</span><span class="hardNobr">(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger">NSInteger</a> <span class="argument">captureCount</span>,</span> <span class="hardNobr"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <span class="argument">capturedStrings</span>[captureCount],</span> <span class="hardNobr">const <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a> <span class="argument">capturedRanges</span>[captureCount],</span> <span class="hardNobr">volatile <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/BOOL">BOOL</a> * const <span class="argument">stop</span>))<span class="argument">block</span>;</span></div></li>
+</ul>
+
 <p>There are no additional classes that supply the regular expression matching functionality, everything is accomplished with the two methods above.  These methods are added to the existing <span class="code">NSString</span> class via an <span class="hardNobr">Objective-C</span> category extension.  See <a href="#NSStringRegexKitLiteAdditionsReference" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a> for a complete list of methods.</p>
 
 <p>The real workhorse is the <a href="#NSString_RegexKitLiteAdditions__-rangeOfRegex:options:inRange:capture:error:" class="code hardNobr">rangeOfRegex:options:inRange:capture:error:</a> method.  The receiver of the message is an ordinary <span class="code">NSString</span> class member that you wish to perform a regular expression match on.  The parameters of the method are a <span class="code">NSString</span> containing the regular expression <span class="argument">regex</span>, any <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> match <span class="argument">options</span>, the <span class="code">NSRange</span> <span class="argument">range</span> of the receiver that is to be searched, the <span class="argument">capture</span> number from the regular expression <span class="argument">regex</span> that you would like the result for, and an optional <span class="argument">error</span> parameter that will contain a <span class="code">NSError</span> object if a problem occurs with the details of the error.</p>
@@ -1724,6 +1746,7 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
     <li><a href="#NSStringRegexKitLiteAdditionsReference" class="section-link">NSString <span class="rkl">RegexKit<i>Lite</i></span> Additions Reference</a></li>
     <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
     <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+    <li><a href="http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/Blocks/Articles/00_Introduction.html" class="section-link">Blocks Programming Topics</a></li>
   </ul>
 </div>
 
@@ -3361,7 +3384,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
   
   <div class="box classSpecs hasRows zebraRows">
     <div class="row odd"><span class="cell left hardNobr">Extends by category</span><span class="cell right lastCell"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html">NSString</a>, <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html">NSMutableString</a></span></div>
-    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">3.3</span></span></div>
+    <div class="row even regexKitVersion"><span class="cell left hardNobr"><span class="rkl">RegexKit<i>Lite</i></span></span><span class="cell right lastCell"><span class="version">4.0</span></span></div>
     <div class="row odd"><span class="cell left hardNobr">Declared in</span><ul class="cell right lastCell"><li>RegexKitLite.h</li></ul></div>
     <div class="row even lastRow"><span class="cell left hardNobr">Companion guides</span>
       <ul class="cell right lastCell">
@@ -3405,7 +3428,9 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">NS_&#8203;BLOCK_&#8203;ASSERTIONS</span><span class="cpp_flag softNobr tbrOff">NS_BLOCK_ASSERTIONS</span></span></td><td><i>n/a</i></td><td><span class="rkl">RegexKit<i>Lite</i></span> contains a number of extra run-time assertion checks that can be disabled with this flag.  The standard <span class="file">NSException.h</span> assertion macros are not used because of the multithreading lock.  This flag is typically set for <span class="context-menu">Release</span> style builds where the additional error checking is no longer necessary.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span></td><td><i>None</i></td><td>This flag is useful if you are supplying your own version of the ICU library. When set, this preprocessor define causes the ICU functions used by <span class="rkl">RegexKit<i>Lite</i></span> to have the value of <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> appended to them. For example, if <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS</span><span class="cpp_flag softNobr tbrOff">RKL_APPEND_TO_ICU_FUNCTIONS</span></span> is set to <span class="code">_3_6</span> <span class="softNobr">(i.e., <span><span class="consoleText tbrOn">-DRKL_&#8203;APPEND_&#8203;TO_&#8203;ICU_&#8203;FUNCTIONS=_3_6</span><span class="consoleText tbrOff">-DRKL_APPEND_TO_ICU_FUNCTIONS=_3_6</span></span>),</span> it would cause <span class="code">uregex_find()</span> to become <span class="code">uregex_find_3_6()</span>.</td></tr>
-<tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span></td><td><span class="code">23</span></td><td>Controls the number of compiled regular expressions that are cached.  This should always be a prime number to maximize the use of the available cache slots.</td></tr>
+<tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;BLOCKS</span><span class="cpp_flag softNobr tbrOff">RKL_BLOCKS</span></span></td><td><i>Automatic</i></td><td> Enables blocks support. This feature is automatically enabled if <span><span class="cpp_flag softNobr tbrOn">NS_&#8203;BLOCKS_&#8203;AVAILABLE</span><span class="cpp_flag softNobr tbrOff">NS_BLOCKS_AVAILABLE</span></span> is set to <span class="code">1</span>, which is typically set if support for blocks is appropriate.  At the time of this writing, this typically means that the Xcode setting for the minimum version of <span class="hardNobr">Mac OS X</span> supported must be <span class="hardNobr">10.6</span>. This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>, or alternatively it can be explicitly enabled under all circumstances by setting its value to <span class="code">1</span>.  The behavior is undefined if <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;BLOCKS</span><span class="cpp_flag softNobr tbrOff">RKL_BLOCKS</span></span> is set to <span class="code">1</span> and the compiler does not support the blocks language extension or if the run-time does not support blocks.</td></tr>
+<tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span></td><td><span class="code">13</span></td>
+<td><span class="rkl">RegexKit<i>Lite</i></span> uses a 4-way set associative cache and <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span> controls the number of sets in the cache.  The total number of compiled regular expressions that can be cached is <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span> * <span class="code">4</span>, for a default value of <span class="code">52</span>.  <span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;CACHE_&#8203;SIZE</span><span class="cpp_flag softNobr tbrOff">RKL_CACHE_SIZE</span></span> should always be a prime number to maximize the use of the cache.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;DTRACE</span><span class="cpp_flag softNobr tbrOff">RKL_DTRACE</span></span></td><td><i>Disabled</i></td><td>This preprocessor define controls whether or not <span class="rkl">RegexKit<i>Lite</i></span> provider DTrace probe points are enabled.  This feature may be explicitly disabled under all circumstances by setting its value to <span class="code">0</span>.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;FAST_&#8203;MUTABLE_&#8203;CHECK</span><span class="cpp_flag softNobr tbrOff">RKL_FAST_MUTABLE_CHECK</span></span></td><td><i>Disabled</i></td><td>Enables the use of the undocumented, private <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> <span class="code hardNobr">__CFStringIsMutable()</span> function to determine if the string to be searched is immutable.  This can significantly increase the number of matches per second that can be performed on immutable strings since a number of mutation checks can be safely skipped.</td></tr>
 <tr><td><span><span class="cpp_flag softNobr tbrOn">RKL_&#8203;FIXED_&#8203;LENGTH</span><span class="cpp_flag softNobr tbrOff">RKL_FIXED_LENGTH</span></span></td><td><span class="code">2048</span></td><td>Sets the size of the fixed length <span class="code hardNobr">UTF-16</span> conversion cache buffer.  Strings that need to be converted to <span class="code">UTF-16</span> that are smaller than this size will use this buffer.  Using a single fixed buffer for all small strings means less <span class="code">malloc()</span> overhead, heap fragmentation, and reduces the chances of a memory leak occurring.</td></tr>
@@ -3506,6 +3531,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 <tr><td><span class="code">capture:</span></td><td><span class="code">0</span></td></tr>
 <tr><td><span class="code">options:</span></td><td><a href="#RKLRegexOptions_RKLNoOptions" class="code">RKLNoOptions</a></td></tr>
 <tr><td><span class="code">range:</span></td><td>The entire range of the receiver.</td></tr>
+<tr><td><span class="code">enumerationOptions:</span></td><td><a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationNoOptions" class="code">RKLRegexEnumerationNoOptions</a></td></tr>
 </table>
 
 <h4>Exceptions Raised</h4>
@@ -4864,6 +4890,114 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
   </div>
 </div>
 
+
+<div class="block typedef">
+  <div class="section name" id="RKLRegexEnumerationOptions">RKLRegexEnumerationOptions</div>
+  <div class="section summary">Type for regular expression enumeration options.</div>
+  <div class="section type">typedef NSUInteger RKLRegexEnumerationOptions;</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+    <p>See <a href="#RegularExpressionEnumerationOptions" class="section-link">Regular Expression Enumeration Options</a> for possible values.</p>
+    <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell"><span class="code">RKLRegexEnumerationOptions</span> is only available if <span class="cpp_flag">RKL_BLOCKS</span> is set.</div></div></div></div>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section declared_in"><div class="header">Declared In</div>
+    <div class="file">RegexKitLite.h</div>
+  </div>
+</div>
+
+<div class="block typedef">
+  <div class="section name" id="RegularExpressionEnumerationOptions">Regular Expression Enumeration Options</div>
+  <div class="section summary">The following flags control various aspects of regular expression enumeration.</div>
+  <div class="section declaration code table">
+    <div class="top row"><div class="cell">enum {</div></div>
+    <div class="enum row">
+      <div class="identifier cell"><a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationNoOptions">RKLRegexEnumerationNoOptions</a></div>
+      <div class="equals cell">=</div>
+      <div class="constant cell">0UL,</div>
+    </div>
+    <div class="enum row">
+      <div class="identifier cell"><a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired">RKLRegexEnumerationCapturedStringsNotRequired</a></div>
+      <div class="equals cell">=</div>
+      <div class="constant cell">1UL << 9,</div>
+    </div>
+    <div class="enum row">
+      <div class="identifier cell"><a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</a></div>
+      <div class="equals cell">=</div>
+      <div class="constant cell">1UL << 10</div>
+    </div>
+    <div class="bottom row"><div class="cell">};</div></div>
+  </div>
+  <div class="section constants"><div class="header">Constants</div>
+    <div class="constant">
+      <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationNoOptions">RKLRegexEnumerationNoOptions</div>
+      <div class="text">No regular expression enumeration options specified.</div>
+      <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+    </div>
+    <div class="constant">
+      <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired">RKLRegexEnumerationCapturedStringsNotRequired</div>
+      <div class="text">If set, this indicates that the block does not require the captured strings and <span class="code">NULL</span> will be passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument.</div>
+      <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+    </div>
+    <div class="constant">
+      <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</div>
+      <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will send the string returned by the block a <span class="code">release</span> message.  If garbage collection is active, this flag does nothing.  This flag is only valid for the <span class="code">stringByReplacingOccurrencesOfRegex:</span> and <span class="code">replaceOccurrencesOfRegex:</span> groups of methods. See the discussion below for more information.</div>
+      <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+    </div>
+  </div>
+
+  <div class="section discussion"><div class="header">Discussion</div>
+    <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell"><span class="code">RKLRegexEnumerationOptions</span> is only available if <span class="cpp_flag">RKL_BLOCKS</span> is set.</div></div></div></div>
+    <p>When the method supports it, enumeration options may specified by combining <a href="#RKLRegexEnumerationOptions" class="code">RKLRegexEnumerationOptions</a> flags with the C bitwise OR operator.For example:</p>
+    <div class="box sourcecode">RKLRegexEnumerationOptions enumerationOptions = (RKLRegexEnumerationCapturedStringsNotRequired | RKLRegexEnumerationReleaseStringReturnedByReplacementBlock);</div>
+
+    <p>A typical use of <span class="code">stringByReplacingOccurrencesOfRegex:</span> might be something like the following:</p>
+    <div class="box sourcecode">replacedString = [aString stringByReplacingOccurrencesOfRegex:@&quot;\\w+&quot;
+                                                      options:RKLNoOptions
+                                                      inRange:NSMakeRange(0UL, [aString length])
+                                                        error:NULL
+                                           enumerationOptions:RKLRegexEnumerationNoOptions
+                                                   usingBlock:^(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop) {
+  return((NSString *)[NSString stringWithFormat:@&quot;&lt;%@&gt;&quot;, capturedStrings[0]]);
+}];</div>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+The above example casts the value returned by <span class="code">stringWithFormat:</span>, which has a return type of <span class="code">id</span>,
+to <span class="code">NSString *</span> because of a bug in <span class="consoleText">gcc</span> <span class="code">4.2.1-5646</span>.  Without the cast, the compiler gives an error that the block does not return a compatible type.
+</div></div></div></div>
+
+<p>The use of convenience methods like <span class="code">stringWithFormat:</span> can create a lot of temporary strings that are autoreleased.  The memory used to hold these temporary strings won't be reclaimed until the autorelease pool that they are in is released.  When performing a replace on a large string, this can end up being a considerable about of memory.  If this is becomes a problem in your application, the <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span> enumeration option can be used to reclaim the memory used by these temporary strings immediately.  <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span> essentially transfers ownership of the string that is returned by the block to <span class="rkl">RegexKit<i>Lite</i></span>, which then becomes responsible for sending the string a <span class="code">release</span> message when it is no longer needed.  Typically this is right after <span class="rkl">RegexKit<i>Lite</i></span> has appended the contents of the returned string to the temporary internal string of all the accumulated replacement strings returned by the block.  For example:</p>
+
+    <div class="box sourcecode">replacedString = [aString stringByReplacingOccurrencesOfRegex:@&quot;\\w+&quot;
+                                                      options:RKLNoOptions
+                                                      inRange:NSMakeRange(0UL, [aString length])
+                                                        error:NULL
+                                           enumerationOptions:RKLRegexEnumerationReleaseStringReturnedByReplacementBlock
+                                                   usingBlock:^(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop) {
+  return((NSString *)[[NSString alloc] initWithFormat:@&quot;&lt;%@&gt;&quot;, capturedStrings[0]]);
+}];</div>
+
+<p>When using <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span>, it is also possible to directly return the strings that were passed via <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span>.  <span class="rkl">RegexKit<i>Lite</i></span> automatically checks if the pointer of the string returned by the block is equal to the pointer of any of the strings it created and passed via <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span>, in which case <span class="rkl">RegexKit<i>Lite</i></span> does not send the string that was returned a <span class="code">release</span> message since this would result in over releasing the string object.  For example:</p>
+
+    <div class="box sourcecode">replacedString = [aString stringByReplacingOccurrencesOfRegex:@&quot;\\w+&quot;
+                                                      options:RKLNoOptions
+                                                      inRange:NSMakeRange(0UL, [aString length])
+                                                        error:NULL
+                                           enumerationOptions:RKLRegexEnumerationReleaseStringReturnedByReplacementBlock
+                                                   usingBlock:^(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop) {
+  NSString *returnString = NULL;
+  if([capturedStrings[0] isEqual:@&quot;with&quot;]) { returnString = capturedStrings[0]; }
+  else { returnString = [[NSString alloc] initWithFormat:@&quot;&lt;%@&gt;&quot;, capturedStrings[0]]; }
+  return(returnString);
+}];</div>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section declared_in"><div class="header">Declared In</div>
+    <div class="file">RegexKitLite.h</div>
+  </div>
+</div>
+
+
+
 <div class="block typedef">
   <div class="section name" id="dtrace_utf16ConversionCache_lookupResultFlags">RegexKitLite:::utf16ConversionCache <span class="argument">arg1</span> Flags</div>
   <div class="section summary">The following flags are used to indicate the status of the result from <span class="argument">arg1</span> <span class="argument">lookupResultFlags</span> of the <span class="code">RegexKitLite:::utf16ConversionCache</span> DTrace probe point.</div>
@@ -4892,8 +5026,15 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
     <div class="enum row">
       <div class="identifier cell"><a href="#dtrace_utf16ConversionCache_lookupResultFlags_RKLErrorLookupFlag">RKLErrorLookupFlag</a></div>
       <div class="equals cell">=</div>
-      <div class="constant cell">1 &lt;&lt; 4</div>
+      <div class="constant cell">1 &lt;&lt; 4,</div>
     </div>
+
+    <div class="enum row">
+      <div class="identifier cell"><a href="#dtrace_utf16ConversionCache_lookupResultFlags_RKLEnumerationBufferLookupFlag">RKLEnumerationBufferLookupFlag</a></div>
+      <div class="equals cell">=</div>
+      <div class="constant cell">1 &lt;&lt; 5</div>
+    </div>
+
     <div class="bottom row"><div class="cell">};</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
@@ -4921,6 +5062,11 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
       <div class="identifier" id="dtrace_utf16ConversionCache_lookupResultFlags_RKLErrorLookupFlag">RKLErrorLookupFlag</div>
       <div class="text">If set, there was some kind of error during the <span class="code">UTF-16</span> conversion process.</div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 3.0 and later.</div>
+    </div>
+    <div class="constant">
+      <div class="identifier" id="dtrace_utf16ConversionCache_lookupResultFlags_RKLEnumerationBufferLookupFlag">RKLEnumerationBufferLookupFlag</div>
+      <div class="text">If set, the probe was fired due to a blocks enumeration.  The conversion result is one time use only and is only available to the block enumeration that required it.</div>
+      <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
   </div>
   <div class="section seealso"><div class="header">See Also</div>
@@ -4997,6 +5143,10 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexPostContextErrorKey">RKLICURegexPostContextErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexRegexErrorKey">RKLICURegexRegexErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexRegexOptionsErrorKey">RKLICURegexRegexOptionsErrorKey</a>;</div></div>
+
+    <div class="row"><div class="name cell XXX">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexMatchStringErrorKey">RKLICURegexMatchStringErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell XXX">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexMatchRangeErrorKey">RKLICURegexMatchRangeErrorKey</a>;</div></div>
+
   </div>
   <div class="section constants"><div class="header">Constants</div>
   <div class="section constant">
@@ -5039,6 +5189,18 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
     <div class="text">The <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> regular expression options specified.</div>
     <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.0 and later.</div>
   </div>
+
+  <div class="section constant XXX">
+    <div class="identifier" id="RKLICURegexMatchStringErrorKey">RKLICURegexMatchStringErrorKey</div>
+    <div class="text">The <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> regular expression options specified.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.0 and later.</div>
+  </div>
+  <div class="section constant XXX">
+    <div class="identifier" id="RKLICURegexMatchRangeErrorKey">RKLICURegexMatchRangeErrorKey</div>
+    <div class="text">The <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> regular expression options specified.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.0 and later.</div>
+  </div>
+
   </div>
   <div class="section discussion"><div class="header">Discussion</div>
     <p>The <a href="#RKLICURegexLineErrorKey" class="code">RKLICURegexLineErrorKey</a>, <a href="#RKLICURegexOffsetErrorKey" class="code">RKLICURegexOffsetErrorKey</a>, <a href="#RKLICURegexPreContextErrorKey" class="code">RKLICURegexPreContextErrorKey</a>, and <a href="#RKLICURegexPostContextErrorKey" class="code">RKLICURegexPostContextErrorKey</a> error keys may not be present for all errors.  For example, errors returned by passing invalid <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags will not have the listed keys set.</p>
@@ -5303,7 +5465,7 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 	<p>Bug Fixes:</p>
 	<ul class="square">
-	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a> - Fixed a minor bug that caused compiling on <span class="hardNobr">Mac OS X 10.4</span> to fail.  Changed the header include line from <span class="code">#include &lt;objc/runtime.h&gt;</span>, which is available only on <span class="hardNobr">Mac OS X &ge; 10.5</span>, to <span class="code">#include &lt;objc/objc-runtime.h&gt;</span>, which is available on <span class="hardNobr">Mac OS X &ge; 10.4</span>.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a> - Fixed a minor bug that caused compiling on <span class="hardNobr">Mac OS X 10.4</span> to fail.  Changed the header include line from <span class="code hardNobr">#include &lt;objc/runtime.h&gt;</span>, which is available only on <span class="hardNobr">Mac OS X &ge; 10.5</span>, to <span class="code hardNobr">#include &lt;objc/objc-runtime.h&gt;</span>, which is available on <span class="hardNobr">Mac OS X &ge; 10.4</span>.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2862398&amp;group_id=204582&amp;atid=990188" class="printURL">2862398</a> - Modified the logic for determining if the cached <span class="code hardNobr">UTF-16</span> conversion is valid for the string to be searched.  Previously, <span class="rkl">RegexKit<i>Lite</i></span> used a combination of the string to be searched <span class="code">hash</span> and <span class="code">length</span> to determine if the cached <span class="code hardNobr">UTF-16</span> conversion was a match.  For speed, <span class="code">NSString</span> only uses a fixed number of characters to calculate the hash.  This means that as the length of a string grows, the hash function becomes less effective at detecting differences between strings.  The original intent behind the <span class="code hardNobr">UTF-16</span> conversion cache logic was to be able to re-use the <span class="code hardNobr">UTF-16</span> conversion for strings that were <span class="hardNobr">&quot;the same&quot;</span> <span class="hardNobr">(i.e., hash equality),</span> but were different instantiations <span class="hardNobr">(i.e., pointer inequality).</span>  On reflection, it was decided that the more likely real-world case would be strings that would share the same hash value, but actually be slightly different.  <span class="rkl">RegexKit<i>Lite</i></span> now requires that the <span class="code">NSString</span> pointer, as well as the <span class="code">hash</span> and <span class="code">length</span>, be the same as the string used for the cached <span class="code hardNobr">UTF-16</span> conversion.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2879356&amp;group_id=204582&amp;atid=990188" class="printURL">2879356</a> - <span class="code">arrayOfCaptureComponentsMatchedByRegex:</span>, <span class="code">captureComponentsMatchedByRegex:</span>, <span class="code">componentsMatchedByRegex:</span>, and <span class="code">componentsSeparatedByRegex:</span> bug fixed.  Originally reported by Jesse Grosjean. Duplicate bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2890342&amp;group_id=204582&amp;atid=990188" class="printURL">2890342</a>.  If a regex matched a part of the string that included the very end of the string, subsequent matches would incorrectly return that the regex did not match the string.  Clearing the cache, either manually or because another regex match replaced the affected cache slot, would clear the condition.</li>
 	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2890810&amp;group_id=204582" class="printURL">2890810</a> - <span class="code">stringByReplacingOccurrencesOfRegex:</span> bug fixed.  If the size of the buffer needed to hold the replaced string was larger than the initial estimated buffer size, ICU should return an error of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.  However, due to a bug in ICU (see bug #<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2408447&amp;group_id=204582&amp;atid=990188" class="printURL">2408447</a>, ICU ticket #<a href="http://bugs.icu-project.org/trac/ticket/6656" class="printURL">6656</a>), this error was not reported correctly and a workaround was implemented.  A rare corner case could cause ICU to return <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during the time that <span class="rkl">RegexKit<i>Lite</i></span> was calculating the size of the buffer needed to hold all of the replaced string.  When this happened it would cause <span class="rkl">RegexKit<i>Lite</i></span> to miss the <span class="code">U_BUFFER_OVERFLOW_ERROR</span> error needed to resize the buffer.</li>
@@ -5320,10 +5482,67 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
 
 	<p>Bug Fixes:</p>
 	<ul class="square">
-	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2893824&amp;group_id=204582" class="printURL">2893824</a> - Fixed a minor bug that caused compiling with the iPhone device SDK to fail.  This is related to the <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 3.2</span> fix for bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a>.  It turns out that the iPhone simulator SDK has the header file <span class="file">objc/objc-runtime.h</span>, but the iPhone device SDK only has the header file <span class="file">objc/runtime.h</span>.  <span class="rkl">RegexKit<i>Lite</i></span> will now conditionally use <span class="code">#include &lt;objc/runtime.h&gt;</span> when targeting the iPhone or <span class="hardNobr">Mac OS X &ge; 10.5</span>, and <span class="code">#include &lt;objc/objc-runtime.h&gt;</span> when targeting <span class="hardNobr">Mac OS X &le; 10.4</span>.</li>
+	  <li>Bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;atid=990188&amp;aid=2893824&amp;group_id=204582" class="printURL">2893824</a> - Fixed a minor bug that caused compiling with the iPhone device SDK to fail.  This is related to the <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 3.2</span> fix for bug #<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2828966&amp;group_id=204582&amp;atid=990188" class="printURL">2828966</a>.  It turns out that the iPhone simulator SDK has the header file <span class="file">objc/objc-runtime.h</span>, but the iPhone device SDK only has the header file <span class="file">objc/runtime.h</span>.  <span class="rkl">RegexKit<i>Lite</i></span> will now conditionally use <span class="code hardNobr">#include &lt;objc/runtime.h&gt;</span> when targeting the iPhone or <span class="hardNobr">Mac OS X &ge; 10.5</span>, and <span class="code hardNobr">#include &lt;objc/objc-runtime.h&gt;</span> when targeting <span class="hardNobr">Mac OS X &le; 10.4</span>.</li>
 	</ul>
       </div>
     </div> <!-- release notes 3.3 -->
+
+
+    <div class="entry" id="ReleaseInformation_40">
+      <div class="banner"><span class="date XXX">2010/01/01</span><span class="bannerItemSpacer">-</span><span class="release">4.0</span></div>
+      <div class="bannerSpacer"></div>
+      <div class="content">
+	
+	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a major release that includes new features and new APIs.</p>
+
+	  <p>New features:</p>
+
+	  <ul class="square">
+	    <li>
+	      <p>Blocks support.</p>
+
+	      <p>Although support for blocks was introduced with <span class="hardNobr">Mac OS X 10.6</span>, you can still use blocks on <span class="hardNobr">Mac OS X 10.5</span> and <span class="hardNobr">iPhone 2.2+</span> by using <a href="http://code.google.com/p/plblocks/" class="printURL">Plausible Blocks</a>.  This solution provides a compiler and runtime that has been back-ported from the <span class="hardNobr">Mac OS X 10.6</span> <span class="hardNobr">Snow Leopard</span> sources.</p>
+
+<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+<span class="rkl">RegexKit<i>Lite</i></span> checks if the C preprocessor define <span class="cpp_flag">NS_BLOCKS_AVAILABLE</span> is set to <span class="code">1</span> to automatically determine if blocks functionality should be enabled.  Typically <span class="cpp_flag">NS_BLOCKS_AVAILABLE</span> is only set to <span class="code">1</span> when using the standard developer tools and the minimum version of <span class="hardNobr">Mac OS X</span> supported is <span class="hardNobr">10.6</span>.  <span class="rkl">RegexKit<i>Lite</i></span> blocks support can be explicitly enabled by setting <span class="cpp_flag">RKL_BLOCKS</span> to <span class="code">1</span> <span class="hardNobr">(i.e.,</span> <span class="consoleText">-DRKL_BLOCKS=1</span>).  The behavior is undefined if <span class="cpp_flag">RKL_BLOCKS</span> is set to <span class="code">1</span> and the compiler does not support the blocks language extension or if the run-time does not support blocks.
+</div></div></div></div>
+
+	    </li>
+	  </ul>
+
+	  <p>New <span class="code">NSString</span> Methods:</p>
+
+	  <ul class="square">
+	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:usingBlock:" class="code">- enumerateStringsMatchedByRegex:usingBlock:</a></li>
+	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	    
+	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a>
+	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	    
+	    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
+	    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  </ul>
+
+	<p>New <span class="code">NSMutableString</span> Methods:</p>
+
+	  <ul class="square">
+	    <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:usingBlock:" class="code">- replaceOccurrencesOfRegex:usingBlock:</a></li>
+	    <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  </ul>
+
+	  <p>Other changes:</p>
+
+	  <ul class="square">
+	    <li>Improved compiled regular expression cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &le; 4.0</span> used a direct mapped, or 1-way set associative, cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> uses a 4-way set associative cache.  In general, a <span class="hardNobr"><i>n</i>-way</span> set associative cache, where <span class="hardNobr"><i>n</i> &gt; <span class="code">1</span>,</span> has fewer misses than a direct mapped cache.  Entries in a set are managed on a least recently used, or LRU, basis.  This means that when a compiled regular expression is added to the cache, the entry in a set that is the least recently used is the one chosen to hold the new compiled regular expression.</li>
+	    <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocesor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
+	    <li><span class="cpp_flag">RKL_CACHE_SIZE</span> changed to <span class="code">13</span>.  The total number of compiled regular expressions that can be cached is <span class="code hardNobr">13 * 4</span>, or <span class="code">52</span>.  This is a 126% increase from previous versions of <span class="rkl">RegexKit<i>Lite</i></span> which had a default value of <span class="code">23</span> for <span class="cpp_flag">RKL_CACHE_SIZE</span>.</li>
+
+	  </ul>
+
+
+
+      </div>
+    </div> <!-- release notes 4.0 -->
 
     
   </div>

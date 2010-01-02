@@ -5,7 +5,7 @@
 //
 
 /*
- Copyright (c) 2008-2009, John Engelhart
+ Copyright (c) 2008-2010, John Engelhart
  
  All rights reserved.
  
@@ -62,13 +62,25 @@ extern "C" {
 #define _RKL_JOIN_VERSION(a,b)   _RKL_STRINGIFY(a##.##b)
 #define _RKL_VERSION_STRING(a,b) _RKL_JOIN_VERSION(a,b)
 
-#define REGEXKITLITE_VERSION_MAJOR 3
-#define REGEXKITLITE_VERSION_MINOR 3
+#define REGEXKITLITE_VERSION_MAJOR 4
+#define REGEXKITLITE_VERSION_MINOR 0
 
 #define REGEXKITLITE_VERSION_CSTRING   _RKL_VERSION_STRING(REGEXKITLITE_VERSION_MAJOR, REGEXKITLITE_VERSION_MINOR)
 #define REGEXKITLITE_VERSION_NSSTRING  @REGEXKITLITE_VERSION_CSTRING
 
 #endif // REGEXKITLITE_VERSION_DEFINED
+
+#if !defined(RKL_BLOCKS) && defined(NS_BLOCKS_AVAILABLE) && (NS_BLOCKS_AVAILABLE == 1)
+#define RKL_BLOCKS 1
+#endif
+  
+#if       defined(RKL_BLOCKS) && (RKL_BLOCKS == 1)
+#define _RKL_BLOCKS_ENABLED 1
+#endif // defined(RKL_BLOCKS) && (RKL_BLOCKS == 1)
+
+#if       defined(_RKL_BLOCKS_ENABLED) && !defined(__BLOCKS__)
+#warning RegexKitLite support for Blocks is enabled, but __BLOCKS__ is not defined.  This compiler may not support Blocks, in which case the behavior is undefined.  This will probably cause numerous compiler errors.
+#endif // defined(_RKL_BLOCKS_ENABLED) && !defined(__BLOCKS__)
 
 // For Mac OS X < 10.5.
 #ifndef   NSINTEGER_DEFINED
@@ -103,6 +115,20 @@ enum {
 typedef uint32_t RKLRegexOptions; // This must be identical to the ICU 'flags' argument type.
 
 #endif // RKLREGEXOPTIONS_DEFINED
+
+#ifdef    _RKL_BLOCKS_ENABLED
+#ifndef   RKLREGEXENUMERATIONOPTIONS_DEFINED
+#define   RKLREGEXENUMERATIONOPTIONS_DEFINED
+
+enum {
+  RKLRegexEnumerationNoOptions                               = 0UL,
+  RKLRegexEnumerationCapturedStringsNotRequired              = 1UL << 9,
+  RKLRegexEnumerationReleaseStringReturnedByReplacementBlock = 1UL << 10,
+};
+typedef NSUInteger RKLRegexEnumerationOptions;
+  
+#endif // RKLREGEXENUMERATIONOPTIONS_DEFINED
+#endif // _RKL_BLOCKS_ENABLED
 
 #ifndef _REGEXKITLITE_H_
 #define _REGEXKITLITE_H_
@@ -146,6 +172,8 @@ extern NSString * const RKLICURegexPreContextErrorKey;
 extern NSString * const RKLICURegexPostContextErrorKey;
 extern NSString * const RKLICURegexRegexErrorKey;
 extern NSString * const RKLICURegexRegexOptionsErrorKey;
+extern NSString * const RKLICURegexMatchStringErrorKey;
+extern NSString * const RKLICURegexMatchRangeErrorKey;
 
 @interface NSString (RegexKitLiteAdditions)
 
@@ -201,6 +229,19 @@ extern NSString * const RKLICURegexRegexOptionsErrorKey;
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfCaptureComponentsMatchedByRegex):(NSString *)regex range:(NSRange)range;
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfCaptureComponentsMatchedByRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error;
 
+#ifdef    _RKL_BLOCKS_ENABLED
+
+- (BOOL)RKL_METHOD_PREPEND(enumerateStringsMatchedByRegex):(NSString *)regex usingBlock:(void (^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+- (BOOL)RKL_METHOD_PREPEND(enumerateStringsMatchedByRegex):(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error enumerationOptions:(RKLRegexEnumerationOptions)enumerationOptions usingBlock:(void (^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+
+- (BOOL)RKL_METHOD_PREPEND(enumerateStringsSeparatedByRegex):(NSString *)regex usingBlock:(void (^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+- (BOOL)RKL_METHOD_PREPEND(enumerateStringsSeparatedByRegex):(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error enumerationOptions:(RKLRegexEnumerationOptions)enumerationOptions usingBlock:(void (^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+
+- (NSString *)RKL_METHOD_PREPEND(stringByReplacingOccurrencesOfRegex):(NSString *)regex usingBlock:(NSString *(^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+- (NSString *)RKL_METHOD_PREPEND(stringByReplacingOccurrencesOfRegex):(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error enumerationOptions:(RKLRegexEnumerationOptions)enumerationOptions usingBlock:(NSString *(^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+
+#endif // _RKL_BLOCKS_ENABLED
+
 @end
 
 @interface NSMutableString (RegexKitLiteAdditions)
@@ -208,6 +249,13 @@ extern NSString * const RKLICURegexRegexOptionsErrorKey;
 - (NSUInteger)RKL_METHOD_PREPEND(replaceOccurrencesOfRegex):(NSString *)regex withString:(NSString *)replacement;
 - (NSUInteger)RKL_METHOD_PREPEND(replaceOccurrencesOfRegex):(NSString *)regex withString:(NSString *)replacement range:(NSRange)searchRange;
 - (NSUInteger)RKL_METHOD_PREPEND(replaceOccurrencesOfRegex):(NSString *)regex withString:(NSString *)replacement options:(RKLRegexOptions)options range:(NSRange)searchRange error:(NSError **)error;
+
+#ifdef    _RKL_BLOCKS_ENABLED
+
+- (NSUInteger)RKL_METHOD_PREPEND(replaceOccurrencesOfRegex):(NSString *)regex usingBlock:(NSString *(^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+- (NSUInteger)RKL_METHOD_PREPEND(replaceOccurrencesOfRegex):(NSString *)regex options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error enumerationOptions:(RKLRegexEnumerationOptions)enumerationOptions usingBlock:(NSString *(^)(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop))block;
+
+#endif // _RKL_BLOCKS_ENABLED
 
 @end
 
