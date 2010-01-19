@@ -172,8 +172,8 @@ extern NSString * const RKLICURegexPreContextErrorKey;
 extern NSString * const RKLICURegexPostContextErrorKey;
 extern NSString * const RKLICURegexRegexErrorKey;
 extern NSString * const RKLICURegexRegexOptionsErrorKey;
-extern NSString * const RKLICURegexMatchStringErrorKey;
-extern NSString * const RKLICURegexMatchRangeErrorKey;
+extern NSString * const RKLICURegexSubjectStringErrorKey;
+extern NSString * const RKLICURegexSubjectRangeErrorKey;
 
 @interface NSString (RegexKitLiteAdditions)
 
