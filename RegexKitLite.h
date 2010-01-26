@@ -124,6 +124,7 @@ enum {
   RKLRegexEnumerationNoOptions                               = 0UL,
   RKLRegexEnumerationCapturedStringsNotRequired              = 1UL << 9,
   RKLRegexEnumerationReleaseStringReturnedByReplacementBlock = 1UL << 10,
+  RKLRegexEnumerationFastXXXCapturedStrings                  = 1UL << 11,
 };
 typedef NSUInteger RKLRegexEnumerationOptions;
   
