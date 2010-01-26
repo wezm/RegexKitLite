@@ -5977,7 +5977,7 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	    <div class="box sourcecode">NSArray *splitArray = [@&quot;Bob, Tom, Sam,&quot; componentsSeparatedByRegex:@&quot;,\\s*&quot;];
 
 // <span class="comment">{ @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;, @&quot;&quot; } &lt;- RegexKitLite &le; v2.2.</span>
-// <span class="comment">{ @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } &lt;- RegexKitLite &ge; v3.0.</div></span>
+// <span class="comment">{ @&quot;Bob&quot;, @&quot;Tom&quot;, @&quot;Sam&quot;      } &lt;- RegexKitLite &ge; v3.0.</span></div>
 	  </li>
 
 	  <li>
@@ -6073,54 +6073,113 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
       <div class="bannerSpacer"></div>
       <div class="content">
 	
-	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a major release that includes new features and new APIs.</p>
+	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a major release that includes new features, new APIs, and bug fixes.</p>
+	
+	<p class="standout">API Compatability Changes:</p>
 
-	  <p>New features:</p>
+	<ul class="square">
 
-	  <ul class="square">
-	    <li>
-	      <p>Blocks support.</p>
+	  <li>
+	    <p>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods now return a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger" class="code">NSInteger</a>, whereas <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> &lt; 4.0</span> returned a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSUInteger" class="code">NSUInteger</a>. This change, while technically breaking API compatibility, is likely to be completely backwards compatible for most users. The change was made so that errors, such as an invalid regular expression, can be distinguished from a search and replace operation that replaced zero occurrences. An error condition that is not an exception now returns a value of <span class="code">-1L</span>. Prior to <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0,</span> the only way to distinguish between a search and replace operation that replaced zero occurrences and an error that prevented a search and replace from taking place was to use a <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> method with an <span class="code">error:</span> parameter.</p>
+	  </li>
+	</ul>
 
-	      <p>Although support for blocks was introduced with <span class="hardNobr">Mac OS X 10.6</span>, you can still use blocks on <span class="hardNobr">Mac OS X 10.5</span> and <span class="hardNobr">iPhone 2.2+</span> by using <a href="http://code.google.com/p/plblocks/" class="printURL">Plausible Blocks</a>.  This solution provides a compiler and runtime that has been back-ported from the <span class="hardNobr">Mac OS X 10.6</span> <span class="hardNobr">Snow Leopard</span> sources.</p>
+	<p>New features:</p>
 
-<div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
+	<ul class="square">
+	  <li>
+	    <p>Improved compiled regular expression cache.</p>
+
+	    <p><span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &lt; 4.0</span> used a direct mapped, or 1-way set associative, cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> uses a 4-way set associative cache.  In general, a <span class="hardNobr"><i>n</i>-way</span> set associative cache, where <span class="hardNobr"><i>n</i> &gt; <span class="code">1</span>,</span> has fewer misses than a direct mapped cache.  Entries in a set are managed on a least recently used, or LRU, basis.  This means that when a compiled regular expression is added to the cache, the entry in a set that is the least recently used is the one chosen to hold the new compiled regular expression.</p>
+
+	    <p>In benchmark tests, the old compiled regular expression cache required a <b><i>dramatically</i></b> larger cache size to achive the same effectiveness <span class="hardNobr">(i.e.,</span> the likelyhood that the regular expression was already in the cache) as the new compiled regular expression cache. Retrieving a cached compiled regular expression is <b><i>541.3</i></b> times faster<sup>&dagger;</sup> than actually compiling the regular expression:</p>
+
+	    <div style="margin-left: 2ex; margin-top: 1em;">
+	      <table class="standard">
+		<tr><th>Retrieve</th><th>Time</th><th>Rate (per second)</th></tr>
+		<tr><td><b>Compile</b></td><td align="right"><span class="hardNobr">27,559.580 ns</span></td><td align="right">36,285</td></tr>
+		<tr><td><b>Cached</b></td><td align="right"><span class="hardNobr">50.811 ns</span></td><td align="right">19,680,762</td></tr>
+	      </table>
+	      <p><sup>&dagger;</sup>Timing done a MacBook Pro 2.66GHz</p>
+	    </div>
+	  </li>
+
+	  <li>
+	    <p>Improved <span class="code">UTF-16</span> conversion cache.</p>
+
+	    <p>The <span class="code">UTF-16</span> conversion cache now uses the same 4-way set associative cache system as the compiled regular expression cache.  For strings that required a <span class="code">UTF-16</span> conversion, <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &lt; 4.0</span> used two buffers for caching <span class="code">UTF-16</span> conversions&mdash; a small, fixed sized buffer for 'small' strings (under 2048 characters by default), and a dynamically sized buffer for 'large' strings.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> keeps the same fixed and dynamic size dichotomy, but now each type contains four buffers which are re-used on a least recently used basis.</p>
+	  </li>
+	  <li>
+	    <p>Blocks support.</p>
+	    
+	    <p>Although support for blocks was introduced with <span class="hardNobr">Mac OS X 10.6</span>, you can still use blocks on <span class="hardNobr">Mac OS X 10.5</span> and <span class="hardNobr">iPhone &ge; 2.2</span> by using <a href="http://code.google.com/p/plblocks/" class="printURL">Plausible Blocks</a>.  This solution provides a compiler and runtime that has been back-ported from the <span class="hardNobr">Mac OS X 10.6</span> <span class="hardNobr">Snow Leopard</span> sources.</p>
+	    
+	    <div class="box note"><div class="table"><div class="row"><div class="label cell">Note:</div><div class="message cell">
 <span class="rkl">RegexKit<i>Lite</i></span> checks if the C preprocessor define <span class="cpp_flag">NS_BLOCKS_AVAILABLE</span> is set to <span class="code">1</span> to automatically determine if blocks functionality should be enabled.  Typically <span class="cpp_flag">NS_BLOCKS_AVAILABLE</span> is only set to <span class="code">1</span> when using the standard developer tools and the minimum version of <span class="hardNobr">Mac OS X</span> supported is set to <span class="hardNobr">10.6</span>.  <span class="rkl">RegexKit<i>Lite</i></span> blocks support can be explicitly enabled by setting <span class="cpp_flag">RKL_BLOCKS</span> to <span class="code">1</span> <span class="hardNobr">(i.e.,</span> <span class="consoleText">-DRKL_BLOCKS=1</span>).  The behavior is undefined if <span class="cpp_flag">RKL_BLOCKS</span> is set to <span class="code">1</span> and the compiler does not support the blocks language extension or if the run-time does not support blocks.
-</div></div></div></div>
+	    </div></div></div></div>
 
-	    </li>
-	  </ul>
+	    <div class="section seealso"><div class="header">See Also</div>
+	      <ul class="offset">
+		<li><a href="http://code.google.com/p/plblocks/" class="section-link printURL">Plausible Blocks - PLBlocks</a></li>
+	      </ul>
+	    </div>
 
-	  <p>New <span class="code">NSString</span> Methods:</p>
+	  </li>
+	</ul>
 
-	  <ul class="square">
-	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:usingBlock:" class="code">- enumerateStringsMatchedByRegex:usingBlock:</a></li>
-	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
-	    
-	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a>
-	    <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
-	    
-	    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
-	    <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
-	  </ul>
+	<p>New <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html" class="code">NSString</a> Methods:</p>
 
-	<p>New <span class="code">NSMutableString</span> Methods:</p>
+	<ul class="square">
+	  <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:withKeysAndCaptures:</a></li>
+	  <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:</a></li>
+	</ul>
 
-	  <ul class="square">
-	    <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:usingBlock:" class="code">- replaceOccurrencesOfRegex:usingBlock:</a></li>
-	    <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
-	  </ul>
+	<p>New Block-based <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/index.html" class="code">NSString</a> Methods:</p>
 
-	  <p>Other changes:</p>
+	<ul class="square">
+	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:usingBlock:" class="code">- enumerateStringsMatchedByRegex:usingBlock:</a></li>
+	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  
+	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a>
+	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  
+	  <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
+	  <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	</ul>
+	
+	<p>New Block-based <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> Methods:</p>
+	
+	<ul class="square">
+	  <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:usingBlock:" class="code">- replaceOccurrencesOfRegex:usingBlock:</a></li>
+	  <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	</ul>
 
-	  <ul class="square">
-	    <li>Improved compiled regular expression cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &le; 4.0</span> used a direct mapped, or 1-way set associative, cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> uses a 4-way set associative cache.  In general, a <span class="hardNobr"><i>n</i>-way</span> set associative cache, where <span class="hardNobr"><i>n</i> &gt; <span class="code">1</span>,</span> has fewer misses than a direct mapped cache.  Entries in a set are managed on a least recently used, or LRU, basis.  This means that when a compiled regular expression is added to the cache, the entry in a set that is the least recently used is the one chosen to hold the new compiled regular expression.</li>
-	    <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocesor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
-	    <li><span class="cpp_flag">RKL_CACHE_SIZE</span> changed to <span class="code">13</span>.  The total number of compiled regular expressions that can be cached is <span class="code hardNobr">13 * 4</span>, or <span class="code">52</span>.  This is a 126% increase from previous versions of <span class="rkl">RegexKit<i>Lite</i></span> which had a default value of <span class="code">23</span> for <span class="cpp_flag">RKL_CACHE_SIZE</span>.</li>
+	<p class="standout">Changes that effect the results that are returned:</p>
 
-	  </ul>
+	<ul class="square">
+	  <li>
+	    <p>When a regular expression could match zero or more characters, the 'Search and Replace' methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters:</p>
+	    <div class="box sourcecode">NSString *replacedString = [@&quot;x&quot; stringByReplacingOccurrencesOfRegex:@&quot;(.*)&quot; withString:@&quot;&lt;&lt;$1&gt;&gt;&quot;];
 
+// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&lt;&lt;&gt;&gt;&quot;  &lt;- RegexKitLite &le; v3.3.</span>
+// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&quot;      &lt;- RegexKitLite &ge; v4.0.</span></div>
+	  </li>
+	</ul>
 
+	<p>Other changes:</p>
+	
+	<ul class="square">
+	  <li>Improved performance.  Many small performance tweaks and optimizations were made to frequently used code paths.</li>
+	  <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocesor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
+	  <li><span class="cpp_flag">RKL_CACHE_SIZE</span> changed to <span class="code">13</span>.  The total number of compiled regular expressions that can be cached is <span class="code hardNobr">13 * 4</span>, or <span class="code">52</span>.  This is a 126% increase from previous versions of <span class="rkl">RegexKit<i>Lite</i></span> which had a default value of <span class="code">23</span> for <span class="cpp_flag">RKL_CACHE_SIZE</span>.</li>
+	</ul>
 
+	<p>Bug fixes:</p>
+
+	<ul class="square">
+	  <li>If the ICU library returned a status of <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during a search and replace operation, <span class="rkl">RegexKit<i>Lite</i></span> erred on the side of caution and treated it as a failure due to the numerous search and replace bugs in the past.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> continues to err on the side of caution, but now treats <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> as if the ICU library had returned a status of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.</li>
+	  <li>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods could have returned a value &gt; <span class="code">0</span>, the replaced count, even if no actual replacements were performed.  This would occur if an error was encountered during the search and replace, in which case the replaced count was not correctly reset to <span class="code">0</span>.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> changed the <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> API so that a value of <span class="code">-1</span> could be returned to indicate that an error was encountered.</li>
+	</ul>
       </div>
     </div> <!-- release notes 4.0 -->
 
