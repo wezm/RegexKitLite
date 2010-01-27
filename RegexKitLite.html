@@ -5504,6 +5504,11 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
       <div class="equals cell">=</div>
       <div class="constant cell">1UL << 10</div>
     </div>
+    <div class="enum row">
+      <div class="identifier cell"><a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX">RKLRegexEnumerationFastCapturedStringsXXX</a></div>
+      <div class="equals cell">=</div>
+      <div class="constant cell">1UL << 11</div>
+    </div>
     <div class="bottom row"><div class="cell">};</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
@@ -5514,12 +5519,17 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
     </div>
     <div class="constant">
       <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired">RKLRegexEnumerationCapturedStringsNotRequired</div>
-      <div class="text">If set, this indicates that the block does not require the captured strings and <span class="code">NULL</span> will be passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument.</div>
+      <div class="text">If set, this indicates that the block does not require the captured strings and <span class="code">NULL</span> will be passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument. <span class="XXX">add note that combining with RKLRegexEnumerationFastCapturedStringsXXX will raise an exception</span></div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
     <div class="constant">
       <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</div>
       <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will send the string returned by the block a <span class="code">release</span> message.  If garbage collection is active, this flag does nothing.  This flag is only valid for the <span class="code">stringByReplacingOccurrencesOfRegex:</span> and <span class="code">replaceOccurrencesOfRegex:</span> groups of methods. See the discussion below for more information.</div>
+      <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+    </div>
+    <div class="constant">
+      <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX">RKLRegexEnumerationFastCapturedStringsXXX</div>
+      <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will <span class="XXX">TODO</span> <span class="XXX">add note that combining with RKLRegexEnumerationCapturedStringsNotRequired will raise an exception</span></div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
   </div>
@@ -5717,6 +5727,7 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 
 <div class="block constants">
   <div class="section declaration table">
+    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexEnumerationOptionsErrorKey">RKLICURegexEnumerationOptionsErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexErrorCodeErrorKey">RKLICURegexErrorCodeErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexErrorNameErrorKey">RKLICURegexErrorNameErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexLineErrorKey">RKLICURegexLineErrorKey</a>;</div></div>
@@ -5725,10 +5736,18 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexPostContextErrorKey">RKLICURegexPostContextErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexRegexErrorKey">RKLICURegexRegexErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexRegexOptionsErrorKey">RKLICURegexRegexOptionsErrorKey</a>;</div></div>
-    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexSubjectStringErrorKey">RKLICURegexSubjectStringErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexReplacedCountErrorKey">RKLICURegexReplacedCountErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexReplacedStringErrorKey">RKLICURegexReplacedStringErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexReplacementStringErrorKey">RKLICURegexReplacementStringErrorKey</a>;</div></div>
     <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexSubjectRangeErrorKey">RKLICURegexSubjectRangeErrorKey</a>;</div></div>
+    <div class="row"><div class="name cell">extern <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> * const <a href="#RKLICURegexSubjectStringErrorKey">RKLICURegexSubjectStringErrorKey</a>;</div></div>
   </div>
   <div class="section constants"><div class="header">Constants</div>
+  <div class="section constant">
+    <div class="identifier" id="RKLICURegexEnumerationOptionsErrorKey">RKLICURegexEnumerationOptionsErrorKey</div>
+    <div class="text">The <a href="#RKLRegexEnumerationOptions" class="code">RKLRegexEnumerationOptions</a> enumeration options specified.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+  </div>
   <div class="section constant">
     <div class="identifier" id="RKLICURegexErrorCodeErrorKey">RKLICURegexErrorCodeErrorKey</div>
     <div class="text">The error code returned by the ICU library function calls <span class="argument">status</span> argument.</div>
@@ -5769,10 +5788,19 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
     <div class="text">The <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> regular expression options specified.</div>
     <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 1.0 and later.</div>
   </div>
-
   <div class="section constant">
-    <div class="identifier" id="RKLICURegexSubjectStringErrorKey">RKLICURegexSubjectStringErrorKey</div>
-    <div class="text">The string that was being matched by the regular expression.</div>
+    <div class="identifier" id="RKLICURegexReplacedCountErrorKey">RKLICURegexReplacedCountErrorKey</div>
+    <div class="text">The number of times a replacement was performed.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+  </div>
+  <div class="section constant">
+    <div class="identifier" id="RKLICURegexReplacedStringErrorKey">RKLICURegexReplacedStringErrorKey</div>
+    <div class="text">The replaced string result after performing the search and replace operations.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+  </div>
+  <div class="section constant">
+    <div class="identifier" id="RKLICURegexReplacementStringErrorKey">RKLICURegexReplacementStringErrorKey</div>
+    <div class="text">The replacement template string used to perform search and replace operations.</div>
     <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
   </div>
   <div class="section constant">
@@ -5780,10 +5808,14 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
     <div class="text">The range of the subject string that was being matched by the regular expression.</div>
     <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
   </div>
-
+  <div class="section constant">
+    <div class="identifier" id="RKLICURegexSubjectStringErrorKey">RKLICURegexSubjectStringErrorKey</div>
+    <div class="text">The string that was being matched by the regular expression.</div>
+    <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
+  </div>
   </div>
   <div class="section discussion"><div class="header">Discussion</div>
-    <p>The <a href="#RKLICURegexLineErrorKey" class="code">RKLICURegexLineErrorKey</a>, <a href="#RKLICURegexOffsetErrorKey" class="code">RKLICURegexOffsetErrorKey</a>, <a href="#RKLICURegexPreContextErrorKey" class="code">RKLICURegexPreContextErrorKey</a>, <a href="#RKLICURegexPostContextErrorKey" class="code">RKLICURegexPostContextErrorKey</a>, <a href="#RKLICURegexSubjectStringErrorKey" class="code">RKLICURegexSubjectStringErrorKey</a>, and <a href="#RKLICURegexSubjectRangeErrorKey" class="code">RKLICURegexSubjectRangeErrorKey</a> error keys may not be present for all errors.  For example, errors returned by passing invalid <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags will not have the listed keys set.</p>
+    <p>Different error keys will be present depending on the type of error encountered.</p>
   </div>
   <div class="section seealso"><div class="header">See Also</div>
     <ul>
@@ -6075,12 +6107,12 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	
 	<p>This release of <span class="rkl">RegexKit<i>Lite</i></span> is a major release that includes new features, new APIs, and bug fixes.</p>
 	
-	<p class="standout">API Compatability Changes:</p>
+	<p class="standout">API Compatibility Changes:</p>
 
 	<ul class="square">
 
 	  <li>
-	    <p>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods now return a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger" class="code">NSInteger</a>, whereas <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> &lt; 4.0</span> returned a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSUInteger" class="code">NSUInteger</a>. This change, while technically breaking API compatibility, is likely to be completely backwards compatible for most users. The change was made so that errors, such as an invalid regular expression, can be distinguished from a search and replace operation that replaced zero occurrences. An error condition that is not an exception now returns a value of <span class="code">-1L</span>. Prior to <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0,</span> the only way to distinguish between a search and replace operation that replaced zero occurrences and an error that prevented a search and replace from taking place was to use a <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> method with an <span class="code">error:</span> parameter.</p>
+	    <p>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods now return a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSInteger" class="code">NSInteger</a>, whereas <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> &lt; 4.0</span> returned a result of type <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSUInteger" class="code">NSUInteger</a>. This change, while technically breaking API compatibility, is likely to be completely backwards compatible for most users. The change was made so that errors, such as an invalid regular expression, can be distinguished from a search and replace operation that replaced zero occurrences. An error condition that is not an exception now returns a value of <span class="code">-1</span>. Prior to <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0,</span> the only way to distinguish between a search and replace operation that replaced zero occurrences and an error that prevented a search and replace from taking place was to use a <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> method with an <span class="code">error:</span> parameter.</p>
 	  </li>
 	</ul>
 
@@ -6092,7 +6124,7 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 
 	    <p><span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &lt; 4.0</span> used a direct mapped, or 1-way set associative, cache.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> uses a 4-way set associative cache.  In general, a <span class="hardNobr"><i>n</i>-way</span> set associative cache, where <span class="hardNobr"><i>n</i> &gt; <span class="code">1</span>,</span> has fewer misses than a direct mapped cache.  Entries in a set are managed on a least recently used, or LRU, basis.  This means that when a compiled regular expression is added to the cache, the entry in a set that is the least recently used is the one chosen to hold the new compiled regular expression.</p>
 
-	    <p>In benchmark tests, the old compiled regular expression cache required a <b><i>dramatically</i></b> larger cache size to achive the same effectiveness <span class="hardNobr">(i.e.,</span> the likelyhood that the regular expression was already in the cache) as the new compiled regular expression cache. Retrieving a cached compiled regular expression is <b><i>541.3</i></b> times faster<sup>&dagger;</sup> than actually compiling the regular expression:</p>
+	    <p>In benchmark tests, the old compiled regular expression cache required a <b><i>dramatically</i></b> larger cache size to achieve the same effectiveness <span class="hardNobr">(i.e.,</span> the likelihood that the regular expression was already in the cache) as the new compiled regular expression cache. Retrieving a cached compiled regular expression is <b><i>541.3</i></b> times faster<sup>&dagger;</sup> than actually compiling the regular expression:</p>
 
 	    <div style="margin-left: 2ex; margin-top: 1em;">
 	      <table class="standard">
@@ -6107,7 +6139,7 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	  <li>
 	    <p>Improved <span class="code">UTF-16</span> conversion cache.</p>
 
-	    <p>The <span class="code">UTF-16</span> conversion cache now uses the same 4-way set associative cache system as the compiled regular expression cache.  For strings that required a <span class="code">UTF-16</span> conversion, <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &lt; 4.0</span> used two buffers for caching <span class="code">UTF-16</span> conversions&mdash; a small, fixed sized buffer for 'small' strings (under 2048 characters by default), and a dynamically sized buffer for 'large' strings.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> keeps the same fixed and dynamic size dichotomy, but now each type contains four buffers which are re-used on a least recently used basis.</p>
+	    <p>The <span class="code">UTF-16</span> conversion cache now uses the same 4-way set associative cache system as the compiled regular expression cache.  For strings that required a <span class="code">UTF-16</span> conversion, <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> versions &lt; 4.0</span> used two buffers for caching <span class="code">UTF-16</span> conversions&mdash; a small, fixed sized buffer for &#39;small&#39; strings <span class="hardNobr">(&le; <span class="code">2048</span></span> characters by default), and a dynamically sized buffer for &#39;large&#39; strings.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> keeps the same fixed and dynamic size dichotomy, but now each type contains four buffers which are reused on a least recently used basis.</p>
 	  </li>
 	  <li>
 	    <p>Blocks support.</p>
@@ -6138,27 +6170,27 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 
 	<ul class="square">
 	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:usingBlock:" class="code">- enumerateStringsMatchedByRegex:usingBlock:</a></li>
-	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
 	  
 	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a>
-	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
 	  
 	  <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
-	  <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
 	</ul>
 	
 	<p>New Block-based <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> Methods:</p>
 	
 	<ul class="square">
 	  <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:usingBlock:" class="code">- replaceOccurrencesOfRegex:usingBlock:</a></li>
-	  <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
 	</ul>
 
 	<p class="standout">Changes that effect the results that are returned:</p>
 
 	<ul class="square">
 	  <li>
-	    <p>When a regular expression could match zero or more characters, the 'Search and Replace' methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters:</p>
+	    <p>When a regular expression could match zero or more characters, the &#39;Search and Replace&#39; methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters:</p>
 	    <div class="box sourcecode">NSString *replacedString = [@&quot;x&quot; stringByReplacingOccurrencesOfRegex:@&quot;(.*)&quot; withString:@&quot;&lt;&lt;$1&gt;&gt;&quot;];
 
 // <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&lt;&lt;&gt;&gt;&quot;  &lt;- RegexKitLite &le; v3.3.</span>
@@ -6170,15 +6202,16 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	
 	<ul class="square">
 	  <li>Improved performance.  Many small performance tweaks and optimizations were made to frequently used code paths.</li>
-	  <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocesor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
+	  <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocessor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
 	  <li><span class="cpp_flag">RKL_CACHE_SIZE</span> changed to <span class="code">13</span>.  The total number of compiled regular expressions that can be cached is <span class="code hardNobr">13 * 4</span>, or <span class="code">52</span>.  This is a 126% increase from previous versions of <span class="rkl">RegexKit<i>Lite</i></span> which had a default value of <span class="code">23</span> for <span class="cpp_flag">RKL_CACHE_SIZE</span>.</li>
 	</ul>
 
 	<p>Bug fixes:</p>
 
 	<ul class="square">
+	  <li>If a regular expression could match zero or more characters <span class="hardNobr">(i.e., <span class="regex">(.*)</span>),</span> the &#39;Search and Replace&#39; methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters.</li>
 	  <li>If the ICU library returned a status of <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> during a search and replace operation, <span class="rkl">RegexKit<i>Lite</i></span> erred on the side of caution and treated it as a failure due to the numerous search and replace bugs in the past.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> continues to err on the side of caution, but now treats <span class="code">U_STRING_NOT_TERMINATED_WARNING</span> as if the ICU library had returned a status of <span class="code">U_BUFFER_OVERFLOW_ERROR</span>.</li>
-	  <li>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods could have returned a value &gt; <span class="code">0</span>, the replaced count, even if no actual replacements were performed.  This would occur if an error was encountered during the search and replace, in which case the replaced count was not correctly reset to <span class="code">0</span>.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> changed the <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> API so that a value of <span class="code">-1</span> could be returned to indicate that an error was encountered.</li>
+	  <li>The <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> methods could have returned a value <span class="hardNobr">&gt; <span class="code">0</span>,</span> the replaced count, even if no actual replacements were performed.  This would occur if an error was encountered during the search and replace, in which case the replaced count was not correctly reset to <span class="code">0</span>.  <span class="hardNobr"><span class="rkl">RegexKit<i>Lite</i></span> 4.0</span> changed the <span class="hardNobr"><span class="code">replaceOccurrencesOfRegex:</span>&hellip;</span> API so that a value of <span class="code">-1</span> could be returned to indicate that an error was encountered.</li>
 	</ul>
       </div>
     </div> <!-- release notes 4.0 -->

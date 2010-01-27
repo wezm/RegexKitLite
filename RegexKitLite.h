@@ -124,7 +124,7 @@ enum {
   RKLRegexEnumerationNoOptions                               = 0UL,
   RKLRegexEnumerationCapturedStringsNotRequired              = 1UL << 9,
   RKLRegexEnumerationReleaseStringReturnedByReplacementBlock = 1UL << 10,
-  RKLRegexEnumerationFastXXXCapturedStrings                  = 1UL << 11,
+  RKLRegexEnumerationFastCapturedStringsXXX                  = 1UL << 11,
 };
 typedef NSUInteger RKLRegexEnumerationOptions;
   
@@ -171,6 +171,7 @@ extern NSString * const RKLICURegexException;
 // NSError error domains and user info keys.
 extern NSString * const RKLICURegexErrorDomain;
 
+extern NSString * const RKLICURegexEnumerationOptionsErrorKey;
 extern NSString * const RKLICURegexErrorCodeErrorKey;
 extern NSString * const RKLICURegexErrorNameErrorKey;
 extern NSString * const RKLICURegexLineErrorKey;
@@ -179,9 +180,12 @@ extern NSString * const RKLICURegexPreContextErrorKey;
 extern NSString * const RKLICURegexPostContextErrorKey;
 extern NSString * const RKLICURegexRegexErrorKey;
 extern NSString * const RKLICURegexRegexOptionsErrorKey;
-extern NSString * const RKLICURegexSubjectStringErrorKey;
+extern NSString * const RKLICURegexReplacedCountErrorKey;
+extern NSString * const RKLICURegexReplacedStringErrorKey;
+extern NSString * const RKLICURegexReplacementStringErrorKey;
 extern NSString * const RKLICURegexSubjectRangeErrorKey;
-
+extern NSString * const RKLICURegexSubjectStringErrorKey;
+  
 @interface NSString (RegexKitLiteAdditions)
 
 + (void)RKL_METHOD_PREPEND(clearStringCache);
@@ -242,12 +246,14 @@ extern NSString * const RKLICURegexSubjectRangeErrorKey;
 - (NSDictionary *)RKL_METHOD_PREPEND(dictionaryByMatchingRegex):(NSString *)regex range:(NSRange)range withKeysAndCaptures:(id)firstKey, ... RKL_REQUIRES_NIL_TERMINATION;
 - (NSDictionary *)RKL_METHOD_PREPEND(dictionaryByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withKeysAndCaptures:(id)firstKey, ... RKL_REQUIRES_NIL_TERMINATION;
 - (NSDictionary *)RKL_METHOD_PREPEND(dictionaryByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withFirstKey:(id)firstKey arguments:(va_list)varArgsList;
+
 - (NSDictionary *)RKL_METHOD_PREPEND(dictionaryByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withKeys:(id *)keys forCaptures:(int *)captures count:(NSUInteger)count;
 
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfDictionariesByMatchingRegex):(NSString *)regex withKeysAndCaptures:(id)firstKey, ... RKL_REQUIRES_NIL_TERMINATION;
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfDictionariesByMatchingRegex):(NSString *)regex range:(NSRange)range withKeysAndCaptures:(id)firstKey, ... RKL_REQUIRES_NIL_TERMINATION;
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfDictionariesByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withKeysAndCaptures:(id)firstKey, ... RKL_REQUIRES_NIL_TERMINATION;
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfDictionariesByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withFirstKey:(id)firstKey arguments:(va_list)varArgsList;
+
 - (NSArray *)RKL_METHOD_PREPEND(arrayOfDictionariesByMatchingRegex):(NSString *)regex options:(RKLRegexOptions)options range:(NSRange)range error:(NSError **)error withKeys:(id *)keys forCaptures:(int *)captures count:(NSUInteger)count;
 
 #ifdef    _RKL_BLOCKS_ENABLED
