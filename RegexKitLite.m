@@ -238,7 +238,7 @@ RKL_STATIC_INLINE BOOL NSRangeInsideRange(NSRange cin, NSRange win) { return((((
 #define NSMaxiumRange         ((NSRange){.location=                   0UL, .length=    NSUIntegerMax})
 // These values are used to help tickle improper usage.
 #define RKLIllegalRange       ((NSRange){.location=         NSUIntegerMax, .length=    NSUIntegerMax})
-#define RKLIllegalPointer     ((void * RKL_GC_VOLATILE)0xDEADBEEF)
+#define RKLIllegalPointer     ((void * RKL_GC_VOLATILE)0xBAD0C0DE)
 
 ////////////
 #pragma mark -
@@ -776,7 +776,7 @@ static RKLCachedRegex *rkl_getCachedRegex(NSString *regexString, RKLRegexOptions
     return(rkl_lastCachedRegex);
   }
 
-  rkl_lastCachedRegex = NULL; // Check the Regex Lookaside Cache to see if we can quickly find the correct Cached Regex for this regexString pointer.
+  rkl_lastCachedRegex = NULL; // Check the Regex Lookaside Cache to see if we can quickly find the correct Cached Regex for this regexString pointer + options.
   cachedRegex         = rkl_cachedRegexFromRegexLookasideCacheForString(regexString, options); // A Regex Lookaside Cache hit also allows us to bypass calling CFHash(), which is a decent performance win.
   if((RKL_EXPECTED(cachedRegex->regexString == (CFStringRef)regexString, 1L) || (RKL_EXPECTED(cachedRegex->regexString != NULL, 1L) && RKL_EXPECTED(CFEqual((CFTypeRef)regexString, (CFTypeRef)cachedRegex->regexString) == YES, 1L))) && RKL_EXPECTED(cachedRegex->options == options, 1L) && RKL_EXPECTED(cachedRegex->icu_regex != NULL, 1L)) { goto foundMatch; } else { cachedRegex = NULL; regexHash = CFHash((CFTypeRef)regexString); }
 
@@ -1909,7 +1909,8 @@ static id rkl_performEnumerationUsingBlock(id self, SEL _cmd,
   if(RKL_EXPECTED(matchString == NULL, 0L)) { exception = (id)RKL_EXCEPTION(NSInternalInconsistencyException, @"The match string argument is NULL.");       goto exitNow; }
 
   if((((enumerationOptions & RKLRegexEnumerationCapturedStringsNotRequired)              != 0UL) && ((enumerationOptions & RKLRegexEnumerationFastCapturedStringsXXX) != 0UL)) ||
-     (((enumerationOptions & RKLRegexEnumerationReleaseStringReturnedByReplacementBlock) != 0UL) && (blockEnumerationOp != RKLBlockEnumerationReplaceOp))) {
+     (((enumerationOptions & RKLRegexEnumerationReleaseStringReturnedByReplacementBlock) != 0UL) && (blockEnumerationOp != RKLBlockEnumerationReplaceOp)) ||
+     ((enumerationOptions & (~((RKLRegexEnumerationOptions)(RKLRegexEnumerationCapturedStringsNotRequired | RKLRegexEnumerationReleaseStringReturnedByReplacementBlock | RKLRegexEnumerationFastCapturedStringsXXX)))) != 0UL)) {
     exception = (id)RKL_EXCEPTION(NSInvalidArgumentException, @"The RKLRegexEnumerationOptions argument is not valid.");
     goto exitNow;
   }
@@ -2364,7 +2365,7 @@ exitNow2:
   id returnObject = NULL;
   va_list varArgsList;
   va_start(varArgsList, firstKey);
-  returnObject = rkl_performDictionaryVarArgsOp(self, _cmd, (RKLRegexOp)RKLDictionaryOfCapturesOp, regex, options, 0L, self, &range, NULL, error, firstKey, NULL, varArgsList);
+  returnObject = rkl_performDictionaryVarArgsOp(self, _cmd, (RKLRegexOp)RKLDictionaryOfCapturesOp, regex, options, 0L, self, &range, NULL, error, NULL, firstKey, varArgsList);
   va_end(varArgsList);
   return(returnObject);
 }

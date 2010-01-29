@@ -73,6 +73,8 @@ ul.highlights    { margin-left: 4.0ex; padding-left: 1ex; }
 ul.highlights li { margin-top: 0.5em; }
 
 ul.square  { list-style-type: square; }
+ul.square > li > *:first-child { margin-top: 0px; }
+ul.square > li > .box.sourcecode:last-child { margin-bottom: 1em; }
 
 ul.compare { margin: 0px; padding: 0px; }
 ul.compare > li { margin: 0px 0px 0px 2ex; }
@@ -159,6 +161,8 @@ div#clip { overflow: hidden; }
 .box.tip   { display: table; -webkit-border-radius: 1.0em; -moz-border-radius: 1.0em; border-radius: 1.0em; }
 .box.small { float: left; clear: both; margin: 0.5ex; -webkit-border-radius: 0.85em; -moz-border-radius: 0.85em; border-radius: 0.85em; }
 .box.note, .box.important, .box.warning, .box.caution { -webkit-border-radius: 0.5em; -moz-border-radius: 0.5em; border-radius: 0.5em; color: #000; }
+.box .message p:first-child { margin-top: 0px; }
+.box .message p:last-child { margin-bottom: 0px; }
 
 .box       .label { padding-right: 1.5ex; font-weight: bold; vertical-align: middle; }
 .box.tip   .label { padding-right: 1.0ex; }
@@ -593,7 +597,8 @@ table.slate tr:last-child  > *:last-child  { -moz-border-radius-bottomright: 0.5
 
 .screenOnly { display: none; }
 
-body { font: 10pt "Palatino LT Std", palatino, "Palatino Linotype", "URW Palladio L", "URWPalladioL", "Minion", "Minion Pro", georgia, times, "lucida grande", helvetica, arial, sans-serif; margin-left: 1.15in; /*margin-right: -1in;*/ /*width: 100%;*/ }
+
+body { font: 10pt "Palatino LT Std", palatino, "Palatino Linotype", "URW Palladio L", "URWPalladioL", "Minion", "Minion Pro", georgia, times, "lucida grande", helvetica, arial, sans-serif; margin: 0px; margin-left: 1.15in;  /*width:100%;*/ /* margin-right: -0.4in;*/ /*margin-right: -1in;*/ /*width: 100%;*/ }
 h1 { padding-bottom: 0px; padding-top: 0.5em; margin-top: 2in; margin-bottom: 0.5em; border-top: 1px solid black; font-family: "Palatino LT Std", palatino, "Palatino Linotype", "URW Palladio L", "URWPalladioL", "Minion", "Minion Pro", georgia, times, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 27pt; }
 h2 { page-break-after: avoid; padding-bottom: 3.5em; padding-left: 0.6in; padding-top: 1em; margin-bottom: 2.5em; font-family: "Palatino LT Std", palatino, "Palatino Linotype", "URW Palladio L", "URWPalladioL", "Minion", "Minion Pro", georgia, times, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 24pt; }
 h3, .tasks .header, .guide .seealso > .header { padding-bottom: 0.25em; border-bottom: 1px solid black; page-break-after: avoid; font-family: "Palatino LT Std", palatino, "Palatino Linotype", "URW Palladio L", "URWPalladioL", "Minion", "Minion Pro", georgia, times, "lucida grande", geneva, helvetica, arial, sans-serif; font-weight: normal; font-size: 18pt; }
@@ -1520,6 +1525,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 <li><span class="hardNobr">64-bit</span> support.</li>
 <li>Custom DTrace probe points.</li>
 <li>Support for <span class="hardNobr">Mac OS X 10.5</span> Garbage Collection.</li>
+<li>Support for the Blocks language extension.</li>
 <li>Uses <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> for greater speed.</li>
 <li>Very easy to use, all functionality is provided by a category extension to the <span class="code">NSString</span> class.</li>
 <li>Consists of two files, a header and the <span class="hardNobr">Objective-C</span> source.</li>
@@ -1560,7 +1566,7 @@ if((utils.browserInfo.safari === true) && (utils.browserInfo.safariVersion >= 3)
 
 <h3 id="Introduction_Download">Download</h3>
 
-<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-4.0.tar.bz2" class="printURL file">RegexKitLite-4.0.tar.bz2</a>, <span class="XXX">127.5K</span>. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
+<p>You can download <span class="rkl">RegexKit<i>Lite</i></span> distribution that corresponds to this version of the documentation <span class="hardNobr">here&mdash;</span> <a href="http://downloads.sourceforge.net/regexkit/RegexKitLite-4.0.tar.bz2" class="printURL file">RegexKitLite-4.0.tar.bz2</a>, <span class="XXX">133.0K</span>. To be automatically notified when a new version of <span class="rkl">RegexKit<i>Lite</i></span> is available, add the <a href="#NSString_RegexKitLiteAdditions__Xcode3IntegratedDocumentation"><span class="rkl">RegexKit<i>Lite</i></span> documentation feed</a> to Xcode.</p>
 
 <h3 id="Introduction_PrintingThisDocument">Printing This Document</h3>
 
@@ -1641,15 +1647,15 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
 
 <p>The <span class="code">NSString</span> that contains the regular expression must be compiled in to an ICU <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#566882c83d9e4dcf7fb5d8f859625500" class="code">URegularExpression</a>.  This can be an expensive, time consuming step, and the compiled regular expression can be reused again in another search, even if the strings to be searched are different.  Therefore <span class="rkl">RegexKit<i>Lite</i></span> keeps a small cache of recently compiled regular expressions.</p>
 
-<p>This cache is a simple hash table, the size of which can be tuned with the <span class="hardNobr">pre-processor</span> define <span class="cpp_flag">RKL_CACHE_SIZE</span>.  The default cache size, which should always be a prime number, is set to <span class="code">23</span>.  The <span class="code">NSString</span> <span class="argument">regexString</span> is mapped to a cache slot using modular arithmetic: <span class="hardNobr">Cache slot &equiv; <span class="code">[regexString hash]</span> mod <span class="cpp_flag">RKL_CACHE_SIZE</span>,</span> <span class="hardNobr">i.e.</span> <span class="hardNobr"><span class="code">cacheSlot = [regexString hash] % 23;</span>.</span>  Since <span class="rkl">RegexKit<i>Lite</i></span> uses <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a>, this is actually coded <span class="hardNobr"> as <span class="code">cacheSlot = CFHash(regexString) % <span class="cpp_flag">RKL_CACHE_SIZE</span>;</span>.</span></p>
+<p>The cache is organized as a 4-way set associative cache, and the size of the cache can be tuned with the <span class="hardNobr">pre-processor</span> define <span class="cpp_flag">RKL_CACHE_SIZE</span>.  The default cache size, which should always be a prime number, is set to <span class="code">13</span>.  Since the cache is 4-way set associative, the total number of compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four, for a total of <span class="code">13 * 4</span>, or <span class="code">52</span>.  The <span class="code">NSString</span> <span class="argument">regexString</span> is mapped to a cache set using modular arithmetic: <span class="hardNobr">Cache set &equiv; <span class="code">[regexString hash]</span> mod <span class="cpp_flag">RKL_CACHE_SIZE</span>,</span> <span class="hardNobr">i.e.</span> <span class="hardNobr"><span class="code">cacheSet = [regexString hash] % 13;</span>.</span>  Since <span class="rkl">RegexKit<i>Lite</i></span> uses <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a>, this is actually coded <span class="hardNobr"> as <span class="code">cacheSet = CFHash(regexString) % <span class="cpp_flag">RKL_CACHE_SIZE</span>;</span>.</span></p>
 
-<p>If the cache slot currently contains a compiled <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#566882c83d9e4dcf7fb5d8f859625500" class="code">URegularExpression</a>, checks are made to ensure that the current <span class="argument">regexString</span> is identical to the regular expression used to create the compiled <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#566882c83d9e4dcf7fb5d8f859625500" class="code">URegularExpression</a>.  If they are a match, the cached compiled regular expression is used.  If they are not a match, the current compiled regular expression for the selected cache slot is ejected and all of its resources are freed.  Then the <span class="argument">regexString</span> that caused the ejection is compiled and fills the cache slot.  Only one compiled regular expression can reside in a cache slot at a time.</p>
+<p>Each of the four &quot;ways&quot; of a cache set are checked to see if it contains a <span class="code">NSString</span> that was used to create the compiled regular expression that is identical to the <span class="code">NSString</span> for the regular expression that is being checked.  If there is an exact match, then the matching &quot;way&quot; is updated as the most recently used, and the compiled regular expression is used as-is.  Otherwise, the least recently used, or LRU, &quot;way&quot; in the cache set is cleared and replaced with the compiled regular expression for the regular expression that wasn't in the cache.</p>
 
 <h4>Regular Expressions in Mutable Strings</h4>
 
 <p>When a regular expression is compiled, an immutable copy of the string is kept.  For immutable <span class="code">NSString</span> objects, the copy is usually the same object with its reference count increased by one.  Only <span class="code">NSMutableString</span> objects will cause a new, immutable <span class="code">NSString</span> to be created.</p>
 
-<p>If the regular expression being used is stored in a <span class="code">NSMutableString</span>, the cached regular expression will continue to be used as long as the <span class="code">NSMutableString</span> remains unchanged.  Once mutated, the changed <span class="code">NSMutableString</span> will no longer be a match for the cached compiled regular expression that was being used by it previously.  Even if the newly mutated strings <span class="code">hash</span> is congruent to the previous unmutated strings <span class="code">hash</span> modulo <span class="cpp_flag">RKL_CACHE_SIZE</span>, that is to say they share the same cache slot <span class="hardNobr">(i.e.,</span> <span class="code"><span class="hardNobr">([mutatedString hash] % <span class="cpp_flag">RKL_CACHE_SIZE</span>)</span> == <span class="hardNobr">([unmutatedString hash] % <span class="cpp_flag">RKL_CACHE_SIZE</span>)</span>)</span>, the immutable copy of the regular expression string used to create the compiled regular expression is used to ensure true equality.  The newly mutated string will have to go through the whole cache slot entry creation process and be compiled in to a <a href="http://www.icu-project.org/apiref/icu4c/uregex_8h.html#566882c83d9e4dcf7fb5d8f859625500" class="code">URegularExpression</a>.</p>
+<p>If the regular expression being used is stored in a <span class="code">NSMutableString</span>, the cached regular expression will continue to be used as long as the <span class="code">NSMutableString</span> remains unchanged.  Once mutated, the changed <span class="code">NSMutableString</span> will no longer be a match for the cached compiled regular expression that was being used by it previously.  Even if the newly mutated strings <span class="code">hash</span> is congruent to the previous unmutated strings <span class="code">hash</span> modulo <span class="cpp_flag">RKL_CACHE_SIZE</span>, that is to say they share the same cache set <span class="hardNobr">(i.e.,</span> <span class="code"><span class="hardNobr">([mutatedString hash] % <span class="cpp_flag">RKL_CACHE_SIZE</span>)</span> == <span class="hardNobr">([unmutatedString hash] % <span class="cpp_flag">RKL_CACHE_SIZE</span>)</span>)</span>, the immutable copy of the regular expression string used to create the compiled regular expression is used to ensure true equality.  The newly mutated string will have to go through the whole regular expression compile and cache creation process.</p>
 
 <p>This means that <span class="code">NSMutableString</span> objects can be safely used as regular expressions, and any mutations to those objects will immediately be detected and reflected in the regular expression used for matching.</p>
 
@@ -1679,9 +1685,9 @@ If <span class="hardNobr">64-bit</span> support is removed, the framework shared
 
 <p>For strings in which direct access to the <span class="code hardNobr">UTF-16</span> string is available, <span class="rkl">RegexKit<i>Lite</i></span> uses that buffer.  This is the ideal case as no extra work needs to be performed, such as converting the string in to a <span class="code hardNobr">UTF-16</span> string, and allocating memory to hold the temporary conversion.  Of course, direct access is not always available, and occasionally the string to be searched will need to be converted in to a <span class="code hardNobr">UTF-16</span> string.</p>
 
-<p><span class="rkl">RegexKit<i>Lite</i></span> has two conversion buffer caches.  Each buffer can only hold the contents of a single <span class="code">NSString</span> at a time. If the selected buffer does not contain the contents of the <span class="code">NSString</span> that is currently being searched, the previous occupant is ejected from the buffer and the current <span class="code">NSString</span> takes it place.  The first conversion buffer is fixed in size and set by the <span class="hardNobr">C pre-processor</span> define <span class="cpp_flag">RKL_FIXED_LENGTH</span>, which defaults to <span class="code">2048</span>.  Any string whose length is less than <span class="cpp_flag">RKL_FIXED_LENGTH</span> will use the fixed size conversion buffer.  The second conversion buffer, for strings whose length is longer than <span class="cpp_flag">RKL_FIXED_LENGTH</span>, will use the dynamically sized conversion buffer.  The memory allocation for the dynamically sized conversion buffer is resized for each conversion with <span class="code hardNobr">realloc()</span> to the size needed to hold the entire contents of the <span class="code hardNobr">UTF-16</span> converted string.</p>
+<p><span class="rkl">RegexKit<i>Lite</i></span> has two conversion cache types. Each conversion cache type contains four buffers each, and buffers are re-used on a least recently used basis.  If the selected cache type does not contain the contents of the <span class="code">NSString</span> that is currently being searched in any of its buffers, the least recently used buffer is cleared and the current <span class="code">NSString</span> takes it place.  The first conversion cache type is fixed in size and set by the <span class="hardNobr">C pre-processor</span> define <span class="cpp_flag">RKL_FIXED_LENGTH</span>, which defaults to <span class="code">2048</span>.  Any string whose length is less than <span class="cpp_flag">RKL_FIXED_LENGTH</span> will use the fixed size conversion cache type.  The second conversion cache type, for strings whose length is longer than <span class="cpp_flag">RKL_FIXED_LENGTH</span>, will use a dynamically sized conversion buffer.  The memory allocation for the dynamically sized conversion buffer is resized for each conversion with <span class="code hardNobr">realloc()</span> to the size needed to hold the entire contents of the <span class="code hardNobr">UTF-16</span> converted string.</p>
 
-<p>This strategy was chosen for its relative simplicity.  Keeping track of dynamically created resources is required to prevent memory leaks.  As designed, there is only a single pointer to dynamically allocated memory: the pointer to hold the conversion contents of strings whose length is larger than <span class="cpp_flag">RKL_FIXED_LENGTH</span>.  However, since <span class="code hardNobr">realloc()</span> is used to manage that memory allocation, it becomes very difficult to accidentally leak the buffer.  Having the fixed sized buffer means that the memory allocation system isn&#39;t bothered with many small requests, most of which are transient in nature to begin with.  The current strategy tries to strike the best balance between performance and simplicity.</p>
+<p>This strategy was chosen for its relative simplicity.  Keeping track of dynamically created resources is required to prevent memory leaks.  As designed, there are only four pointers to dynamically allocated memory: the four pointers to hold the conversion contents of strings whose length is larger than <span class="cpp_flag">RKL_FIXED_LENGTH</span>.  However, since <span class="code hardNobr">realloc()</span> is used to manage those memory allocations, it becomes very difficult to accidentally leak the buffers.  Having the fixed sized buffers means that the memory allocation system isn&#39;t bothered with many small requests, most of which are transient in nature to begin with.  The current strategy tries to strike the best balance between performance and simplicity.</p>
 
 <h4>Mutable Strings</h4>
 
@@ -3448,7 +3454,7 @@ shell% </span><span class="cursor" title="Shell cursor">&#9612;</span></div></di
 
 <h3 id="NSString_RegexKitLiteAdditions__CompileTimePreprocessorTunables">Compile Time Preprocessor Tunables</h3>
 
-<p>The settings listed below are implemented using the C Preprocessor.  Some of the setting are simple boolean <span class="code">enabled</span> or <span class="code">disabled</span> settings, while others specify a value, such as the number of cache slot entries.  There are several ways to alter these settings, but if you are not familiar with this style of compile time configuration settings and how to alter them using the C Preprocessor, it is recommended that you use the default values provided.</p>
+<p>The settings listed below are implemented using the C Preprocessor.  Some of the setting are simple boolean <span class="code">enabled</span> or <span class="code">disabled</span> settings, while others specify a value, such as the number of cached compiled regular expressions.  There are several ways to alter these settings, but if you are not familiar with this style of compile time configuration settings and how to alter them using the C Preprocessor, it is recommended that you use the default values provided.</p>
 
 <table class="standard cppTunables" summary="Compile Time Preprocessor Tunables">
 <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
@@ -3578,15 +3584,12 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
 
 <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">Search and replace methods raise <a href="#RKLICURegexException" class="code">RKLICURegexException</a> if <span class="argument">replacement</span> contains <span class="regex">$</span><span class="argument" title="Decimal Number">n</span> capture references where <span class="argument" title="Decimal Number">n</span> is greater than the number of capture groups in the regular expression <span class="argument">regex</span>.</div></div></div></div>
 
-
 <div class="section seealso"><div class="header">See Also</div>
   <ul class="offset">
     <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
     <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
   </ul>
 </div>
-
-
 
 <h2>Tasks</h2>
 
@@ -3649,7 +3652,6 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
     <li><a href="#NSString_RegexKitLiteAdditions__-componentsSeparatedByRegex:options:range:error:" title="Returns a NSArray containing substrings within range of the receiver that have been divided by the regular expression regex using options." class="code">- componentsSeparatedByRegex:options:range:error:</a></li>
     <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" title="Enumerates the strings of the receiver that have been divided by the regular expression regex and executes block for each divided string." class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a></li>
     <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" title="Enumerates the strings of the receiver that have been divided by the regular expression regex within range using options and executes block using enumerationOptions for each divided string." class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
-
   </ul>
 </div>
 <div class="tasks">
@@ -3703,6 +3705,22 @@ Methods raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/
     <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:withString:options:range:error:" title="Returns a string created from the characters within range of the receiver in which all matches of the regular expression regex using options are replaced with the contents of the replacement string after performing capture group substitutions." class="code softNobr">- stringByReplacingOccurrencesOfRegex:&#8203;withString:options:range:error:</a></li>
     <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" title="Enumerates the matches in the receiver by the regular expression regex and executes block for each match found." class="code XXX">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
     <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" title="Enumerates the matches in the receiver by the regular expression regex within range using options and executes block using enumerationOptions for each match found." class="code XXX">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>
+  </ul>
+</div>
+<div class="tasks">
+  <div class="header">Creating a Dictionary from a Match</div>
+  <ul>
+    <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:withKeysAndCaptures:" title="" class="code XXX">- dictionaryByMatchingRegex:withKeysAndCaptures:</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:range:withKeysAndCaptures:" title="" class="code XXX">- dictionaryByMatchingRegex:range:withKeysAndCaptures:</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:" title="" class="code XXX">- dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
+  </ul>
+</div>
+<div class="tasks">
+  <div class="header">Creating a Dictionary from every Match</div>
+  <ul>
+    <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:" title="" class="code XXX">- arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:" title="" class="code XXX">- arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:</a></li>
+    <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:" title="" class="code XXX">- arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
   </ul>
 </div>
 
@@ -3994,6 +4012,185 @@ NSArray  <span class="hardNobr">*listItems = [list</span> arrayOfCaptureComponen
     </ul>
   </div>
 </div>
+
+
+
+
+
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:">arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfDictionariesByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:">arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfDictionariesByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">range</div>
+        <div class="text">The range of the receiver to search.</div>
+      </li>
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:">arrayOfDictionariesByMatchingRegex:options:range:error:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSArray_Class/Reference/Reference.html">NSArray</a> *)<span class="selector">arrayOfDictionariesByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">options</div>
+        <div class="text">A mask of options specified by combining <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags with the C bitwise OR operator.  Either <span class="code">0</span> or <a href="#RKLRegexOptions_RKLNoOptions" class="code">RKLNoOptions</a> may be used if no options are required.</div>
+      </li>
+      <li>
+        <div class="name">range</div>
+        <div class="text">The range of the receiver to search.</div>
+      </li>
+      <li>
+        <div class="name">error</div>
+        <div class="text">An optional parameter that if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.</div>
+      </li>
+
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.  It is important to note that a regular expression can successfully match zero characters:</p>
+
+<div class="box sourcecode">NSString     *name           <span class="hardNobr">= @&quot;Name: Joe&quot;;</span>
+NSString     *regex          <span class="hardNobr">= @&quot;Name:\\s*(\\w*)\\s*(\\w*)&quot;;</span>
+<span class="hardNobr">NSDictionary *nameDictionary = [name</span> <span class="hardNobr">arrayOfDictionariesByMatchingRegex:regex</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">range:NSMakeRange(0UL, [name length])</span> <span class="hardNobr">error:NULL</span> <span class="hardNobr">withKeysAndCaptures:@&quot;first&quot;, 1,</span> <span class="hardNobr">@&quot;last&quot;, 2, NULL];</span>
+
+// 2010-01-29 12:19:54.559 RegexKitLite[64944:a0f] nameDictionary: {
+//     first = Joe;
+//     last = &quot;&quot;;
+// }</div>
+
+<p>Compared to this example, where the second capture group does not match any characters:</p>
+
+<div class="box sourcecode">NSString     *name           <span class="hardNobr">= @&quot;Name: Joe&quot;;</span>
+NSString     *regex          <span class="hardNobr">= @&quot;Name:\\s*(\\w*)\\s*(\\w<span class="highlight">+)?</span>&quot;;</span>
+<span class="hardNobr">NSDictionary *nameDictionary = [name</span> <span class="hardNobr">arrayOfDictionariesByMatchingRegex:regex</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">range:NSMakeRange(0UL, [name length])</span> <span class="hardNobr">error:NULL</span> <span class="hardNobr">withKeysAndCaptures:@&quot;first&quot;, 1,</span> <span class="hardNobr">@&quot;last&quot;, 2, NULL];</span>
+
+// 2010-01-29 12:12:52.177 RegexKitLite[64893:a0f] nameDictionary: {
+//     first = Joe;
+// }</div>
+
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:" class="code">- arrayOfDictionariesByMatchingRegex:range:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 <div class="block method">
   <div class="section name" id="NSString_RegexKitLiteAdditions__-captureComponentsMatchedByRegex:">captureComponentsMatchedByRegex:</div>
@@ -4317,6 +4514,175 @@ NSArray  *listItems = [list componentsSeparatedByRegex:@&quot;,\\s*&quot;];</div
 
 
 
+
+
+
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:withKeysAndCaptures:">dictionaryByMatchingRegex:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSDictionary_Class/Reference/Reference.html">NSDictionary</a> *)<span class="selector">dictionaryByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:range:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:range:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:range:withKeysAndCaptures:">dictionaryByMatchingRegex:range:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSDictionary_Class/Reference/Reference.html">NSDictionary</a> *)<span class="selector">dictionaryByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">range</div>
+        <div class="text">The range of the receiver to search.</div>
+      </li>
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.</p>
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="block method XXX">
+  <div class="section name" id="NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:">dictionaryByMatchingRegex:options:range:error:withKeysAndCaptures:</div>
+  <div class="section summary XXX">Returns a dictionary containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>.</div>
+  <div class="signature"><span class="hardNobr">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSDictionary_Class/Reference/Reference.html">NSDictionary</a> *)<span class="selector">dictionaryByMatchingRegex:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html">NSString</a> *)<span class="argument">regex</span></span> <span class="hardNobr"><span class="selector">options:</span>(<a href="#RKLRegexOptions" class="code">RKLRegexOptions</a>)<span class="argument">options</span></span> <span class="hardNobr"><span class="selector">range:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_DataTypes/Reference/reference.html#//apple_ref/c/tdef/NSRange">NSRange</a>)<span class="argument">range</span></span> <span class="hardNobr"><span class="selector">error:</span>(<a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSError_Class/Reference/Reference.html">NSError</a> **)<span class="argument">error</span></span> <span class="hardNobr"><span class="selector">withKeysAndCaptures:</span>(<a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html#//apple_ref/c/tdef/id">id</a>)<span class="argument">firstKey</span>, <span class="argument">...</span>;</span></div>
+  <div class="section parameters"><div class="header">Parameters</div>
+    <ul>
+      <li>
+        <div class="name">regex</div>
+        <div class="text">A <span class="code">NSString</span> containing a regular expression.</div>
+      </li>
+      <li>
+        <div class="name">options</div>
+        <div class="text">A mask of options specified by combining <a href="#RKLRegexOptions" class="code">RKLRegexOptions</a> flags with the C bitwise OR operator.  Either <span class="code">0</span> or <a href="#RKLRegexOptions_RKLNoOptions" class="code">RKLNoOptions</a> may be used if no options are required.</div>
+      </li>
+      <li>
+        <div class="name">range</div>
+        <div class="text">The range of the receiver to search.</div>
+      </li>
+      <li>
+        <div class="name">error</div>
+        <div class="text">An optional parameter that if set and an error occurs, will contain a <span class="code">NSError</span> object that describes the problem. This may be set to <span class="code">NULL</span> if information about any errors is not required.</div>
+      </li>
+
+      <li>
+        <div class="name">firstKey</div>
+        <div class="text">The first key to add to the new dictionary.</div>
+      </li>
+      <li>
+        <div class="name">...</div>
+        <div class="text">First the <span class="argument">capture</span> for <span class="argument">firstKey</span>, then a <span class="code">NULL</span>-terminated list of alternating <span class="argument">keys</span> and <span class="argument">captures</span>. <span class="argument">Captures</span> are specified using <span class="code">int</span> values.</div>
+      </li>
+<div class="box important" style="margin-top: 1em"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+<p>Use of non-<span class="code">int</span> sized <span class="argument">capture</span> arguments will result in undefined behavior.  <b>Do not</b> append <span class="argument">capture</span> arguments with a <span class="code">L</span> suffix.</p>
+</div></div></div></div>
+    </ul>
+  </div>
+  <div class="section result XXX"><div class="header">Return Value</div>A <span class="code">NSDictionary</span> containing the substrings matched by each capture group present in <span class="argument">regex</span> for the first match of <span class="argument">regex</span> within <span class="argument">range</span> of the receiver using <span class="argument">options</span>. Array index <span class="code">0</span> represents all of the text matched by <span class="argument">regex</span> and subsequent array indexes contain the text matched by their respective capture group.</div>
+  <div class="section discussion"><div class="header">Discussion</div>
+<p>The returned value is for the first match of <span class="argument">regex</span> in the receiver.</p>
+
+<p>If the receiver is not matched by <span class="argument">regex</span> then the returned value is a <span class="code">NSDictionary</span> that contains no items.</p>
+
+<p>A dictionary will not contain a given key if its corresponding capture group did not match any text.  It is important to note that a regular expression can successfully match zero characters:</p>
+
+<div class="box sourcecode">NSString     *name           <span class="hardNobr">= @&quot;Name: Joe&quot;;</span>
+NSString     *regex          <span class="hardNobr">= @&quot;Name:\\s*(\\w*)\\s*(\\w*)&quot;;</span>
+<span class="hardNobr">NSDictionary *nameDictionary = [name</span> <span class="hardNobr">dictionaryByMatchingRegex:regex</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">range:NSMakeRange(0UL, [name length])</span> <span class="hardNobr">error:NULL</span> <span class="hardNobr">withKeysAndCaptures:@&quot;first&quot;, 1,</span> <span class="hardNobr">@&quot;last&quot;, 2, NULL];</span>
+
+// 2010-01-29 12:19:54.559 RegexKitLite[64944:a0f] nameDictionary: {
+//     first = Joe;
+//     last = &quot;&quot;;
+// }</div>
+
+<p>Compared to this example, where the second capture group does not match any characters:</p>
+
+<div class="box sourcecode">NSString     *name           <span class="hardNobr">= @&quot;Name: Joe&quot;;</span>
+NSString     *regex          <span class="hardNobr">= @&quot;Name:\\s*(\\w*)\\s*(\\w<span class="highlight">+)?</span>&quot;;</span>
+<span class="hardNobr">NSDictionary *nameDictionary = [name</span> <span class="hardNobr">dictionaryByMatchingRegex:regex</span> <span class="hardNobr">options:RKLNoOptions</span> <span class="hardNobr">range:NSMakeRange(0UL, [name length])</span> <span class="hardNobr">error:NULL</span> <span class="hardNobr">withKeysAndCaptures:@&quot;first&quot;, 1,</span> <span class="hardNobr">@&quot;last&quot;, 2, NULL];</span>
+
+// 2010-01-29 12:12:52.177 RegexKitLite[64893:a0f] nameDictionary: {
+//     first = Joe;
+// }</div>
+
+  </div>
+  <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
+  <div class="section seealso"><div class="header">See Also</div>
+    <ul>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:withKeysAndCaptures:</a></li>
+      <li><a href="#NSString_RegexKitLiteAdditions__-dictionaryByMatchingRegex:range:withKeysAndCaptures:" class="code">- dictionaryByMatchingRegex:range:withKeysAndCaptures:</a></li>
+      <li><a href="#RegexKitLiteNSErrorErrorDomains" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError Error Domains</a></li>
+      <li><a href="#RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a></li>
+      <li><a href="#RegularExpressionOptions" class="section-link">Regular Expression Options</a></li>
+    </ul>
+  </div>
+</div>
 
 
 
@@ -5519,22 +5885,41 @@ if([regexString isRegexValidWithOptions:RKLNoOptions error:&amp;error] == NO) {
     </div>
     <div class="constant">
       <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired">RKLRegexEnumerationCapturedStringsNotRequired</div>
-      <div class="text">If set, this indicates that the block does not require the captured strings and <span class="code">NULL</span> will be passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument. <span class="XXX">add note that combining with RKLRegexEnumerationFastCapturedStringsXXX will raise an exception</span></div>
+      <div class="text"><p>If set, this indicates that the block does not require the captured strings and <span class="code">NULL</span> will be passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument.</p>
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+Methods will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSInvalidArgumentException" class="code">NSInvalidArgumentException</a> if <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired" class="code">RKLRegexEnumerationCapturedStringsNotRequired</a> and <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX" class="code">RKLRegexEnumerationFastCapturedStringsXXX</a> are both set.
+</div></div></div></div>
+
+</div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
     <div class="constant">
       <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</div>
-      <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will send the string returned by the block a <span class="code">release</span> message.  If garbage collection is active, this flag does nothing.  This flag is only valid for the <span class="code">stringByReplacingOccurrencesOfRegex:</span> and <span class="code">replaceOccurrencesOfRegex:</span> groups of methods. See the discussion below for more information.</div>
+      <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will send the string returned by the block a <span class="code">release</span> message.  If garbage collection is active, this flag does nothing.  This flag is only valid for the <span class="code">stringByReplacingOccurrencesOfRegex:</span> and <span class="code">replaceOccurrencesOfRegex:</span> groups of methods. See <a href="#RKLRegexEnumerationOptions__Discussion_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock" class="section-link">Regular Expression Enumeration Options - Using RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</a> for more information.</div>
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+Methods will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSInvalidArgumentException" class="code">NSInvalidArgumentException</a> if <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock" class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</a> is set and the block enumeration method is not a &#39;Search and Replace&#39; method.
+</div></div></div></div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
     <div class="constant">
       <div class="identifier" id="RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX">RKLRegexEnumerationFastCapturedStringsXXX</div>
-      <div class="text">If set, <span class="rkl">RegexKit<i>Lite</i></span> will <span class="XXX">TODO</span> <span class="XXX">add note that combining with RKLRegexEnumerationCapturedStringsNotRequired will raise an exception</span></div>
+      <div class="text">
+<p>If set, <span class="rkl">RegexKit<i>Lite</i></span> will create the captured strings that are passed to the blocks <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> argument in a special way. See <a href="#RKLRegexEnumerationOptions__Discussion_RKLRegexEnumerationFastCapturedStringsXXX" class="section-link">Regular Expression Enumeration Options - Using RKLRegexEnumerationFastCapturedStringsXXX</a> for more information.</p>
+
+<div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell">
+Methods will raise <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSInvalidArgumentException" class="code">NSInvalidArgumentException</a> if <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired" class="code">RKLRegexEnumerationCapturedStringsNotRequired</a> and <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX" class="code">RKLRegexEnumerationFastCapturedStringsXXX</a> are both set.
+</div></div></div></div>
+
+<div class="box caution"><div class="table"><div class="row">
+<div class="label cell">Caution:</div><div class="message cell"><p>This is an advanced feature option.  <b><i><u>Do not</u></i></b> use this option unless you fully understand the consequences.  Incorrect usage of this option will result in undefined behavior and will probably result in your program crashing.</p></div>
+</div></div></div>
+
+</div>
       <div class="text">Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</div>
     </div>
   </div>
 
-  <div class="section discussion"><div class="header">Discussion</div>
+  <div class="section discussion"><div class="header" id="RKLRegexEnumerationOptions__Discussion">Discussion</div>
     <div class="box important"><div class="table"><div class="row"><div class="label cell">Important:</div><div class="message cell"><span class="code">RKLRegexEnumerationOptions</span> is only available if <span class="cpp_flag">RKL_BLOCKS</span> is set.</div></div></div></div>
     <p>When the method supports it, enumeration options may specified by combining <a href="#RKLRegexEnumerationOptions" class="code">RKLRegexEnumerationOptions</a> flags with the C bitwise OR operator.For example:</p>
     <div class="box sourcecode">RKLRegexEnumerationOptions enumerationOptions = (RKLRegexEnumerationCapturedStringsNotRequired | RKLRegexEnumerationReleaseStringReturnedByReplacementBlock);</div>
@@ -5560,6 +5945,8 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
   return(<span class="highlight">/*(NSString *)*/</span>[NSString stringWithFormat:@&quot;&lt;%@&gt;&quot;, capturedStrings[0]]);
 }];</div>
 
+<div class="header" id="RKLRegexEnumerationOptions__Discussion_RKLRegexEnumerationReleaseStringReturnedByReplacementBlock" style="margin-top: 1em">Using <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span></div>
+
 
 <p>The use of convenience methods like <span class="code">stringWithFormat:</span> can create a lot of temporary strings that are autoreleased.  The memory used to hold these temporary strings won&#39;t be reclaimed until the autorelease pool that they are in is released.  When performing a replace on a large string, this can end up being a considerable about of memory.  If this is becomes a problem in your application, the <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span> enumeration option can be used to reclaim the memory used by these temporary strings immediately.  <span class="code">RKLRegexEnumerationReleaseStringReturnedByReplacementBlock</span> essentially transfers ownership of the string that is returned by the block to <span class="rkl">RegexKit<i>Lite</i></span>, which then becomes responsible for sending the string a <span class="code">release</span> message when it is no longer needed.  Typically this is right after <span class="rkl">RegexKit<i>Lite</i></span> has appended the contents of the returned string to the temporary internal string of all the accumulated replacement strings returned by the block.  For example:</p>
 
@@ -5583,6 +5970,48 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
   if([capturedStrings[0] isEqual:@&quot;with&quot;]) { return(capturedStrings[0]); }
   else { return([[NSString alloc] initWithFormat:@&quot;&lt;%@&gt;&quot;, capturedStrings[0]]); }
 }];</div>
+
+
+<div class="header" id="RKLRegexEnumerationOptions__Discussion_RKLRegexEnumerationFastCapturedStringsXXX" style="margin-top: 1em">Using <span class="code">RKLRegexEnumerationFastCapturedStringsXXX</span></div>
+
+<p>Normally, <span class="rkl">RegexKit<i>Lite</i></span> instantiates a new string object for each string passed via <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span>. When <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX" class="code">RKLRegexEnumerationFastCapturedStringsXXX</a> is set, <span class="rkl">RegexKit<i>Lite</i></span> creates up to <span class="argument">captureCount</span> strings using the <a href="http://developer.apple.com/documentation/CoreFoundation/Reference/CoreFoundation_Collection/index.html" class="section-link hardNobr">Core Foundation</a> function <a href="http://developer.apple.com/mac/library/documentation/CoreFoundation/Reference/CFMutableStringRef/Reference/reference.html#//apple_ref/c/func/CFStringCreateMutableWithExternalCharactersNoCopy" class="code">CFStringCreateMutableWithExternalCharactersNoCopy</a> and passes these strings via <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span>.</p>
+
+<p>The reason for doing this is strings created with <a href="http://developer.apple.com/mac/library/documentation/CoreFoundation/Reference/CFMutableStringRef/Reference/reference.html#//apple_ref/c/func/CFStringCreateMutableWithExternalCharactersNoCopy" class="code">CFStringCreateMutableWithExternalCharactersNoCopy</a> can have the strings buffer set directly with the function <a href="http://developer.apple.com/mac/library/documentation/CoreFoundation/Reference/CFMutableStringRef/Reference/reference.html#//apple_ref/c/func/CFStringSetExternalCharactersNoCopy" class="code">CFStringSetExternalCharactersNoCopy</a>. This allows <span class="rkl">RegexKit<i>Lite</i></span> to quickly update the strings that were captured by a match and is <b><i>much</i></b> faster than instantiating new strings for each match iteration since the only thing that needs to be updated is the captured strings pointer and length. In fact, the speed of <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX" class="code">RKLRegexEnumerationFastCapturedStringsXXX</a> is nearly has fast as <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationCapturedStringsNotRequired" class="code">RKLRegexEnumerationCapturedStringsNotRequired</a>.</p>
+
+<p>Special care must be taken when using the strings passed via <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> when <a href="#RKLRegexEnumerationOptions_RKLRegexEnumerationFastCapturedStringsXXX" class="code">RKLRegexEnumerationFastCapturedStringsXXX</a> has been set.  The following rules must be followed:</p>
+
+<ul class="square">
+  <li>The lifetime of the string is the duration of the blocks execution.  The string <b><i>can not</i></b> be used or referenced past the closing brace of the block.</li>
+  <li>Do not mutate any of <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span>.</li>
+  <li><p>If you need the string to exist past the end of the block, a <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/occ/instm/NSObject/copy" class="code">-copy</a> of the string must be made:</p>
+<div class="box sourcecode">NSString *copiedString = [[capturedStrings[0] copy] autorelease];</div>
+  </li>
+</ul>
+
+<p>Example usages:</p>
+
+<ul class="square">
+  <li><p>When using <span class="hardNobr"><span class="argument">capturedStrings</span><span class="code">[]</span></span> as an argument to <span class="code">stringWithFormat:</span>, you do not need to make a copy of the captured string:</p>
+<div class="box sourcecode">[searchString stringByReplacingOccurrencesOfRegex:regex usingBlock:^NSString *(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop) {
+  NSString *replacedString = NULL;
+  replacedString = [NSString stringWithFormat:@&quot;{1: &#39;%@&#39;}&quot;, capturedStrings[1]]; // <span class="comment">OK to use directly.</span>
+  return(replacedString);
+}];</div>
+
+  <li><p>Adding to a collection:</p>
+    <div class="box sourcecode">[aDictionary setObject:capturedStrings[0] forKey:@&quot;aKey&quot;];                      // <span class="comment"><b>Do not</b> add a captured string directly to a collection.</span>
+[aDictionary setObject:[[capturedStrings[0] copy] autorelease] forKey:@&quot;aKey&quot;]; // <span class="comment"><b>Do</b> add a copy of the captured string to a collection.</span></div>
+  </li>
+  <li><p>Assigning a captured string to a variable whose scope extends past the blocks:</p>
+    <div class="box sourcecode">__block NSString *foundString = NULL;
+
+[searchString enumerateStringsMatchedByRegex:regex usingBlock:^NSString *(NSInteger captureCount, NSString * const capturedStrings[captureCount], const NSRange capturedRanges[captureCount], volatile BOOL * const stop) {
+  foundString = capturedStrings[0];                      // <span class="comment"><b>Do not</b> assign a captured string to a variable whose scope extends past the blocks.</span>
+  foundString = [[capturedStrings[0] copy] autorelease]; // <span class="comment"><b>Do</b> assign a copy of the captured string to a variable whose scope extends past the blocks.</span>
+}];</div>
+</li>
+</ul>
+
   </div>
   <div class="section availability"><div class="header">Availability</div><p>Available in <span class="rkl">RegexKit<i>Lite</i></span> 4.0 and later.</p></div>
   <div class="section declared_in"><div class="header">Declared In</div>
@@ -6116,6 +6545,18 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	  </li>
 	</ul>
 
+	<p class="standout">Changes that effect the results that are returned:</p>
+
+	<ul class="square">
+	  <li>
+	    <p>When a regular expression could match zero or more characters, the &#39;Search and Replace&#39; methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters:</p>
+	    <div class="box sourcecode">NSString *replacedString = [@&quot;x&quot; stringByReplacingOccurrencesOfRegex:@&quot;(.*)&quot; withString:@&quot;&lt;&lt;$1&gt;&gt;&quot;];
+
+// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&lt;&lt;&gt;&gt;&quot;  &lt;- RegexKitLite &le; v3.3.</span>
+// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&quot;      &lt;- RegexKitLite &ge; v4.0.</span></div>
+	  </li>
+	</ul>
+
 	<p>New features:</p>
 
 	<ul class="square">
@@ -6129,8 +6570,8 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	    <div style="margin-left: 2ex; margin-top: 1em;">
 	      <table class="standard">
 		<tr><th>Retrieve</th><th>Time</th><th>Rate (per second)</th></tr>
-		<tr><td><b>Compile</b></td><td align="right"><span class="hardNobr">27,559.580 ns</span></td><td align="right">36,285</td></tr>
-		<tr><td><b>Cached</b></td><td align="right"><span class="hardNobr">50.811 ns</span></td><td align="right">19,680,762</td></tr>
+		<tr><td><b>Cached</b></td><td align="right"><span class="hardNobr">51 ns</span></td><td align="right">19,680,762</td></tr>
+		<tr><td><b>Compile</b></td><td align="right"><span class="hardNobr">27,560 ns</span></td><td align="right">36,285</td></tr>
 	      </table>
 	      <p><sup>&dagger;</sup>Timing done a MacBook Pro 2.66GHz</p>
 	    </div>
@@ -6170,32 +6611,14 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 
 	<ul class="square">
 	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:usingBlock:" class="code">- enumerateStringsMatchedByRegex:usingBlock:</a></li>
-	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsMatchedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
-	  
 	  <li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:usingBlock:</a>
-	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- enumerateStringsSeparatedByRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
-	  
 	  <li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:usingBlock:</a></li>
-	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- stringByReplacingOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
 	</ul>
 	
 	<p>New Block-based <a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSMutableString_Class/index.html" class="code">NSMutableString</a> Methods:</p>
 	
 	<ul class="square">
 	  <li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:usingBlock:" class="code">- replaceOccurrencesOfRegex:usingBlock:</a></li>
-	  <!--<li><a href="#NSString_RegexKitLiteAdditions__-replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:" class="code">- replaceOccurrencesOfRegex:options:inRange:error:enumerationOptions:usingBlock:</a></li>-->
-	</ul>
-
-	<p class="standout">Changes that effect the results that are returned:</p>
-
-	<ul class="square">
-	  <li>
-	    <p>When a regular expression could match zero or more characters, the &#39;Search and Replace&#39; methods would incorrectly add the replacement string to the end of the replaced string as if the regular expression had matched zero characters:</p>
-	    <div class="box sourcecode">NSString *replacedString = [@&quot;x&quot; stringByReplacingOccurrencesOfRegex:@&quot;(.*)&quot; withString:@&quot;&lt;&lt;$1&gt;&gt;&quot;];
-
-// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&lt;&lt;&gt;&gt;&quot;  &lt;- RegexKitLite &le; v3.3.</span>
-// <span class="comment">replacedString = @&quot;&lt;&lt;x&gt;&gt;&quot;      &lt;- RegexKitLite &ge; v4.0.</span></div>
-	  </li>
 	</ul>
 
 	<p>Other changes:</p>
@@ -6204,6 +6627,8 @@ to <span class="code">NSString *</span> because of a bug in <span class="console
 	  <li>Improved performance.  Many small performance tweaks and optimizations were made to frequently used code paths.</li>
 	  <li>The meaning of <span class="cpp_flag">RKL_CACHE_SIZE</span> changed.  This compile-time preprocessor tunable now controls the number of &quot;sets&quot; in the compiled regular expression cache, and each &quot;set&quot; contains four entries.  This means that the maximum number of potential compiled regular expressions that can be cached is <span class="cpp_flag">RKL_CACHE_SIZE</span> times four.  Like previous versions, this should always be a prime number to maximize the use of the cache.</li>
 	  <li><span class="cpp_flag">RKL_CACHE_SIZE</span> changed to <span class="code">13</span>.  The total number of compiled regular expressions that can be cached is <span class="code hardNobr">13 * 4</span>, or <span class="code">52</span>.  This is a 126% increase from previous versions of <span class="rkl">RegexKit<i>Lite</i></span> which had a default value of <span class="code">23</span> for <span class="cpp_flag">RKL_CACHE_SIZE</span>.</li>
+	  <li>Added the flag <a href="#dtrace_utf16ConversionCache_lookupResultFlags_RKLEnumerationBufferLookupFlag" class="code">RKLEnumerationBufferLookupFlag</a> to the DTrace <a href="#dtrace_utf16ConversionCache_lookupResultFlags" class="code">RegexKitLite:::utf16ConversionCache</a> flags.</li>
+	  <li>Added a number of new keys to <a href="RegexKitLiteNSErrorandNSExceptionUserInfoDictionaryKeys" class="section-link"><span class="rkl">RegexKit<i>Lite</i></span> NSError and NSException User Info Dictionary Keys</a>.</li>
 	</ul>
 
 	<p>Bug fixes:</p>
