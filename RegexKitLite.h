@@ -103,7 +103,7 @@ typedef unsigned int   NSUInteger;
 #ifndef   RKLREGEXOPTIONS_DEFINED
 #define   RKLREGEXOPTIONS_DEFINED
 
-// These must be idential to their ICU regex counterparts. See http://www.icu-project.org/userguide/regexp.html
+// These must be identical to their ICU regex counterparts. See http://www.icu-project.org/userguide/regexp.html
 enum {
   RKLNoOptions             = 0,
   RKLCaseless              = 2,
