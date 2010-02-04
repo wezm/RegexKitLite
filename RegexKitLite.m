@@ -991,7 +991,7 @@ exitNow:
 
 volatile NSUInteger rkl_debugCacheSpinLockCount = 0UL;
 
-void        rkl_debugCacheSpinLock              (void)                                            RKL_ATTRIBUTES(used, noinline, visibility("default"));
+void        rkl_debugCacheSpinLock          (void)                                            RKL_ATTRIBUTES(used, noinline, visibility("default"));
 static void rkl_cleanup_cacheSpinLockStatus (volatile NSUInteger *rkl_cacheSpinLockStatusPtr) RKL_ATTRIBUTES(used);
 
 void rkl_debugCacheSpinLock(void) {
@@ -1159,9 +1159,9 @@ static void rkl_handleDelayedAssert(id self, SEL _cmd, id exception) {
 //  ----------
 
 static NSUInteger rkl_search(RKLCachedRegex *cachedRegex, NSRange *searchRange, NSUInteger updateSearchRange, id *exception RKL_UNUSED_ASSERTION_ARG, int32_t *status) {
-  NSUInteger foundMatch = 0UL, searchEqualsEndOfRange = (RKL_EXPECTED(NSEqualRanges(*searchRange, NSMakeRange(NSMaxRange(cachedRegex->setToRange), 0UL)) == YES, 0L) ? 1UL : 0UL);
+  NSUInteger foundMatch = 0UL;
 
-  if((searchEqualsEndOfRange == 1UL) && (NSMaxRange(cachedRegex->lastFindRange) == NSMaxRange(cachedRegex->setToRange))) { foundMatch = 0UL; }
+  if((NSEqualRanges(*searchRange, cachedRegex->lastFindRange) == YES) && ((cachedRegex->lastMatchRange.length > 0UL) || (cachedRegex->lastMatchRange.location == (NSUInteger)NSNotFound))) { foundMatch = ((cachedRegex->lastMatchRange.location == (NSUInteger)NSNotFound) ? 0UL : 1UL);}
   else { // Only perform an expensive 'find' operation iff the current find range is different than the last find range.
     NSUInteger findLocation = (searchRange->location - cachedRegex->setToRange.location);
     RKLCDelayedAssert(((searchRange->location >= cachedRegex->setToRange.location)) && (NSRangeInsideRange(*searchRange, cachedRegex->setToRange) == YES) && (findLocation < INT_MAX) && (findLocation <= cachedRegex->setToRange.length), exception, exitNow);
@@ -1519,13 +1519,12 @@ exitNow:
 //  Modified version of the ICU libraries uregex_replaceAll() that keeps count of the number of replacements made.
 
 static int32_t rkl_replaceAll(RKLCachedRegex *cachedRegex, RKL_STRONG_REF const UniChar * RKL_GC_VOLATILE replacementUniChar, int32_t replacementU16Length, UniChar *replacedUniChar, int32_t replacedU16Capacity, NSInteger *replacedCount, int32_t *needU16Capacity, id *exception RKL_UNUSED_ASSERTION_ARG, int32_t *status) {
-  int32_t    u16Length     = 0,   initialReplacedU16Capacity = replacedU16Capacity;
-  NSUInteger setToMaxRange = 0UL, bufferOverflowed           = 0UL;
-  NSInteger  replaced      = -1L;
+  int32_t    u16Length        = 0,   initialReplacedU16Capacity = replacedU16Capacity;
+  NSUInteger bufferOverflowed = 0UL;
+  NSInteger  replaced         = -1L;
   RKLCDelayedAssert((cachedRegex != NULL) && (replacementUniChar != NULL) && (replacedUniChar != NULL) && (replacedCount != NULL) && (needU16Capacity != NULL) && (status != NULL) && (replacementU16Length >= 0) && (replacedU16Capacity >= 0), exception, exitNow);
 
   cachedRegex->lastFindRange = cachedRegex->lastMatchRange = NSNotFoundRange; // Clear the cached find information for this regex so a subsequent find works correctly.
-  setToMaxRange = NSMaxRange(cachedRegex->setToRange);
   RKL_ICU_FUNCTION_APPEND(uregex_reset)(cachedRegex->icu_regex, 0, status);
   
   // Work around for ICU uregex_reset() bug, see http://bugs.icu-project.org/trac/ticket/6545
@@ -1541,10 +1540,6 @@ static int32_t rkl_replaceAll(RKLCachedRegex *cachedRegex, RKL_STRONG_REF const 
     replaced++;
     u16Length += RKL_ICU_FUNCTION_APPEND(uregex_appendReplacement)(cachedRegex->icu_regex, replacementUniChar, replacementU16Length, &replacedUniChar, &replacedU16Capacity, status);
     if(RKL_EXPECTED(*status == U_BUFFER_OVERFLOW_ERROR, 0L)) { bufferOverflowed = 1UL; *status = U_ZERO_ERROR; }
-
-    NSRange lastReplaceRange;
-    if(RKL_EXPECTED(rkl_getRangeForCapture(cachedRegex, status, 0, &lastReplaceRange) > U_ZERO_ERROR, 0L)) { goto exitNow; }
-    if(RKL_EXPECTED(NSMaxRange(lastReplaceRange) == setToMaxRange, 0L) && RKL_EXPECTED(cachedRegex->setToRange.length > 0UL, 1L)) { break; }
   }
   if(RKL_EXPECTED(*status == U_BUFFER_OVERFLOW_ERROR, 0L)) { bufferOverflowed = 1UL; *status = U_ZERO_ERROR; }
   if(RKL_EXPECTED(*status <= U_ZERO_ERROR, 1L))            { u16Length += RKL_ICU_FUNCTION_APPEND(uregex_appendTail)(cachedRegex->icu_regex, &replacedUniChar, &replacedU16Capacity, status); }
