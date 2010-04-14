@@ -116,7 +116,6 @@ typedef uint32_t RKLRegexOptions; // This must be identical to the ICU 'flags' a
 
 #endif // RKLREGEXOPTIONS_DEFINED
 
-#ifdef    _RKL_BLOCKS_ENABLED
 #ifndef   RKLREGEXENUMERATIONOPTIONS_DEFINED
 #define   RKLREGEXENUMERATIONOPTIONS_DEFINED
 
@@ -129,7 +128,6 @@ enum {
 typedef NSUInteger RKLRegexEnumerationOptions;
   
 #endif // RKLREGEXENUMERATIONOPTIONS_DEFINED
-#endif // _RKL_BLOCKS_ENABLED
 
 #ifndef _REGEXKITLITE_H_
 #define _REGEXKITLITE_H_
