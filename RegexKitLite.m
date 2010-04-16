@@ -1430,7 +1430,7 @@ exitNow:
 #pragma mark Convert bulk results from rkl_findRanges in to various NSDictionary types
 
 static id rkl_makeDictionary(RKLCachedRegex *cachedRegex, RKLRegexOp regexOp, RKLFindAll *findAll, NSUInteger captureKeysCount, id captureKeys[captureKeysCount], const int captureKeyIndexes[captureKeysCount], id *exception RKL_UNUSED_ASSERTION_ARG) {
-  NSUInteger                      matchedStringIndex  = 0UL, createdStringsCount = 0UL, createdDictionariesCount = 0UL, matchedDictionariesCount = (findAll->found / cachedRegex->captureCount), transferredDictionariesCount = 0UL;
+  NSUInteger                      matchedStringIndex  = 0UL, createdStringsCount = 0UL, createdDictionariesCount = 0UL, matchedDictionariesCount = (findAll->found / (cachedRegex->captureCount + 1UL)), transferredDictionariesCount = 0UL;
   id           *  RKL_GC_VOLATILE matchedStrings      = NULL, * RKL_GC_VOLATILE matchedKeys = NULL, emptyString = @"";
   id              RKL_GC_VOLATILE returnObject        = NULL;
   NSDictionary ** RKL_GC_VOLATILE matchedDictionaries = NULL;
@@ -1461,26 +1461,35 @@ static id rkl_makeDictionary(RKLCachedRegex *cachedRegex, RKLRegexOp regexOp, RK
       for(matchedStringIndex = 0UL; matchedStringIndex < captureKeysCount; matchedStringIndex++) {
         NSRange range = rangePtr[captureKeyIndexes[matchedStringIndex]];
         if(RKL_EXPECTED(range.location != NSNotFound, 0L)) {
-          if(RKL_EXPECTED(((matchedStrings[createdStringsCount++] = RKL_EXPECTED(range.length == 0UL, 0L) ? emptyString : rkl_CreateStringWithSubstring((id)setToString, range)) == NULL), 0L)) { goto exitNow; }
-          matchedKeys[createdStringsCount - 1UL] = captureKeys[matchedStringIndex];
+          if(RKL_EXPECTED(((matchedStrings[createdStringsCount] = RKL_EXPECTED(range.length == 0UL, 0L) ? emptyString : rkl_CreateStringWithSubstring((id)setToString, range)) == NULL), 0L)) { goto exitNow; }
+          matchedKeys[createdStringsCount] = captureKeys[createdStringsCount];
+          createdStringsCount++;
         }
       }
+      RKLCDelayedAssert((matchedStringIndex <= captureCount), exception, exitNow);
       if(RKL_EXPECTED(((*matchedDictionariesPtr++ = (NSDictionary * RKL_GC_VOLATILE)CFDictionaryCreate(NULL, (const void **)matchedKeys, (const void **)matchedStrings, (CFIndex)createdStringsCount, &rkl_transferOwnershipDictionaryKeyCallBacks, &rkl_transferOwnershipDictionaryValueCallBacks)) == NULL), 0L)) { goto exitNow; }
       createdStringsCount = 0UL;
     }
   }
   
-  if((regexOp & RKLMaskOp) == RKLArrayOfDictionariesOfCapturesOp) {
-    RKLCDelayedAssert((matchedDictionaries != NULL) && (createdDictionariesCount > 0UL), exception, exitNow);
-    if((returnObject = rkl_CreateAutoreleasedArray((void **)matchedDictionaries, createdDictionariesCount)) == NULL) { goto exitNow; }
-    transferredDictionariesCount = createdDictionariesCount;
-  } else {
-    RKLCDelayedAssert((matchedDictionaries != NULL) && (createdDictionariesCount == 1UL), exception, exitNow);
-    if((returnObject = rkl_CFAutorelease(matchedDictionaries[0])) == NULL) { goto exitNow; }
-    transferredDictionariesCount = 1UL;
+  if(createdDictionariesCount > 0UL) {
+    if((regexOp & RKLMaskOp) == RKLArrayOfDictionariesOfCapturesOp) {
+      RKLCDelayedAssert((matchedDictionaries != NULL) && (createdDictionariesCount > 0UL), exception, exitNow);
+      if((returnObject = rkl_CreateAutoreleasedArray((void **)matchedDictionaries, createdDictionariesCount)) == NULL) { goto exitNow; }
+      transferredDictionariesCount = createdDictionariesCount;
+    } else {
+      RKLCDelayedAssert((matchedDictionaries != NULL) && (createdDictionariesCount == 1UL), exception, exitNow);
+      if((returnObject = rkl_CFAutorelease(matchedDictionaries[0])) == NULL) { goto exitNow; }
+      transferredDictionariesCount = 1UL;
+    }
   }
   
 exitNow:
+  RKLCDelayedAssert((createdDictionariesCount <= transferredDictionariesCount) && ((transferredDictionariesCount > 0UL) ? (createdStringsCount == 0UL) : 1), exception, exitNow2);
+#ifndef NS_BLOCK_ASSERTIONS
+exitNow2:
+#endif
+
   if(rkl_collectingEnabled() == NO) { // Release any objects, if necessary.
     NSUInteger x;
     if(matchedStrings      != NULL) { for(x = 0UL;                          x < createdStringsCount;      x++) { if((matchedStrings[x]      != NULL) && (matchedStrings[x] != emptyString)) { matchedStrings[x]      = rkl_ReleaseObject(matchedStrings[x]);      } } }
