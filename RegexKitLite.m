@@ -2128,7 +2128,7 @@ static id rkl_performEnumerationUsingBlock(id self, SEL _cmd,
     findAll.findInRange      = findAll.remainingRange; // Ask rkl_findRanges() to search the part of the string after the current match.
     lastMatchedRange         = findAll.ranges[0];
 
-    if(RKL_EXPECTED(shouldStop == YES, 0L)) { break; }
+    if(RKL_EXPECTED(shouldStop != NO, 0L)) { break; }
   }
   errorFree = YES;
   
